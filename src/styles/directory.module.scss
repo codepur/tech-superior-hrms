@@ -1,0 +1,144 @@
+.searchBar {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 32px;
+}
+
+.searchIcon {
+  background-color: #3c5f4b;
+  border: none;
+  &:hover {
+    background-color: #3c5f4b !important;
+  }
+}
+
+.switchBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.gridView, .cardView {
+  background-color: #3c5f4b;
+  height: fit-content;
+  padding: 2px;
+  border-radius: 5px;
+  display: flex;
+}
+
+.employeeImgSection {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  position: relative;
+  bottom: 50px;
+}
+
+.employeeImg {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.profileCard {
+  width: 231px;
+  height: 322px;
+  box-shadow: -2px 7px 38px -15px grey;
+  padding: 0px 0px 1px 0px;
+  transition: transform 0.5s, box-shadow 0.5s, z-index 0.5s;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: -2px 7px 45px -10px grey;
+    z-index: 1;
+  }
+}
+
+.headerPartOne {
+  border: none;
+  background-color: aqua;
+  div {
+    height: 35px;
+  }
+}
+
+.headerPartTwo {
+  border: none;
+  // background-color: #33a351;
+  div {
+    height: 35px;
+  }
+}
+
+.headerPartThree {
+  border: none;
+  background-color: #af257a;
+  div {
+    height: 35px;
+  }
+}
+
+.headerPartFour {
+  border: none;
+  background-color: #eb854b;
+  div {
+    height: 35px;
+  }
+}
+
+.profileCardDetails {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0px 0px 0px;
+  div {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.userProfileData {
+  padding: 0px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  b,
+  p {
+    color: darkgray;
+    font-size: 13px;
+  }
+}
+
+.departmentFilter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.employeeCards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profileFooter {
+  border: none;
+  text-align: center;
+  height: inherit;
+}
+
+.userImg {
+  width: 35px;
+  border-radius: 50%;
+}
+
+.tableHeadRow{
+  background-color: #3c5f4b;
+  color: white;
+}
+
+.gridIcon {
+  cursor: pointer;
+}

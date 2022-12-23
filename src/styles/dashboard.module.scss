@@ -1,0 +1,28 @@
+.statusImg {
+    width: 55px;
+} 
+
+.status {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 225px;
+    border: none;
+    height: 120px;
+    box-shadow: 3px 6px 12px 4px grey;
+    border-radius: 10px;
+}
+.segment{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.modal{
+    
+}
+.statusDetail {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #33a351;
+}

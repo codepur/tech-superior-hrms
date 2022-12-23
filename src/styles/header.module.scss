@@ -1,0 +1,49 @@
+.mainHeader {
+  padding-left: 110px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+ margin: 0px;
+ background-color: #d9e7b2 !important;
+ box-shadow: -2px 2px 33px -16px grey;
+}
+
+.headerLogo {
+    width: 30px;
+}
+
+.pageContentWrapper {
+    padding: 0 20px;
+  }
+
+.mainBodyWrapper {
+    width: 100%;
+}
+
+.dropdownMenu {
+  display: flex;
+  .toggleButton:focus {
+    box-shadow: none !important;
+  }
+  .toggleButton {
+    margin-left: 30px;
+    background-color: transparent !important;
+  }
+  .toggleButton::after {
+    display: none !important;
+  }
+  .menuItems {
+    font-size: 14px;
+    z-index: 989;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  a:active {
+    background: transparent;
+  }
+  span {
+    color: black;
+  }
+}

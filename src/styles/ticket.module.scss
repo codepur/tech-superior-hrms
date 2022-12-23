@@ -1,0 +1,87 @@
+.createTicket{
+  padding: 15px;
+}
+
+.addTicket{
+    width: auto;
+    background-color: #3c5f4b !important;
+    color: white;
+    cursor: pointer;
+    &:hover {
+      background-color: #3c5f4b !important;
+      color: white !important;
+    }
+}
+
+.ContainerDiv{
+    box-shadow: -2px 7px 38px -15px grey;
+    // border-radius: 15px 15px 15px 15px;
+    padding: 25px;
+}
+
+.OuterTicketDiv{
+  margin-top: 25px;
+}
+
+.saveButton{
+  margin-left: 13px;
+}
+
+.hr{
+  z-index: -1;
+}
+
+.hoverInfo {
+  cursor: pointer;
+}
+
+.ticketHeadings{
+  width: 163px;
+}
+
+.ticketRows{
+  border-bottom: solid rgb(197, 197, 197) 1px;
+  height: 40px;
+}
+
+.ticketHeader{
+  color: #3c5f4b;
+}
+
+.saveButton{
+  background-color: #3c5f4b !important;
+    color: white;
+}
+
+.searchIcon {
+  background-color: #3c5f4b;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #3c5f4b !important;
+  }
+}
+
+.tableHeadRow{
+  background-color: #3c5f4b;
+  color: white;
+  // color: #3c5f4b;
+}
+
+.discriptionData {
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.totalHours,
+.totalMin {
+  display: flex;
+  align-items: center;
+}
+
+.hoursInput,
+.minInput {
+  margin-right: 10px;
+}

@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+// .fullContainer {
+//   margin-left: 12px;
+// }
+.circleimg {
+  width: 160px;
+  margin-bottom: 15px;
+  font-family: "Poppins", sans-serif;
+}
+.widgetcard {
+  box-shadow: 0px 3px 6px #39669a29;
+  border-radius: 10px;
+  opacity: 1;
+  background: #ffffff;
+}
+.listItem {
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+
+.activeTab{
+  background-color: #3c5f4b;
+  color: white;
+}
+
+.listItem:hover {
+  background-color: #3c5f4b;
+  color: white;
+}
+
+.info {
+  font-size: 1.2em;
+  border-bottom-style: groove;
+  text-align: left;
+  color: #3c5f4b;;
+}
+.drop_down {
+  text-align: left;
+}
+
+.userProfile {
+  border-radius: 50%;
+}
+
+.textdata {
+  margin-top: 25px;
+}
+
+.tableRound {
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: -2px 7px 26px -15px grey;
+}
+
+.errorPassview {
+  position: absolute;
+  width: 25px;
+  right: 18px;
+  bottom: 5px;
+}
+.eyeSize {
+  width: 25px;
+}
+.formOutline{
+  border: solid #3c5f4b 2px;
+  padding: 10px;
+  border-radius: 20px;
+}

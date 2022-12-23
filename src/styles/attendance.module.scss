@@ -1,0 +1,62 @@
+$inactive_btn: #929292;
+$active_color: #50ff39;
+
+@mixin tabs-mixin($bg) {
+    background: $bg !important;
+    border: none;
+    color: #fff !important;
+    outline: none;
+    box-shadow: none !important;
+    &:hover {
+      color: #fff;
+      background: $bg;
+    }
+  }
+  
+  .inactive {
+    @include tabs-mixin($inactive_btn);
+  }
+  .active {
+    @include tabs-mixin($active_color);
+  }
+
+.TaskDiv{
+    box-shadow: -2px 7px 38px -15px grey;
+    // border-radius: 15px 15px 15px 15px;
+    padding: 25px;
+}
+
+.ContainerDiv{
+    box-shadow: -2px 7px 38px -15px grey;
+    padding: 25px;
+}
+
+.saveButton{
+    background-color: #3c5f4b !important;
+      color: white;
+  }
+
+.segmented{
+    margin-left: 1vw !important;    
+    padding-left: 6px !important;
+}
+
+.hoverInfo {
+    cursor: pointer;
+    width: 30px;
+  }
+.segmentedBg {
+    background-color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.segment{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: white;
+}
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
