@@ -10,7 +10,7 @@ import swal from "sweetalert";
 import { useSelector } from "react-redux";
 import { State } from "country-state-city";
 
-const intialState = {
+const intialData = {
   first_name: "",
   last_name: "",
   dob: "",
@@ -22,19 +22,39 @@ const intialState = {
   Tmonths: "",
   Ryears: "",
   Rmonths: "",
+
+  ref_name: "",
+  ref_designation: "",
+  ref_companyname: "",
+  nominee_name: "",
+  nominee_relation: "",
+  nominee_dob: "",
+  nominee_aadhar: "",
+  nominee_contact: "",
+
+  companyContact: "",
+  alternateContact: "",
+  aadhar: "",
+  pan: "",
+  bloodGroup: "",
+  doj: "",
+  permanent_address: "",
+  permanent_city: "",
+  permanent_state: "",
+  personalEmail: "",
 };
 
 export default function BasicInfo() {
-  const AllState = State?.getStatesOfCountry("IN");
-  const [data, setData] = useState(intialState);
+  const ALlState = State?.getStatesOfCountry("IN");
+  const [data, setData] = useState(intialData);
   const userData = useSelector((Gstate) => Gstate.user.userData);
   const [showErrors, setShowErrors] = useState(false);
   const {
     first_name,
     last_name,
     dob,
-    gender,
-    martial_status,
+    gender, 
+    marital_status,
     phone,
     address_line1,
     city,
@@ -44,7 +64,28 @@ export default function BasicInfo() {
     Tmonths,
     Ryears,
     Rmonths,
+    ref_name,
+    ref_designation,
+    ref_companyname,
+    nominee_name,
+    nominee_relation,
+    nominee_dob,
+    nominee_aadhar,
+    nominee_contact,
+
+    companyContact,
+    alternateContact,
+    aadhar,
+    pan,
+    bloodGroup,
+    doj,
+    permanent_address,
+    permanent_city,
+    permanent_state,
+    personalEmail,
   } = data;
+
+  console.log("data", data)
 
   const handleChange = (e) => {
     setShowErrors(false);
@@ -62,12 +103,32 @@ export default function BasicInfo() {
       !Validation.maxOf(last_name, 20) ||
       !Validation.date(dob) ||
       !Validation.maxOf(gender, 10) ||
-      !Validation.maxOf(martial_status, 20) ||
+      !Validation.maxOf(marital_status, 20) ||
+      !Validation.maxOf(phone, 11) ||
       !Validation.numericPhone(phone) ||
-      !Validation.maxOf(zip_code, 10) ||
+      !Validation.maxOf(zip_code, 6) ||
       !Validation.maxOf(state, 30) ||
       !Validation.maxOf(city, 30) ||
-      !Validation.maxOf(address_line1, 50)
+      !Validation.maxOf(address_line1, 50) ||
+
+      !Validation.maxOf(nominee_aadhar, 13) ||
+      !Validation.numericPhone(nominee_contact) ||
+      !Validation.date(nominee_dob) ||
+      !Validation.maxOf(nominee_relation, 20) ||
+      !Validation.maxOf(nominee_name, 20) ||
+      !Validation.maxOf(ref_companyname, 20) ||
+      !Validation.maxOf(ref_designation, 20) ||
+      !Validation.maxOf(ref_name, 20) ||
+
+      !Validation.numericPhone(companyContact) ||
+      !Validation.numericPhone(alternateContact) ||
+      !Validation.maxOf(aadhar, 12) ||
+      !Validation.maxOf(pan, 10) ||
+      !Validation.maxOf(bloodGroup, 2) ||
+      !Validation.date(doj) ||
+      !Validation.maxOf(permanent_state, 30) ||
+      !Validation.maxOf(permanent_city, 30) ||
+      !Validation.maxOf(permanent_address, 50)
     ) {
       return;
     } else {
@@ -83,7 +144,6 @@ export default function BasicInfo() {
       delete data.state;
       delete data.zip_code;
       delete data.address_line1;
-      
 
       API.apiPut("getlogin", data)
         .then((response) => {
@@ -101,13 +161,11 @@ export default function BasicInfo() {
         });
     }
   };
-   
-
-
   return (
     <>
-      <p className={`${styles.info} fw-bold p-2`}> Basic Information</p>
+      <p className={`${styles.info} fw-bold p-2`}> Personal Information</p>
       <Form>
+
         <Row className="mb-3">
           <Form.Group className="col-md-4" controlId="formGridEmail">
             <Form.Label className="fw-bold">First Name</Form.Label>
@@ -165,24 +223,40 @@ export default function BasicInfo() {
               isInvalid={showErrors && !Validation.maxOf(gender, 10)}
             />
             <Form.Control.Feedback type="invalid">
-              {!gender ? "Please Enter Your  Gender" : ""}
+              {!gender ? "Please Enter Your  Gender" : ""}
             </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="col-md-4" controlId="formGridPassword">
-            <Form.Label className="fw-bold">Martial Status</Form.Label>
+            <Form.Label className="fw-bold">Marital Status</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter your Martial Status"
+              placeholder="Enter your Marital Status"
               onChange={handleChange}
-              value={martial_status}
-              name="martial_status"
-              isInvalid={showErrors && !Validation.maxOf(martial_status, 20)}
+              value={marital_status}
+              name="marital_status"
+              isInvalid={showErrors && !Validation.maxOf(marital_status, 20)}
             />
             <Form.Control.Feedback type="invalid">
-              {!martial_status ? "Please Enter Martial Status" : ""}
+              {!marital_status ? "Please Enter Marital Status" : ""}
             </Form.Control.Feedback>
           </Form.Group>
+          <Form.Group className="col-md-4" controlId="formGridEmail">
+            <Form.Label className="fw-bold">Personal Email</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your Personal Email"
+              onChange={handleChange}
+              value={personalEmail}
+              name="personalEmail"
+              isInvalid={showErrors && !Validation.maxOf(personalEmail, 30)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!personalEmail ? "Please Enter Your  Personal Email" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+        <Row className="mb-3">
           <Form.Group className="col-md-4" controlId="formGridAddress1">
             <Form.Label className="fw-bold">Contact Number</Form.Label>
             <Form.Control
@@ -197,11 +271,103 @@ export default function BasicInfo() {
               {!phone ? "Please Enter Your phone" : ""}
             </Form.Control.Feedback>
           </Form.Group>
+
+          <Form.Group className="col-md-4" controlId="formGridPassword">
+            <Form.Label className="fw-bold">Company Contact Number</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your Company Contact Number "
+              onChange={handleChange}
+              value={companyContact}
+              name="companyContact"
+              isInvalid={showErrors && !Validation.numericPhone(companyContact)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!companyContact ? "Please Enter Company Contact Number" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="col-md-4" controlId="formGridAddress1">
+            <Form.Label className="fw-bold">Alternate Contact Number</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Alternate Contact Number"
+              onChange={handleChange}
+              value={alternateContact}
+              name="alternateContact"
+              isInvalid={showErrors && !Validation.numericPhone(alternateContact)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!alternateContact ? "Please Enter Your Alternate  phone" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
         </Row>
+        <Row className="mb-3">
+          <Form.Group className="col-md-4" controlId="formGridEmail">
+            <Form.Label className="fw-bold">Aadhar Number</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your Aadhar Number"
+              onChange={handleChange}
+              value={aadhar}
+              name="aadhar"
+              isInvalid={showErrors && !Validation.maxOf(aadhar, 12)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!aadhar ? "Please Enter Your  Aadhar Number" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="col-md-4" controlId="formGridPassword">
+            <Form.Label className="fw-bold">Pan Number</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your Pan Number"
+              onChange={handleChange}
+              value={pan}
+              name="pan"
+              isInvalid={showErrors && !Validation.maxOf(pan, 10)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!pan ? "Please Enter Pan Number" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="col-md-4" controlId="formGridPassword">
+            <Form.Label className="fw-bold">Blood Group</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your Blood group"
+              onChange={handleChange}
+              value={bloodGroup}
+              name="bloodGroup"
+              isInvalid={showErrors && !Validation.maxOf(bloodGroup, 2)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!bloodGroup ? "Please Enter Your Blood Group" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+        <Row className="mb-3">
+
+          <Form.Group className="col-md-4" controlId="formGridAddress1">
+            <Form.Label className="fw-bold">Date of Joining</Form.Label>
+            <Form.Control
+              type="date"
+              onChange={handleChange}
+              value={doj}
+              name="doj"
+              isInvalid={showErrors && !Validation.date(doj)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!doj ? "Please Enter Your Date of Joining" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+
+        <p className={`${styles.info} fw-bold p-2`}>Total Working Experience</p>
         <Row className="mt-4 fw-bold">
-          <Form.Label className="text-start">
-            Total Working Expreience
-          </Form.Label>
+          {/* <Form.Label className="text-start">
+            Total Working Experience
+          </Form.Label> */}
           <Form.Group className="col-md-6" controlId="formGridEmail">
             <Form.Label>Years</Form.Label>
             <Form.Control
@@ -210,9 +376,9 @@ export default function BasicInfo() {
               value={Tyears}
               name="Tyears"
               onChange={handleChange}
-              // isInvalid={
-              //   showErrors && (!Tyears || !Validation.minOf(Tyears, 3))
-              // }
+            // isInvalid={
+            //   showErrors && (!Tyears || !Validation.minOf(Tyears, 3))
+            // }
             />
           </Form.Group>
 
@@ -224,15 +390,15 @@ export default function BasicInfo() {
               placeholder="Enter Months"
               value={Tmonths}
               name="Tmonths"
-              // isInvalid={
-              //   showErrors && (!Tmonths || !Validation.minOf(Tmonths, 3))
-              // }
+            // isInvalid={
+            //   showErrors && (!Tmonths || !Validation.minOf(Tmonths, 3))
+            // }
             />
           </Form.Group>
         </Row>
         <Row className="mt-4 fw-bold">
           <Form.Label className="text-start">
-            Relevant Working Expreience
+            Relevant Working Experience
           </Form.Label>
           <Form.Group className="col-md-6" controlId="formGridAddress1">
             <Form.Label>Years</Form.Label>
@@ -242,9 +408,9 @@ export default function BasicInfo() {
               onChange={handleChange}
               value={Ryears}
               name="Ryears"
-              // isInvalid={
-              //   showErrors && (!Ryears || !Validation.minOf(Ryears, 3))
-              // }
+            // isInvalid={
+            //   showErrors && (!Ryears || !Validation.minOf(Ryears, 3))
+            // }
             />
           </Form.Group>
           <Form.Group className="col-md-6" controlId="formGridAddress1">
@@ -255,15 +421,18 @@ export default function BasicInfo() {
               onChange={handleChange}
               value={Rmonths}
               name="Rmonths"
-              // isInvalid={
-              //   showErrors && (!Rmonths || !Validation.minOf(Rmonths, 3))
-              // }
+            // isInvalid={
+            //   showErrors && (!Rmonths || !Validation.minOf(Rmonths, 3))
+            // }
             />
           </Form.Group>
         </Row>
+
+        <p className={`${styles.info} fw-bold p-2`}>Address Information</p>
         <Row className="mt-1">
           <Form.Group className="mt-4" controlId="formGridAddress2">
-            <Form.Label className="fw-bold">Address</Form.Label>
+            <Form.Label className="fw-bold">Corresponding Address</Form.Label>
+
             <Form.Control
               as="textarea"
               rows={3}
@@ -278,6 +447,7 @@ export default function BasicInfo() {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
+
         <Row className="mb-3 mt-3 ">
           <Form.Group className="col-md-4" controlId="formGridCity">
             <Form.Label className="fw-bold">City</Form.Label>
@@ -298,12 +468,12 @@ export default function BasicInfo() {
               defaultValue="Choose..."
               onChange={handleChange}
               name="state"
-              value={state}
+              value={data.state}
               isInvalid={showErrors && !Validation.maxOf(state, 30)}
             >
               <option hidden>Select Your State</option>
-              {AllState?.map((item,index) => (
-                <option key={index}>{item.name}</option>
+              {ALlState.map((item, i) => (
+                <option key={i}>{item.name}</option>
               ))}
             </Form.Select>
             <Form.Control.Feedback type="invalid">
@@ -323,6 +493,205 @@ export default function BasicInfo() {
               {!zip_code ? "Please Enter Zip Code" : ""}
             </Form.Control.Feedback>
           </Form.Group>
+        </Row>
+
+        <Row className="mt-1">
+          <Form.Group className="mt-4" controlId="formGridAddress2">
+            <Form.Label className="fw-bold">Permanent Address</Form.Label>
+
+            <Form.Control
+              as="textarea"
+              rows={3}
+              onChange={handleChange}
+              name="address_line1"
+              value={permanent_address}
+              placeholder="Enter Your Address"
+              isInvalid={showErrors && !Validation.maxOf(permanent_address, 50)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!permanent_address ? "Please Enter Your Address" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+
+        <Row className="mb-3 mt-3 ">
+          <Form.Group className="col-md-4" controlId="formGridCity">
+            <Form.Label className="fw-bold">City</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              name="permanent_city"
+              value={permanent_city}
+              isInvalid={showErrors && !Validation.maxOf(permanent_city, 30)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!permanent_city ? "Please Enter City Name" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="col-md-4" controlId="formGridState">
+            <Form.Label className="fw-bold">State</Form.Label>
+            <Form.Select
+              defaultValue="Choose..."
+              onChange={handleChange}
+              name="permanent_state"
+              value={data.permanent_state}
+              isInvalid={showErrors && !Validation.maxOf(permanent_state, 30)}
+            >
+              <option hidden>Select Your State</option>
+              {ALlState.map((item, i) => (
+                <option key={i}>{item.name}</option>
+              ))}
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {!state ? "Please Select State Name" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="col-md-4" controlId="formGridzip_code">
+            <Form.Label className="fw-bold">Zip</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              name="zip_code"
+              value={zip_code}
+              isInvalid={showErrors && !Validation.maxOf(zip_code, 10)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {!zip_code ? "Please Enter Zip Code" : ""}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+
+        <p className={`${styles.info} fw-bold p-2`}> Reference Information</p>
+        <Row className="mt-4">
+          <Row className="mb-3">
+            <Form.Group className="col-md-4" controlId="formGridEmail">
+              <Form.Label className="fw-bold">Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="ref_name"
+                placeholder="Enter Name"
+                onChange={handleChange}
+                value={ref_name}
+                isInvalid={showErrors && !Validation.maxOf(ref_name, 20)}
+              />
+              <Form.Control.Feedback type="invalid">
+                {!ref_name ? "Please Enter Name" : ""}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="col-md-4" controlId="formGridPassword">
+              <Form.Label className="fw-bold">Designation</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Designation"
+                name="ref_designation"
+                onChange={handleChange}
+                value={ref_designation}
+                isInvalid={showErrors && !Validation.maxOf(ref_designation, 20)}
+              />
+
+              <Form.Control.Feedback type="invalid">
+                {!ref_designation ? "Please Enter Designation" : ""}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="col-md-4" controlId="formGridAddress1">
+              <Form.Label className="fw-bold">Company Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Company Name"
+                name="ref_companyname"
+                onChange={handleChange}
+                value={ref_companyname}
+                isInvalid={showErrors && !Validation.maxOf(ref_companyname, 20)}
+              />
+              <Form.Control.Feedback type="invalid">
+                {!ref_companyname ? "Please Enter Company Name" : ""}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Row>
+        </Row>
+
+        <p className={`${styles.info} fw-bold p-2`}> Nominee Information</p>
+        <Row className="mt-4">
+          <Row className="mb-3">
+            <Form.Group className="col-md-4" controlId="formGridEmail">
+              <Form.Label className="fw-bold">Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="nominee_name"
+                placeholder="Enter Name"
+                onChange={handleChange}
+                value={nominee_name}
+                isInvalid={showErrors && !Validation.maxOf(nominee_name, 20)}
+              />
+              <Form.Control.Feedback type="invalid">
+                {!nominee_name ? "Please Enter Name" : ""}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="col-md-4" controlId="formGridPassword">
+              <Form.Label className="fw-bold">Relationship Status</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Relation"
+                name="nominee_relation"
+                onChange={handleChange}
+                value={nominee_relation}
+                isInvalid={showErrors && !Validation.maxOf(nominee_relation, 20)}
+              />
+
+              <Form.Control.Feedback type="invalid">
+                {!nominee_relation ? "Please Enter Relation" : ""}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="col-md-4" controlId="formGridAddress1">
+              <Form.Label className="fw-bold">DOB</Form.Label>
+              <Form.Control
+                type="date"
+                onChange={handleChange}
+                value={nominee_dob}
+                name="nominee_dob"
+                isInvalid={showErrors && !Validation.date(nominee_dob)}
+              />
+              <Form.Control.Feedback type="invalid">
+                {!nominee_dob ? "Please Enter Nominee Dob" : ""}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group className="col-md-4" controlId="formGridAddress1">
+              <Form.Label className="fw-bold">Contact Number</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Contact Number"
+                onChange={handleChange}
+                value={nominee_contact}
+                name="nominee_contact"
+                isInvalid={showErrors && !Validation.numericPhone(nominee_contact)}
+              />
+              <Form.Control.Feedback type="invalid">
+                {!nominee_contact ? "Please Enter Nominee Contact" : ""}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="col-md-4" controlId="formGridAddress1">
+              <Form.Label className="fw-bold">Aadhar Number</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Aadhar Number"
+                onChange={handleChange}
+                value={nominee_aadhar}
+                name="nominee_aadhar"
+                isInvalid={showErrors && !Validation.maxOf(nominee_aadhar, 13)}
+              />
+              <Form.Control.Feedback type="invalid">
+                {!nominee_aadhar ? "Please Enter Nominee Aadhar" : ""}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+          </Row>
         </Row>
 
         <Button
