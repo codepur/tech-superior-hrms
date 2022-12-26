@@ -234,3 +234,31 @@ body::-webkit-scrollbar {
  font-weight: bold;
  color: #3c5f4b;
 }
+.parent{
+  position: relative;
+}
+.clockImg{
+  left: 0px;
+  margin: 0px;
+  padding: 0;
+  width: 18% !important;  
+  position: absolute;
+}
+.laptopImg{
+  right: 82%;
+  bottom: 0;
+  margin: 0px;
+  padding: 0;
+  width: 19% !important;  
+  position: absolute;
+}
+
+.graphImg{
+  top: 31%;
+  left: 0%;
+  margin: 0px;
+  padding: 0;
+  width: 18% !important;  
+  /* height: 20% !important;   */
+  position: absolute;
+}
