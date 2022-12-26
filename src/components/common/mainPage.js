@@ -92,8 +92,8 @@ function MainPage(props) {
   };
 
   return (
-    <div className={`row ${styles.outerbox}`}>
-     <Toaster/>
+    <div className={`row ${styles.outerbox} parent`}>
+    <img src="./images/clock-removebg-preview.png" alt="clock"  className="clockImg"/ > 
       <div className={`col-md-6 row ${styles.backgroundFirsthalf}`}>
         <div className="col-md-4"></div>
         <div className={` col-md-8 ${styles.divide}`}>
