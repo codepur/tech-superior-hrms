@@ -1,21 +1,21 @@
-.logoContainer{
+.logoContainer {
   position: relative;
   left: 2vw;
 }
 
-.logoTsc{
+.logoTsc {
   width: 75px;
   object-fit: contain;
 }
 
-.logo{
+.logo {
   width: 270px;
   object-fit: contain;
 }
 
-.outerbox{
-   height: 100vh;
-   width: 100vw;
+.outerbox {
+  height: 100vh;
+  width: 100vw;
 }
 
 .hoverInfo {
@@ -27,43 +27,43 @@
   padding: 5px 20px 5px 20px;
 }
 
-.backgroundFirsthalf{
+.backgroundFirsthalf {
   background-image: linear-gradient(to right, black 0%, #2d994a 28%);
   // background-color: #1AEBB6;
-  padding:0px !important;
+  padding: 0px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
 
-.backgroundSecondHalf{
+.backgroundSecondHalf {
   background-image: linear-gradient(to left, black, #2d994a 28%);
-  padding:0px !important;
+  padding: 0px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
 
-.divide{
+.divide {
   border-radius: 83px 0 0 83px;
   background: linear-gradient(to left, #d4e3c4 13.4%, #dfe8e0 86.6%);
   // background-color: #1AEBB6;
   height: 525px;
   position: relative;
-  padding:0px;
+  padding: 0px;
   top: 8%;
-  box-shadow: -1rem 0rem 3rem rgba(0,0,0,0.35)!important;
+  box-shadow: -1rem 0rem 3rem rgba(0, 0, 0, 0.35) !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.poweredLogo{
+.poweredLogo {
   width: 130px;
   // height: 300px;
   object-fit: contain;
 }
 
-.poweredBy{
+.poweredBy {
   display: flex;
   justify-content: end;
   margin: 0;
@@ -75,35 +75,36 @@
   align-items: end;
 }
 
-.formStyle{
+.formStyle {
   border-radius: 0 83px 83px 0;
-    /* background: linear-gradient(to right, #C4E0A6 13.4%, #96E6A1 86.6%); */
-    background: linear-gradient(to right, #d4e3c4 13.4%, #96E6A1 86.6%);
+  /* background: linear-gradient(to right, #C4E0A6 13.4%, #96E6A1 86.6%); */
+  background: linear-gradient(to right, #d4e3c4 13.4%, #96e6a1 86.6%);
   height: 525px;
   position: relative;
   top: 8%;
-  box-shadow: 1rem .5rem 0rem rgba(0,0,0,0.35)!important;
+  box-shadow: 1rem 0.5rem 0rem rgba(0, 0, 0, 0.35) !important;
 }
 
-.LoginBtn{
+.LoginBtn {
+  border: none !important;
   border-radius: 23px;
-    color: white;
-    font-weight: 500;    
-    background-image: linear-gradient(to left, black, #2d994a);
+  color: white;
+  font-weight: 500;
+  background-image: linear-gradient(to left, black, #2d994a);
   // background-color: #1AEBB6 !important;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   &:hover {
     color: white;
   }
 }
 
-.tagline{
+.tagline {
   font-size: 17px;
   position: relative;
   // left: 22%;
   // top: 36vh;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .poweredByLogo {
@@ -125,15 +126,15 @@
   position: relative;
   top: 100px;
 }
-.AuthformReset{
+.AuthformReset {
   position: relative;
   top: 150px;
 }
-.loginBtn{
-     color: #1AEBB6;
+.loginBtn {
+  color: #1aebb6;
 }
 
-.forgetLinks{
+.forgetLinks {
   text-decoration: none;
 }
 .AuthFormContent {
@@ -148,13 +149,12 @@
   color: rgb(34, 34, 34);
   /* font-weight: 800; */
   // font-family: 'Roboto', sans-serif;
-  font-family: 'Alice', Helvetica, sans-serif;
+  font-family: "Alice", Helvetica, sans-serif;
 }
 
-$c-border: #1AEBB6;
-$c-background: #E3E4DB;
+$c-border: #1aebb6;
+$c-background: #e3e4db;
 $c-text: #441151;
-
 
 .sparkle {
   max-width: 10em;
@@ -171,7 +171,7 @@ $c-text: #441151;
   padding: 0.75em;
   &::before,
   &::after {
-    content: '';
+    content: "";
     box-sizing: border-box;
     position: absolute;
     top: 0;
@@ -184,18 +184,18 @@ $c-text: #441151;
   &::before {
     border-top: 0.2em solid $c-border;
     border-bottom: 0.2em solid $c-border;
-    transform: scale3d(0,1,1);
+    transform: scale3d(0, 1, 1);
   }
 
   &::after {
     border-left: 0.2em solid $c-border;
     border-right: 0.2em solid $c-border;
-    transform: scale3d(1,0,1);
+    transform: scale3d(1, 0, 1);
   }
 
   &:hover::before,
   &:hover::after {
-    transform: scale3d(1,1,1);
+    transform: scale3d(1, 1, 1);
     transition: transform 900ms;
   }
 }
