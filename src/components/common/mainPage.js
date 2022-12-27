@@ -10,16 +10,16 @@ import { Form, Image } from "react-bootstrap";
 import API from "../../helpers/api";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 import Validation from "../../utils/validations";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 function MainPage(props) {
   const dispatch = useDispatch();
   const [showErrors, setShowErrors] = useState(false);
   const userData = useSelector((Gstate) => [Gstate.user.auth]);
   const [data, setData] = useState({
-    email: '',
-    password: '',
-    emailReset: '',
+    email: "",
+    password: "",
+    emailReset: "",
   });
   const { email, password, emailReset } = data;
 
@@ -73,19 +73,20 @@ function MainPage(props) {
       resetPassword: false,
     });
 
-    API.apiPost('sendResetEmail', { payload: encodeData({ email: data.emailReset }) })
+    API.apiPost("sendResetEmail", {
+      payload: encodeData({ email: data.emailReset }),
+    })
       .then((response) => {
         if (response.data && response.data.success === true) {
           setShowErrors(false);
           toast.success(response.data.message, {
             position: "top-right",
             style: {
-              padding: '16px',
-              color: '#3c5f4b',
-              marginRight: '25px',
-            }
-          },
-          );
+              padding: "16px",
+              color: "#3c5f4b",
+              marginRight: "25px",
+            },
+          });
         }
       })
       .catch((err) => {
@@ -94,23 +95,6 @@ function MainPage(props) {
   };
 
   return (
-<<<<<<< HEAD
-    <div className={`row ${styles.outerbox} parent`}>
-    <img src="./images/clock-removebg-preview.png" alt="clock"  className="clockImg"/ > 
-      <div className={`col-md-6 row ${styles.backgroundFirsthalf}`}>
-        <div className="col-md-4"></div>
-        <div className={` col-md-8 ${styles.divide}`}>
-          <Image
-            src="/images/LogoTSC.svg"
-            alt="LogoMain"
-            className={`img-fluid ${styles.logoTsc}`}
-          />
-          <Image
-            src="/images/LogoMain.svg"
-            alt="LogoMain"
-            className={`img-fluid ${styles.logo}`}
-          /> 
-=======
     <>
       <div className={`row ${styles.outerbox} parent`}>
         <img src="./images/clock.png" alt="clock" className="clockImg" />
@@ -128,10 +112,7 @@ function MainPage(props) {
               alt="LogoMain"
               className={`img-fluid ${styles.logo}`}
             />
->>>>>>> bbbac54723332ca635ab37629d83212cfdf6f36f
-            <p>
-              Developing Solutions For The Future
-            </p>
+            <p>Developing Solutions For The Future</p>
           </div>
         </div>
         {firstPageLogin && (
@@ -145,7 +126,9 @@ function MainPage(props) {
                     Sign In
                   </h3>
                   <div className="form-group mt-3">
-                    <Form.Label><b>Email</b></Form.Label>
+                    <Form.Label>
+                      <b>Email</b>
+                    </Form.Label>
                     <Form.Control
                       type="email"
                       name="email"
@@ -157,7 +140,9 @@ function MainPage(props) {
                     />
                   </div>
                   <div className="form-group mt-3">
-                    <Form.Label><b>Password</b></Form.Label>
+                    <Form.Label>
+                      <b>Password</b>
+                    </Form.Label>
                     <Form.Control
                       type="password"
                       name="password"
@@ -213,7 +198,9 @@ function MainPage(props) {
                     Reset Password
                   </h3>
                   <div className="form-group mt-3">
-                    <Form.Label><b>Email</b></Form.Label>
+                    <Form.Label>
+                      <b>Email</b>
+                    </Form.Label>
                     <Form.Control
                       type="email"
                       name="emailReset"
@@ -238,7 +225,6 @@ function MainPage(props) {
             </div>
           </div>
         )}
-
       </div>
     </>
   );
