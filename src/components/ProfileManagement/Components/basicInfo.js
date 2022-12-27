@@ -228,14 +228,19 @@ export default function BasicInfo() {
 
           <Form.Group className="col-md-4" controlId="formGridPassword">
             <Form.Label className="fw-bold">Marital Status</Form.Label>
-            <Form.Control
+            <Form.Select
               type="text"
               placeholder="Enter your Marital Status"
               onChange={handleChange}
               value={marital_status}
               name="marital_status"
+              aria-label="Default select form"
               isInvalid={showErrors && !Validation.maxOf(marital_status, 20)}
-            />
+            >
+            <option hidden>select</option>
+            <option>married</option>
+            <option>unmarried</option>
+            </Form.Select>
             <Form.Control.Feedback type="invalid">
               {!marital_status ? "Please Enter Marital Status" : ""}
             </Form.Control.Feedback>
@@ -243,12 +248,14 @@ export default function BasicInfo() {
           <Form.Group className="col-md-4" controlId="formGridEmail">
             <Form.Label className="fw-bold">Personal Email</Form.Label>
             <Form.Control
-              type="text"
+              type="email"
               placeholder="Enter your Personal Email"
               onChange={handleChange}
               value={personalEmail}
               name="personalEmail"
               isInvalid={showErrors && !Validation.maxOf(personalEmail, 30)}
+              maxLength="40"
+              required
             />
             <Form.Control.Feedback type="invalid">
               {!personalEmail ? "Please Enter Your  Personal Email" : ""}
@@ -259,12 +266,13 @@ export default function BasicInfo() {
           <Form.Group className="col-md-4" controlId="formGridAddress1">
             <Form.Label className="fw-bold">Contact Number</Form.Label>
             <Form.Control
-              type="number"
+              type="tel"
               placeholder="Contact Number"
               onChange={handleChange}
-              value={phone}
+              value={phone?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
               name="phone"
               isInvalid={showErrors && !Validation.numericPhone(phone)}
+              maxLength="10"
             />
             <Form.Control.Feedback type="invalid">
               {!phone ? "Please Enter Your phone" : ""}
@@ -274,12 +282,13 @@ export default function BasicInfo() {
           <Form.Group className="col-md-4" controlId="formGridPassword">
             <Form.Label className="fw-bold">Company Contact Number</Form.Label>
             <Form.Control
-              type="text"
+              type="tel"
               placeholder="Enter your Company Contact Number "
               onChange={handleChange}
-              value={companyContact}
+              value={companyContact?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
               name="companyContact"
               isInvalid={showErrors && !Validation.numericPhone(companyContact)}
+              maxLength="10"
             />
             <Form.Control.Feedback type="invalid">
               {!companyContact ? "Please Enter Company Contact Number" : ""}
@@ -289,12 +298,13 @@ export default function BasicInfo() {
           <Form.Group className="col-md-4" controlId="formGridAddress1">
             <Form.Label className="fw-bold">Alternate Contact Number</Form.Label>
             <Form.Control
-              type="number"
+              type="tel"
               placeholder="Alternate Contact Number"
               onChange={handleChange}
-              value={alternateContact}
+              value={alternateContact?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
               name="alternateContact"
               isInvalid={showErrors && !Validation.numericPhone(alternateContact)}
+              maxLength="10"
             />
             <Form.Control.Feedback type="invalid">
               {!alternateContact ? "Please Enter Your Alternate  phone" : ""}

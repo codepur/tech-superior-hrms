@@ -52,6 +52,11 @@
   box-shadow: -2px 7px 26px -15px grey;
 }
 
+.navPosition{
+  position: sticky;
+  top:61px
+}
+
 .errorPassview {
   position: absolute;
   width: 25px;
