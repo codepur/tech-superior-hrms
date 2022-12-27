@@ -117,6 +117,7 @@ function Directory() {
                   title="List View"
                   className={`float-end ${styles.gridIcon} ${gridView ? `pt-2` : ""
                     }`}
+                    alt=''
                   onClick={() => setGridView(false)}
                 />
               </div>
@@ -129,6 +130,7 @@ function Directory() {
                   }
                   data-toggle="tooltip"
                   title="Grid View"
+                  alt=""
                   className={`float-end ms-1 ${styles.gridIcon} ${gridView ? `` : "pt-2"
                     }`}
                   onClick={() => setGridView(true)}
