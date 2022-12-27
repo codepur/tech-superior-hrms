@@ -65,7 +65,7 @@ function Directory() {
   useEffect(() => {
     setSearchData(userList);
     let department = filters.user_type || "all";
-  }, []);
+  }, [userList?.length]);
   return (
     <>
       <div className="me-4 mt-3">
@@ -115,9 +115,8 @@ function Directory() {
                   }
                   data-toggle="tooltip"
                   title="List View"
-                  className={`float-end ${styles.gridIcon} ${
-                    gridView ? `pt-2` : ""
-                  }`}
+                  className={`float-end ${styles.gridIcon} ${gridView ? `pt-2` : ""
+                    }`}
                   onClick={() => setGridView(false)}
                 />
               </div>
@@ -130,9 +129,8 @@ function Directory() {
                   }
                   data-toggle="tooltip"
                   title="Grid View"
-                  className={`float-end ms-1 ${styles.gridIcon} ${
-                    gridView ? `` : "pt-2"
-                  }`}
+                  className={`float-end ms-1 ${styles.gridIcon} ${gridView ? `` : "pt-2"
+                    }`}
                   onClick={() => setGridView(true)}
                 />
               </div>
