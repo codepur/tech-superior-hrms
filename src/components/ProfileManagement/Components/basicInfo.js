@@ -165,7 +165,6 @@ export default function BasicInfo() {
     <>
       <p className={`${styles.info} fw-bold p-2`}> Personal Information</p>
       <Form>
-
         <Row className="mb-3">
           <Form.Group className="col-md-4" controlId="formGridEmail">
             <Form.Label className="fw-bold">First Name</Form.Label>
@@ -314,7 +313,7 @@ export default function BasicInfo() {
               isInvalid={showErrors && !Validation.maxOf(aadhar, 12)}
             />
             <Form.Control.Feedback type="invalid">
-              {!aadhar ? "Please Enter Your  Aadhar Number" : ""}
+              {!aadhar ? "Please Enter Your Aadhar Number" : ""}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="col-md-4" controlId="formGridPassword">
@@ -335,7 +334,7 @@ export default function BasicInfo() {
             <Form.Label className="fw-bold">Blood Group</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter your Blood group"
+              placeholder="Enter your Blood group"  
               onChange={handleChange}
               value={bloodGroup}
               name="bloodGroup"
@@ -346,8 +345,8 @@ export default function BasicInfo() {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
-        <Row className="mb-3">
 
+        <Row className="mb-3">
           <Form.Group className="col-md-4" controlId="formGridAddress1">
             <Form.Label className="fw-bold">Date of Joining</Form.Label>
             <Form.Control
@@ -364,10 +363,7 @@ export default function BasicInfo() {
         </Row>
 
         <p className={`${styles.info} fw-bold p-2`}>Total Working Experience</p>
-        <Row className="mt-4 fw-bold">
-          {/* <Form.Label className="text-start">
-            Total Working Experience
-          </Form.Label> */}
+        <Row className=" fw-bold">   
           <Form.Group className="col-md-6" controlId="formGridEmail">
             <Form.Label>Years</Form.Label>
             <Form.Control
@@ -396,7 +392,7 @@ export default function BasicInfo() {
             />
           </Form.Group>
         </Row>
-        <Row className="mt-4 fw-bold">
+        <Row className="mt-4 fw-bold mb-3">
           <Form.Label className="text-start">
             Relevant Working Experience
           </Form.Label>
@@ -429,8 +425,8 @@ export default function BasicInfo() {
         </Row>
 
         <p className={`${styles.info} fw-bold p-2`}>Address Information</p>
-        <Row className="mt-1">
-          <Form.Group className="mt-4" controlId="formGridAddress2">
+        <Row className="">
+          <Form.Group className="" controlId="formGridAddress2">
             <Form.Label className="fw-bold">Corresponding Address</Form.Label>
 
             <Form.Control
@@ -660,7 +656,7 @@ export default function BasicInfo() {
             </Form.Group>
           </Row>
 
-          <Row className="mb-3">
+          <Row className="mb-4">
             <Form.Group className="col-md-4" controlId="formGridAddress1">
               <Form.Label className="fw-bold">Contact Number</Form.Label>
               <Form.Control
