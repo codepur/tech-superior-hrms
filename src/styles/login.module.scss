@@ -28,20 +28,24 @@
 }
 
 .backgroundFirsthalf{
-  background-color: #1AEBB6;
+  background-image: linear-gradient(to right, black 0%, #2d994a 28%);
+  // background-color: #1AEBB6;
   padding:0px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
 
 .backgroundSecondHalf{
+  background-image: linear-gradient(to left, black, #2d994a 28%);
   padding:0px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
 
 .divide{
-  background-color: #1AEBB6;
+  border-radius: 83px 0 0 83px;
+  background: linear-gradient(to left, #d4e3c4 13.4%, #dfe8e0 86.6%);
+  // background-color: #1AEBB6;
   height: 525px;
   position: relative;
   padding:0px;
@@ -72,16 +76,26 @@
 }
 
 .formStyle{
+  border-radius: 0 83px 83px 0;
+    /* background: linear-gradient(to right, #C4E0A6 13.4%, #96E6A1 86.6%); */
+    background: linear-gradient(to right, #d4e3c4 13.4%, #96E6A1 86.6%);
   height: 525px;
   position: relative;
   top: 8%;
-  box-shadow: 1rem .5rem 2rem rgba(0,0,0,0.35)!important;
+  box-shadow: 1rem .5rem 0rem rgba(0,0,0,0.35)!important;
 }
 
 .LoginBtn{
-  background-color: #1AEBB6 !important;
+  border-radius: 23px;
+    color: white;
+    font-weight: 500;    
+    background-image: linear-gradient(to left, black, #2d994a);
+  // background-color: #1AEBB6 !important;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+  &:hover {
+    color: white;
+  }
 }
 
 .tagline{

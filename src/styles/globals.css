@@ -234,15 +234,3 @@ body::-webkit-scrollbar {
  font-weight: bold;
  color: #3c5f4b;
 }
-
-.parent{
-  position: relative;
-}
-
-.clockImg{ 
-  left: 0px;
-  margin: 0px;
-  padding: 0;
- width: 18% !important;  
- position: absolute;
-}
