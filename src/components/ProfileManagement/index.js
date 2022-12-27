@@ -39,7 +39,7 @@ export default function MainPage() {
 
             <div>
               <span className="fw-bold ">Bio : </span>&nbsp;
-              <span className="fst-italic">{`Lorem Ipsum Dolor Emette Lorem Ipsum Dolor Emette `}</span>
+              <span className="fst-italic">{`Lorem Ipsum Dolor Emette Lorem Ipsum Dolor Emette   Lorem Ipsum Dolor Emette Lorem Ipsum Dolor Emette`}</span>
             </div>
             {/* <div>
               <span className="fw-bold">Email : </span>&nbsp;
