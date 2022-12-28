@@ -1,7 +1,7 @@
 import { Input } from '@material-ui/core';
 import React, { useState } from 'react';
 
-const AddTodo = ({ addTodo, setData }) => {
+const AddTodo = ({ addTodo }) => {
 
     const [title, setTitle] = useState();
    
@@ -13,8 +13,7 @@ const AddTodo = ({ addTodo, setData }) => {
             done: false
         }
         addTodo(newTodo);
-        setTitle("")
-        setData(newTodo);
+        setTitle("")        
     }
 
     return (
@@ -22,10 +21,10 @@ const AddTodo = ({ addTodo, setData }) => {
             <form>
                 <Input
                     type='text'
+                    required
                     placeholder='Enter something here...'
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
+                    onChange={(e) => setTitle(e.target.value)}                    
                 />
                 <button className='float-end btn btn-dark fw-bold' onClick={(e)=>{handleSubmit(e)}}>
                     +

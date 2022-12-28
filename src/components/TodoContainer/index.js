@@ -15,11 +15,10 @@ import Todo from "./TodoList";
 //     },
 // ]
 
-
-
 const TodoContainer = () => {
-    const [data,setData]=useState([]);
-    const [todos, setTodos] = useState(data);
+
+    const [todos, setTodos] = useState("");
+
     const handleAddTodo = (newTodo) => {
         const newTodoList = [...todos, newTodo]
         setTodos(newTodoList);
@@ -38,7 +37,8 @@ const TodoContainer = () => {
             return todo;
         })
         setTodos(checkedTodoList)
-    }     
+    }
+
     return (
         <div>
             <h4>My Todo List</h4>
@@ -46,7 +46,7 @@ const TodoContainer = () => {
                 ?
                 todos.map((todo, index) => (
                     <div key={index}>
-                        <Todo                            
+                        <Todo
                             todo={todo}
                             removeTodo={handleRemoveTodo}
                             handleCheckboxChange={handleCheckboxChange}
@@ -54,9 +54,9 @@ const TodoContainer = () => {
                     </div>
                 ))
                 :
-                <p >Hey !! add your work todo ...</p>
+                <p >Hey !! add your todo ...</p>
             }
-            <AddTodo addTodo={handleAddTodo}  setData={setData} />
+            <AddTodo addTodo={handleAddTodo} />
         </div>
     )
 }
