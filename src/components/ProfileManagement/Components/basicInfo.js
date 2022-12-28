@@ -85,7 +85,7 @@ export default function BasicInfo() {
     personalEmail,
   } = data;
 
-  console.log("data", data)
+  // console.log("data", data)
 
   const handleChange = (e) => {
     setShowErrors(false);
