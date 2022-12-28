@@ -1,29 +1,19 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { memo } from 'react';
+import React, { memo } from 'react'; 
 import { Col, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import HeaderComponent from './headerComponent';
 import Sidebar from './sidebarComponent';
 import styles from '../../styles/header.module.scss'
 
 const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }) => {
     const router = useRouter();
-    // const userData = useSelector(({ user }) => user.userData) || {};
-    // const user = decodeData(getToken());
     const hasSideBarLayout = data && data.layoutType === 'HOME';
-    //const isloggedInSidebar = [ADMIN_ROLE, SUB_ADMIN_ROLE, EMPLOYEE_ROLE].includes(userData?.role_id);
-    const hasSideBar =
-    (hasSideBarLayout)
-    &&
-    !['/set-password'].includes(router.pathname);
-    // const pages = ['/initiate-participant', '/survey', '/e-consent/[id]'];
-    // const displayHomeButton = pages.includes(router.pathname) && user?.role_id === COORDINATOR_ROLE;
+    const hasSideBar = (hasSideBarLayout)&&!['/set-password'].includes(router.pathname);
     const notLoginScreen = data?.pageScreen !== 'login' ;
-
-    // const redirectToParticipant = () => {
-    //   router.push('/initiate-participant');
-    // };
+    
+    
+     
     return (
         <React.Fragment>
             <Head>
@@ -40,19 +30,16 @@ const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }
 
             <Row className={`${styles.mainBodyWrapper}`}>
                 {notLoginScreen && hasSideBar &&(
-                    <Col md={1}>
-                        <Sidebar />
+                    <Col md={2} className={`${styles.sidebar}`} >
+                        <Sidebar/>
                     </Col>
                 )}
                 <Col
-                    md={( router.pathname != '/' && 11)}
-                    xs={12}
-                    className={`${styles.pageContentWrapper}`}
+                    md={( router.pathname != '/' && 10)} xs={12} className={`${styles.pageContentWrapper}`}
                 >
                     {children}
                 </Col>
             </Row>
-            {/* <FooterComponents /> */}
         </React.Fragment>
     );
 };

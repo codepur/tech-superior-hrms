@@ -57,7 +57,7 @@ export default function MainPage() {
         </div>
       </div>
       
-      {/*  Sidebar */}
+      
       <div className="row mt-4 ">
         <div className={`col-md-3`}>
           <ul className={`list-group ${styles.drop_down} ${styles.tableRound}`}>

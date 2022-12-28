@@ -48,7 +48,10 @@ a {
 
 body::-webkit-scrollbar {
   display: none;
+  background-color: #e8f1ff;
+  
 }
+
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -116,12 +119,6 @@ body::-webkit-scrollbar {
   display: contents;
 }
 
-/*  */
-
-/* body{
-  margin-top:20px;
-  background:#FAFAFA;
-} */
 .order-card {
   color: #fff;
 }
@@ -170,11 +167,11 @@ body::-webkit-scrollbar {
 }
 
 .calenderCard {
-  height: 550px !important;
+  /* height: 435px !important; */
 }
 
 .calendar-container {
-  padding: 10px;
+  padding: 2px;
   display: flex;
 }
 
@@ -233,4 +230,33 @@ body::-webkit-scrollbar {
  border-radius: 6px;
  font-weight: bold;
  color: #3c5f4b;
+}
+
+.parent{
+  position: relative;
+}
+.clockImg{
+  left: 0px;
+  margin: 0px;
+  padding: 0;
+  width: 18% !important;  
+  position: absolute;
+}
+.laptopImg{
+  right: 82%;
+  bottom: 0;
+  margin: 0px;
+  padding: 0;
+  width: 19% !important;  
+  position: absolute;
+}
+
+.graphImg{
+  top: 31%;
+  left: 0%;
+  margin: 0px;
+  padding: 0;
+  width: 18% !important;  
+  /* height: 20% !important;   */
+  position: absolute;
 }

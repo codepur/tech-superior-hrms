@@ -27,11 +27,11 @@ function HeaderComponent({ isPublic, hasSideBar }) {
       <Navbar bg="light" className={`row ${styles.mainHeader}`}>
         <Navbar.Brand href="#home" className={`d-flex justify-content-between`}>
           <div className="col-md-2">
-            <Image
+            {/* <Image
               src="/images/LogoTSC.svg"
               alt="LogoTsc"
               className={`${styles.headerLogo}`}
-            />
+            /> */}
           </div>
           <div className="col-md-3 d-flex justify-content-end">
             <Dropdown className={styles.dropdownMenu}>
