@@ -34,7 +34,9 @@ export default function DashboardComponent() {
     <>
       <Modal centered show={showModal} onHide={closeModal} >
         <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
-          <Modal.Title className={`${styles.header} ms-auto`}>Hi, Neeraj </Modal.Title>
+          <Modal.Title className={`${styles.header} ms-auto`}>
+            Hi, Neeraj{" "}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
           <h5 className="text-center">Please mark your attendance </h5>
@@ -143,7 +145,7 @@ export default function DashboardComponent() {
               <div className="col-md-6 col-xl-6">
                 <div className="card order-card bg-c-pink shadow border-0" >
                   <div className="card-block todoContainer overflow-auto">
-                    <h6 className="m-b-20 mt-1"><TodoContainer /></h6>                                      
+                    <h6 className="m-b-20 mt-1"><TodoContainer /></h6>
                   </div>
                 </div>
               </div>
