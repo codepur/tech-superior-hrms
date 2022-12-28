@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import router from "next/router";
 import styles from "../../styles/login.module.scss";
@@ -10,16 +9,16 @@ import { Form, Image } from "react-bootstrap";
 import API from "../../helpers/api";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 import Validation from "../../utils/validations";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
-function MainPage(props) {
+function mainLoginPage(props) {
   const dispatch = useDispatch();
   const [showErrors, setShowErrors] = useState(false);
   const userData = useSelector((Gstate) => [Gstate.user.auth]);
   const [data, setData] = useState({
-    email: '',
-    password: '',
-    emailReset: '',
+    email: "",
+    password: "",
+    emailReset: "",
   });
   const { email, password, emailReset } = data;
 
@@ -73,19 +72,20 @@ function MainPage(props) {
       resetPassword: false,
     });
 
-    API.apiPost('sendResetEmail', { payload: encodeData({ email: data.emailReset }) })
+    API.apiPost("sendResetEmail", {
+      payload: encodeData({ email: data.emailReset }),
+    })
       .then((response) => {
         if (response.data && response.data.success === true) {
           setShowErrors(false);
           toast.success(response.data.message, {
             position: "top-right",
             style: {
-              padding: '16px',
-              color: '#3c5f4b',
-              marginRight: '25px',
-            }
-          },
-          );
+              padding: "16px",
+              color: "#3c5f4b",
+              marginRight: "25px",
+            },
+          });
         }
       })
       .catch((err) => {
@@ -93,31 +93,19 @@ function MainPage(props) {
       });
   };
 
-  return (
-<<<<<<< HEAD
-    <div className={`row ${styles.outerbox} parent`}>
-    <img src="./images/clock-removebg-preview.png" alt="clock"  className="clockImg"/ > 
-      <div className={`col-md-6 row ${styles.backgroundFirsthalf}`}>
-        <div className="col-md-4"></div>
-        <div className={` col-md-8 ${styles.divide}`}>
-          <Image
-            src="/images/LogoTSC.svg"
-            alt="LogoMain"
-            className={`img-fluid ${styles.logoTsc}`}
-          />
-          <Image
-            src="/images/LogoMain.svg"
-            alt="LogoMain"
-            className={`img-fluid ${styles.logo}`}
-          /> 
-=======
+return(
     <>
-      <div className={`row ${styles.outerbox} parent`}>
-        <img src="./images/clock.png" alt="clock" className="clockImg" />
+    <div className={`${styles.outerbox} row`}>
+    <img src="./images/clock.png" alt="clock" className="clockImg" />
         <img src="./images/officeLaptop.png" alt="" className="laptopImg" />
-        <div className={`col-md-6 row ${styles.backgroundFirsthalf}`}>
-          <div className="col-md-4"></div>
-          <div className={` col-md-8 ${styles.divide}`}>
+        <img src="./images/graph.png" alt="" className="graph" />
+        <img src="./images/win.png" alt="" className="win" />
+        <img src="./images/laptop.png" alt="" className="laptop" />
+        {/* <img src="./images/win2.png" alt="" className="win2" /> */}
+        <img src="./images/checkList6.png" alt="" className="checkList6" />
+        <div className={`${styles.backgroundFirsthalf}`}>
+      <div className={`${styles.loginCard} row`}>
+        <div className={` col-md-6 ${styles.divide}`}>
             <Image
               src="/images/LogoTSC.svg"
               alt="LogoMain"
@@ -128,15 +116,12 @@ function MainPage(props) {
               alt="LogoMain"
               className={`img-fluid ${styles.logo}`}
             />
->>>>>>> bbbac54723332ca635ab37629d83212cfdf6f36f
-            <p>
-              Developing Solutions For The Future
-            </p>
+            <p>Developing Solutions For The Future</p>
           </div>
-        </div>
-        {firstPageLogin && (
-          <div className={`col-md-6 row ${styles.backgroundSecondHalf} `}>
-            <div className={`col-md-8 ${styles.formStyle} parent`}>
+          {firstPageLogin && (
+          // <div className={`col-md-6 row ${styles.backgroundSecondHalf} `}>
+            // <div className={`col-md-8 ${styles.formStyle} parent`}>
+            <div className={`col-md-6`}>
               <Form.Group className={`${styles.Authform}`}>
                 <div className={`${styles.AuthFormContent}`}>
                   <h3
@@ -145,7 +130,9 @@ function MainPage(props) {
                     Sign In
                   </h3>
                   <div className="form-group mt-3">
-                    <Form.Label><b>Email</b></Form.Label>
+                    <Form.Label>
+                      <b>Email</b>
+                    </Form.Label>
                     <Form.Control
                       type="email"
                       name="email"
@@ -157,7 +144,9 @@ function MainPage(props) {
                     />
                   </div>
                   <div className="form-group mt-3">
-                    <Form.Label><b>Password</b></Form.Label>
+                    <Form.Label>
+                      <b>Password</b>
+                    </Form.Label>
                     <Form.Control
                       type="password"
                       name="password"
@@ -187,19 +176,21 @@ function MainPage(props) {
                       Sign In
                     </button>
                   </div>
-                </div>
-              </Form.Group>
-            </div>
-            <div className={`row ${styles.powerdByLogo} p-3`}>
-              <p className={` ${styles.poweredBy} w-25 px-4`}>
-                <b>Powered By</b>
-              </p>
+                  <div className={`row ${styles.powerdByLogo} p-3`}>
+               
+                <div className={` ${styles.poweredBy} px-4`}>Powered By</div>
+              <div className={`${styles.logoImage}`}>
               <Image
                 src="/images/LogoMain.svg"
                 alt="LogoMain"
                 className={`img-fluid ${styles.poweredLogo}`}
               />
+              </div>
             </div>
+                </div>
+              </Form.Group>
+            {/* </div> */}
+             
           </div>
         )}
         {resetPassword && (
@@ -213,7 +204,9 @@ function MainPage(props) {
                     Reset Password
                   </h3>
                   <div className="form-group mt-3">
-                    <Form.Label><b>Email</b></Form.Label>
+                    <Form.Label>
+                      <b>Email</b>
+                    </Form.Label>
                     <Form.Control
                       type="email"
                       name="emailReset"
@@ -238,10 +231,13 @@ function MainPage(props) {
             </div>
           </div>
         )}
-
-      </div>
+        </div>
+        </div>
+         
+    </div>
+    
     </>
-  );
+)
 }
-
-export default MainPage;
+export default mainLoginPage;
+ 
