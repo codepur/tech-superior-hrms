@@ -262,3 +262,7 @@ body::-webkit-scrollbar {
   /* height: 20% !important;   */
   position: absolute;
 }
+
+.todoContainer{
+  max-height: 240px;
+}
