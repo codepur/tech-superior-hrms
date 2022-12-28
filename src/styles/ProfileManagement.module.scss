@@ -35,9 +35,9 @@
   text-align: left;
   color: #3c5f4b;;
 }
-.drop_down {
-  text-align: left;
-}
+// .drop_down {
+//   text-align: left;
+// }
 
 .userProfile {
   border-radius: 50%;
@@ -50,6 +50,11 @@
 .tableRound {
   border-radius: 15px 15px 15px 15px;
   box-shadow: -2px 7px 26px -15px grey;
+}
+
+.navPosition{
+  position: sticky;
+  top:61px
 }
 
 .errorPassview {

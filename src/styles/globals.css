@@ -231,7 +231,6 @@ body::-webkit-scrollbar {
  font-weight: bold;
  color: #3c5f4b;
 }
-
 .parent{
   position: relative;
 }
@@ -259,4 +258,8 @@ body::-webkit-scrollbar {
   width: 18% !important;  
   /* height: 20% !important;   */
   position: absolute;
+}
+
+.todoContainer{
+  max-height: 240px;
 }
