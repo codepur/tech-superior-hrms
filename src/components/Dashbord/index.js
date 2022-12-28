@@ -7,6 +7,7 @@ import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
 import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
+import TodoContainer from "../TodoContainer";
 
 export default function DashboardComponent() {
   const [Count] = useSelector((Gstate) => [Gstate.user?.CountParticipant]);
@@ -134,6 +135,15 @@ export default function DashboardComponent() {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6 col-xl-6">
+                <div className="card order-card bg-c-pink shadow border-0" >
+                  <div className="card-block todoContainer overflow-auto">
+                    <h6 className="m-b-20 mt-1"><TodoContainer /></h6>                                      
                   </div>
                 </div>
               </div>
