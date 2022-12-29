@@ -3,9 +3,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
- margin: 0px;
- background-color: #d9e7b2 !important;
- box-shadow: -2px 2px 33px -16px grey;
+  margin: 0px;
+  background : linear-gradient(117.5deg, rgb(89, 233, 162) 20.5%, rgb(29, 209, 185) 100.2%) ;
+  box-shadow: -2px 2px 33px -16px grey;
 }
 
 .headerLogo {
@@ -49,5 +49,7 @@
 }
 
 .sidebar{
-  
-}
+  // background: linear-gradient(109.6deg, rgb(9, 154, 151) 11.2%, rgb(21, 205, 168) 91.1%); 
+ // background-color: #A7FFEB
+ background-color: white; 
+} 
