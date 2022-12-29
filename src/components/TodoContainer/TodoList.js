@@ -7,7 +7,7 @@ const Todo = ({ todo, removeTodo, handleCheckboxChange }) => {
             {/* <InputGroup> */}
                 <input
                     type='checkbox'
-                    className="me-4 bg-white"
+                    className="me-4 bg-"
                     checked={todo.done}
                     onChange={() => { handleCheckboxChange(todo.id) }}
                 />

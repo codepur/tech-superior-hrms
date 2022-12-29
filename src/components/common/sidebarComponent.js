@@ -31,7 +31,7 @@ const SidebarComponent = () => {
     }
     if (roleId && roleId === EMPLOYEE_ROLE) {
       const menu = appMenuItems?.filter(
-        (item) => [1, 2, 3, 4, 7].includes(item.id)
+        (item) => [1, 2, 3, 4, 7,9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }

@@ -1,5 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,400&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400&family=Questrial&family=Signika+Negative:wght@600&family=Ubuntu:ital@1&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400&family=Questrial&family=Signika+Negative:wght@600&family=Ubuntu:ital@1&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 a {
   color: inherit;
@@ -336,4 +337,8 @@ body::-webkit-scrollbar {
 
 .todoContainer::-webkit-scrollbar {
   display: none;
+}
+
+.textFont {
+  font-family: 'Poppins', sans-serif;
 }
