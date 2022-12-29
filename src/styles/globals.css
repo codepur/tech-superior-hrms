@@ -48,7 +48,10 @@ a {
 
 body::-webkit-scrollbar {
   display: none;
+  background-color: #e8f1ff;
+  
 }
+
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -116,12 +119,6 @@ body::-webkit-scrollbar {
   display: contents;
 }
 
-/*  */
-
-/* body{
-  margin-top:20px;
-  background:#FAFAFA;
-} */
 .order-card {
   color: #fff;
 }
@@ -170,11 +167,11 @@ body::-webkit-scrollbar {
 }
 
 .calenderCard {
-  height: 550px !important;
+  /* height: 435px !important; */
 }
 
 .calendar-container {
-  padding: 10px;
+  padding: 2px;
   display: flex;
 }
 
@@ -261,4 +258,8 @@ body::-webkit-scrollbar {
   width: 18% !important;  
   /* height: 20% !important;   */
   position: absolute;
+}
+
+.todoContainer{
+  max-height: 240px;
 }

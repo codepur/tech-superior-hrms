@@ -82,6 +82,8 @@ export default function MainPage() {
           </div>
         </div>
       </div>
+      
+      
 
       {/*  Sidebar */}
       <div className="row mt-4 ">
@@ -141,10 +143,10 @@ export default function MainPage() {
           </ul>
         </div> */}
         <nav className={`navbar navbar-expand-lg navbar-light bg-light ${styles.navPosition}`}>
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <div className="collapse navbar-collapse" id="navbarNav">
             <ul className={`navbar-nav list-group  ${styles.drop_down}`}>
               <li
-                className={`list-group-item  ${state == "Basic Information" ? styles.activeTab : styles.listItem}`}
+                className={`list-group-item ${state == "Basic Information" ? styles.activeTab : styles.listItem}`}
                 name="Basic Information"
                 value="Basic Information"
                 onClick={() => handleClick("Basic Information")}>
@@ -187,6 +189,13 @@ export default function MainPage() {
                 name="EmergencyContact"
               >
                 Emergency Contact
+              </li>
+              <li
+                className={`list-group-item ${state == "DepartmentChange" ? styles.activeTab : styles.listItem}`}
+                onClick={() => handleClick("DepartmentChange")}
+                name="DepartmentChange"
+              >
+                Option 1
               </li>
             </ul>
           </div>
