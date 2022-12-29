@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+
+
 # dependencies
 /node_modules
 /.pnp
@@ -23,14 +25,24 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+
 
 # local env files
-.env*.local
+# .env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
+.env*
+.env_*.*
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+payloadEncryptDecrypt.js
+
+.vscode
+
+
+/server/uploads
+package-lock.json
+src/helpers/api/instance.js
