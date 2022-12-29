@@ -27,7 +27,7 @@ const AddTodo = ({ addTodo }) => {
                     onChange={(e) => setTitle(e.target.value)}
                     required
                 />
-                <button type='submit' className='float-end btn btn-dark fw-bold' onClick={(e) => { handleSubmit(e) }}>
+                <button type='submit' className='float-end btn bg-btn-green fw-bold' onClick={(e) => { handleSubmit(e) }}>
                     +
                 </button>
             </Form>

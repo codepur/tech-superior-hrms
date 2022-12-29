@@ -127,6 +127,10 @@ body::-webkit-scrollbar {
   background: linear-gradient(45deg,#4099ff,#73b4ff);
 }
 
+.bg-c-glassgreen{
+  background: linear-gradient(117.5deg, rgb(89, 233, 162) 20.5%, rgb(29, 209, 185) 100.2%);  
+}
+
 .bg-c-green {
   background: linear-gradient(45deg,#2ed8b6,#59e0c5);
 }
@@ -137,6 +141,12 @@ body::-webkit-scrollbar {
 
 .bg-c-pink {
   background: linear-gradient(45deg,#FF5370,#ff869a);
+}
+
+.bg-btn-green{
+  /* background-color: #3c5f4b!important; */
+  background-color: #33a351 !important;
+  color: white!important;
 }
 
 
