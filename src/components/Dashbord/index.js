@@ -1,16 +1,21 @@
 /* eslint-disable jsx-a11y/alt-text */
 import dynamic from "next/dynamic";
-import { Card, Image, Modal } from "react-bootstrap";
+import { Card, Image, Modal, Form, Button } from "react-bootstrap";
 import styles from "../../styles/dashboard.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
-import { Center, SegmentedControl, Box } from "@mantine/core";
+import { Center, SegmentedControl, Box, Textarea } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
+
 
 export default function DashboardComponent() {
   const [Count] = useSelector((Gstate) => [Gstate.user?.CountParticipant]);
-
+  const [formaData,setFormData]=useState({
+    leaveType:"",
+    fromData:"",
+    toData:""
+  })
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" };
   const event = [
     { date: "25/12/22", eventName: "Christmas" },
@@ -28,7 +33,23 @@ export default function DashboardComponent() {
   const openModal = () => {
     setShowModal(true);
   };
-
+  const [eventModal, setEventModal] = useState();
+  const closeEventModal = () => {
+    setEventModal(false);
+  };
+  useEffect(() => {
+    setEventModal(true);
+  }, []);
+  const [leaveModal, setLeaveModal] = useState(false);
+  const closeLeaveModal = () => {
+    setLeaveModal(false);
+  };
+  const openLeaveModal = () => {
+    setLeaveModal(true);
+  };
+  const handleChange = (e) => {
+    setFormData({ ...data, [e.target.name]: e.target.value });
+  };
   return (
     <>
       <Modal centered show={showModal} onHide={closeModal}>
@@ -82,7 +103,88 @@ export default function DashboardComponent() {
           </button>
         </Modal.Footer>
       </Modal>
+
+      <Modal centered show={eventModal} onHide={closeEventModal}>
+        <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
+          <Modal.Title className={`${styles.header} ms-auto`}>
+            Today's Events
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
+          <h2>
+            <div className="d-flex-justify-content-center">
+              HAPPY Holiday!!!!!!!!
+            </div>
+          </h2>
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            className="btn btn-primary text-center"
+            onClick={closeEventModal}
+          >
+            Save
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        centered
+        show={leaveModal}
+        onHide={closeLeaveModal}
+        className={`p-2`}
+      >
+        <div
+          className={` fw-bold fs-5 d-flex justify-content-center align-self-center mt-4 fs-3`}
+        >
+          Add Leave
+        </div>
+        <Form className="p-4">
+          {/* <fieldset disabled> */}
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="leaveSelect" className="fw-bold" >
+              Leave Type
+            </Form.Label>
+            <Form.Select id="leaveSelect" name="leaveType" onChange={handleChange}>
+              <option type="hidden">Select Leave Type</option>
+              <option value="Casual Leave">Casual Leave</option>
+              <option value="Medical Leave">Medical Leave</option>
+              <option value="Unpaid Leave">Unpaid Leave</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="leaveFrom" className="fw-bold">
+              From
+            </Form.Label>
+            <Form.Control id="leaveFrom" type="date" name="fromDate" onChange={handleChange}/>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="leaveTo" className="fw-bold">
+              To
+            </Form.Label>
+            <Form.Control id="leaveTo" type="date"  name="toDate" onChange={handleChange}/>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label className="fw-bold">Subject</Form.Label>
+            <Form.Control id="subject" type="text" name="subject" onChange={handleChange}/>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Label className="fw-bold" >Attachment</Form.Label>
+            <Form.Control as="textarea" rows={3} name="attachment" onChange={handleChange}/>
+          </Form.Group>
+          <Button type="submit" className={`${styles.leaveSubmit}`}  >
+            Submit
+          </Button>
+          {/* </fieldset> */}
+        </Form>
+      </Modal>
+
       <div className="container">
+        <button className="btn btn-danger px-3" onClick={openLeaveModal}>
+          Apply Leave+
+        </button>
         <div className="row d-flex justify-content-evenly">
           <div className="col-8">
             <div className="row">
@@ -120,7 +222,6 @@ export default function DashboardComponent() {
                   </div>
                 </div>
               </div>
-               
             </div>
 
             <div className="row">
@@ -159,27 +260,25 @@ export default function DashboardComponent() {
                     selectRange={true}
                     defaultValue={new Date()}
                   />
-                  </div>
-                  
-                  
-                    <div className="col-md-12">
-                      <div className="card bg-dark event-card shadow border-0">
-                        <div className="card-block">
-                           <Card.Title>Event this month</Card.Title>
-                            <i className="fa fa-rocket f-left"></i>
-                            {event?.map((item) => (
-                              <>
-                            <div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="card bg-dark event-card shadow border-0">
+                    <div className="card-block">
+                      <Card.Title>Event this month</Card.Title>
+                      <i className="fa fa-rocket f-left"></i>
+                      {event?.map((item) => (
+                        <>
+                          <div>
                             <span>{item.eventName}</span>
                             <span className="float-end">{item.date}</span>
-                            </div>
-                            </>
-                             ))}
-                        </div>
-                      </div>
+                          </div>
+                        </>
+                      ))}
                     </div>
-                  
-               
+                  </div>
+                </div>
+
                 <p className="text-center fs-5">
                   <span className="bold text-dark">Today Date: </span>{" "}
                   {new Date().toDateString()}

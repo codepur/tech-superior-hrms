@@ -16,13 +16,19 @@
 .segment{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.modal{
-    
-}
 .statusDetail {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #33a351;
+}
+.leaveSubmit{
+    padding: 10px 40px;
+    border-radius: 41px;
+    font-weight: bold;
+    margin: auto 160px;
+    background-color:#33a351;
+    color:white;
+    border:none;
 }

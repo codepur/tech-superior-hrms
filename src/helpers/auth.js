@@ -1,6 +1,6 @@
 import { setAuthorization } from "./api";
-import decode from 'jwt-decode';
-import { Base64 } from 'js-base64';
+import decode from "jwt-decode";
+import { Base64 } from "js-base64";
 
 export function login(token, appId = "") {
   localStorage.setItem("accessToken", token);
@@ -12,12 +12,14 @@ export function login(token, appId = "") {
 export function logout() {
   localStorage.removeItem("accessToken");
   setAuthorization();
-  setTimeout(() => {
-    if (process.browser) window.location.href = `${window.location.origin}/`;
-  }, 500);
+  //   setTimeout(() => {
+  //     if (process.browser) window.location.href = `${window.location.origin}/`;
+  //   }, 500);
+  //   return true;
+  // }
+  window.location.href = `${window.location.origin}/`;
   return true;
 }
-
 export const encodeData = (payload) => {
   try {
     let dataString = Base64.btoa(encodeURI(JSON.stringify(payload)));
