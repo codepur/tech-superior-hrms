@@ -79,7 +79,7 @@ const SidebarComponent = () => {
               </div>
               
           </div> */}
-          <div className={`${styles.sidebarInnerItems} mt-4 pt-2`}>
+          <div className={`${styles.sidebarInnerItems} mt-4 pt-2 w-100`}>
             {appMenuItemsData?.map((item, i) => (
               <Nav.Item
                 href={item.link}
