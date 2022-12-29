@@ -25,7 +25,7 @@ function HeaderComponent({ isPublic, hasSideBar }) {
 
   return (
     <>
-      <Navbar bg="light" className={`row ${styles.mainHeader}`}>
+      <Navbar bg="light" className={`row ${styles.mainHeader} m-0 `}>
         <Navbar.Brand href="#home" className={`d-flex justify-content-between`}>
           <div className="col-md-2">
             {/* <Image
