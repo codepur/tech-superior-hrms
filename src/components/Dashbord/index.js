@@ -22,6 +22,7 @@ export default function DashboardComponent() {
   const closeModal = () => {
     setShowModal(false);
   };
+
   const openModal = () => {
     setShowModal(true);
   };

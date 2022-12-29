@@ -13,6 +13,7 @@ import TicketModal from "./viewModal";
 import toast, { Toaster } from "react-hot-toast";
 import { Editor } from "@tinymce/tinymce-react";
 import { encodeData } from "../../helpers/auth";
+import { object } from "underscore";
 
 const initial = {
   subject: "",
@@ -34,12 +35,17 @@ function TicketManagement() {
   const [index, setIndex] = useState();
   const [loading, setLoading] = useState(false);
   const editorRef = useRef(null);
+  const [searchKey, setSearchKey] = useState("");
+  const [searchData, setSearchData] = useState([]);
+
   const { skip = [] } = pagination;
   const [departmentList, userData, ticketsList] = useSelector((Gstate) => [
     Gstate.ticketManagement?.departmentList,
     Gstate.user?.userData,
     Gstate.ticketManagement?.ticketsList,
   ]);
+  
+ 
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
     setTicketSectionExpand(!ticketSectionExpand);
@@ -52,8 +58,23 @@ function TicketManagement() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    setSearchKey(e?.target?.value);
   };
 
+  const handleFilter = (e) => {
+    let searchvalue = e?.target?.value;
+    let arrt=Object.entries(userData)
+    let arr = arrt?.filter(
+      (item) =>
+        (searchvalue
+          ? item.first_name?.toLowerCase().includes(searchvalue.toLowerCase())
+          : true) ||
+        (searchvalue
+          ? item.last_name?.toLowerCase().includes(searchvalue.toLowerCase())
+          : true)
+    );
+    setSearchData(arr);
+  };
   const handleDescEdit = (content, editor) => {
     const updatedDesc = content;
     setTicketData((prev) => ({
@@ -257,12 +278,14 @@ function TicketManagement() {
           </div>
           <hr className={`${styles.hr}`}></hr>
           <div className="row justify-content-end">
-            <div className="col-md-3 d-flex ">
+            <div className="col-md-3 d-flex " onChange={onChangeHandler}>
               <InputGroup className="mb-3 d-flex">
                 <Form.Control
                   placeholder="Search"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  onChange={handleFilter}
+                  value={searchKey}
                 />
                 <InputGroup.Text
                   id="basic-addon2"

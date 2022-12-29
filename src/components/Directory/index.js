@@ -50,6 +50,7 @@ function Directory() {
     //   list: arr,
     // }));
   };
+ 
   const filterData = "";
   const handleSelectFilter = (e) => {
     const { name, value } = e.target;
