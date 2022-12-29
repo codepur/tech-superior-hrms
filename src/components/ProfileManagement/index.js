@@ -82,6 +82,8 @@ export default function MainPage() {
           </div>
         </div>
       </div>
+      
+      
 
       {/*  Sidebar */}
       <div className="row mt-4 ">

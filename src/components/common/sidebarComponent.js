@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { ProSidebar, SidebarContent } from "react-pro-sidebar";
-import "react-pro-sidebar/dist/css/styles.css";
 import styles from "../../../src/styles/sidebar.module.scss";
 import { Image, Nav, NavLink } from "react-bootstrap";
 import Link from "next/link";
 import { memo } from "react";
 import { useRouter } from "next/router";
+
+
 import {
   ADMIN_ROLE,
-  appMenuItems, 
+  appMenuItems,
   EMPLOYEE_ROLE,
   SUB_ADMIN_ROLE,
 } from "../../constants/constant";
@@ -49,25 +49,47 @@ const SidebarComponent = () => {
     setMenuCollapse(false);
   };
 
+
   return (
     <>
       <div id="header">
-        <Nav
-          collapsed={menuCollapse}
-          className={`${
-            menuCollapse ? styles.sidebarMenuCollape : styles.sidebarMenuAppend
-          }`}
-        >
+        <Nav  collapsed={menuCollapse}
+          className={`${styles.sidebar}`}
+        >  
+          <header>
+            <div className={`${styles.head}`}>
+                <div class="logoImg">
+                    <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid"/>
+                </div>
+                <div class="logoText">
+                    <Image src="images/textLogo.png" alt="logo" className="img-fluid"/>
+                </div>
+            </div>
+          </header>
+          <div className={`${styles.user}`}>
+              <div className="card p-2 ">
+                  <div className=" d-flex align-item-center">
+                    <div className="col-6 d-flex align-item-center justify-content-center">
+                       <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid w-50"/>                    
+                    </div>
+                    <div className="col-6">
+                           <h6 className="mb-0 mt-1">Neeraj</h6>
+                           <h6 className="">Verma</h6>                    
+                    </div>
+                   </div>
+              </div>
+              
+          </div>
           {appMenuItemsData?.map((item, i) => ( 
-            <Nav.Item 
+            <Nav.Item  
               href={item.link}
               key={i}
               className={`${styles.menuItem} ${
                 router.pathname.includes(item.link) && styles.menuItemActive
-              }`}
+              } menuBar`}
             >
               <Nav.Link className="flex-grow-1" href={item.link}>
-                <Link href={item.link} passHref className="flex-grow-1">
+                <Link href={item.link} passHref className="flex-grow-1 menuList">
                   <div className={`${styles.menuItemsImg}`}>
                     <Image
                       src={
@@ -86,26 +108,6 @@ const SidebarComponent = () => {
               </Nav.Link>
             </Nav.Item>
           ))} 
-          {!menuCollapse ? (
-            <div
-              className={`${styles.upperArrowKey}`}
-              onClick={collapesSidebar}
-            >
-              <Image
-                src="/images/upKey.png"
-                alt="up arrow"
-                className={styles.upperImg}
-              />
-            </div>
-          ) : (
-            <div className={`${styles.downArrowKey}`} onClick={appendSidebar}>
-              <Image
-                src="/images/downKey.png"
-                alt="down arrow"
-                className={styles.downImg}
-              />
-            </div>
-          )}
         </Nav>
       </div>
     </>

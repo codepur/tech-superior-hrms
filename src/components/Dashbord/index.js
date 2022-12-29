@@ -25,12 +25,21 @@ export default function DashboardComponent() {
   const openModal = () => {
     setShowModal(true);
   };
+  const event = [
+    { date: "25/12/22", eventName: "Christmas" },
+    { date: "29/12/22", eventName: "Guru Gobind Singh Jayanti" },
+  ];
+  const handleLeave =()=>{
+    
+  }
 
   return (
     <>
       <Modal centered show={showModal} onHide={closeModal} >
         <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
-          <Modal.Title className={`${styles.header} ms-auto`}>Hi, Neeraj </Modal.Title>
+          <Modal.Title className={`${styles.header} ms-auto`}>
+            Hi, Neeraj{" "}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
           <h5 className="text-center">Please mark your attendance </h5>
@@ -75,96 +84,157 @@ export default function DashboardComponent() {
           <button className="btn btn-primary text-center" onClick={closeModal}>Save</button>
         </Modal.Footer>
       </Modal>
+
       <div className="container">
-        <div className="row d-flex justify-content-evenly">
-          <div className="col-6">
+        <div className="row">
+          <div className="col-md-8">
+            <div className="row">
+              <div className={`${styles.mainCard}  card`}>
+                <div className={`${styles.cardText} card-body`}>
+                  <div className="row">
+                    <div className="col-md-3">
+                      <div className={`${styles.empImgCard} `}>
+                        <Image src="images/photo_6325701050312536371_x.jpg" alt="Profile pic" className={`${styles.empImg} `} />
+                      </div>
+                    </div>
+                    <div className="col-md-9">
+                      <div className={`${styles.empText}`}>
+                        <h2 className="mt-3">Welcome, Neeraj</h2>
+                        <p className="fst-italic mt-3"><q>Lorem Ipsum dolor emette Lorem Ipsum dolor emette Lorem Ipsum dolor emette Lorem Ipsum dolor emette Lorem Ipsum dolor emette Lorem Ipsum dolor emette Lorem Ipsum dolor emette Lorem Ipsum dolor emette</q></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <div className="row"> */}
+            <div className="row">
+              <div className="col-12">
+                <div className="row">
+                  <div className="col-md-6 col-xl-6">
+                    <div className="card bg-dark order-card shadow border-0">
+                      <div className="card-block">
+                        <h6 className="m-b-20">Attendance</h6>
+                        <h2 className="text-right float-start">
+                          <i className="fa fa-cart-plus f-left"></i>
+                          <button className="btn btn-danger px-3" onClick={openModal}>Mark</button>
+                        </h2>
+                        {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
+                        <Image
+                          src="/images/calendar.png"
+                          className="float-end"
+                          width={70}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6 col-xl-6">
+                    <div className="card bg-c-yellow order-card shadow border-0">
+                      <div className="card-block ">
+                        <h6 className="m-b-20">Number of Leave</h6>
+                        <h2 className="text-right float-start">
+                          <i className="fa fa-rocket f-left"></i>
+                          <span>500</span>
+                        </h2>
+                        {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
+                        <Image src="/images/leave.png" width={70} className="float-end" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* </div> */}
             <div className="row">
               <div className="col-md-6 col-xl-6">
-                <div className="card bg-c-blue order-card shadow border-0">
-                  <div className="card-block">
-                    <h6 className="m-b-20">Total Employees</h6>
-                    <h2 className="text-right float-start">
-                      <i className="fa fa-cart-plus f-left"></i>
-                      <p>{Count}</p>
-                    </h2>
-                    {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
-                    <Image
-                      src="/images/profileIcon.png"
-                      className="float-end"
-                      width={70}
-                    />
+                <div className="card order-card bg-c-blue shadow border-0" >
+                  <div className="card-block todoContainer overflow-auto">
+                    <h6 className="m-b-20 mt-1"><TodoContainer /></h6>
                   </div>
                 </div>
               </div>
               <div className="col-md-6 col-xl-6">
-                <div className="card bg-c-yellow order-card shadow border-0">
-                  <div className="card-block ">
-                    <h6 className="m-b-20">Number of Leave</h6>
+                <div className="card bg-c-pink order-card shadow border-0">
+                  <div className="card-body px-4 pt-4 pb-3">
+                    {/* <h6 className="m-b-20">Number of Leave</h6>
                     <h2 className="text-right float-start">
                       <i className="fa fa-rocket f-left"></i>
                       <span>500</span>
-                    </h2>
+                    </h2> */}
+
+                    <div className="time-list d-flex ">
+                      <div className="col-md-6 text-center dash-stats-list ">
+                        <h4>4.5</h4>
+                        <p>Leave taken</p>
+                      </div>
+                      <div className="col-md-6 text-center border-start dash-stats-list">
+                        <h4>12</h4>
+                        <p>Remaining</p>
+                      </div>
+                    </div>
+                    <div className="request-btn text-center mt-2 pt-1">
+                      <button className="btn btn-danger px-3" onClick={handleLeave}>Apply Leave</button>
+                    </div>
                     {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
-                    <Image src="/images/leave.png" width={70} className="float-end" />
+                    {/* <Image src="/images/leave.png" width={70} className="float-end" /> */}
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="col-md-4 ps-4">
             <div className="row">
-              <div className="col-md-6 col-xl-6">
-                <div className="card order-card shadow border-0" style={{ backgroundColor: "#BCAAA4" }}>
-                  <div className="card-block">
-                    <h6 className="m-b-20 mt-1">Attendance</h6>
-                    <h2 className="text-right float-start mt-3">
-                      <i className="fa fa-cart-plus f-left"></i>
-                      <button className="btn btn-dark px-3" onClick={openModal}>Mark</button>
-                    </h2>
-                    {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
-                    <Image
-                      src="/images/calendarClock.png"
-                      className="float-end"
-                      width={60}
+              <div className="card bg-c-green order-card shadow border-0 calenderCard">
+                <div className="p-2">
+                  <h3 className="text-center">Calendar</h3>
+                  <div className="calendar-container">
+                    <Calendar
+                      // onChange={setDate}
+                      selectRange={true}
+                      defaultValue={new Date()}
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6 col-xl-6">
-                <div className="card order-card bg-c-yellow shadow border-0" >
-                  <div className="card-block todoContainer overflow-auto">
-                    <h6 className="m-b-20 mt-1"><TodoContainer /></h6>                                      
+                  <div className="row p-3">
+                    <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
+                      <Card.Body className="text-white">
+                        <Card.Title>Birthday this month 🎂</Card.Title>
+                        <div className="row">
+                          <div className="col-md-2">
+                            <Image src="/images/profileIcon.png" width="30" />
+                          </div>
+                          <div className="col-md-4">Ashutosh</div>
+                          <div className="col-md-2">SE</div>
+                          <div className="col-md-3">28aug</div>
+                        </div>
+                      </Card.Body>
+                    </Card>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                  <div className="row p-3">
+                    <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
+                      <Card.Body className="text-white">
+                        <Card.Title>Event this month</Card.Title>
+                        {event?.map((item) => (
+                          <>
+                            <div>
+                              <span>{item.eventName}</span>
+                              <span className="float-end">{item.date}</span>
+                            </div>
+                          </>
+                        ))}
+                      </Card.Body>
+                    </Card>
+                  </div>
 
-          <div className="col-md-6 col-xl-6">
-            <div className="card bg-c-green order-card shadow border-0 calenderCard">
-              <div className="card-block">
-                <h1 className="text-center">Calendar</h1>
-                <div className="calendar-container">
-                  <Calendar
-                    // onChange={setDate}
-                    selectRange={true}
-                    defaultValue={new Date()}
-                  />
                 </div>
-                <p className="text-center fs-5">
-                  <span className="bold text-dark">Today Date: </span>{" "}
-                  {new Date().toDateString()}
-                </p>
               </div>
             </div>
+
           </div>
         </div>
+      </div>
 
-        {/* <div className="row d-flex justify-content-evenly">
-          <div className="col-6">
-            <TodoContainer />
-          </div>
-        </div> */}
+      <div className="container">
+
       </div>
     </>
   );

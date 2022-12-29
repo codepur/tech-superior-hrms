@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,400&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,400&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400&family=Questrial&family=Signika+Negative:wght@600&family=Ubuntu:ital@1&display=swap');
 a {
   color: inherit;
   text-decoration: none;
@@ -48,7 +48,10 @@ a {
 
 body::-webkit-scrollbar {
   display: none;
+  background-color: #e8f1ff;
+  
 }
+
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -116,12 +119,6 @@ body::-webkit-scrollbar {
   display: contents;
 }
 
-/*  */
-
-/* body{
-  margin-top:20px;
-  background:#FAFAFA;
-} */
 .order-card {
   color: #fff;
 }
@@ -170,11 +167,11 @@ body::-webkit-scrollbar {
 }
 
 .calenderCard {
-  height: 550px !important;
+  /* height: 550px !important; */
 }
 
 .calendar-container {
-  padding: 10px;
+  padding: 2px;
   display: flex;
 }
 
@@ -263,6 +260,45 @@ body::-webkit-scrollbar {
   position: absolute;
 }
 
-.todoContainer{
-  max-height: 240px;
+.checkList6{
+  /* top: 31%; */
+  bottom: 0;
+  right: 0%;
+  margin: 0px;
+  padding: 0;
+  width: 20% !important;  
+  /* height: 20% !important;   */
+  position: absolute;  
 }
+.laptop{
+  top: 24%;
+  left: 0;
+  /* right: 0%; */
+  margin: 0px;
+  padding: 0;
+  width:18% !important;  
+  /* height: 20% !important;   */
+  position: absolute;  
+}
+.graph{
+  top: 0%;
+  /* le: 0; */
+  right: 0%;
+  margin: 0px;
+  padding: 0;
+  width:24% !important;  
+  /* height: 24% !important;   */
+  position: absolute;  
+}
+.win{
+  top: 32%;
+  /* le: 0; */
+  right: 0%;
+  margin: 0px;
+  padding: 0;
+  width:15% !important;  
+  /* height: 24% !important;   */
+  position: absolute;  
+}
+ 
+
