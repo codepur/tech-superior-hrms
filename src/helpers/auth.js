@@ -12,9 +12,10 @@ export function login(token, appId = "") {
 export function logout() {
   localStorage.removeItem("accessToken");
   setAuthorization();
-  setTimeout(() => {
-    if (process.browser) window.location.href = `${window.location.origin}/`;
-  }, 500);
+  // setTimeout(() => {
+  //   if (process.browser) window.location.href = `${window.location.origin}/`;
+  // }, 500);
+  window.location.href = `${window.location.origin}/`;
   return true;
 }
 

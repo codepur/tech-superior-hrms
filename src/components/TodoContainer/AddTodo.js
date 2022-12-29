@@ -1,10 +1,11 @@
-import { Input } from '@material-ui/core';
 import React, { useState } from 'react';
+import { Input } from '@material-ui/core';
+import { Form } from 'reactstrap';
 
 const AddTodo = ({ addTodo }) => {
 
     const [title, setTitle] = useState();
-   
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const newTodo = {
@@ -13,23 +14,23 @@ const AddTodo = ({ addTodo }) => {
             done: false
         }
         addTodo(newTodo);
-        setTitle("")        
+        setTitle("")
     }
 
     return (
         <div>
-            <form>
+            <Form>
                 <Input
                     type='text'
-                    required
                     placeholder='Enter something here...'
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}                    
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
                 />
-                <button className='float-end btn btn-dark fw-bold' onClick={(e)=>{handleSubmit(e)}}>
+                <button type='submit' className='float-end btn btn-dark fw-bold' onClick={(e) => { handleSubmit(e) }}>
                     +
                 </button>
-            </form>
+            </Form>
         </div>
     )
 }
