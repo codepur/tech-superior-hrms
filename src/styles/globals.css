@@ -167,7 +167,7 @@ body::-webkit-scrollbar {
 }
 
 .calenderCard {
-  height: 550px !important;
+  /* height: 550px !important; */
 }
 
 .calendar-container {

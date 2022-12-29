@@ -11,7 +11,7 @@ import { handleErrorMessage } from "../../utils/commonFunctions";
 import Validation from "../../utils/validations";
 import toast, { Toaster } from "react-hot-toast";
 
-function mainLoginPage(props) {
+function MainLoginPage(props) {
   const dispatch = useDispatch();
   const [showErrors, setShowErrors] = useState(false);
   const userData = useSelector((Gstate) => [Gstate.user.auth]);
@@ -93,10 +93,10 @@ function mainLoginPage(props) {
       });
   };
 
-return(
+  return (
     <>
-    <div className={`${styles.outerbox} row`}>
-    <img src="./images/clock.png" alt="clock" className="clockImg" />
+      <div className={`${styles.outerbox} row`}>
+        <img src="./images/clock.png" alt="clock" className="clockImg" />
         <img src="./images/officeLaptop.png" alt="" className="laptopImg" />
         <img src="./images/graph.png" alt="" className="graph" />
         <img src="./images/win.png" alt="" className="win" />
@@ -104,140 +104,140 @@ return(
         {/* <img src="./images/win2.png" alt="" className="win2" /> */}
         <img src="./images/checkList6.png" alt="" className="checkList6" />
         <div className={`${styles.backgroundFirsthalf}`}>
-      <div className={`${styles.loginCard} row`}>
-        <div className={` col-md-6 ${styles.divide}`}>
-            <Image
-              src="/images/LogoTSC.svg"
-              alt="LogoMain"
-              className={`img-fluid ${styles.logoTsc}`}
-            />
-            <Image
-              src="/images/LogoMain.svg"
-              alt="LogoMain"
-              className={`img-fluid ${styles.logo}`}
-            />
-            <p>Developing Solutions For The Future</p>
-          </div>
-          {firstPageLogin && (
-          // <div className={`col-md-6 row ${styles.backgroundSecondHalf} `}>
-            // <div className={`col-md-8 ${styles.formStyle} parent`}>
-            <div className={`col-md-6`}>
-              <Form.Group className={`${styles.Authform}`}>
-                <div className={`${styles.AuthFormContent}`}>
-                  <h3
-                    className={` ${styles.sparkle} ${styles.uhoversparkle} ${styles.Authformtitle}`}
-                  >
-                    Sign In
-                  </h3>
-                  <div className="form-group mt-3">
-                    <Form.Label>
-                      <b>Email</b>
-                    </Form.Label>
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      className="form-control mt-1 p-2"
-                      placeholder="Enter email"
-                      isInvalid={showErrors && !Validation.email(email)}
-                      onChange={handleChange}
-                      value={email}
-                    />
-                  </div>
-                  <div className="form-group mt-3">
-                    <Form.Label>
-                      <b>Password</b>
-                    </Form.Label>
-                    <Form.Control
-                      type="password"
-                      name="password"
-                      className="form-control mt-1 p-2"
-                      placeholder="Enter password"
-                      onChange={handleChange}
-                      value={password}
-                    />
-                  </div>
-                  <div>
-                    <p className="forgot-password text-right mt-2">
-                      <a
-                        href=""
-                        onClick={forgotPass}
-                        className={`${styles.forgetLinks}`}
-                      >
-                        Forgot password?
-                      </a>
-                    </p>
-                  </div>
-                  <div className="d-grid gap-2 mt-3">
-                    <button
-                      type="button"
-                      className={`btn ${styles.LoginBtn}`}
-                      onClick={handleSubmit}
-                    >
-                      Sign In
-                    </button>
-                  </div>
-                  <div className={`row ${styles.powerdByLogo} p-3`}>
-               
-                <div className={` ${styles.poweredBy} px-4`}>Powered By</div>
-              <div className={`${styles.logoImage}`}>
+          <div className={`${styles.loginCard} row`}>
+            <div className={` col-md-6 ${styles.divide}`}>
+              <Image
+                src="/images/LogoTSC.svg"
+                alt="LogoMain"
+                className={`img-fluid ${styles.logoTsc}`}
+              />
               <Image
                 src="/images/LogoMain.svg"
                 alt="LogoMain"
-                className={`img-fluid ${styles.poweredLogo}`}
+                className={`img-fluid ${styles.logo}`}
               />
-              </div>
+              <p>Developing Solutions For The Future</p>
             </div>
-                </div>
-              </Form.Group>
-            {/* </div> */}
-             
-          </div>
-        )}
-        {resetPassword && (
-          <div className={`col-md-6 row ${styles.backgroundSecondHalf}`}>
-            <div className={`col-md-8 ${styles.formStyle}`}>
-              <Form.Group className={`${styles.AuthformReset}`}>
-                <div className={`${styles.AuthFormContent}`}>
-                  <h3
-                    className={` ${styles.sparkle} ${styles.uhoversparkle} ${styles.Authformtitle}`}
-                  >
-                    Reset Password
-                  </h3>
-                  <div className="form-group mt-3">
-                    <Form.Label>
-                      <b>Email</b>
-                    </Form.Label>
-                    <Form.Control
-                      type="email"
-                      name="emailReset"
-                      isInvalid={showErrors && !Validation.email(emailReset)}
-                      className="form-control mt-1 p-2"
-                      placeholder="Enter email"
-                      onChange={handleChange}
-                      value={emailReset}
-                    />
-                  </div>
-                  <div className="d-grid gap-2 mt-3">
-                    <button
-                      type="submit"
-                      className={`btn ${styles.LoginBtn}`}
-                      onClick={sendEmail}
+            {firstPageLogin && (
+              // <div className={`col-md-6 row ${styles.backgroundSecondHalf} `}>
+              // <div className={`col-md-8 ${styles.formStyle} parent`}>
+              <div className={`col-md-6`}>
+                <Form.Group className={`${styles.Authform}`}>
+                  <div className={`${styles.AuthFormContent}`}>
+                    <h3
+                      className={` ${styles.sparkle} ${styles.uhoversparkle} ${styles.Authformtitle}`}
                     >
-                      Send Email
-                    </button>
+                      Sign In
+                    </h3>
+                    <div className="form-group mt-3">
+                      <Form.Label>
+                        <b>Email</b>
+                      </Form.Label>
+                      <Form.Control
+                        type="email"
+                        name="email"
+                        className="form-control mt-1 p-2"
+                        placeholder="Enter email"
+                        isInvalid={showErrors && !Validation.email(email)}
+                        onChange={handleChange}
+                        value={email}
+                      />
+                    </div>
+                    <div className="form-group mt-3">
+                      <Form.Label>
+                        <b>Password</b>
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="password"
+                        className="form-control mt-1 p-2"
+                        placeholder="Enter password"
+                        onChange={handleChange}
+                        value={password}
+                      />
+                    </div>
+                    <div>
+                      <p className="forgot-password text-right mt-2">
+                        <a
+                          href=""
+                          onClick={forgotPass}
+                          className={`${styles.forgetLinks}`}
+                        >
+                          Forgot password?
+                        </a>
+                      </p>
+                    </div>
+                    <div className="d-grid gap-2 mt-3">
+                      <button
+                        type="button"
+                        className={`btn ${styles.LoginBtn}`}
+                        onClick={handleSubmit}
+                      >
+                        Sign In
+                      </button>
+                    </div>
+                    <div className={`row ${styles.powerdByLogo} p-3`}>
+
+                      <div className={` ${styles.poweredBy} px-4`}>Powered By</div>
+                      <div className={`${styles.logoImage}`}>
+                        <Image
+                          src="/images/LogoMain.svg"
+                          alt="LogoMain"
+                          className={`img-fluid ${styles.poweredLogo}`}
+                        />
+                      </div>
+                    </div>
                   </div>
+                </Form.Group>
+                {/* </div> */}
+
+              </div>
+            )}
+            {resetPassword && (
+              <div className={`col-md-6 row ${styles.backgroundSecondHalf}`}>
+                <div className={`col-md-8 ${styles.formStyle}`}>
+                  <Form.Group className={`${styles.AuthformReset}`}>
+                    <div className={`${styles.AuthFormContent}`}>
+                      <h3
+                        className={` ${styles.sparkle} ${styles.uhoversparkle} ${styles.Authformtitle}`}
+                      >
+                        Reset Password
+                      </h3>
+                      <div className="form-group mt-3">
+                        <Form.Label>
+                          <b>Email</b>
+                        </Form.Label>
+                        <Form.Control
+                          type="email"
+                          name="emailReset"
+                          isInvalid={showErrors && !Validation.email(emailReset)}
+                          className="form-control mt-1 p-2"
+                          placeholder="Enter email"
+                          onChange={handleChange}
+                          value={emailReset}
+                        />
+                      </div>
+                      <div className="d-grid gap-2 mt-3">
+                        <button
+                          type="submit"
+                          className={`btn ${styles.LoginBtn}`}
+                          onClick={sendEmail}
+                        >
+                          Send Email
+                        </button>
+                      </div>
+                    </div>
+                  </Form.Group>
                 </div>
-              </Form.Group>
-            </div>
+              </div>
+            )}
           </div>
-        )}
         </div>
-        </div>
-         
-    </div>
-    
+
+      </div>
+
     </>
-)
+  )
 }
-export default mainLoginPage;
- 
+export default MainLoginPage;
+

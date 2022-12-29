@@ -143,7 +143,7 @@ export default function DashboardComponent() {
             </div>
             <div className="row">
               <div className="col-md-6 col-xl-6">
-                <div className="card order-card bg-c-pink shadow border-0" >
+                <div className="card order-card bg-c-blue shadow border-0" >
                   <div className="card-block todoContainer overflow-auto">
                     <h6 className="m-b-20 mt-1"><TodoContainer /></h6>
                   </div>

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../src/styles/header.module.scss";
 import { logout } from "../../helpers/auth";
 import { getProfile, setUserlist } from "../../stores/actions/mainPage";
+import { IconCaretDown, IconDropCircle } from "@tabler/icons";
 
 function HeaderComponent({ isPublic, hasSideBar }) {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
@@ -40,14 +41,15 @@ function HeaderComponent({ isPublic, hasSideBar }) {
                 data-toggle="tooltip"
                 title="Profile"
                 className={`border-0 p-0 ${styles.toggleButton}`}
-              >
-                <Image src="/images/person.png" alt="Logo" />
+              >  
+                <div className={styles.profileContainer}>
+
+                </div>
+                <Image src="/images/photo_6325701050312536371_x.jpg" alt="Logo" className={styles.profileImg}/>
                 <span className="text-dark p-2 fw-bold">
-                  {userData &&
-                    `${userData?.first_name || ""} ${
-                      userData?.last_name || ""
-                    }`}
+                  {userData && `${userData?.first_name || ""} ${userData?.last_name || ""}`}
                 </span>
+                <IconCaretDown className="me-1" />
               </Dropdown.Toggle>
               <div className="row">
                 <div className="col-md-3">

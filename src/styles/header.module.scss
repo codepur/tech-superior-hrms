@@ -3,9 +3,15 @@
   position: sticky;
   top: 0;
   z-index: 100;
- margin: 0px;
- background-color: #d9e7b2 !important;
- box-shadow: -2px 2px 33px -16px grey;
+  margin: 0;
+  padding: 0;
+  //  background-color: #d9e7b2 !important;
+  background: linear-gradient(117.5deg, rgb(89, 233, 162) 20.5%, rgb(29, 209, 185) 100.2%);
+  // background: #E0EAFC;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  box-shadow: -2px 2px 33px -16px grey;
 }
 
 .headerLogo {
@@ -22,11 +28,16 @@
 
 .dropdownMenu {
   display: flex;
+  background: rgba( 255, 255, 255, 0.4 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
   .toggleButton:focus {
     box-shadow: none !important;
   }
   .toggleButton {
-    margin-left: 30px;
+    margin-left: 10px;
     background-color: transparent !important;
   }
   .toggleButton::after {
@@ -50,4 +61,14 @@
 
 .sidebar{
   
+}
+
+.profileContainer{   
+  border-radius: 50%;
+  padding: 1px;
+}
+.profileImg{
+  border-radius: 50%;
+  width:50px;
+  height:50px;
 }
