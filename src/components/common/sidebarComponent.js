@@ -52,9 +52,8 @@ const SidebarComponent = () => {
 
   return (
     <>
-      <div id="header">
+      <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
         <Nav  collapsed={menuCollapse}
-          className={`${styles.sidebar}`}
         >  
           <header>
             <div className={`${styles.head}`}>
@@ -66,31 +65,31 @@ const SidebarComponent = () => {
                 </div>
             </div>
           </header>
-          <div className={`${styles.user}`}>
-              <div className="card p-2 ">
+          {/* <div className={`${styles.user}`}>
+              <div className="card bg-dark text-white p-2 ">
                   <div className=" d-flex align-item-center">
                     <div className="col-6 d-flex align-item-center justify-content-center">
                        <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid w-50"/>                    
                     </div>
                     <div className="col-6">
-                           <h6 className="mb-0 mt-1">Neeraj</h6>
-                           <h6 className="">Verma</h6>                    
+                           <h6 className="mb-0 mt-1">Neeraj Verma</h6>
                     </div>
                    </div>
               </div>
               
-          </div>
+          </div> */}
+        <div className={`${styles.sidebarInnerItems}`}>
           {appMenuItemsData?.map((item, i) => ( 
             <Nav.Item  
               href={item.link}
               key={i}
               className={`${styles.menuItem} ${
                 router.pathname.includes(item.link) && styles.menuItemActive
-              } menuBar`}
+              }  d-flex p-1 align-items-center`}
             >
-              <Nav.Link className="flex-grow-1" href={item.link}>
+              <Nav.Link className="float-left" href={item.link}>
                 <Link href={item.link} passHref className="flex-grow-1 menuList">
-                  <div className={`${styles.menuItemsImg}`}>
+                  <div className={`side-menu`}>
                     <Image
                       src={
                         router.pathname.includes(item.link)
@@ -98,9 +97,9 @@ const SidebarComponent = () => {
                           : item.Icon
                       }
                       alt="Logo"
-                      height="20"
-                      width="20"
-                      className="me-2"
+                      height="22"
+                      width="22"
+                      className="me-2 "
                     />
                     <span className="flex-grow-1">{item.name}</span>
                   </div>
@@ -108,6 +107,7 @@ const SidebarComponent = () => {
               </Nav.Link>
             </Nav.Item>
           ))} 
+        </div>
         </Nav>
       </div>
     </>
