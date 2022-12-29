@@ -342,3 +342,7 @@ body::-webkit-scrollbar {
 .textFont {
   font-family: 'Poppins', sans-serif;
 }
+
+.sortImg{
+  height: 20px;
+}
