@@ -148,9 +148,9 @@ const EmployeeLeaveComponent = () => {
                                 </th>
                                 <th>
                                     <span className="alignTableHeading" onClick={() => handleSort('name')}>
-                                        <span className="ms-1">Leave Type</span>
+                                        <span className="ms-1 fs-6">Leave Type</span>
                                         <span className="ms-1">
-                                            <Image src={'/images/sort.png'} className="cursor-pointer" alt="" />
+                                            <Image src={'/images/sort.png'} className=" cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
@@ -158,7 +158,7 @@ const EmployeeLeaveComponent = () => {
                                     <span className="alignTableHeading" onClick={() => handleSort('from')}>
                                         <span className="ms-1">From</span>
                                         <span className="ms-1">
-                                            <Image src={'/images/sort.png'} className="cursor-pointer" alt="" />
+                                            <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
@@ -166,7 +166,7 @@ const EmployeeLeaveComponent = () => {
                                     <span className="alignTableHeading" onClick={() => handleSort("to")}>
                                         <span className="ms-1">To</span>
                                         <span className="ms-1">
-                                            <Image src={'/images/sort.png'} className="cursor-pointer" alt="" />
+                                            <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
@@ -174,7 +174,7 @@ const EmployeeLeaveComponent = () => {
                                     <span className="alignTableHeading" onClick={() => handleSort('version')}>
                                         <span className="ms-1">No Of Days</span>
                                         <span className="ms-1">
-                                            <Image src={'/images/sort.png'} className="cursor-pointer" alt="" />
+                                            <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
@@ -182,7 +182,7 @@ const EmployeeLeaveComponent = () => {
                                     <span className="alignTableHeading" onClick={() => handleSort('reason')}>
                                         <span className="ms-1">Reason</span>
                                         <span className="ms-1">
-                                            <Image src={'/images/sort.png'} className="cursor-pointer" alt="" />
+                                            <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
@@ -190,7 +190,7 @@ const EmployeeLeaveComponent = () => {
                                     <span className="alignTableHeading" onClick={() => handleSort('status')}>
                                         <span className="ms-1">Status</span>
                                         <span className="ms-1">
-                                            <Image src={'/images/sort.png'} className="cursor-pointer" alt="" />
+                                            <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
@@ -198,7 +198,7 @@ const EmployeeLeaveComponent = () => {
                                     <span className="alignTableHeading" onClick={() => handleSort('approvedBy')}>
                                         <span className="ms-1">Approved By</span>
                                         <span className="ms-1">
-                                            <Image src={'/images/sort.png'} className="cursor-pointer" alt="" />
+                                            <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
