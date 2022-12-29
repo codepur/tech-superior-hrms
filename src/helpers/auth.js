@@ -1,6 +1,7 @@
 import { setAuthorization } from "./api";
 import decode from 'jwt-decode';
 import { Base64 } from 'js-base64';
+import { useEffect } from "react";
 
 export function login(token, appId = "") {
   localStorage.setItem("accessToken", token);
@@ -15,6 +16,7 @@ export function logout() {
   setTimeout(() => {
     if (process.browser) window.location.href = `${window.location.origin}/`;
   }, 500);
+  // window.location.href = `${window.location.origin}/`;
   return true;
 }
 
