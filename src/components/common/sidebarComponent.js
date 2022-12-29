@@ -35,10 +35,11 @@ const SidebarComponent = () => {
       );
       setAppMenuItemsData(menu);
     }
-  }, [userData]);
+  }, [userData, roleId]);
 
   useEffect(() => {
     dispatch(getProfile());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const collapesSidebar = () => {
@@ -53,40 +54,39 @@ const SidebarComponent = () => {
   return (
     <>
       <div id="header">
-        <Nav  collapsed={menuCollapse}
+        <Nav collapsed={menuCollapse}
           className={`${styles.sidebar}`}
-        >  
+        >
           <header>
             <div className={`${styles.head}`}>
-                <div class="logoImg">
-                    <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid"/>
-                </div>
-                <div class="logoText">
-                    <Image src="images/textLogo.png" alt="logo" className="img-fluid"/>
-                </div>
+              <div class="logoImg">
+                <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid" />
+              </div>
+              <div class="logoText">
+                <Image src="images/textLogo.png" alt="logo" className="img-fluid" />
+              </div>
             </div>
           </header>
           <div className={`${styles.user}`}>
-              <div className="card p-2 ">
-                  <div className=" d-flex align-item-center">
-                    <div className="col-6 d-flex align-item-center justify-content-center">
-                       <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid w-50"/>                    
-                    </div>
-                    <div className="col-6">
-                           <h6 className="mb-0 mt-1">Neeraj</h6>
-                           <h6 className="">Verma</h6>                    
-                    </div>
-                   </div>
+            <div className="card p-2 ">
+              <div className=" d-flex align-item-center">
+                <div className="col-6 d-flex align-item-center justify-content-center">
+                  <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid w-50" />
+                </div>
+                <div className="col-6">
+                  <h6 className="mb-0 mt-1">Neeraj</h6>
+                  <h6 className="">Verma</h6>
+                </div>
               </div>
-              
+            </div>
+
           </div>
-          {appMenuItemsData?.map((item, i) => ( 
-            <Nav.Item  
+          {appMenuItemsData?.map((item, i) => (
+            <Nav.Item
               href={item.link}
               key={i}
-              className={`${styles.menuItem} ${
-                router.pathname.includes(item.link) && styles.menuItemActive
-              } menuBar`}
+              className={`${styles.menuItem} ${router.pathname.includes(item.link) && styles.menuItemActive
+                } menuBar`}
             >
               <Nav.Link className="flex-grow-1" href={item.link}>
                 <Link href={item.link} passHref className="flex-grow-1 menuList">
@@ -104,10 +104,10 @@ const SidebarComponent = () => {
                     />
                     <span className="flex-grow-1">{item.name}</span>
                   </div>
-                </Link> 
+                </Link>
               </Nav.Link>
             </Nav.Item>
-          ))} 
+          ))}
         </Nav>
       </div>
     </>

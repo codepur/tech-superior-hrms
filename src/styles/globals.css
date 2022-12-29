@@ -166,9 +166,6 @@ body::-webkit-scrollbar {
   float: right;
 }
 
-.calenderCard {
-  /* height: 550px !important; */
-}
 
 .calendar-container {
   padding: 2px;
@@ -301,4 +298,7 @@ body::-webkit-scrollbar {
   position: absolute;  
 }
  
+.todoContainer{
+  max-height: 240px;
+}
 
