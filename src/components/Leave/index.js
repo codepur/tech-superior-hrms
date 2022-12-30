@@ -8,7 +8,7 @@ const LeaveComponent = ()=>{
 
     return(
     <>
-     {/* <EmployeeLeaveComponent /> */}
+     <EmployeeLeaveComponent />
      <AdminLeaveComponent />
     </>)
      
