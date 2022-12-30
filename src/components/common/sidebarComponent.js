@@ -4,7 +4,7 @@ import { Image, Nav, NavLink } from "react-bootstrap";
 import Link from "next/link";
 import { memo } from "react";
 import { useRouter } from "next/router";
-import { logout } from "../../helpers/auth";
+
 
 import {
   ADMIN_ROLE,
@@ -49,9 +49,6 @@ const SidebarComponent = () => {
   const appendSidebar = () => {
     setMenuCollapse(false);
   };
-  const logoutUser = () => {
-    logout();
-  };
 
 
   return (
@@ -69,9 +66,21 @@ const SidebarComponent = () => {
               </div>
             </div>
           </header>
+          {/* <div className={`${styles.user}`}>
+              <div className="card bg-dark text-white p-2 ">
+                  <div className=" d-flex align-item-center">
+                    <div className="col-6 d-flex align-item-center justify-content-center">
+                       <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid w-50"/>                    
+                    </div>
+                    <div className="col-6">
+                           <h6 className="mb-0 mt-1">Neeraj Verma</h6>
+                    </div>
+                   </div>
+              </div>
+              
+          </div> */}
           <div className={`${styles.sidebarInnerItems} mt-4 pt-2 w-100`}>
             {appMenuItemsData?.map((item, i) => (
-             
               <Nav.Item
                 href={item.link}
                 key={i}
@@ -88,8 +97,8 @@ const SidebarComponent = () => {
                             : item.Icon
                         }
                         alt="Logo"
-                        height="25"
-                        width="25"
+                        height="22"
+                        width="22"
                         className="me-2 "
                       />
                       <span className="flex-grow-1">{item.name}</span>
@@ -99,55 +108,6 @@ const SidebarComponent = () => {
               </Nav.Item>
             ))}
           </div>
-           {/* <div className={`${styles.user}`}>
-              <div className="card bg-dark text-white p-2 ">
-                  <div className=" d-flex align-item-center">
-                    <div className="col-6 d-flex align-item-center justify-content-center">
-                       <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid w-50"/>                    
-                    </div>
-                    <div className="col-6">
-                           <h6 className="mb-0 mt-1">Neeraj Verma</h6>
-                    </div>
-                   </div>
-              </div>
-          </div> */}
-           <div className={`${styles.menuItem} mt-4`}>
-              <div  className={` ${styles.menuItemActive}  d-flex p-1 align-items-center`} onClick={()=>(router.push("/gethelp"))}>
-                      <Image
-                        src="/images/information.png"
-                        alt="Logo"
-                        height="22"
-                        width="22"
-                        className="me-2 "
-                      />
-                      <span className="flex-grow-1">Get Help</span>
-              </div>
-             <div>
-             <Nav.Item
-                href={""}
-             
-                className={`${styles.menuItem} ${router.pathname.includes() && styles.menuItemActive
-                  }  d-flex p-1 align-items-center`}
-              >
-                <Nav className="float-left" >
-                  <div className="flex-grow-1 menuList">
-                    <div className={`side-menu`} onClick={logoutUser}>
-                      <Image
-                        src="/images/logout1.png"
-                        alt="Logo"
-                        height="25"
-                        width="25"
-                        className="me-2 "
-                      />
-                      <span className="flex-grow-1">Logout</span>
-                    </div>
-                  </div>
-                </Nav>
-              </Nav.Item>
-
-
-              </div> 
-           </div>
         </Nav>
       </div>
     </>

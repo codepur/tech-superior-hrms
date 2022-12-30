@@ -31,14 +31,14 @@ export const appMenuItems = [
     id: 5,
     name: "Hiring Portal",
     link: "/hiring-portal",
-    Icon: "/images/hiring.png",
+    Icon: "/images/hiring-active.png",
     IconActive: "/images/hiring-active.png",
   },
   {
     id: 6,
-    name: "Employee Management",
+    name: "Employees",
     link: "/add-employee",
-    Icon: "/images/add-employee.png",
+    Icon: "/images/add-employee-active.png",
     IconActive: "/images/add-employee-active.png",
   },
   {
