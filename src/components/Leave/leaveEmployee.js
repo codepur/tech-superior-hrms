@@ -4,9 +4,23 @@ import { Table } from "reactstrap";
 import { Dropdown } from 'react-bootstrap';
 import { Card, Image, Modal, Form, Button } from "react-bootstrap";
 import styles from "../../styles/leave.module.scss"
+import PaginationComponent from "../common/PaginationComponent";
+import { useEffect } from "react";
 
+
+
+
+const initialPaginationState = {
+    activePage: 1,
+    skip: 0,
+    limitPerPage: 5,
+    paginatedData: [],
+    userData: [],
+    list: [],
+  };
 const EmployeeLeaveComponent = () => {
-
+    const [pagination, setPagination] = useState(initialPaginationState);
+    const { activePage, skip, limitPerPage, userData, list } = pagination;
     const [leaveModal, setLeaveModal] = useState(false);
     const closeLeaveModal = () => {
         setLeaveModal(false);
@@ -50,7 +64,29 @@ const EmployeeLeaveComponent = () => {
         status: "approved",
         approvedBy: "sakshi sarma"
     },
+    
     ]
+
+    const onPageChange = (page) => {
+        var skipRecords = (page - 1) * limitPerPage;
+        const to = limitPerPage*page;
+        setPagination((prev) => ({
+          ...prev,
+          activePage: page,
+          skip: JSON.parse(skipRecords),
+          paginatedData: list.slice(skipRecords, to),
+          userData: list.slice(skipRecords, to),
+        }));
+      };
+
+      useEffect(() => {
+        setPagination((prev) => ({ ...prev, list: paginatedData }));
+      }, [paginatedData?.length]);
+      
+      useEffect(() => {
+        onPageChange(activePage);
+      }, [list, activePage]);
+
     return (
         <>
             <Modal
@@ -250,6 +286,17 @@ const EmployeeLeaveComponent = () => {
                         </tbody>
                     </Table>
                 </div>
+         
+            </div>
+            <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
+            <PaginationComponent
+              currentPage={activePage}
+              list={list}
+              skip={skip}
+              limitPerPage={limitPerPage}
+            //   loading={loading}
+              onPageChange={onPageChange}
+            />
             </div>
         </>
     );
