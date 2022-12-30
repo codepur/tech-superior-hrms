@@ -136,7 +136,7 @@ const EmployeeLeaveComponent = () => {
                         <h2>Leaves</h2>
                     </div>
                     <div className="col-md-6">
-                        <button className={`${styles.leaveSubmit} btn btn-primary mx-1 primary-button-bg float-end`} onClick={openLeaveModal} >
+                        <button className={`${styles.leaveSubmit} btn btn-primary mx-1 float-end textFont`} onClick={openLeaveModal} >
                             Add leave
                         </button>
                     </div>
@@ -146,7 +146,7 @@ const EmployeeLeaveComponent = () => {
                         <div className="card order-card shadow border-1">
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Annual Leave</h6>
-                                <h3>12</h3>
+                                <h4>12</h4>
                             </div>
                         </div>
                     </div>
@@ -154,7 +154,7 @@ const EmployeeLeaveComponent = () => {
                         <div className="card order-card shadow border-1">
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Medical Leave</h6>
-                                <h3>1</h3>
+                                <h4>1</h4>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ const EmployeeLeaveComponent = () => {
                         <div className="card order-card shadow border-1">
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Other Leave</h6>
-                                <h3>5</h3>
+                                <h4>5</h4>
                             </div>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ const EmployeeLeaveComponent = () => {
                         <div className="card order-card shadow border-1">
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Remaining Leave</h6>
-                                <h3>6</h3>
+                                <h4>6</h4>
                             </div>
                         </div>
                     </div>
@@ -259,17 +259,18 @@ const EmployeeLeaveComponent = () => {
                                     <td>{entry?.approvedBy}</td>
                                     <td>
                                         <div>
-                                            <Dropdown>
+                                            <Dropdown className="text-center">
                                                 <Dropdown.Toggle
                                                     id="dropdown-basic"
                                                     data-toggle="tooltip"
                                                     title="View Actions"
-                                                    className={`bg-white border-0 p-0 `}
+                                                    className={`bg-white border-0 p-0`}
                                                 >
-                                                    <Image src={'/images/more.png'} className="cursor-pointer mb-1 " alt="" />
+                                                    <Image src={'/images/three-dot-icon.svg'} alt="" className="cursor-pointer mb-1 sortImg" />
+                                                    {/* <Image src={'/images/more.png'} className="cursor-pointer mb-1 sortImg " alt="" /> */}
                                                 </Dropdown.Toggle>
 
-                                                <Dropdown.Menu>
+                                                <Dropdown.Menu className="textFont">
                                                     <Dropdown.Item >
                                                         <span>Edit</span>
                                                     </Dropdown.Item>
