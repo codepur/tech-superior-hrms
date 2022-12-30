@@ -6,14 +6,14 @@ import { Card, Image, Modal, Form, Button } from "react-bootstrap";
 import styles from "../../styles/leave.module.scss"
 
 const EmployeeLeaveComponent = () => {
-    
+
     const [leaveModal, setLeaveModal] = useState(false);
     const closeLeaveModal = () => {
         setLeaveModal(false);
-      };
+    };
     const openLeaveModal = () => {
         setLeaveModal(true);
-      }; 
+    };
     const paginatedData = [{
         leaveType: "Hospitalisation",
         from: "15 jan 2019",
@@ -139,79 +139,80 @@ const EmployeeLeaveComponent = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`${styles.tableResponsive}`}>
-                    <Table className={`${styles.table}`}>
-                        <thead className={`${styles.tableHead}`}>
+                <div className={`${styles.tableResponsive} col-lg-12`}>
+                    <Table className={`${styles.table} table table-hover`}>
+                        <thead className={`${styles.tableHead} `}>
                             <tr className={`${styles.tableHead}`}>
-                                <th>
-                                    <span className="ms-1">Sr No</span>
+                                <th itemScope='col'>
+
+                                    #
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('name')}>
-                                        <span className="ms-1 fs-6">Leave Type</span>
+                                        <span className="">Leave Type</span>
                                         <span className="ms-1">
                                             <Image src={'/images/sort.png'} className=" cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('from')}>
-                                        <span className="ms-1">From</span>
+                                        <span className="">From</span>
                                         <span className="ms-1">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort("to")}>
-                                        <span className="ms-1">To</span>
+                                        <span className="">To</span>
                                         <span className="ms-1">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('version')}>
-                                        <span className="ms-1">No Of Days</span>
+                                        <span className="">No Of Days</span>
                                         <span className="ms-1">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('reason')}>
-                                        <span className="ms-1">Reason</span>
+                                        <span className="">Reason</span>
                                         <span className="ms-1">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('status')}>
-                                        <span className="ms-1">Status</span>
+                                        <span className="">Status</span>
                                         <span className="ms-1">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('approvedBy')}>
-                                        <span className="ms-1">Approved By</span>
+                                        <span className="">Approved By</span>
                                         <span className="ms-1">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('')}>
-                                        <span className="ms-1">Action</span>
+                                        <span className="">Action</span>
                                     </span>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             {paginatedData.map((entry, i) => (
-                                <tr key={i} className="border">
+                                <tr key={i} className="border" itemScope='row'>
                                     <td>{i + 1}</td>
                                     <td>{entry?.leaveType}</td>
                                     <td>{entry?.from}</td>
