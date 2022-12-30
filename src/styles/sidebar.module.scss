@@ -138,28 +138,28 @@ $tran-05: all 0.3s ease;
   left: 0;
   height: 100%;
   max-width: 210px;
-  width:inherit;
+  width: inherit;
   // padding: 10px 14px;
-  // padding: 2px;
+  padding: 2px;
   transition: $tran-05;
   z-index: 100;
-
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   ::-webkit-scrollbar {
     display: none;
   }
-  // border-radius: px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .sidebar.close {
   width: 88px;
 }
 .sidebarInnerItems {
-  height: 75vh;
+  height: 65vh;
   overflow-y: auto;
   overflow-x: hidden;
+  border-bottom: 2px solid #b3b8bc;
 }
 
 .head {
@@ -172,14 +172,16 @@ $tran-05: all 0.3s ease;
     font-size: 13px;
     font-weight: 500;
     flex-grow: 1;
-    // padding: 4px;
     text-decoration: none;
     color: $text-color;
+    border-radius: 15px;
+  
   }
   a:hover {
     color: #1d0505;
     text-decoration: none;
     font-weight: 600;
+    border-radius: 15px;
   }
 }
 .menuList {
@@ -196,6 +198,7 @@ $tran-05: all 0.3s ease;
 
 .menuItemActive {
   background: $primary-color;
+  border-radius: 15px;
   display: flex;
   a {
     list-style: none;
@@ -205,13 +208,14 @@ $tran-05: all 0.3s ease;
     align-items: center;
     height: 100%;
     width: 100%;
-    border-radius: 6px;
     text-decoration: none;
     transition: $tran-03;
+    border-radius: 15px;
   }
   a:hover {
     color: #000000;
-    font-size: 14px;
+    font-size: 13px;
+    border-radius: 15px;
   }
 }
 
