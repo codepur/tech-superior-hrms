@@ -223,14 +223,15 @@ const EmployeeLeaveComponent = () => {
                                     <td>{entry?.approvedBy}</td>
                                     <td>
                                         <div>
-                                            <Dropdown>
+                                            <Dropdown className="text-center">
                                                 <Dropdown.Toggle
                                                     id="dropdown-basic"
                                                     data-toggle="tooltip"
                                                     title="View Actions"
-                                                    className={`bg-white border-0 p-0 `}
+                                                    className={`bg-white border-0 p-0`}
                                                 >
-                                                    <Image src={'/images/more.png'} className="cursor-pointer mb-1 " alt="" />
+                                                    <Image src={'/images/three-dot-icon.svg'} alt="" className="cursor-pointer mb-1 " />
+                                                    {/* <Image src={'/images/more.png'} className="cursor-pointer mb-1 sortImg " alt="" /> */}
                                                 </Dropdown.Toggle>
 
                                                 <Dropdown.Menu>
