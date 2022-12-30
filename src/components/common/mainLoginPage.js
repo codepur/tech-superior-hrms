@@ -95,17 +95,22 @@ function MainLoginPage(props) {
 
   return (
     <>
-      <div className={`${styles.outerbox} row`}>
-        <Image src="./images/clock.png" alt="clock" className="clockImg" />
-        <Image src="./images/officeLaptop.png" alt="" className="laptopImg" />
-        <Image src="./images/graph.png" alt="" className="graph" />
-        <Image src="./images/win.png" alt="" className="win" />
-        <Image src="./images/laptop.png" alt="" className="laptop" />
-        {/* <Image src="./images/win2.png" alt="" className="win2" /> */}
-        <Image src="./images/checkList6.png" alt="" className="checkList6" />
-        <div className={`${styles.backgroundFirsthalf}`}>
-          <div className={`${styles.loginCard} row`}>
-            <div className={` col-md-6 ${styles.divide}`}>
+    <div className={`${styles.mainBox}`}>
+      <div className={`${styles.outerbox} row gx-0 d-flex`}>
+        <div className={`${styles.imgContainer} row gx-0 d-flex justify-content-between col-md-2`}>
+        <div>
+        <img src="./images/clock.png" alt="clock" className={`${styles.loginImg}`} />
+        </div>
+        <div>
+        <img src="./images/laptop.png" alt="" className= {`${styles.loginImg}`}/>
+        </div>
+        <div>
+        <img src="./images/officeLaptop.png" alt=""  className= {`${styles.loginImg}`} />
+        </div>
+        </div>
+        <div className={`${styles.imgContainer} d-flex col-md-8 row gx-0 `} >
+        <div className={`${styles.loginCard} col-md-12 row gx-0`}>
+            <div className={` col-md-5 ${styles.divide}`}>
               <Image
                 src="/images/LogoTSC.svg"
                 alt="LogoMain"
@@ -121,7 +126,7 @@ function MainLoginPage(props) {
             {firstPageLogin && (
               // <div className={`col-md-6 row ${styles.backgroundSecondHalf} `}>
               // <div className={`col-md-8 ${styles.formStyle} parent`}>
-              <div className={`col-md-6`}>
+              <div className={`col-md-7`}>
                 <Form.Group className={`${styles.Authform}`}>
                   <div className={`${styles.AuthFormContent}`}>
                     <h3
@@ -176,9 +181,10 @@ function MainLoginPage(props) {
                         Sign In
                       </button>
                     </div>
-                    <div className={`row ${styles.powerdByLogo} p-3`}>
+                    <div className={`row gx-0 ${styles.powerdByLogo} p-3`}>
 
                       <div className={` ${styles.poweredBy} px-4`}>Powered By</div>
+                       
                       <div className={`${styles.logoImage}`}>
                         <Image
                           src="/images/LogoMain.svg"
@@ -194,7 +200,7 @@ function MainLoginPage(props) {
               </div>
             )}
             {resetPassword && (
-              <div className={`col-md-6 row ${styles.backgroundSecondHalf}`}>
+              <div className={`col-md-6 row gx-0 ${styles.backgroundSecondHalf}`}>
                 <div className={`col-md-8 ${styles.formStyle}`}>
                   <Form.Group className={`${styles.AuthformReset}`}>
                     <div className={`${styles.AuthFormContent}`}>
@@ -232,10 +238,31 @@ function MainLoginPage(props) {
               </div>
             )}
           </div>
+          </div>
+          <div className={`${styles.imgContainer} row gx-0 d-flex justify-content-between col-md-2 `} > 
+          <div>
+         <img src="./images/graph.png" alt="" className= {`${styles.loginImg}`}/>
+         </div>
+         <div>
+         <img src="./images/win.png" alt=""  className= {`${styles.loginImg}`} />
+         </div>
+         <div>
+         <img src="./images/checkList6.png" alt="" className={`${styles.loginImg}`}/>
+         </div>
+        </div>
+        
+        
+       
+       
+        
+        {/* <img src="./images/win2.png" alt="" className="win2" /> */}
+       
+        <div className={`${styles.backgroundFirsthalf}`}>
+          
         </div>
 
       </div>
-
+      </div>
     </>
   )
 }
