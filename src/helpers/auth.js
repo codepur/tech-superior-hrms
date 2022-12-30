@@ -15,6 +15,7 @@ export function logout() {
   setTimeout(() => {
     if (process.browser) window.location.href = `${window.location.origin}/`;
   }, 500);
+  // window.location.href = `${window.location.origin}/`;
   return true;
 }
 

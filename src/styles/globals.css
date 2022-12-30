@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,400&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,400&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400&family=Questrial&family=Signika+Negative:wght@600&family=Ubuntu:ital@1&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
 
 a {
   color: inherit;
@@ -6,35 +8,48 @@ a {
 }
 
 .loader {
-  --b: 5px;  /* border thickness */
-  --n: 15;    /* number of dashes*/
-  --g: 12deg; /* gap  between dashes*/
-  --c: green;   /* the color */
-  
-  width:40px; /* size */
+  --b: 5px;
+  /* border thickness */
+  --n: 15;
+  /* number of dashes*/
+  --g: 12deg;
+  /* gap  between dashes*/
+  --c: green;
+  /* the color */
+
+  width: 40px;
+  /* size */
   aspect-ratio: 1;
   border-radius: 80%;
-  padding: 1px; /* get rid of bad outlines */
-  background: conic-gradient(#0000,var(--c)) content-box;
-  --_m: /* we use +/-1deg between colors to avoid jagged edges */
+  padding: 1px;
+  /* get rid of bad outlines */
+  background: conic-gradient(#0000, var(--c)) content-box;
+  --_m:
+    /* we use +/-1deg between colors to avoid jagged edges */
     repeating-conic-gradient(#0000 0deg,
-       #000 1deg calc(360deg/var(--n) - var(--g) - 1deg),
-       #0000     calc(360deg/var(--n) - var(--g)) calc(360deg/var(--n))),
-    radial-gradient(farthest-side,#0000 calc(20% - var(--b)),#000 calc(100% - var(--b)));
+      #000 1deg calc(360deg/var(--n) - var(--g) - 1deg),
+      #0000 calc(360deg/var(--n) - var(--g)) calc(360deg/var(--n))),
+    radial-gradient(farthest-side, #0000 calc(20% - var(--b)), #000 calc(100% - var(--b)));
   -webkit-mask: var(--_m);
-          mask: var(--_m);
+  mask: var(--_m);
   -webkit-mask-composite: destination-in;
-          mask-composite: intersect;
+  mask-composite: intersect;
   animation: load 1s infinite steps(var(--n));
 }
-@keyframes load {to{transform: rotate(1turn)}}
-.loader{
+
+@keyframes load {
+  to {
+    transform: rotate(1turn)
+  }
+}
+
+.loader {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.loaderContainer{
+.loaderContainer {
   justify-content: center;
   display: flex;
   margin-top: 35vh;
@@ -44,16 +59,22 @@ a {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  
 }
+
 
 body::-webkit-scrollbar {
   display: none;
+  background-color: #e8f1ff;
+
 }
+
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;
@@ -105,7 +126,7 @@ body::-webkit-scrollbar {
   border-radius: 3px;
 }
 
-#header .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
+#header .pro-sidebar .pro-menu .pro-menu-item>.pro-inner-item>.pro-icon-wrapper {
   margin-right: 10px;
   font-size: 14px;
   width: 35px;
@@ -116,37 +137,41 @@ body::-webkit-scrollbar {
   display: contents;
 }
 
-/*  */
-
-/* body{
-  margin-top:20px;
-  background:#FAFAFA;
-} */
 .order-card {
   color: #fff;
 }
 
 .bg-c-blue {
-  background: linear-gradient(45deg,#4099ff,#73b4ff);
+  background: linear-gradient(45deg, #4099ff, #73b4ff);
+}
+
+.bg-c-glassgreen {
+  background: linear-gradient(117.5deg, rgb(89, 233, 162) 20.5%, rgb(29, 209, 185) 100.2%);
 }
 
 .bg-c-green {
-  background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+  background: linear-gradient(45deg, #2ed8b6, #59e0c5);
 }
 
 .bg-c-yellow {
-  background: linear-gradient(45deg,#FFB64D,#ffcb80);
+  background: linear-gradient(45deg, #FFB64D, #ffcb80);
 }
 
 .bg-c-pink {
-  background: linear-gradient(45deg,#FF5370,#ff869a);
+  background: linear-gradient(45deg, #FF5370, #ff869a);
+}
+
+.bg-btn-green {
+  /* background-color: #3c5f4b!important; */
+  background-color: #33a351 !important;
+  color: white !important;
 }
 
 
 .card {
   border-radius: 5px;
-  -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
-  box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+  -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
   border: none;
   margin-bottom: 30px;
   -webkit-transition: all 0.3s ease-in-out;
@@ -169,12 +194,9 @@ body::-webkit-scrollbar {
   float: right;
 }
 
-.calenderCard {
-  height: 550px !important;
-}
 
 .calendar-container {
-  padding: 10px;
+  padding: 2px;
   display: flex;
 }
 
@@ -211,7 +233,7 @@ body::-webkit-scrollbar {
   justify-content: center;
 }
 
-.react-calendar__month-view__weekdays__weekday > abbr {
+.react-calendar__month-view__weekdays__weekday>abbr {
   color: #000;
   text-decoration: none !important;
   cursor: pointer !important;
@@ -224,25 +246,105 @@ body::-webkit-scrollbar {
   background-color: #ffff;
   border: none;
   font-size: 25px;
-  color:#3c5f4b;
+  color: #3c5f4b;
 }
 
 .react-calendar__tile--now:enabled,
 .react-calendar__tile--now:enabled:focus {
- background: #6f48eb33;
- border-radius: 6px;
- font-weight: bold;
- color: #3c5f4b;
+  background: #6f48eb33;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #3c5f4b;
 }
 
-.parent{
+.parent {
   position: relative;
 }
 
-.clockImg{ 
+.clockImg {
   left: 0px;
   margin: 0px;
   padding: 0;
- width: 18% !important;  
- position: absolute;
+  width: 18% !important;
+  position: absolute;
+}
+
+.laptopImg {
+  right: 82%;
+  bottom: 0;
+  margin: 0px;
+  padding: 0;
+  width: 19% !important;
+  position: absolute;
+}
+
+.graphImg {
+  top: 31%;
+  left: 0%;
+  margin: 0px;
+  padding: 0;
+  width: 18% !important;
+  /* height: 20% !important;   */
+  position: absolute;
+}
+
+.checkList6 {
+  /* top: 31%; */
+  bottom: 0;
+  right: 0%;
+  margin: 0px;
+  padding: 0;
+  width: 20% !important;
+  /* height: 20% !important;   */
+  position: absolute;
+}
+
+.laptop {
+  top: 24%;
+  left: 0;
+  /* right: 0%; */
+  margin: 0px;
+  padding: 0;
+  width: 18% !important;
+  /* height: 20% !important;   */
+  position: absolute;
+}
+
+.graph {
+  top: 0%;
+  /* le: 0; */
+  right: 0%;
+  margin: 0px;
+  padding: 0;
+  width: 24% !important;
+  /* height: 24% !important;   */
+  position: absolute;
+}
+
+.win {
+  top: 32%;
+  /* le: 0; */
+  right: 0%;
+  margin: 0px;
+  padding: 0;
+  width: 15% !important;
+  /* height: 24% !important;   */
+  position: absolute;
+}
+
+.todoContainer {
+  max-height: 240px;
+  overflow-y: scroll;
+}
+
+.todoContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.textFont {
+  font-family: 'Poppins', sans-serif;
+}
+
+.sortImg{
+  height: 20px;
 }

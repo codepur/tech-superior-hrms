@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { ProSidebar, SidebarContent } from "react-pro-sidebar";
-import "react-pro-sidebar/dist/css/styles.css";
 import styles from "../../../src/styles/sidebar.module.scss";
 import { Image, Nav, NavLink } from "react-bootstrap";
 import Link from "next/link";
 import { memo } from "react";
 import { useRouter } from "next/router";
+
+
 import {
   ADMIN_ROLE,
-  appMenuItems, 
+  appMenuItems,
   EMPLOYEE_ROLE,
   SUB_ADMIN_ROLE,
 } from "../../constants/constant";
@@ -31,14 +31,15 @@ const SidebarComponent = () => {
     }
     if (roleId && roleId === EMPLOYEE_ROLE) {
       const menu = appMenuItems?.filter(
-        (item) => [1, 2, 3, 4, 7].includes(item.id)
+        (item) => [1, 2, 3, 4, 7,9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
-  }, [userData]);
+  }, [userData, roleId]);
 
   useEffect(() => {
     dispatch(getProfile());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const collapesSidebar = () => {
@@ -49,63 +50,64 @@ const SidebarComponent = () => {
     setMenuCollapse(false);
   };
 
+
   return (
     <>
-      <div id="header">
-        <Nav
-          collapsed={menuCollapse}
-          className={`${
-            menuCollapse ? styles.sidebarMenuCollape : styles.sidebarMenuAppend
-          }`}
+      <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
+        <Nav collapsed={menuCollapse}
         >
-          {appMenuItemsData?.map((item, i) => ( 
-            <Nav.Item 
-              href={item.link}
-              key={i}
-              className={`${styles.menuItem} ${
-                router.pathname.includes(item.link) && styles.menuItemActive
-              }`}
-            >
-              <Nav.Link className="flex-grow-1" href={item.link}>
-                <Link href={item.link} passHref className="flex-grow-1">
-                  <div className={`${styles.menuItemsImg}`}>
-                    <Image
-                      src={
-                        router.pathname.includes(item.link)
-                          ? item.IconActive
-                          : item.Icon
-                      }
-                      alt="Logo"
-                      height="20"
-                      width="20"
-                      className="me-2"
-                    />
-                    <span className="flex-grow-1">{item.name}</span>
-                  </div>
-                </Link> 
-              </Nav.Link>
-            </Nav.Item>
-          ))} 
-          {!menuCollapse ? (
-            <div
-              className={`${styles.upperArrowKey}`}
-              onClick={collapesSidebar}
-            >
-              <Image
-                src="/images/upKey.png"
-                alt="up arrow"
-                className={styles.upperImg}
-              />
+          <header>
+            <div className={`${styles.head}`}>
+              <div class="logoImg">
+                <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid" />
+              </div>
+              <div class="logoText">
+                <Image src="images/textLogo.png" alt="logo" className="img-fluid" />
+              </div>
             </div>
-          ) : (
-            <div className={`${styles.downArrowKey}`} onClick={appendSidebar}>
-              <Image
-                src="/images/downKey.png"
-                alt="down arrow"
-                className={styles.downImg}
-              />
-            </div>
-          )}
+          </header>
+          {/* <div className={`${styles.user}`}>
+              <div className="card bg-dark text-white p-2 ">
+                  <div className=" d-flex align-item-center">
+                    <div className="col-6 d-flex align-item-center justify-content-center">
+                       <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid w-50"/>                    
+                    </div>
+                    <div className="col-6">
+                           <h6 className="mb-0 mt-1">Neeraj Verma</h6>
+                    </div>
+                   </div>
+              </div>
+              
+          </div> */}
+          <div className={`${styles.sidebarInnerItems} mt-4 pt-2 w-100`}>
+            {appMenuItemsData?.map((item, i) => (
+              <Nav.Item
+                href={item.link}
+                key={i}
+                className={`${styles.menuItem} ${router.pathname.includes(item.link) && styles.menuItemActive
+                  }  d-flex p-1 align-items-center`}
+              >
+                <Nav.Link className="float-left" href={item.link}>
+                  <Link href={item.link} passHref className="flex-grow-1 menuList">
+                    <div className={`side-menu`}>
+                      <Image
+                        src={
+                          router.pathname.includes(item.link)
+                            ? item.IconActive
+                            : item.Icon
+                        }
+                        alt="Logo"
+                        height="22"
+                        width="22"
+                        className="me-2 "
+                      />
+                      <span className="flex-grow-1">{item.name}</span>
+                    </div>
+                  </Link>
+                </Nav.Link>
+              </Nav.Item>
+            ))}
+          </div>
         </Nav>
       </div>
     </>

@@ -1,0 +1,24 @@
+.leaveSubmit{
+    padding: 10px 40px;
+    border-radius: 41px;
+    font-weight: bold;
+    margin: auto 160px;
+    background-color:#33a351;
+    color:white;
+    border:none;
+}
+.tableResponsive{
+   border-radius: 20px;
+   background: radial-gradient(328px at 2.9% 15%, rgb(191, 224, 251) 0%, rgb(232, 233, 251) 25.8%, rgb(252, 239, 250) 50.8%, rgb(234, 251, 251) 77.6%, rgb(240, 251, 244) 100.7%);
+}
+.table{
+background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );  
+border-radius: 20px;
+}
+.tableHead{
+    background: #93e4c1;
+}

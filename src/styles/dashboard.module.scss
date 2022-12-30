@@ -16,9 +16,7 @@
 .segment{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.modal{
-    
-}
+
 .statusDetail {
     text-align: center;
     display: flex;
@@ -26,3 +24,53 @@
     align-items: center;
     color: #33a351;
 }
+
+.customCard{
+
+    border-radius: 20px;
+    filter: drop-shadow(0px 3px 3.5px rgba(39,45,59,0.2));
+    background-color: #ffffff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+.mainCard{
+    // background-image: linear-gradient( 83.2deg,  rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 5px;
+}
+.cardText{
+    font-family: 'Poppins', sans-serif;
+ }
+.empImgCard{
+    padding: 5px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px 20px 5px;
+}
+.empImg{
+    border-radius: 5px 20px 5px;
+    width: 150px;
+}
+.empText{
+    
+    height: 210px;
+    padding: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
