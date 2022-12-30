@@ -43,7 +43,7 @@ export default function MainPage() {
             </div>
           </div>
           <div
-            className={`col-lg-3 col-md-6 col-sm-6  p-1 col-10 offset-lg-1 offset-md-2  offset-2 ${styles.textdata}`}
+            className={`col-lg-4 col-md-6 col-sm-6  p-1 col-10 offset-lg-1 offset-md-2  offset-2 ${styles.textdata}`}
           >
             <table className="">
               <tbody>
@@ -144,16 +144,16 @@ export default function MainPage() {
         </div> */}
         <nav className={`navbar navbar-expand-lg navbar-light bg-light ${styles.navPosition}`}>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className={`navbar-nav list-group  ${styles.drop_down}`}>
+            <ul className={`navbar-nav   ${styles.drop_down}`}>
               <li
-                className={`list-group-item ${state == "Basic Information" ? styles.activeTab : styles.listItem}`}
+                className={`p-2 ${state == "Basic Information" ? styles.activeTab : styles.listItem}`}
                 name="Basic Information"
                 value="Basic Information"
                 onClick={() => handleClick("Basic Information")}>
                 Basic Information
               </li>
               <li
-                className={`list-group-item ${state == "Profile Picture" ? styles.activeTab : styles.listItem}`}
+                className={`p-2 ${state == "Profile Picture" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("Profile Picture")}
                 name="Profile Picture"
                 value="Profile Picture"
@@ -162,7 +162,7 @@ export default function MainPage() {
               </li>
 
               <li
-                className={`list-group-item ${state == "Qualification" ? styles.activeTab : styles.listItem}`}
+                className={`p-2 ${state == "Qualification" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("Qualification")}
                 name="Qualification"
               >
@@ -170,33 +170,26 @@ export default function MainPage() {
               </li>
 
               <li
-                className={`list-group-item ${state == "ChangePassword" ? styles.activeTab : styles.listItem}`}
+                className={`p-2 ${state == "ChangePassword" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("ChangePassword")}
                 name="ChangePassword"
               >
                 Change Password
               </li>
               <li
-                className={`list-group-item ${state == "FamilyMember" ? styles.activeTab : styles.listItem}`}
+                className={`p-2 ${state == "FamilyMember" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("FamilyMember")}
                 name="FamilyMember"
               >
                 Family Member
               </li>
               <li
-                className={`list-group-item ${state == "EmergencyContact" ? styles.activeTab : styles.listItem}`}
+                className={`p-2 ${state == "EmergencyContact" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("EmergencyContact")}
                 name="EmergencyContact"
               >
                 Emergency Contact
-              </li>
-              <li
-                className={`list-group-item ${state == "DepartmentChange" ? styles.activeTab : styles.listItem}`}
-                onClick={() => handleClick("DepartmentChange")}
-                name="DepartmentChange"
-              >
-                Option 1
-              </li>
+              </li>             
             </ul>
           </div>
         </nav>
