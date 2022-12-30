@@ -10,7 +10,7 @@ import styles from "../../styles/ticket.module.scss";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 import RequestModel from "./requestModel";
 import toast, { Toaster } from "react-hot-toast";
-  
+
 import {
   setAdminDsrList,
   setDsrList,
@@ -132,7 +132,8 @@ function DSRManagement() {
     }
     dispatch(setProjectList());
     dispatch(setdepartmentList());
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectList?.length, departmentList.length, dsrList?.length]);
 
   useEffect(() => {
     const ApprovedList = dsrList.filter((item) => item.status == "Approved");
@@ -248,13 +249,13 @@ function DSRManagement() {
       (item) =>
         (searchvalue
           ? item.user_id?.first_name
-              ?.toLowerCase()
-              .includes(searchvalue.toLowerCase())
+            ?.toLowerCase()
+            .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.user_id?.last_name
-              ?.toLowerCase()
-              .includes(searchvalue.toLowerCase())
+            ?.toLowerCase()
+            .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
@@ -293,15 +294,14 @@ function DSRManagement() {
                 ) : (
                   <button className={`col-md-1 btn ${styles.addTicket}`}>
                     Add New Task
-                  </button> 
+                  </button>
                 )}
               </div>
             </div>
             <hr className={`${styles.hr}`}></hr>
             <Form
-              className={` ${
-                ticketSectionExpand ? "form row d-flex" : "d-none"
-              }`}
+              className={` ${ticketSectionExpand ? "form row d-flex" : "d-none"
+                }`}
             >
               <div className="col-md-6">
                 <FormGroup>
@@ -431,7 +431,7 @@ function DSRManagement() {
                   onChange={ChangeHandler}
                 >
                   <option hidden>Department List</option>
-                  {departmentList?.map((item,i) => (
+                  {departmentList?.map((item, i) => (
                     <option value={item._id} key={i}>{item.name}</option>
                   ))}
                 </Form.Select>
@@ -525,7 +525,7 @@ function DSRManagement() {
                     {roleId === 3 ? (
                       <td
                         className={`${styles.discriptionData} p-1`}
-                        dangerouslySetInnerHTML={{ __html: row?.description}}
+                        dangerouslySetInnerHTML={{ __html: row?.description }}
                       ></td>
                     ) : (
                       <td>
@@ -561,7 +561,7 @@ function DSRManagement() {
                                 onClick={() => editTask(row)}
                               />
                             </center>
-                          {/* </div>
+                            {/* </div>
                           <div> */}
                             <center>
                               <Image

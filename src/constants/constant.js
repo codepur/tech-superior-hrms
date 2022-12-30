@@ -55,6 +55,13 @@ export const appMenuItems = [
     Icon: "/images/attendance.png",
     IconActive: "/images/attendance.png",
   },
+  {
+    id: 9,
+    name: "Leave",
+    link: "/leave",
+    Icon: "/images/attendance.png",
+    IconActive: "/images/attendance.png",
+  },
 ];
 
 export const ADMIN_ROLE = 1;
@@ -111,6 +118,12 @@ export const routesConfig = {
   },
   "/attendance": {
     path: "/attendance",
+    redirect: "/dashboard",
+    protected: true,
+    access: [SUB_ADMIN_ROLE, EMPLOYEE_ROLE],
+  },
+  "/leave": {
+    path: "/leave",
     redirect: "/dashboard",
     protected: true,
     access: [SUB_ADMIN_ROLE, EMPLOYEE_ROLE],

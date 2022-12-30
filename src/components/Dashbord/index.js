@@ -1,21 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
 import dynamic from "next/dynamic";
-import { Card, Image, Modal, Form, Button } from "react-bootstrap";
+import { Card, Image, Modal } from "react-bootstrap";
 import styles from "../../styles/dashboard.module.scss";
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
-import { Center, SegmentedControl, Box, Textarea } from "@mantine/core";
+import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 
 
 export default function DashboardComponent() {
   const [Count] = useSelector((Gstate) => [Gstate.user?.CountParticipant]);
-  const [formaData,setFormData]=useState({
-    leaveType:"",
-    fromData:"",
-    toData:""
-  })
+   
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" };
   const event = [
     { date: "25/12/22", eventName: "Christmas" },
@@ -40,16 +36,8 @@ export default function DashboardComponent() {
   useEffect(() => {
     setEventModal(true);
   }, []);
-  const [leaveModal, setLeaveModal] = useState(false);
-  const closeLeaveModal = () => {
-    setLeaveModal(false);
-  };
-  const openLeaveModal = () => {
-    setLeaveModal(true);
-  };
-  const handleChange = (e) => {
-    setFormData({ ...data, [e.target.name]: e.target.value });
-  };
+  
+  
   return (
     <>
       <Modal centered show={showModal} onHide={closeModal}>
@@ -127,64 +115,9 @@ export default function DashboardComponent() {
         </Modal.Footer>
       </Modal>
 
-      <Modal
-        centered
-        show={leaveModal}
-        onHide={closeLeaveModal}
-        className={`p-2`}
-      >
-        <div
-          className={` fw-bold fs-5 d-flex justify-content-center align-self-center mt-4 fs-3`}
-        >
-          Add Leave
-        </div>
-        <Form className="p-4">
-          {/* <fieldset disabled> */}
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="leaveSelect" className="fw-bold" >
-              Leave Type
-            </Form.Label>
-            <Form.Select id="leaveSelect" name="leaveType" onChange={handleChange}>
-              <option type="hidden">Select Leave Type</option>
-              <option value="Casual Leave">Casual Leave</option>
-              <option value="Medical Leave">Medical Leave</option>
-              <option value="Unpaid Leave">Unpaid Leave</option>
-            </Form.Select>
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="leaveFrom" className="fw-bold">
-              From
-            </Form.Label>
-            <Form.Control id="leaveFrom" type="date" name="fromDate" onChange={handleChange}/>
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="leaveTo" className="fw-bold">
-              To
-            </Form.Label>
-            <Form.Control id="leaveTo" type="date"  name="toDate" onChange={handleChange}/>
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label className="fw-bold">Subject</Form.Label>
-            <Form.Control id="subject" type="text" name="subject" onChange={handleChange}/>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label className="fw-bold" >Attachment</Form.Label>
-            <Form.Control as="textarea" rows={3} name="attachment" onChange={handleChange}/>
-          </Form.Group>
-          <Button type="submit" className={`${styles.leaveSubmit}`}  >
-            Submit
-          </Button>
-          {/* </fieldset> */}
-        </Form>
-      </Modal>
+       
 
       <div className="container">
-        <button className="btn btn-danger px-3" onClick={openLeaveModal}>
-          Apply Leave+
-        </button>
         <div className="row d-flex justify-content-evenly">
           <div className="col-8">
             <div className="row">

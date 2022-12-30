@@ -36,6 +36,8 @@ function TicketManagement() {
   const [index, setIndex] = useState();
   const [buttonChnage, setButtonChnage] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
+  const [searchData, setSearchData] = useState([]);
   const { skip = [] } = pagination;
   const [userList, departmentList] = useSelector((Gstate) => [
     Gstate.user?.userList,
@@ -62,6 +64,7 @@ function TicketManagement() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    setSearchKey(e.target.value)
   };
 
   useEffect(() => {
@@ -131,6 +134,24 @@ function TicketManagement() {
       });
   };
 
+  const handleFilter = (e) => {
+    let searchvalue = e?.target?.value;
+    let arr = userList?.filter(
+      (item) =>
+        (searchvalue
+          ? item.first_name?.toLowerCase().includes(searchvalue.toLowerCase())
+          : true) ||
+        (searchvalue
+          ? item.last_name?.toLowerCase().includes(searchvalue.toLowerCase())
+          : true)
+    );
+    setSearchData(arr);
+    // setPagination((prev) => ({
+    //   ...prev,
+    //   list: arr,
+    // }));
+  };
+
   const handleEdit = (row) => {
     setTicketSectionExpand(true);
     setButtonChnage(true);
@@ -138,7 +159,11 @@ function TicketManagement() {
       setEmployeeData(row);
     }, 800);
   };
-
+  useEffect(() => {
+    setSearchData(userList);
+    // let department = filters.user_type || "all";
+  }, [userList?.length]);
+  
   const updateEmployee = () => {
     employeeData.level = "Level2";
     API.apiPut("candidateInvite", {payload:encodeData(employeeData)})
@@ -319,12 +344,14 @@ function TicketManagement() {
           </div>
           <hr className={`${styles.hr}`}></hr>
           <div className="row justify-content-end">
-            <div className="col-md-3 d-flex ">
+            <div className="col-md-3 d-flex "      onChange={onChangeHandler}>
               <InputGroup className="mb-3 d-flex">
                 <Form.Control
                   placeholder="Search"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  onChange={handleFilter}
+                  value={searchKey}
                 />
                 <InputGroup.Text
                   id="basic-addon2"
