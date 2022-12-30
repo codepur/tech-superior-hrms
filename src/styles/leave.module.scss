@@ -22,3 +22,11 @@ border-radius: 20px;
 .tableHead{
     background: #93e4c1;
 }
+.cardContainer{
+    background: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0.1%, rgba(233, 226, 226, 0.28) 90.1%);
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 16px );
+-webkit-backdrop-filter: blur( 16px );
+border-radius: 10px;
+border: 2px solid rgba( 255, 255, 255, 0.18 );
+}
