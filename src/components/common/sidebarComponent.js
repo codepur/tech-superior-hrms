@@ -15,6 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../stores/actions/mainPage";
 import { ModalBody } from "reactstrap";
+import { route } from "fontawesome";
 
 const SidebarComponent = () => {
   const router = useRouter();
@@ -85,11 +86,11 @@ const SidebarComponent = () => {
       </Modal>
 
 
-      <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
+      <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar}`} >
         <Nav collapsed={menuCollapse}
         >
-          <header>
-            <div className={`${styles.head}`}>
+          <header role="button">
+            <div className={`${styles.head}`}  onClick={()=>{router.push('/employee-dashboard')}}>
               <div class="logoImg">
                 <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid" />
               </div>
@@ -141,7 +142,7 @@ const SidebarComponent = () => {
               </div>
           </div> */}
           <div className={`${styles.menuItem} mt-4 w-100 `}>
-            <div className={` ${styles.menuItemActive}  d-flex p-1 align-items-center`} onClick={() => (router.push("/gethelp"))}>
+            <div className={` ${styles.menuItemActive}  d-flex p-1 align-items-center`} onClick={() => (router.push("/gethelp"))} role="button">
               <Image
                 src="/images/information.png"
                 alt="Logo"
@@ -151,7 +152,7 @@ const SidebarComponent = () => {
               />
               <span className="flex-grow-1">Get Help</span>
             </div>
-            <div>
+            <div role="button">
               <Nav.Item
                 href={""}
                 className={`${styles.menuItem} ${router.pathname.includes() && styles.menuItemActive
