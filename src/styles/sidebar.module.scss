@@ -198,7 +198,7 @@ $tran-05: all 0.5s ease;
     border-radius: 15px;
   }
 }
-
+ 
 .menuOtherItemActive {
   background: $primary-color;
   border-radius: 15px;
@@ -219,4 +219,7 @@ $tran-05: all 0.5s ease;
     font-size: 13px;
     border-radius: 15px;
   }
+}
+.version{
+  font-size: 12px !important;
 }
