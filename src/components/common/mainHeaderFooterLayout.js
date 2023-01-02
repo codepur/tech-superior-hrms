@@ -22,7 +22,6 @@ const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                 <meta name="title" content={title} />
                 <meta name="description" content={description} />
-
                 <meta itemProp="name" content={title} />
                 <meta itemProp="description" content={description} />
             </Head>

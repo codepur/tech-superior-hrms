@@ -6,7 +6,10 @@ import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, FormGroup, Input, Label } from "reactstrap";
 import API from "../../helpers/api";
-import { setdepartmentList,setTicketList} from "../../stores/actions/ticketManagement";
+import {
+  setdepartmentList,
+  setTicketList,
+} from "../../stores/actions/ticketManagement";
 import styles from "../../styles/ticket.module.scss";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 import TicketModal from "./viewModal";
@@ -44,8 +47,7 @@ function TicketManagement() {
     Gstate.user?.userData,
     Gstate.ticketManagement?.ticketsList,
   ]);
-  
- 
+
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
     setTicketSectionExpand(!ticketSectionExpand);
@@ -63,7 +65,7 @@ function TicketManagement() {
 
   const handleFilter = (e) => {
     let searchvalue = e?.target?.value;
-    let arrt=Object.entries(userData)
+    let arrt = Object.entries(userData);
     let arr = arrt?.filter(
       (item) =>
         (searchvalue
@@ -78,7 +80,8 @@ function TicketManagement() {
   const handleDescEdit = (content, editor) => {
     const updatedDesc = content;
     setTicketData((prev) => ({
-      ...prev, description: updatedDesc 
+      ...prev,
+      description: updatedDesc,
     }));
   };
 
@@ -96,7 +99,7 @@ function TicketManagement() {
   const ticketSubmit = () => {
     ticketData.id = userData._id;
     delete ticketData["category"];
-    API.apiPost("createTicket", {payload:encodeData(ticketData)})
+    API.apiPost("createTicket", { payload: encodeData(ticketData) })
       .then((response) => {
         if (response.data && response.data.success === true) {
           setTicketData(initial);
@@ -241,25 +244,28 @@ function TicketManagement() {
                 onInit={(evt, editor) => (editorRef.current = editor)}
                 onEditorChange={handleDescEdit}
                 value={description}
-                  init={{
+                init={{
                   height: 330,
                   plugins: [
                     "advlist autolink lists link image charmap print preview anchor",
                     "searchreplace code fullscreen",
                     "insertdatetime media table paste code",
                   ],
-                  toolbar: "undo redo | fontsizeselect fontselect bold italic underline strikethrough blockquote forecolor alignment bullist numlist outdent indent | link image media",
-                  content_style: "body { font-family: Roboto, sans-serif; font-size:14px }",
+                  toolbar:
+                    "undo redo | fontsizeselect fontselect bold italic underline strikethrough blockquote forecolor alignment bullist numlist outdent indent | link image media",
+                  content_style:
+                    "body { font-family: Roboto, sans-serif; font-size:14px }",
                   menubar: true,
                   statusbar: false,
                   image_title: true,
                   image_caption: true,
                   image_description: true,
                   image_dimensions: true,
-                  fontsize_formats: "12px 14px 16px 18px 20px 22px 24px 26px 28px",
-                  font_formats: "Sans-serif=sans-serif;Roboto=roboto; Arial=arial; Helvetica=helvetica;",
+                  fontsize_formats:
+                    "12px 14px 16px 18px 20px 22px 24px 26px 28px",
+                  font_formats:
+                    "Sans-serif=sans-serif;Roboto=roboto; Arial=arial; Helvetica=helvetica;",
                 }}
-
               />
             </div>
             <Button
@@ -297,33 +303,116 @@ function TicketManagement() {
             </div>
           </div>
           <hr className={`${styles.hr}`}></hr>
-          <div>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr className={`${styles.tableHeadRow}`}>
-                  <th className="p-3">S. No.</th>
-                  <th className="p-3">Ticket Code</th>
-                  <th className="p-3">Priority</th>
-                  <th className="p-3">Employee Name</th>
-                  <th className="p-3">Subject</th>
-                  <th className="p-3">Date</th>
-                  <th className="p-3"></th>
+          <div >
+            <Table className={`${styles.table} table table-hover`}>
+              <thead className={`${styles.tableHead} `}>
+                <tr className={`${styles.tableHead}`}>
+                  <th itemScope="col">#</th>
+                  <th itemScope="col">
+                    <span
+                      className="alignTableHeading"
+                      onClick={() => handleSort("name")}
+                    >
+                      <span className="">Ticket Code</span>
+                      <span className="ms-1">
+                        <Image
+                          src={"/images/sort.png"}
+                          className=" cursor-pointer sortImg"
+                          alt=""
+                        />
+                      </span>
+                    </span>
+                  </th>
+                  <th itemScope="col">
+                    <span
+                      className="alignTableHeading"
+                      onClick={() => handleSort("from")}
+                    >
+                      <span className="">Priority</span>
+                      <span className="ms-1">
+                        <Image
+                          src={"/images/sort.png"}
+                          className="cursor-pointer sortImg"
+                          alt=""
+                        />
+                      </span>
+                    </span>
+                  </th>
+                  <th itemScope="col">
+                    <span
+                      className="alignTableHeading"
+                      onClick={() => handleSort("to")}
+                    >
+                      <span className="">Employee Name</span>
+                      <span className="ms-1">
+                        <Image
+                          src={"/images/sort.png"}
+                          className="cursor-pointer sortImg"
+                          alt=""
+                        />
+                      </span>
+                    </span>
+                  </th>
+                  <th itemScope="col">
+                    <span
+                      className="alignTableHeading"
+                      onClick={() => handleSort("version")}
+                    >
+                      <span className="">Subject</span>
+                      <span className="ms-1">
+                        <Image
+                          src={"/images/sort.png"}
+                          className="cursor-pointer sortImg"
+                          alt=""
+                        />
+                      </span>
+                    </span>
+                  </th>
+                  <th itemScope="col">
+                    <span
+                      className="alignTableHeading"
+                      onClick={() => handleSort("reason")}
+                    >
+                      <span className="">Date</span>
+                      <span className="ms-1">
+                        <Image
+                          src={"/images/sort.png"}
+                          className="cursor-pointer sortImg"
+                          alt=""
+                        />
+                      </span>
+                    </span>
+                  </th>
+                  <th itemScope="col">
+                    <span
+                      className="alignTableHeading"
+                      onClick={() => handleSort("status")}
+                    >
+                      <span className="">Status</span>
+                      <span className="ms-1">
+                        <Image
+                          src={"/images/sort.png"}
+                          className="cursor-pointer sortImg"
+                          alt=""
+                        />
+                      </span>
+                    </span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {ticketsList?.map((row, i) => (
-                  <tr key={i}>
-                    <td className="p-3">{skip + i + 1}</td>
-                    <td className="p-3">{row?.ticket_code || ""}</td>
-                    <td className="p-3">{row?.priority || ""}</td>
-                    <td className="p-3">
-                      {userData.first_name + " " + userData.last_name}
-                    </td>
-                    <td className="p-3">{row.subject}</td>
-                    <td className="p-3">
+                {ticketsList.map((row, i) => (
+                  <tr key={i} className="border" itemScope="row">
+                    <td>{skip + i + 1}</td>
+                    <td>{row?.ticket_code || ""}</td>
+                    <td>{row?.priority || ""}</td>
+                    <td> {userData.first_name + " " + userData.last_name}</td>
+                    <td>{row.subject}</td>
+                    <td>
+                      {" "}
                       {moment(row?.created_at).format("MM-DD-YYYY") || ""}
                     </td>
-                    <td className="p-3">
+                    <td>
                       <center>
                         <Image
                           src="images/view.png"
