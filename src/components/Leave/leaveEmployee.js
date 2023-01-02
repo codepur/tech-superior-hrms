@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { Icon123 } from "@tabler/icons";
 import { Table } from "reactstrap";
@@ -7,16 +8,17 @@ import styles from "../../styles/leave.module.scss"
 import PaginationComponent from "../common/PaginationComponent";
 import { useEffect } from "react";
 
-const initialPaginationState = {
-    activePage: 1,
-    skip: 0,
-    limitPerPage: 5,
-    paginatedData: [],
-    userData: [],
-    list: [],
-};
-
 const EmployeeLeaveComponent = () => {
+    
+    const initialPaginationState = {
+        activePage: 1,
+        skip: 0,
+        limitPerPage: 4,
+        paginatedData: [],
+        userData: [],
+        list: [],
+    };
+
     const [pagination, setPagination] = useState(initialPaginationState);
     const { activePage, skip, limitPerPage, userData, list } = pagination;
     const [formaData, setFormData] = useState({
@@ -72,24 +74,49 @@ const EmployeeLeaveComponent = () => {
         status: "approved",
         approvedBy: "sakshi sarma"
     },
+    {
+        leaveType: "Hospitalisation",
+        from: "15 jan 2019",
+        to: "15 jan 2019",
+        noofdays: "10 days",
+        reason: "Going to hospiTAL",
+        status: "approved",
+        approvedBy: "sakshi sarma"
+    },
+    {
+        leaveType: "Hospitalisation",
+        from: "15 jan 2019",
+        to: "15 jan 2019",
+        noofdays: "10 days",
+        reason: "Going to hospiTAL",
+        status: "approved",
+        approvedBy: "sakshi sarma"
+    },
 
     ]
 
     const onPageChange = (page) => {
         var skipRecords = (page - 1) * limitPerPage;
         const to = limitPerPage * page;
-        setPagination((prev) => ({
-            ...prev,
+        // setPagination((prev) => ({
+        //     ...prev,
+        //     activePage: page,
+        //     skip: JSON.parse(skipRecords),
+        //     paginatedData: list.slice(skipRecords, to),
+        //     userData: list.slice(skipRecords, to),
+        // }));
+        setPagination({
+            ...pagination,
             activePage: page,
-            skip: JSON.parse(skipRecords),
+            skip:skipRecords,
             paginatedData: list.slice(skipRecords, to),
             userData: list.slice(skipRecords, to),
-        }));
+        });
     };
 
     useEffect(() => {
         setPagination((prev) => ({ ...prev, list: paginatedData }));
-    }, [paginatedData?.length]);
+    }, [paginatedData , userData?.length]);
 
     useEffect(() => {
         onPageChange(activePage);
@@ -267,9 +294,9 @@ const EmployeeLeaveComponent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {paginatedData.map((entry, i) => (
+                            {userData.map((entry, i) => (
                                 <tr key={i} className="border" itemScope='row'>
-                                    <td>{i + 1}</td>
+                                    <td>{skip+ i + 1}</td>
                                     <td>{entry?.leaveType}</td>
                                     <td>{entry?.from}</td>
                                     <td>{entry?.to}</td>

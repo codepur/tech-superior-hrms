@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../../src/styles/sidebar.module.scss";
-import { Image, Nav, NavLink } from "react-bootstrap";
+import { Image, Nav, NavLink, Modal } from "react-bootstrap";
 import Link from "next/link";
 import { memo } from "react";
 import { useRouter } from "next/router";
@@ -14,6 +14,7 @@ import {
 } from "../../constants/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../stores/actions/mainPage";
+import { ModalBody } from "reactstrap";
 
 const SidebarComponent = () => {
   const router = useRouter();
@@ -21,7 +22,13 @@ const SidebarComponent = () => {
   const [appMenuItemsData, setAppMenuItemsData] = useState([]);
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
   const roleId = userData?.roles;
+  const [logoutModal, setLogoutModal] = useState(false);
   const dispatch = useDispatch();
+
+  function openlogoutModal() {
+    setLogoutModal(true)
+  };
+
   useEffect(() => {
     if (roleId && roleId === SUB_ADMIN_ROLE) {
       const menu = appMenuItems?.filter((item) =>
@@ -49,13 +56,35 @@ const SidebarComponent = () => {
   const appendSidebar = () => {
     setMenuCollapse(false);
   };
+
   const logoutUser = () => {
     logout();
   };
 
 
+
   return (
     <>
+      <Modal centered show={logoutModal} onHide={()=> setLogoutModal(false)}>
+        <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}></Modal.Header>
+        <Modal.Body className="bodyModal">
+          <h3>
+            <div className="d-flex-justify-content-center fw-bold text-center">
+              Are you sure, <br /> you want to logout ?
+            </div>
+          </h3>
+        </Modal.Body>
+        <Modal.Footer className="justify-content-center">
+          <button className="btn btn-primary text-center" onClick={logoutUser} >
+            Logout
+          </button>
+          <button className="btn btn-danger text-center" onClick={() => setLogoutModal(false)} >
+            Cancel
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+
       <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
         <Nav collapsed={menuCollapse}
         >
@@ -111,7 +140,7 @@ const SidebarComponent = () => {
                    </div>
               </div>
           </div> */}
-          <div className={`${styles.menuItem} mt-4`}>
+          <div className={`${styles.menuItem} mt-4 w-100 `}>
             <div className={` ${styles.menuItemActive}  d-flex p-1 align-items-center`} onClick={() => (router.push("/gethelp"))}>
               <Image
                 src="/images/information.png"
@@ -130,7 +159,7 @@ const SidebarComponent = () => {
               >
                 <Nav className="float-left" >
                   <div className="flex-grow-1 menuList">
-                    <div className={`side-menu`} onClick={logoutUser}>
+                    <div className={`side-menu`} onClick={openlogoutModal}>
                       <Image
                         src="/images/logout1.png"
                         alt="Logo"
