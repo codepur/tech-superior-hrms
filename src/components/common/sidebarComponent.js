@@ -87,10 +87,10 @@ const SidebarComponent = (props) => {
         <Nav>
           <header>
             <div className={`${styles.head}`} onClick={() => { router.push('/employee-dashboard') }} role='button'>
-              <div className="logoImg">
-                <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid" />
+              <div className="logoImg d-flex align-item-center justify-content-center p-1 ">
+                <Image src="/images/LogoTSC.svg" alt="logo" className={`${toggle ? 'img-fluid' : 'img-fluid w-50 '}`} />
               </div>
-              <div className={`${toggle ? 'd-block' : 'd-none'} logoText`}>
+              <div className={`${toggle ? 'd-block' : 'd-none'} logoText pe-1`}>
                 <Image src="images/textLogo.png" alt="logo" className="img-fluid" />
               </div>
             </div>

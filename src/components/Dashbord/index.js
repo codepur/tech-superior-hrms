@@ -128,7 +128,7 @@ export default function DashboardComponent() {
                     <div className="col-md-3">
                       <div className={`${styles.empImgCard} `}>
                         <Image src="images/photo_6325701050312536371_x.jpg" alt="Profile pic" className={`${styles.empImg} `} />
-                      </div>
+                      </div> 
                     </div>
                     <div className="col-md-9">
                       <div className={`${styles.empText}`}>
