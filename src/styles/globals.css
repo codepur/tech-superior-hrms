@@ -59,7 +59,11 @@ a {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  
+  /* overflow: hidden; */
+}
+
+body {
+  overflow-x: hidden;
 }
 
 
@@ -346,5 +350,105 @@ body::-webkit-scrollbar {
 }
 
 .sortImg{
-  height: 20px;
+  height: 15px;
+}
+
+.textFont{
+  font-size: 12px!important;
+}
+
+/* 
+
+*/
+
+.glass{
+  background: rgba( 255, 255, 255, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.calendar {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background: radial-gradient(328px at 2.9% 15%, rgb(191, 224, 251) 0%, rgb(232, 233, 251) 25.8%, rgb(252, 239, 250) 50.8%, rgb(234, 251, 251) 77.6%, rgb(240, 251, 244) 100.7%);
+  /* background-color: #e3f6f5; */
+  border-bottom: 1px solid #ccc;
+}
+
+.calendar-header button {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  background-color: #33a351 !important;
+  border-radius: 5px;
+}
+
+.calendar-header div {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.calendar-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #edf7fa;
+}
+
+.week-days {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  background-color: #e3f6f5;
+}
+
+.week-days div {
+  width: 14.28%;
+  text-align: center;
+}
+
+.calendar-cells {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  align-items: center;
+  width: 100%;
+  padding: 4px;
+}
+
+.calendar-cells div {
+  /* width: 14.28%; */
+  width : calc(86%/7);
+  margin: 1%;
+  height: 40px;
+  text-align: center;
+  line-height: 40px; 
+  background: #F2F2F5;
+  align-items: center;
+}
+
+.calendar-cells div:empty {
+  background-color: #fff;
 }

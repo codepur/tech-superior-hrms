@@ -2,18 +2,24 @@
 import dynamic from "next/dynamic";
 import { Card, Image, Modal } from "react-bootstrap";
 import styles from "../../styles/dashboard.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
 import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import TodoContainer from "../TodoContainer";
+import CalendarAi from "./calender";
+
 
 export default function DashboardComponent() {
   const [Count] = useSelector((Gstate) => [Gstate.user?.CountParticipant]);
 
-  const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
-  const [segmentValue, setSegment] = useState("Present")
+  const segmentColor = { Present: "green", Absent: "red", Late: "yellow" };
+  const event = [
+    { date: "25/12/22", eventName: "Christmas" },
+    { date: "29/12/22", eventName: "Guru Gobind Singh Jayanti" },
+  ];
+  const [segmentValue, setSegment] = useState("Present");
   const handleActiveTab = (e) => {
     setSegment(e.target.value);
   };
@@ -22,21 +28,21 @@ export default function DashboardComponent() {
   const closeModal = () => {
     setShowModal(false);
   };
-
   const openModal = () => {
     setShowModal(true);
   };
-  const event = [
-    { date: "25/12/22", eventName: "Christmas" },
-    { date: "29/12/22", eventName: "Guru Gobind Singh Jayanti" },
-  ];
-  const handleLeave = () => {
-    //router.push code
-  }
+  const [eventModal, setEventModal] = useState();
+  const closeEventModal = () => {
+    setEventModal(false);
+  };
+  useEffect(() => {
+    setEventModal(true);
+  }, []);
+
 
   return (
     <>
-      <Modal centered show={showModal} onHide={closeModal} >
+      <Modal centered show={showModal} onHide={closeModal}>
         <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
           <Modal.Title className={`${styles.header} ms-auto`}>
             Hi, Neeraj{" "}
@@ -82,9 +88,36 @@ export default function DashboardComponent() {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-primary text-center" onClick={closeModal}>Save</button>
+          <button className="btn btn-primary text-center" onClick={closeModal}>
+            Save
+          </button>
         </Modal.Footer>
       </Modal>
+
+      <Modal centered show={eventModal} onHide={closeEventModal}>
+        <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
+          <Modal.Title className={`${styles.header} ms-auto`}>
+            <span>Today&apos;s Events</span>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
+          <h2>
+            <div className="text-center text-danger">
+              HAPPY Holiday!!!!!!!!
+            </div>
+          </h2>
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            className="btn bg-btn-green text-center"
+            onClick={closeEventModal}
+          >
+            Save
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+
 
       <div className="container">
         <div className="row">
@@ -96,7 +129,7 @@ export default function DashboardComponent() {
                     <div className="col-md-3">
                       <div className={`${styles.empImgCard} `}>
                         <Image src="images/photo_6325701050312536371_x.jpg" alt="Profile pic" className={`${styles.empImg} `} />
-                      </div>
+                      </div> 
                     </div>
                     <div className="col-md-9">
                       <div className={`${styles.empText}`}>
@@ -175,7 +208,7 @@ export default function DashboardComponent() {
                       </div>
                     </div>
                     <div className="request-btn text-center mt-4 pt-1">
-                      <button className="btn bg-btn-green px-3" onClick={handleLeave}>Apply Leave</button>
+                      <button className="btn bg-btn-green px-3" >Apply Leave</button>
                     </div>
                   </div>
                 </div>
@@ -213,28 +246,26 @@ export default function DashboardComponent() {
                     <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
                       <Card.Body className="text-white">
                         <Card.Title>Event this month</Card.Title>
-                        {event?.map((item) => (
-                          <>
-                            <div>
+                        {event?.map((item, index) => (                          
+                            <div key={index}>
                               <span>{item.eventName}</span>
                               <span className="float-end">{item.date}</span>
-                            </div>
-                          </>
+                            </div>                         
                         ))}
                       </Card.Body>
                     </Card>
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-      </div>
-
-      <div className="container">
-
+        <div>
+           <CalendarAi/>
+           <div className="row">
+            <br/>
+           </div>
+        </div>
       </div>
     </>
   );

@@ -701,10 +701,10 @@ export default function BasicInfo() {
         </Row>
 
         <Button
-          variant="primary"
+          // variant="primary"
           type="submit"
-          className="mb-3"
-          onClick={handleClick}
+          className="mb-3 bg-btn-green"
+          onClick={handleClick}          
         >
           Submit
         </Button>

@@ -47,6 +47,7 @@ const RequestModal = (props) => {
           <div className="container">
             <div className={`row mb-3`}>
               <table className="table">
+               <tbody>
                 <tr className={`${styles.ticketRows}`}>
                   <td className={`${styles.ticketHeadings}`}>
                     <b>DSR Code :</b>
@@ -71,6 +72,7 @@ const RequestModal = (props) => {
                   </td>
                   <td>{indexData.department_id.name}</td>
                 </tr>
+               </tbody>
               </table>
               <div className="d-flex justify-content-evenly">
                 <button className={`btn btn-success `} onClick={(e)=>handleSubmit(e,"Approved")}>Approve</button>

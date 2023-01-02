@@ -16,13 +16,21 @@
 .segment{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-
 .statusDetail {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #33a351;
+}
+.leaveSubmit{
+    padding: 10px 40px;
+    border-radius: 41px;
+    font-weight: bold;
+    margin: auto 160px;
+    background-color:#33a351;
+    color:white;
+    border:none;
 }
 
 .customCard{
@@ -57,10 +65,11 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px 20px 5px;
+    width: 155px;
 }
 .empImg{
     border-radius: 5px 20px 5px;
-    width: 150px;
+    max-width: 146px;
 }
 .empText{
     
