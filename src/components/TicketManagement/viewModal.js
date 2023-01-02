@@ -17,41 +17,39 @@ const TicketModal = (props) => {
           <div className="container">
             <div className={`row mb-3`}>
               <table className="table">
-                <tr className={`${styles.ticketRows}`}>
-                  <td className={`${styles.ticketHeadings}`}>
-                    <b>Ticket Code :</b>
-                  </td>
-                  <td>{indexData.ticket_code}</td>
-                </tr>
-                <tr className={`${styles.ticketRows}`}>
-                  <td className={`${styles.ticketHeadings}`}>
-                    <b>Ticket Subject :</b>
-                  </td>
-                  <td>{indexData.subject}</td>
-                </tr>
-                <tr className={`${styles.ticketRows}`}>
-                  <td className={`${styles.ticketHeadings}`}>
-                    <b>Employee Name :</b>
-                  </td>
-                  <td>{indexData?.user_id?.first_name +" "+ indexData?.user_id?.last_name}</td>
-                </tr>
-                <tr className={`${styles.ticketRows}`}>
-                  <td className={`${styles.ticketHeadings}`}>
-                    <b>Ticket Description :</b>
-                  </td>
-                  <td className={styles.discriptionData} dangerouslySetInnerHTML={{ __html:indexData?.description }}></td>
-                </tr>
-                <tr className={`${styles.ticketRows}`}>
-                  <td className={`${styles.ticketHeadings}`}>
-                    <b>Ticket Priority :</b>
-                  </td>
-                  <td>{indexData.priority}</td>
-                </tr>
+                <tbody>
+                  <tr className={`${styles.ticketRows}`}>
+                    <td className={`${styles.ticketHeadings}`}>
+                      <b>Ticket Code :</b>
+                    </td>
+                    <td>{indexData.ticket_code}</td>
+                  </tr>
+                  <tr className={`${styles.ticketRows}`}>
+                    <td className={`${styles.ticketHeadings}`}>
+                      <b>Ticket Subject :</b>
+                    </td>
+                    <td>{indexData.subject}</td>
+                  </tr>
+                  <tr className={`${styles.ticketRows}`}>
+                    <td className={`${styles.ticketHeadings}`}>
+                      <b>Employee Name :</b>
+                    </td>
+                    <td>{indexData?.user_id?.first_name + " " + indexData?.user_id?.last_name}</td>
+                  </tr>
+                  <tr className={`${styles.ticketRows}`}>
+                    <td className={`${styles.ticketHeadings}`}>
+                      <b>Ticket Description :</b>
+                    </td>
+                    <td className={styles.discriptionData} dangerouslySetInnerHTML={{ __html: indexData?.description }}></td>
+                  </tr>
+                  <tr className={`${styles.ticketRows}`}>
+                    <td className={`${styles.ticketHeadings}`}>
+                      <b>Ticket Priority :</b>
+                    </td>
+                    <td>{indexData.priority}</td>
+                  </tr>
+                </tbody>
               </table>
-              {/* <div className="d-flex justify-content-evenly">
-                <button className={`btn btn-success `}>Approve</button>
-                <button className={`btn btn-danger`}>Reject</button>
-              </div> */}
             </div>
           </div>
         </Form>
