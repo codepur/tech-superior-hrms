@@ -7,9 +7,6 @@ import styles from "../../styles/leave.module.scss"
 import PaginationComponent from "../common/PaginationComponent";
 import { useEffect } from "react";
 
-
-
-
 const initialPaginationState = {
     activePage: 1,
     skip: 0,
@@ -18,6 +15,7 @@ const initialPaginationState = {
     userData: [],
     list: [],
 };
+
 const EmployeeLeaveComponent = () => {
     const [pagination, setPagination] = useState(initialPaginationState);
     const { activePage, skip, limitPerPage, userData, list } = pagination;
@@ -37,6 +35,7 @@ const EmployeeLeaveComponent = () => {
     const handleChange = (e) => {
         setFormData({ ...data, [e.target.name]: e.target.value });
     };
+
     const paginatedData = [{
         leaveType: "Hospitalisation",
         from: "15 jan 2019",
@@ -152,7 +151,7 @@ const EmployeeLeaveComponent = () => {
                 </Form>
             </Modal>
             <div className="container textFont">
-                <div className="row mt-5">
+                <div className="row mt-3">
                     <div className="col-md-6 ">
                         <h2>Leaves</h2>
                     </div>
