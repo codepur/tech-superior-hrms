@@ -142,6 +142,10 @@ const SidebarComponent = (props) => {
               </div>
             </div>
           </div>
+          <div className={`${styles.version} text-center text-muted`}>
+              <span>v 1.2.0 &nbsp;</span> 
+              <span className={`${toggle ? 'd-inline-block' : 'd-none'}`}>Terms & Conditions</span>
+          </div>
         </div>
       </div>
     </>

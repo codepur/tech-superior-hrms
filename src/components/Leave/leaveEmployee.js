@@ -146,10 +146,14 @@ const EmployeeLeaveComponent = () => {
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="leaveFrom" className="fw-bold">
+                            <Form.Label htmlFor="leaveFrom" className="fw-bold col-6">
                                 From
                             </Form.Label>
                             <Form.Control id="leaveFrom" type="date" name="fromDate" onChange={handleChange} />
+                            <Form.Label htmlFor="leaveTo" className="fw-bold col-6">
+                                To
+                            </Form.Label>
+                            <Form.Control id="leaveTo" type="date" name="toDate" onChange={handleChange} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
