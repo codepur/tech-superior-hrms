@@ -1,17 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import {
-  Button,
-  Card,
-  CardGroup,
-  Form,
-  FormCheck,
-  FormControl,
-  Image,
-  InputGroup,
-  Spinner,
-  Table,
-} from "react-bootstrap";
+import { Image, Table, } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserlist } from "../../stores/actions/mainPage";
 import styles from "../../styles/directory.module.scss";
@@ -65,7 +54,7 @@ export default function EmployeeCard(props) {
             <th className="ps-3">
               <span
                 className="alignTableHeading"
-                // onClick={() => handleSort("User.UID")}
+              // onClick={() => handleSort("User.UID")}
               >
                 <span>Employee ID</span>
                 <span className="ms-2">

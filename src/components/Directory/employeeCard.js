@@ -23,6 +23,7 @@ export default function EmployeeCard(props) {
 
   useEffect(() => {
     dispatch(setUserlist());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRendomColor = () => {

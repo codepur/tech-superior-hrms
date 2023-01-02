@@ -9,7 +9,7 @@ import PaginationComponent from "../common/PaginationComponent";
 import { useEffect } from "react";
 
 const EmployeeLeaveComponent = () => {
-    
+
     const initialPaginationState = {
         activePage: 1,
         skip: 0,
@@ -104,12 +104,12 @@ const EmployeeLeaveComponent = () => {
             skip: JSON.parse(skipRecords),
             paginatedData: list.slice(skipRecords, to),
             userData: list.slice(skipRecords, to),
-        }));       
+        }));
     };
 
     useEffect(() => {
         setPagination((prev) => ({ ...prev, list: paginatedData }));
-    }, [paginatedData?.length , userData?.length]);
+    }, [paginatedData?.length, userData?.length]);
 
     useEffect(() => {
         onPageChange(activePage);
@@ -123,52 +123,57 @@ const EmployeeLeaveComponent = () => {
                 onHide={closeLeaveModal}
                 className={`p-2`}
             >
-                <div
-                    className={` fw-bold fs-5 d-flex justify-content-center align-self-center mt-4 fs-3`}
-                >
-                    Add Leave
-                </div>
-                <Form className="p-4">
-                    {/* <fieldset disabled> */}
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="leaveSelect" className="fw-bold" >
-                            Leave Type
-                        </Form.Label>
-                        <Form.Select id="leaveSelect" name="leaveType" onChange={handleChange}>
-                            <option type="hidden">Select Leave Type</option>
-                            <option value="Casual Leave">Casual Leave</option>
-                            <option value="Medical Leave">Medical Leave</option>
-                            <option value="Unpaid Leave">Unpaid Leave</option>
-                        </Form.Select>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="leaveFrom" className="fw-bold">
-                            From
-                        </Form.Label>
-                        <Form.Control id="leaveFrom" type="date" name="fromDate" onChange={handleChange} />
-                    </Form.Group>
+                <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
+                    <Modal.Title className={` fw-bold mt-4 fs-3 `}>
+                        <div className="d-flex justify-content-center align-self-center">
+                            {/* <div className={` fw-bold fs-5 d-flex justify-content-center align-self-center mt-4 fs-3`}> */}
+                            Add Leave
+                        </div>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form className="">
+                        {/* <fieldset disabled> */}
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="leaveSelect" className="fw-bold" >
+                                Leave Type
+                            </Form.Label>
+                            <Form.Select id="leaveSelect" name="leaveType" onChange={handleChange}>
+                                <option type="hidden">Select Leave Type</option>
+                                <option value="Casual Leave">Casual Leave</option>
+                                <option value="Medical Leave">Medical Leave</option>
+                                <option value="Unpaid Leave">Unpaid Leave</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="leaveFrom" className="fw-bold">
+                                From
+                            </Form.Label>
+                            <Form.Control id="leaveFrom" type="date" name="fromDate" onChange={handleChange} />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="leaveTo" className="fw-bold">
-                            To
-                        </Form.Label>
-                        <Form.Control id="leaveTo" type="date" name="toDate" onChange={handleChange} />
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="leaveTo" className="fw-bold">
+                                To
+                            </Form.Label>
+                            <Form.Control id="leaveTo" type="date" name="toDate" onChange={handleChange} />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label className="fw-bold">Subject</Form.Label>
-                        <Form.Control id="subject" type="text" name="subject" onChange={handleChange} />
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label className="fw-bold">Subject</Form.Label>
+                            <Form.Control id="subject" type="text" name="subject" onChange={handleChange} />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label className="fw-bold" >Attachment</Form.Label>
-                        <Form.Control as="textarea" rows={3} name="attachment" onChange={handleChange} />
-                    </Form.Group>
-                    <Button type="submit" className={`${styles.leaveSubmit}`}  >
-                        Submit
-                    </Button>
-                    {/* </fieldset> */}
-                </Form>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Label className="fw-bold" >Attachment</Form.Label>
+                            <Form.Control as="textarea" rows={3} name="attachment" onChange={handleChange} />
+                        </Form.Group>
+                        <Button type="submit" className={`${styles.leaveSubmit}`}  >
+                            Submit
+                        </Button>
+                        {/* </fieldset> */}
+                    </Form>
+                </Modal.Body>
             </Modal>
             <div className="container textFont">
                 <div className="row mt-3">
@@ -289,7 +294,7 @@ const EmployeeLeaveComponent = () => {
                         <tbody>
                             {userData.map((entry, i) => (
                                 <tr key={i} className="border" itemScope='row'>
-                                    <td>{skip+ i + 1}</td>
+                                    <td>{skip + i + 1}</td>
                                     <td>{entry?.leaveType}</td>
                                     <td>{entry?.from}</td>
                                     <td>{entry?.to}</td>

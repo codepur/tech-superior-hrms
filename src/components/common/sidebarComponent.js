@@ -14,9 +14,7 @@ import {
 } from "../../constants/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../stores/actions/mainPage";
-import { ModalBody } from "reactstrap";
 import { IconCircleChevronLeft, IconToggleLeft } from "@tabler/icons";
-import { colors, Icon } from "@material-ui/core";
 
 const SidebarComponent = (props) => {
   const { toggle, sidebarToggle } = props;
