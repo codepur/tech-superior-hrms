@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import TodoContainer from "../TodoContainer";
+import CalendarAi from "./calender";
 
 
 export default function DashboardComponent() {
@@ -258,6 +259,12 @@ export default function DashboardComponent() {
               </div>
             </div>
           </div>
+        </div>
+        <div>
+           <CalendarAi/>
+           <div className="row">
+            <br/>
+           </div>
         </div>
       </div>
     </>
