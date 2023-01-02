@@ -101,14 +101,14 @@ export default function DashboardComponent() {
         </Modal.Header>
         <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
           <h2>
-            <div className="d-flex-justify-content-center">
+            <div className="text-center text-danger">
               HAPPY Holiday!!!!!!!!
             </div>
           </h2>
         </Modal.Body>
         <Modal.Footer>
           <button
-            className="btn btn-primary text-center"
+            className="btn bg-btn-green text-center"
             onClick={closeEventModal}
           >
             Save
