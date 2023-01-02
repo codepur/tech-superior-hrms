@@ -346,5 +346,9 @@ body::-webkit-scrollbar {
 }
 
 .sortImg{
-  height: 20px;
+  height: 15px;
+}
+
+.textFont{
+  font-size: 12px!important;
 }

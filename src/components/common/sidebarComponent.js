@@ -14,8 +14,11 @@ import {
 } from "../../constants/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../stores/actions/mainPage";
+import { IconCircleChevronLeft, IconToggleLeft } from "@tabler/icons";
+import { colors, Icon } from "@material-ui/core";
 
-const SidebarComponent = () => {
+const SidebarComponent = (props) => {
+  const { toggle, sidebarToggle } = props;
   const router = useRouter();
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [appMenuItemsData, setAppMenuItemsData] = useState([]);
@@ -31,7 +34,7 @@ const SidebarComponent = () => {
     }
     if (roleId && roleId === EMPLOYEE_ROLE) {
       const menu = appMenuItems?.filter(
-        (item) => [1, 2, 3, 4, 7,9].includes(item.id)
+        (item) => [1, 2, 3, 4, 7, 9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
@@ -53,32 +56,30 @@ const SidebarComponent = () => {
     logout();
   };
 
-
   return (
     <>
-      <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
-        <Nav collapsed={menuCollapse}
-        >
-          <header>
+      <div className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
+        <Nav>
+          <header id="header">
             <div className={`${styles.head}`}>
-              <div class="logoImg">
-                <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid" />
+              <div className="logoImg d-flex align-item-center justify-content-center">
+                <Image src="/images/LogoTSC.svg" alt="logo" className={`${toggle ? '' : 'w-50'} img-fluid`} />
               </div>
-              <div class="logoText">
+              <div className={`${toggle ? 'd-block' : 'd-none'} logoText`}>
                 <Image src="images/textLogo.png" alt="logo" className="img-fluid" />
               </div>
             </div>
+            <IconCircleChevronLeft className={`${styles.toggle} ${toggle ? styles.toggleRigth : styles.toggleLeft}`} onClick={sidebarToggle} />
           </header>
           <div className={`${styles.sidebarInnerItems} mt-4 pt-2 w-100`}>
             {appMenuItemsData?.map((item, i) => (
-             
               <Nav.Item
                 href={item.link}
                 key={i}
                 className={`${styles.menuItem} ${router.pathname.includes(item.link) && styles.menuItemActive
-                  }  d-flex p-1 align-items-center`}
+                  }  d-flex p-1 align-items-center `}
               >
-                <Nav.Link className="float-left" href={item.link}>
+                <Nav.Link className={`${toggle ? '' : 'd-flex align-item-center justify-content-center'} float-left`} href={item.link}>
                   <Link href={item.link} passHref className="flex-grow-1 menuList">
                     <div className={`side-menu`}>
                       <Image
@@ -92,63 +93,33 @@ const SidebarComponent = () => {
                         width="25"
                         className="me-2 "
                       />
-                      <span className="flex-grow-1">{item.name}</span>
+                      <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>{item.name}</span>
                     </div>
                   </Link>
                 </Nav.Link>
               </Nav.Item>
             ))}
           </div>
-           {/* <div className={`${styles.user}`}>
-              <div className="card bg-dark text-white p-2 ">
-                  <div className=" d-flex align-item-center">
-                    <div className="col-6 d-flex align-item-center justify-content-center">
-                       <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid w-50"/>                    
-                    </div>
-                    <div className="col-6">
-                           <h6 className="mb-0 mt-1">Neeraj Verma</h6>
-                    </div>
-                   </div>
-              </div>
-          </div> */}
-           <div className={`${styles.menuItem} mt-4`}>
-              <div  className={` ${styles.menuItemActive}  d-flex p-1 align-items-center`} onClick={()=>(router.push("/gethelp"))}>
-                      <Image
-                        src="/images/information.png"
-                        alt="Logo"
-                        height="22"
-                        width="22"
-                        className="me-2 "
-                      />
-                      <span className="flex-grow-1">Get Help</span>
-              </div>
-             <div>
-             <Nav.Item
-                href={""}
-             
-                className={`${styles.menuItem} ${router.pathname.includes() && styles.menuItemActive
-                  }  d-flex p-1 align-items-center`}
-              >
-                <Nav className="float-left" >
-                  <div className="flex-grow-1 menuList">
-                    <div className={`side-menu`} onClick={logoutUser}>
-                      <Image
-                        src="/images/logout1.png"
-                        alt="Logo"
-                        height="25"
-                        width="25"
-                        className="me-2 "
-                      />
-                      <span className="flex-grow-1">Logout</span>
-                    </div>
-                  </div>
-                </Nav>
-              </Nav.Item>
-
-
-              </div> 
-           </div>
         </Nav>
+        <div className="lastItems">
+          <div className={`${styles.sidebarOuterItems}`}>
+            <div className={` ${styles.menuOtherItem}   p-1 `}>
+              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={() => (router.push("/gethelp"))}>
+                <Image src="/images/information.png" alt="Logo" height="25" width="25" className="me-2 " />
+                <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Get Help</span>
+              </div>
+
+            </div>
+          </div>
+          <div className={`${styles.sidebarOuterItems}`}>
+            <div className={` ${styles.menuOtherItem}   p-1 `}>
+              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={logoutUser}>
+                <Image src="/images/logout1.png" alt="Logo" height="25" width="25" className="me-2 " />
+                <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Logout</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

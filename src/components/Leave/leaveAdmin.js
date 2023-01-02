@@ -24,9 +24,9 @@ const AdminLeaveComponent = () => {
         status: "approved",
         approvedBy: "sakshi sarma"
     },
-    {   
-        empName : 'ashutosh',
-        leaveType: "Maternity Leave",
+    {
+        empName: 'ashutosh',
+        leaveType: "Sick Leave",
         from: "15 jan 2019",
         to: "15 jan 2019",
         noofdays: "10 days",
@@ -35,6 +35,7 @@ const AdminLeaveComponent = () => {
         approvedBy: "sakshi sarma"
     },
     {
+        empName: 'amisha',
         leaveType: "Casual Leave",
         from: "15 jan 2019",
         to: "15 jan 2019",
@@ -44,6 +45,7 @@ const AdminLeaveComponent = () => {
         approvedBy: "sakshi sarma"
     },
     {
+        empName: 'sakshi',
         leaveType: "Hospitalisation",
         from: "15 jan 2019",
         to: "15 jan 2019",
@@ -96,13 +98,13 @@ const AdminLeaveComponent = () => {
                     {/* </fieldset> */}
                 </Form>
             </Modal>
-            <div className="container textFont">
+            <div className="container">
                 <div className="row mt-5">
                     <div className="col-md-6 ">
                         <h2>Leaves</h2>
                     </div>
                     <div className="col-md-6">
-                        <button className={`${styles.leaveSubmit} btn btn-primary mx-1 primary-button-bg float-end`} onClick={openLeaveModal} >
+                        <button className={`${styles.leaveSubmit} btn btn-primary mx-1 float-end textFont`} onClick={openLeaveModal} >
                             Add leave
                         </button>
                     </div>
@@ -112,7 +114,7 @@ const AdminLeaveComponent = () => {
                         <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Today Presents</h6>
-                                <h3>12 / 60</h3>
+                                <h4>12 / 60</h4>
                             </div>
                         </div>
                     </div>
@@ -120,7 +122,7 @@ const AdminLeaveComponent = () => {
                         <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Planned Leaves</h6>
-                                <h3>1</h3>
+                                <h4>1</h4>
                             </div>
                         </div>
                     </div>
@@ -128,7 +130,7 @@ const AdminLeaveComponent = () => {
                         <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Unplanned Leaves</h6>
-                                <h3>0</h3>
+                                <h4>0</h4>
                             </div>
                         </div>
                     </div>
@@ -136,92 +138,94 @@ const AdminLeaveComponent = () => {
                         <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Pending Requests</h6>
-                                <h3>16</h3>
+                                <h4>16</h4>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={`${styles.tableResponsive}`}>
-                    <Table className={`${styles.table}`}>
-                        <thead className={`${styles.tableHead}`}>
+                <div className={`${styles.tableResponsive} col-lg-12 textFont`}>
+                    <Table className={`${styles.table} table table-hover`}>
+                        <thead className={`${styles.tableHead} `}>
                             <tr className={`${styles.tableHead}`}>
-                                <th>
-                                    <span className="ms-1">Sr No</span>
+                                <th itemScope='col'>
+                                    <span className="">Sr No</span>
                                 </th>
-                                <th>
-                                    <span className="alignTableHeading" onClick={() => handleSort('name')}>
-                                        <span className="ms-1 fs-6">Employee</span>
-                                        <span className="ms-1">
+                                <th itemScope='col'>
+                                    <span className="alignTableHeading " onClick={() => handleSort('name')}>
+                                        <span className="">Employee</span>
+                                        <span className="">
                                             <Image src={'/images/sort.png'} className=" cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('name')}>
-                                        <span className="ms-1 fs-6">Leave Type</span>
-                                        <span className="ms-1">
+                                        <span className="">Leave Type</span>
+                                        <span className="">
                                             <Image src={'/images/sort.png'} className=" cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('from')}>
-                                        <span className="ms-1">From</span>
-                                        <span className="ms-1">
+                                        <span className="">From</span>
+                                        <span className="">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort("to")}>
-                                        <span className="ms-1">To</span>
-                                        <span className="ms-1">
+                                        <span className="">To</span>
+                                        <span className="">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
-                                    <span className="alignTableHeading" onClick={() => handleSort('version')}>
-                                        <span className="ms-1">No Of Days</span>
-                                        <span className="ms-1">
-                                            <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
+                                <th itemScope='col'>
+                                    <span>
+                                        <span className="alignTableHeading" onClick={() => handleSort('version')}>
+                                            <span className="">No Of Days</span>
+                                            <span className="">
+                                                <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
+                                            </span>
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('reason')}>
-                                        <span className="ms-1">Reason</span>
-                                        <span className="ms-1">
+                                        <span className="">Reason</span>
+                                        <span className="">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('status')}>
-                                        <span className="ms-1">Status</span>
-                                        <span className="ms-1">
+                                        <span className="">Status</span>
+                                        <span className="">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
+                                <th itemScope='col'>
                                     <span className="alignTableHeading" onClick={() => handleSort('approvedBy')}>
-                                        <span className="ms-1">Approved By</span>
-                                        <span className="ms-1">
+                                        <span className="">Approved By</span>
+                                        <span className="">
                                             <Image src={'/images/sort.png'} className="cursor-pointer sortImg" alt="" />
                                         </span>
                                     </span>
                                 </th>
-                                <th>
-                                    <span className="alignTableHeading" onClick={() => handleSort('')}>
-                                        <span className="ms-1">Action</span>
-                                    </span>
+                                <th itemScope='col'>
+                                    {/* <span className="alignTableHeading" onClick={() => handleSort('')}>
+                                        <span className="">Action</span>
+                                    </span> */}
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             {paginatedData.map((entry, i) => (
-                                <tr key={i} className="border">
+                                <tr key={i} className="border" itemScope='row'>                                
                                     <td>{i + 1}</td>
                                     <td>{entry?.empName}</td>
                                     <td>{entry?.leaveType}</td>
@@ -230,24 +234,24 @@ const AdminLeaveComponent = () => {
                                     <td>{entry?.noofdays}</td>
                                     <td>{entry?.reason}</td>
                                     <td>
-                                    <div>
+                                        <div>
                                             <Dropdown>
                                                 <Dropdown.Toggle
                                                     id="dropdown-basic"
                                                     data-toggle="tooltip"
                                                     title="View Actions"
-                                                    className={`bg-white border-1 border-secondary rounded-pill text-dark p-1 `}
-                                                ><span><IconCircleDot color="green"/> Approved</span>
+                                                    className={`bg-white border-1 border-secondary rounded-pill text-dark p-1 textFont`}
+                                                ><span><IconCircleDot color="green" /> Approved</span>
                                                 </Dropdown.Toggle>
-                                                <Dropdown.Menu>
+                                                <Dropdown.Menu className="textFont">
                                                     <Dropdown.Item >
-                                                        <span><IconCircleDot color="green"/> Approved</span>
+                                                        <span><IconCircleDot color="green" /> Approved</span>
                                                     </Dropdown.Item>
                                                     <Dropdown.Item >
-                                                        <span><IconCircleDot color="orange"/> Pending</span>
+                                                        <span><IconCircleDot color="orange" /> Pending</span>
                                                     </Dropdown.Item>
                                                     <Dropdown.Item >
-                                                        <span><IconCircleDot color="red"/> Declined</span>
+                                                        <span><IconCircleDot color="red" /> Declined</span>
                                                     </Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
@@ -263,10 +267,10 @@ const AdminLeaveComponent = () => {
                                                     title="View Actions"
                                                     className={`bg-white border-0 p-0 `}
                                                 >
-                                                    <Image src={'/images/more.png'} className="cursor-pointer mb-1 " alt="" />
+                                                    <Image src={'/images/three-dot-icon.svg'} alt="" className="cursor-pointer mb-1 sortImg" />
                                                 </Dropdown.Toggle>
 
-                                                <Dropdown.Menu>
+                                                <Dropdown.Menu className="textFont">
                                                     <Dropdown.Item >
                                                         <span>Edit</span>
                                                     </Dropdown.Item>

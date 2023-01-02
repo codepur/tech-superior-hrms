@@ -41,7 +41,7 @@ export default function EmployeeCard(props) {
     <>
       {userList &&
         searchData?.map((item, i) => (
-          <Card key={i} className={`${styles.profileCard} col-md-3 ms-3 mt-4`}>
+          <Card key={i} className={`${styles.profileCard} col-md-3 ms-4 mt-4`}>
             <Card.Header
               className={`${styles.headerPartTwo} d-flex justify-content-center`}
               style={{ backgroundColor: rendomColor }}

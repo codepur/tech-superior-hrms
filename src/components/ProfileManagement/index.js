@@ -147,11 +147,7 @@ export default function MainPage() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className={`navbar-nav list-group  ${styles.drop_down}`}>
               <li
-                className={`list-group-item ${
-                  state == "Basic Information"
-                    ? styles.activeTab
-                    : styles.listItem
-                }`}
+                className={`list-group-item ${state == "Basic Information" ? styles.activeTab : styles.listItem}`}
                 name="Basic Information"
                 value="Basic Information"
                 onClick={() => handleClick("Basic Information")}
@@ -159,11 +155,7 @@ export default function MainPage() {
                 Basic Information
               </li>
               <li
-                className={`list-group-item ${
-                  state == "Profile Picture"
-                    ? styles.activeTab
-                    : styles.listItem
-                }`}
+                className={`list-group-item ${state == "Profile Picture" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("Profile Picture")}
                 name="Profile Picture"
                 value="Profile Picture"
@@ -172,9 +164,7 @@ export default function MainPage() {
               </li>
 
               <li
-                className={`list-group-item ${
-                  state == "Qualification" ? styles.activeTab : styles.listItem
-                }`}
+                className={`list-group-item ${state == "Qualification" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("Qualification")}
                 name="Qualification"
               >
@@ -182,34 +172,26 @@ export default function MainPage() {
               </li>
 
               <li
-                className={`list-group-item ${
-                  state == "ChangePassword" ? styles.activeTab : styles.listItem
-                }`}
+                className={`list-group-item ${state == "ChangePassword" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("ChangePassword")}
                 name="ChangePassword"
               >
                 Change Password
               </li>
               <li
-                className={`list-group-item ${
-                  state == "FamilyMember" ? styles.activeTab : styles.listItem
-                }`}
+                className={`list-group-item ${state == "FamilyMember" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("FamilyMember")}
                 name="FamilyMember"
               >
                 Family Member
               </li>
               <li
-                className={`list-group-item ${
-                  state == "EmergencyContact"
-                    ? styles.activeTab
-                    : styles.listItem
-                }`}
+                className={`list-group-item ${state == "EmergencyContact" ? styles.activeTab : styles.listItem}`}
                 onClick={() => handleClick("EmergencyContact")}
                 name="EmergencyContact"
               >
                 Emergency Contact
-              </li>             
+              </li>
             </ul>
           </div>
         </nav>

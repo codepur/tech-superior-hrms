@@ -96,13 +96,13 @@ function MainLoginPage(props) {
   return (
     <>
       <div className={`${styles.outerbox} row`}>
-        <img src="./images/clock.png" alt="clock" className="clockImg" />
-        <img src="./images/officeLaptop.png" alt="" className="laptopImg" />
-        <img src="./images/graph.png" alt="" className="graph" />
-        <img src="./images/win.png" alt="" className="win" />
-        <img src="./images/laptop.png" alt="" className="laptop" />
-        {/* <img src="./images/win2.png" alt="" className="win2" /> */}
-        <img src="./images/checkList6.png" alt="" className="checkList6" />
+        <Image src="./images/clock.png" alt="clock" className="clockImg" />
+        <Image src="./images/officeLaptop.png" alt="" className="laptopImg" />
+        <Image src="./images/graph.png" alt="" className="graph" />
+        <Image src="./images/win.png" alt="" className="win" />
+        <Image src="./images/laptop.png" alt="" className="laptop" />
+        {/* <Image src="./images/win2.png" alt="" className="win2" /> */}
+        <Image src="./images/checkList6.png" alt="" className="checkList6" />
         <div className={`${styles.backgroundFirsthalf}`}>
           <div className={`${styles.loginCard} row`}>
             <div className={` col-md-6 ${styles.divide}`}>

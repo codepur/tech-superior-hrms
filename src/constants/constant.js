@@ -132,6 +132,6 @@ export const routesConfig = {
     path: "/gethelp",
     redirect: "/dashboard",
     protected: true,
-    access: [SUB_ADMIN_ROLE, EMPLOYEE_ROLE],
+    access: [ADMIN_ROLE, SUB_ADMIN_ROLE, EMPLOYEE_ROLE],
   },
 };
