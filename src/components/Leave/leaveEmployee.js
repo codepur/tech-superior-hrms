@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { Icon123 } from "@tabler/icons";
 import { Table } from "reactstrap";
@@ -7,20 +8,24 @@ import styles from "../../styles/leave.module.scss"
 import PaginationComponent from "../common/PaginationComponent";
 import { useEffect } from "react";
 
-
-
-
-const initialPaginationState = {
-    activePage: 1,
-    skip: 0,
-    limitPerPage: 5,
-    paginatedData: [],
-    userData: [],
-    list: [],
-  };
 const EmployeeLeaveComponent = () => {
+    
+    const initialPaginationState = {
+        activePage: 1,
+        skip: 0,
+        limitPerPage: 4,
+        paginatedData: [],
+        userData: [],
+        list: [],
+    };
+
     const [pagination, setPagination] = useState(initialPaginationState);
     const { activePage, skip, limitPerPage, userData, list } = pagination;
+    const [formaData, setFormData] = useState({
+        leaveType: "",
+        fromData: "",
+        toData: ""
+    })
     const [leaveModal, setLeaveModal] = useState(false);
     const closeLeaveModal = () => {
         setLeaveModal(false);
@@ -28,6 +33,11 @@ const EmployeeLeaveComponent = () => {
     const openLeaveModal = () => {
         setLeaveModal(true);
     };
+
+    const handleChange = (e) => {
+        setFormData({ ...data, [e.target.name]: e.target.value });
+    };
+
     const paginatedData = [{
         leaveType: "Hospitalisation",
         from: "15 jan 2019",
@@ -64,28 +74,53 @@ const EmployeeLeaveComponent = () => {
         status: "approved",
         approvedBy: "sakshi sarma"
     },
-    
+    {
+        leaveType: "Hospitalisation",
+        from: "15 jan 2019",
+        to: "15 jan 2019",
+        noofdays: "10 days",
+        reason: "Going to hospiTAL",
+        status: "approved",
+        approvedBy: "sakshi sarma"
+    },
+    {
+        leaveType: "Hospitalisation",
+        from: "15 jan 2019",
+        to: "15 jan 2019",
+        noofdays: "10 days",
+        reason: "Going to hospiTAL",
+        status: "approved",
+        approvedBy: "sakshi sarma"
+    },
+
     ]
 
     const onPageChange = (page) => {
         var skipRecords = (page - 1) * limitPerPage;
-        const to = limitPerPage*page;
-        setPagination((prev) => ({
-          ...prev,
-          activePage: page,
-          skip: JSON.parse(skipRecords),
-          paginatedData: list.slice(skipRecords, to),
-          userData: list.slice(skipRecords, to),
-        }));
-      };
+        const to = limitPerPage * page;
+        // setPagination((prev) => ({
+        //     ...prev,
+        //     activePage: page,
+        //     skip: JSON.parse(skipRecords),
+        //     paginatedData: list.slice(skipRecords, to),
+        //     userData: list.slice(skipRecords, to),
+        // }));
+        setPagination({
+            ...pagination,
+            activePage: page,
+            skip:skipRecords,
+            paginatedData: list.slice(skipRecords, to),
+            userData: list.slice(skipRecords, to),
+        });
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         setPagination((prev) => ({ ...prev, list: paginatedData }));
-      }, [paginatedData?.length]);
-      
-      useEffect(() => {
+    }, [paginatedData , userData?.length]);
+
+    useEffect(() => {
         onPageChange(activePage);
-      }, [list, activePage]);
+    }, [list, activePage]);
 
     return (
         <>
@@ -95,43 +130,55 @@ const EmployeeLeaveComponent = () => {
                 onHide={closeLeaveModal}
                 className={`p-2`}
             >
-                <div className={` fw-bold fs-5 d-flex justify-content-center align-self-center mt-4 fs-3`}>Add Leave</div>
+                <div
+                    className={` fw-bold fs-5 d-flex justify-content-center align-self-center mt-4 fs-3`}
+                >
+                    Add Leave
+                </div>
                 <Form className="p-4">
                     {/* <fieldset disabled> */}
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="leaveSelect" className="fw-bold">Leave Type</Form.Label>
-                        <Form.Select id="leaveSelect">
+                        <Form.Label htmlFor="leaveSelect" className="fw-bold" >
+                            Leave Type
+                        </Form.Label>
+                        <Form.Select id="leaveSelect" name="leaveType" onChange={handleChange}>
                             <option type="hidden">Select Leave Type</option>
-                            <option>Casual Leave</option>
-                            <option>Medical Leave</option>
-                            <option>Unpaid Leave</option>
+                            <option value="Casual Leave">Casual Leave</option>
+                            <option value="Medical Leave">Medical Leave</option>
+                            <option value="Unpaid Leave">Unpaid Leave</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="leaveFrom" className="fw-bold">From</Form.Label>
-                        <Form.Control id="leaveFrom" type="date" />
+                        <Form.Label htmlFor="leaveFrom" className="fw-bold">
+                            From
+                        </Form.Label>
+                        <Form.Control id="leaveFrom" type="date" name="fromDate" onChange={handleChange} />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="leaveTo" className="fw-bold">To</Form.Label>
-                        <Form.Control id="leaveTo" type="date" />
+                        <Form.Label htmlFor="leaveTo" className="fw-bold">
+                            To
+                        </Form.Label>
+                        <Form.Control id="leaveTo" type="date" name="toDate" onChange={handleChange} />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" >
+                    <Form.Group className="mb-3">
                         <Form.Label className="fw-bold">Subject</Form.Label>
-                        <Form.Control id="subject" type="text" />
+                        <Form.Control id="subject" type="text" name="subject" onChange={handleChange} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label className="fw-bold">Attachment</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Label className="fw-bold" >Attachment</Form.Label>
+                        <Form.Control as="textarea" rows={3} name="attachment" onChange={handleChange} />
                     </Form.Group>
-                    <Button type="submit" className={`${styles.leaveSubmit}`}>Submit</Button>
+                    <Button type="submit" className={`${styles.leaveSubmit}`}  >
+                        Submit
+                    </Button>
                     {/* </fieldset> */}
                 </Form>
             </Modal>
             <div className="container textFont">
-                <div className="row mt-5">
+                <div className="row mt-3">
                     <div className="col-md-6 ">
                         <h2>Leaves</h2>
                     </div>
@@ -247,9 +294,9 @@ const EmployeeLeaveComponent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {paginatedData.map((entry, i) => (
+                            {userData.map((entry, i) => (
                                 <tr key={i} className="border" itemScope='row'>
-                                    <td>{i + 1}</td>
+                                    <td>{skip+ i + 1}</td>
                                     <td>{entry?.leaveType}</td>
                                     <td>{entry?.from}</td>
                                     <td>{entry?.to}</td>
@@ -286,17 +333,17 @@ const EmployeeLeaveComponent = () => {
                         </tbody>
                     </Table>
                 </div>
-         
+
             </div>
             <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
-            <PaginationComponent
-              currentPage={activePage}
-              list={list}
-              skip={skip}
-              limitPerPage={limitPerPage}
-            //   loading={loading}
-              onPageChange={onPageChange}
-            />
+                <PaginationComponent
+                    currentPage={activePage}
+                    list={list}
+                    skip={skip}
+                    limitPerPage={limitPerPage}
+                    //   loading={loading}
+                    onPageChange={onPageChange}
+                />
             </div>
         </>
     );

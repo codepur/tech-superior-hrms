@@ -1,4 +1,11 @@
 
+.mainBox {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+   
+}
+
 .logoContainer{
   position: relative;
   left: 2vw;
@@ -152,7 +159,7 @@
 }
 .AuthFormContent {
   padding-left: 18%;
-  padding-right: 18%;
+  // padding-right: 18%;
 }
 
 .Authformtitle {
@@ -216,27 +223,31 @@ $c-text: #441151;
   }
 }
 .outerbox{
-  height: 100vh;
-  width: 100vw; 
+  // height: 100vh;
+  // width: 100vw; 
   padding: 0 !important;
   margin:0 !important;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  z-index:-1;
+  background-image: linear-gradient(90deg, black 2%, #2d994a 28%, #2d994a 80%,black 100%);
+  max-height: 615px;
 }
 
 .backgroundFirsthalf{    
-  background-image: linear-gradient(90deg, black 2%, #2d994a 28%, #2d994a 80%,black 100%);
+  
   display: flex;
   justify-content: center;
   align-items: center;
 }
  
 .loginCard{
-  width:66%;
+  // width:66%;
   background: linear-gradient(to right, #d4e3c4 13.4%, #96E6A1 86.6%);
   box-shadow: 1rem 0.5rem 1.5rem -1rem rgb(0 0 0 / 35%);
   // height: 525px;
   border-radius:83px;
-
+  padding:0 70px;
+  min-height: 66%;
 }
 
 .divide{
@@ -246,5 +257,16 @@ $c-text: #441151;
     align-items: center;
     // border: 2px solid;
     // he ight: 65vh;
-    width: 32vw;
+    // width: 32vw;
 }
+.imgContainer{
+  flex-direction: column;
+  min-height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.loginImg
+{
+  width:203.5px;
+}
+ 

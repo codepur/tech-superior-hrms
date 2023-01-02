@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../../src/styles/sidebar.module.scss";
-import { Image, Nav, NavLink } from "react-bootstrap";
+import { Image, Modal, Nav, NavLink } from "react-bootstrap";
 import Link from "next/link";
 import { memo } from "react";
 import { useRouter } from "next/router";
@@ -14,6 +14,8 @@ import {
 } from "../../constants/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../stores/actions/mainPage";
+import { ModalBody } from "reactstrap";
+import { route } from "fontawesome";
 import { IconCircleChevronLeft, IconToggleLeft } from "@tabler/icons";
 import { colors, Icon } from "@material-ui/core";
 
@@ -24,17 +26,23 @@ const SidebarComponent = (props) => {
   const [appMenuItemsData, setAppMenuItemsData] = useState([]);
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
   const roleId = userData?.roles;
+  const [logoutModal, setLogoutModal] = useState(false);
   const dispatch = useDispatch();
+
+  function openlogoutModal() {
+    setLogoutModal(true)
+  };
+
   useEffect(() => {
     if (roleId && roleId === SUB_ADMIN_ROLE) {
       const menu = appMenuItems?.filter((item) =>
-        [1, 5, 6, 7, 8].includes(item.id)
+        [1, 5, 6, 7, 8, 9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
     if (roleId && roleId === EMPLOYEE_ROLE) {
       const menu = appMenuItems?.filter(
-        (item) => [1, 2, 3, 4, 7, 9].includes(item.id)
+        (item) => [1, 2, 3, 4, 7,9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
@@ -58,12 +66,31 @@ const SidebarComponent = (props) => {
 
   return (
     <>
-      <div className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
-        <Nav>
-          <header id="header">
-            <div className={`${styles.head}`}>
-              <div className="logoImg d-flex align-item-center justify-content-center">
-                <Image src="/images/LogoTSC.svg" alt="logo" className={`${toggle ? '' : 'w-50'} img-fluid`} />
+      <Modal centered show={logoutModal} onHide={()=> setLogoutModal(false)}>
+        <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}></Modal.Header>
+        <Modal.Body className="bodyModal">
+          <h3>
+            <div className="d-flex-justify-content-center fw-bold text-center">
+              Are you sure, <br /> you want to logout ?
+            </div>
+          </h3>
+        </Modal.Body>
+        <Modal.Footer className="justify-content-center">
+          <button className="btn btn-primary text-center" onClick={logoutUser} >
+            Logout
+          </button>
+          <button className="btn btn-danger text-center" onClick={() => setLogoutModal(false)} >
+            Cancel
+          </button>
+        </Modal.Footer>
+      </Modal>
+      <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
+        <Nav collapsed={menuCollapse}
+        >
+          <header>
+            <div className={`${styles.head}`} onClick={()=>{router.push('/employee-dashboard')}}>
+              <div class="logoImg">
+                <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid" />
               </div>
               <div className={`${toggle ? 'd-block' : 'd-none'} logoText`}>
                 <Image src="images/textLogo.png" alt="logo" className="img-fluid" />
@@ -113,7 +140,7 @@ const SidebarComponent = (props) => {
           </div>
           <div className={`${styles.sidebarOuterItems}`}>
             <div className={` ${styles.menuOtherItem}   p-1 `}>
-              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={logoutUser}>
+              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={openlogoutModal}>
                 <Image src="/images/logout1.png" alt="Logo" height="25" width="25" className="me-2 " />
                 <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Logout</span>
               </div>
