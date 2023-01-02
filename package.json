@@ -32,7 +32,6 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "mdb-react-ui-kit": "^4.2.0",
-    "mobiscroll-react": "^4.0.0",
     "moment": "^2.29.4",
     "mongoose": "^6.5.4",
     "morgan": "^1.10.0",
