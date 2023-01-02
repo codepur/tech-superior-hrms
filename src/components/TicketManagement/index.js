@@ -303,7 +303,7 @@ function TicketManagement() {
             </div>
           </div>
           <hr className={`${styles.hr}`}></hr>
-          <div >
+          <div className={``} >
             <Table className={`${styles.table} table table-hover`}>
               <thead className={`${styles.tableHead} `}>
                 <tr className={`${styles.tableHead}`}>

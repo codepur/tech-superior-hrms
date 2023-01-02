@@ -5,7 +5,7 @@ export default function ProfilePictureComponent() {
     <>
      
       <div>
-        <div className="row">
+        <div className="card border-dottted">
           <div className="col-8">
             <label className="btn btn-default p-0">
               <input type="file" accept="image/*"  />
