@@ -99,7 +99,7 @@ const AdminLeaveComponent = () => {
                 </Form>
             </Modal>
             <div className="container">
-                <div className="row mt-5">
+                <div className="row mt-3">
                     <div className="col-md-6 ">
                         <h2>Leaves</h2>
                     </div>
