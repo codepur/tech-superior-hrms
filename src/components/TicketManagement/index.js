@@ -5,6 +5,7 @@ import { Image, InputGroup, Modal, Table } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, FormGroup, Input, Label } from "reactstrap";
+import PaginationComponent from "../common/PaginationComponent";
 import API from "../../helpers/api";
 import {
   setdepartmentList,
@@ -27,10 +28,17 @@ const initial = {
 };
 
 const initialPaginationState = {
+  activePage: 1,
   skip: 0,
+  limitPerPage: 5,
+  paginatedData: [],
+  userData: [],
+  list: [],
 };
 
+
 function TicketManagement() {
+ 
   const [ticketData, setTicketData] = useState(initial);
   const [ticketSectionExpand, setTicketSectionExpand] = useState(false);
   const [pagination, setPagination] = useState(initialPaginationState);
@@ -40,9 +48,9 @@ function TicketManagement() {
   const editorRef = useRef(null);
   const [searchKey, setSearchKey] = useState("");
   const [searchData, setSearchData] = useState([]);
-
-  const { skip = [] } = pagination;
-  const [departmentList, userData, ticketsList] = useSelector((Gstate) => [
+  const { activePage, skip, limitPerPage, list} = pagination;
+  // const { skip = [] } = pagination;
+  const [departmentList,userData,  ticketsList] = useSelector((Gstate) => [
     Gstate.ticketManagement?.departmentList,
     Gstate.user?.userData,
     Gstate.ticketManagement?.ticketsList,
@@ -62,6 +70,26 @@ function TicketManagement() {
     }));
     setSearchKey(e?.target?.value);
   };
+
+  const onPageChange = (page) => {
+    var skipRecords = (page - 1) * limitPerPage;
+    const to = limitPerPage * page;
+    setPagination((prev) => ({
+        ...prev,
+        activePage: page,
+        skip: JSON.parse(skipRecords),
+        paginatedData: list.slice(skipRecords, to),
+        userData: list.slice(skipRecords, to),
+    }));
+};
+
+useEffect(() => {
+  setPagination((prev) => ({ ...prev, list:ticketsList}));
+}, [ ticketsList?.length]);
+
+useEffect(() => {
+  onPageChange(activePage);
+}, [list, activePage]);
 
   const handleFilter = (e) => {
     let searchvalue = e?.target?.value;
@@ -429,6 +457,16 @@ function TicketManagement() {
           </div>
         </div>
       </div>
+      <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
+                <PaginationComponent
+                    currentPage={activePage}
+                    list={list}
+                    skip={skip}
+                    limitPerPage={limitPerPage}
+                    //   loading={loading}
+                    onPageChange={onPageChange}
+                />
+            </div>
     </>
   );
 }
