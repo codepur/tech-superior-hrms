@@ -107,7 +107,7 @@ const AdminLeaveComponent = () => {
 
     useEffect(() => {
         setPagination((prev) => ({ ...prev, list: paginatedData }));
-    }, [paginatedData, paginatedData?.length]);
+    }, [paginatedData?.length , paginatedData?.length]);
 
     useEffect(() => {
         onPageChange(activePage);
