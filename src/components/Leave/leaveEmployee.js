@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { Icon123 } from "@tabler/icons";
 import { Table } from "reactstrap";
@@ -10,7 +11,7 @@ import { useEffect } from "react";
 const initialPaginationState = {
     activePage: 1,
     skip: 0,
-    limitPerPage: 5,
+    limitPerPage: 4,
     paginatedData: [],
     userData: [],
     list: [],
@@ -72,6 +73,7 @@ const EmployeeLeaveComponent = () => {
         status: "approved",
         approvedBy: "sakshi sarma"
     },
+    
 
     ]
 
@@ -89,7 +91,7 @@ const EmployeeLeaveComponent = () => {
 
     useEffect(() => {
         setPagination((prev) => ({ ...prev, list: paginatedData }));
-    }, [paginatedData?.length]);
+    }, [paginatedData , paginatedData?.length]);
 
     useEffect(() => {
         onPageChange(activePage);
