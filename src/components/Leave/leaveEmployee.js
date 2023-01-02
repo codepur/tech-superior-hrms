@@ -73,7 +73,6 @@ const EmployeeLeaveComponent = () => {
         status: "approved",
         approvedBy: "sakshi sarma"
     },
-    
 
     ]
 
