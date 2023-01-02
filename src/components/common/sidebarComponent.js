@@ -15,7 +15,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../stores/actions/mainPage";
 import { ModalBody } from "reactstrap";
-import { route } from "fontawesome";
 import { IconCircleChevronLeft, IconToggleLeft } from "@tabler/icons";
 import { colors, Icon } from "@material-ui/core";
 
@@ -42,7 +41,7 @@ const SidebarComponent = (props) => {
     }
     if (roleId && roleId === EMPLOYEE_ROLE) {
       const menu = appMenuItems?.filter(
-        (item) => [1, 2, 3, 4, 7,9].includes(item.id)
+        (item) => [1, 2, 3, 4, 7, 9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
@@ -66,7 +65,7 @@ const SidebarComponent = (props) => {
 
   return (
     <>
-      <Modal centered show={logoutModal} onHide={()=> setLogoutModal(false)}>
+      <Modal centered show={logoutModal} onHide={() => setLogoutModal(false)}>
         <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}></Modal.Header>
         <Modal.Body className="bodyModal">
           <h3>
@@ -85,14 +84,13 @@ const SidebarComponent = (props) => {
         </Modal.Footer>
       </Modal>
       <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
-        <Nav collapsed={menuCollapse}
-        >
+        <Nav>
           <header>
-            <div className={`${styles.head}`} onClick={()=>{router.push('/employee-dashboard')}}>
-              <div class="logoImg">
-                <Image src="/images/LogoTSC.svg" alt="logo" className="img-fluid" />
+            <div className={`${styles.head}`} onClick={() => { router.push('/employee-dashboard') }} role='button'>
+              <div className="logoImg d-flex align-item-center justify-content-center p-1 ">
+                <Image src="/images/LogoTSC.svg" alt="logo" className={`${toggle ? 'img-fluid' : 'img-fluid w-50 '}`} />
               </div>
-              <div className={`${toggle ? 'd-block' : 'd-none'} logoText`}>
+              <div className={`${toggle ? 'd-block' : 'd-none'} logoText pe-1`}>
                 <Image src="images/textLogo.png" alt="logo" className="img-fluid" />
               </div>
             </div>
@@ -131,7 +129,7 @@ const SidebarComponent = (props) => {
         <div className="lastItems">
           <div className={`${styles.sidebarOuterItems}`}>
             <div className={` ${styles.menuOtherItem}   p-1 `}>
-              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={() => (router.push("/gethelp"))}>
+              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={() => (router.push("/gethelp"))} role='button'>
                 <Image src="/images/information.png" alt="Logo" height="25" width="25" className="me-2 " />
                 <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Get Help</span>
               </div>
@@ -140,7 +138,7 @@ const SidebarComponent = (props) => {
           </div>
           <div className={`${styles.sidebarOuterItems}`}>
             <div className={` ${styles.menuOtherItem}   p-1 `}>
-              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={openlogoutModal}>
+              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={openlogoutModal} role='button'>
                 <Image src="/images/logout1.png" alt="Logo" height="25" width="25" className="me-2 " />
                 <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Logout</span>
               </div>

@@ -128,7 +128,7 @@ export default function DashboardComponent() {
                     <div className="col-md-3">
                       <div className={`${styles.empImgCard} `}>
                         <Image src="images/photo_6325701050312536371_x.jpg" alt="Profile pic" className={`${styles.empImg} `} />
-                      </div>
+                      </div> 
                     </div>
                     <div className="col-md-9">
                       <div className={`${styles.empText}`}>
@@ -245,13 +245,11 @@ export default function DashboardComponent() {
                     <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
                       <Card.Body className="text-white">
                         <Card.Title>Event this month</Card.Title>
-                        {event?.map((item) => (
-                          <>
-                            <div>
+                        {event?.map((item, index) => (                          
+                            <div key={index}>
                               <span>{item.eventName}</span>
                               <span className="float-end">{item.date}</span>
-                            </div>
-                          </>
+                            </div>                         
                         ))}
                       </Card.Body>
                     </Card>

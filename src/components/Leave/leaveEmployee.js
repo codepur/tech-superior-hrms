@@ -98,25 +98,18 @@ const EmployeeLeaveComponent = () => {
     const onPageChange = (page) => {
         var skipRecords = (page - 1) * limitPerPage;
         const to = limitPerPage * page;
-        // setPagination((prev) => ({
-        //     ...prev,
-        //     activePage: page,
-        //     skip: JSON.parse(skipRecords),
-        //     paginatedData: list.slice(skipRecords, to),
-        //     userData: list.slice(skipRecords, to),
-        // }));
-        setPagination({
-            ...pagination,
+        setPagination((prev) => ({
+            ...prev,
             activePage: page,
-            skip:skipRecords,
+            skip: JSON.parse(skipRecords),
             paginatedData: list.slice(skipRecords, to),
             userData: list.slice(skipRecords, to),
-        });
+        }));       
     };
 
     useEffect(() => {
         setPagination((prev) => ({ ...prev, list: paginatedData }));
-    }, [paginatedData , userData?.length]);
+    }, [paginatedData?.length , userData?.length]);
 
     useEffect(() => {
         onPageChange(activePage);
