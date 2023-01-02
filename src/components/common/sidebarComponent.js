@@ -73,7 +73,7 @@ const SidebarComponent = (props) => {
           </h3>
         </Modal.Body>
         <Modal.Footer className="justify-content-center">
-          <button className="btn btn-primary text-center" onClick={logoutUser} >
+          <button className="btn bg-btn-green text-center" onClick={logoutUser} >
             Logout
           </button>
           <button className="btn btn-danger text-center" onClick={() => setLogoutModal(false)} >
