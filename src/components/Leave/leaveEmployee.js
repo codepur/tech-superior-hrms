@@ -116,7 +116,7 @@ const EmployeeLeaveComponent = () => {
 
     useEffect(() => {
         setPagination((prev) => ({ ...prev, list: paginatedData }));
-    }, [paginatedData , userData?.length]);
+    }, [paginatedData.length , userData?.length]);
 
     useEffect(() => {
         onPageChange(activePage);
