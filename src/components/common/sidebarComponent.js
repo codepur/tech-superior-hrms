@@ -25,13 +25,13 @@ const SidebarComponent = () => {
   useEffect(() => {
     if (roleId && roleId === SUB_ADMIN_ROLE) {
       const menu = appMenuItems?.filter((item) =>
-        [1, 5, 6, 7, 8].includes(item.id)
+        [1, 5, 6, 7, 8, 9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
     if (roleId && roleId === EMPLOYEE_ROLE) {
       const menu = appMenuItems?.filter(
-        (item) => [1, 2, 3, 4, 7,9].includes(item.id)
+        (item) => [1, 2, 3, 4, 7, 9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
@@ -71,7 +71,7 @@ const SidebarComponent = () => {
           </header>
           <div className={`${styles.sidebarInnerItems} mt-4 pt-2 w-100`}>
             {appMenuItemsData?.map((item, i) => (
-             
+
               <Nav.Item
                 href={item.link}
                 key={i}
@@ -99,7 +99,7 @@ const SidebarComponent = () => {
               </Nav.Item>
             ))}
           </div>
-           {/* <div className={`${styles.user}`}>
+          {/* <div className={`${styles.user}`}>
               <div className="card bg-dark text-white p-2 ">
                   <div className=" d-flex align-item-center">
                     <div className="col-6 d-flex align-item-center justify-content-center">
@@ -111,20 +111,20 @@ const SidebarComponent = () => {
                    </div>
               </div>
           </div> */}
-           <div className={`${styles.menuItem} mt-4`}>
-              <div  className={` ${styles.menuItemActive}  d-flex p-1 align-items-center`} onClick={()=>(router.push("/gethelp"))}>
-                      <Image
-                        src="/images/information.png"
-                        alt="Logo"
-                        height="22"
-                        width="22"
-                        className="me-2 "
-                      />
-                      <span className="flex-grow-1">Get Help</span>
-              </div>
-             <div>
-             <Nav.Item
-                href={""}             
+          <div className={`${styles.menuItem} mt-4`}>
+            <div className={` ${styles.menuItemActive}  d-flex p-1 align-items-center`} onClick={() => (router.push("/gethelp"))}>
+              <Image
+                src="/images/information.png"
+                alt="Logo"
+                height="22"
+                width="22"
+                className="me-2 "
+              />
+              <span className="flex-grow-1">Get Help</span>
+            </div>
+            <div>
+              <Nav.Item
+                href={""}
                 className={`${styles.menuItem} ${router.pathname.includes() && styles.menuItemActive
                   }  d-flex p-1 align-items-center`}
               >
@@ -145,8 +145,8 @@ const SidebarComponent = () => {
               </Nav.Item>
 
 
-              </div> 
-           </div>
+            </div>
+          </div>
         </Nav>
       </div>
     </>
