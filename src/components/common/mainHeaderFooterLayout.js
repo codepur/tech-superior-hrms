@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { memo } from 'react'; 
+import React, { memo, useEffect, useState } from 'react'; 
 import { Col, Row } from 'react-bootstrap';
 import HeaderComponent from './headerComponent';
 import Sidebar from './sidebarComponent';
@@ -11,7 +11,15 @@ const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }
     const hasSideBarLayout = data && data.layoutType === 'HOME';
     const hasSideBar = (hasSideBarLayout)&&!['/set-password'].includes(router.pathname);
     const notLoginScreen = data?.pageScreen !== 'login' ;
-    
+    const [toggle,setToggle] = useState(true);
+
+    const sidebarToggle = (e)=>{
+       e.preventDefault(); 
+       setToggle(!toggle);
+    }
+    // useEffect(()=>{
+    //   setToggle();
+    // },[toggle])
     
      
     return (
@@ -24,18 +32,17 @@ const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }
                 <meta name="description" content={description} />
                 <meta itemProp="name" content={title} />
                 <meta itemProp="description" content={description} />
+                <link rel="shortcut icon" href="/images/favicon.png"/>
             </Head>
             {data?.pageScreen != 'login' && data?.pageScreen != 'setPassword' && <HeaderComponent isPublic={isPublic} hasSideBar={hasSideBar}/>}
 
             <Row className={`${styles.mainBodyWrapper}`}>
                 {notLoginScreen && hasSideBar &&(
-                    <Col md={2} className={`${styles.sidebar}`} >
-                        <Sidebar/>
+                    <Col md={`${toggle?'2':'1' } `} className={`${styles.sidebar}`} >
+                        <Sidebar  sidebarToggle={sidebarToggle} toggle={toggle}/>
                     </Col>
                 )}
-                <Col
-                    md={( router.pathname != '/' && 10)} xs={12} className={`${styles.pageContentWrapper}`}
-                >
+                <Col md={( router.pathname != '/' && `${toggle?'10':'11' }`)} xs={12} className={`${styles.pageContentWrapper}`}>
                     {children}
                 </Col>
             </Row>

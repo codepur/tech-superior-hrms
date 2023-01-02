@@ -71,6 +71,26 @@ const AdminLeaveComponent = () => {
         status: "approved",
         approvedBy: "sakshi sarma"
     },
+    {
+        empName: 'amisha',
+        leaveType: "Casual Leave",
+        from: "15 jan 2019",
+        to: "15 jan 2019",
+        noofdays: "10 days",
+        reason: "Personnal",
+        status: "approved",
+        approvedBy: "sakshi sarma"
+    },
+    {
+        empName: 'sakshi',
+        leaveType: "Hospitalisation",
+        from: "15 jan 2019",
+        to: "15 jan 2019",
+        noofdays: "10 days",
+        reason: "Going to hospiTAL",
+        status: "approved",
+        approvedBy: "sakshi sarma"
+    },
     ]
 
     const onPageChange = (page) => {
@@ -262,9 +282,9 @@ const AdminLeaveComponent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {paginatedData.map((entry, i) => (
+                            {userData.map((entry, i) => (
                                 <tr key={i} className="border" itemScope='row'>
-                                    <td>{i + 1}</td>
+                                    <td>{skip+i + 1}</td>
                                     <td>{entry?.empName}</td>
                                     <td>{entry?.leaveType}</td>
                                     <td>{entry?.from}</td>
