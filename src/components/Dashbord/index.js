@@ -245,13 +245,11 @@ export default function DashboardComponent() {
                     <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
                       <Card.Body className="text-white">
                         <Card.Title>Event this month</Card.Title>
-                        {event?.map((item) => (
-                          <>
-                            <div>
+                        {event?.map((item, index) => (                          
+                            <div key={index}>
                               <span>{item.eventName}</span>
                               <span className="float-end">{item.date}</span>
-                            </div>
-                          </>
+                            </div>                         
                         ))}
                       </Card.Body>
                     </Card>
