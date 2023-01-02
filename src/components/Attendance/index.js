@@ -141,6 +141,7 @@ const  Attendance = ()=>{
                       </div>
                     </td>
                     <td className="p-1"> 
+                    <table>
                         <thead className={`${styles.center}`}> 
                           <tr>
                             {arr.map((val,i)=>(
@@ -158,6 +159,7 @@ const  Attendance = ()=>{
                              <td><IconClock color="orange" size={20}/></td> */}
                            </tr>
                         </tbody>
+                        </table>
                     </td>
                     <td className="p-1 text-center">2</td>
                     <td className="p-1 text-center">10</td>
