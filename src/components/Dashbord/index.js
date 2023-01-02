@@ -254,11 +254,9 @@ export default function DashboardComponent() {
                       </Card.Body>
                     </Card>
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
