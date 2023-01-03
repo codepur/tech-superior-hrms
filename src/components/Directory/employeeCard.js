@@ -23,6 +23,7 @@ export default function EmployeeCard(props) {
 
   useEffect(() => {
     dispatch(setUserlist());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRendomColor = () => {
@@ -59,13 +60,13 @@ export default function EmployeeCard(props) {
                 </div>
               </div>
               <div>
-                <Card.Text className={`${styles.userProfileData}`}>
+                <div className={`${styles.userProfileData}`}>
                   <h4>
                     {item?.first_name} {item?.last_name}
                   </h4>
                   <span>{item?.employee_ID ? item?.employee_ID : "--"}</span>
                   <p>{item?.email}</p>
-                </Card.Text>
+                </div>
               </div>
             </Card.Body>
             <Card.Footer className={`${styles.profileFooter}`}>

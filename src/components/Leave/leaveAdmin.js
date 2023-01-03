@@ -1,19 +1,36 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { Icon123, IconCircleDot } from "@tabler/icons";
 import { Table } from "reactstrap";
 import { Dropdown } from 'react-bootstrap';
 import { Card, Image, Modal, Form, Button } from "react-bootstrap";
-import styles from "../../styles/leave.module.scss"
+import styles from "../../styles/leave.module.scss";
+import PaginationComponent from "../common/PaginationComponent";
+import { useEffect } from "react";
+
+const initialPaginationState = {
+    activePage: 1,
+    skip: 0,
+    limitPerPage: 4,
+    paginatedData: [],
+    userData: [],
+    list: [],
+};
 
 const AdminLeaveComponent = () => {
 
+    const [pagination, setPagination] = useState(initialPaginationState);
+    const { activePage, skip, limitPerPage, userData, list } = pagination;
     const [leaveModal, setLeaveModal] = useState(false);
+
     const closeLeaveModal = () => {
         setLeaveModal(false);
     };
+
     const openLeaveModal = () => {
         setLeaveModal(true);
     };
+
     const paginatedData = [{
         empName: 'neeraj',
         leaveType: "Hospitalisation",
@@ -54,7 +71,48 @@ const AdminLeaveComponent = () => {
         status: "approved",
         approvedBy: "sakshi sarma"
     },
+    {
+        empName: 'amisha',
+        leaveType: "Casual Leave",
+        from: "15 jan 2019",
+        to: "15 jan 2019",
+        noofdays: "10 days",
+        reason: "Personnal",
+        status: "approved",
+        approvedBy: "sakshi sarma"
+    },
+    {
+        empName: 'sakshi',
+        leaveType: "Hospitalisation",
+        from: "15 jan 2019",
+        to: "15 jan 2019",
+        noofdays: "10 days",
+        reason: "Going to hospiTAL",
+        status: "approved",
+        approvedBy: "sakshi sarma"
+    },
     ]
+
+    const onPageChange = (page) => {
+        var skipRecords = (page - 1) * limitPerPage;
+        const to = limitPerPage * page;
+        setPagination((prev) => ({
+            ...prev,
+            activePage: page,
+            skip: JSON.parse(skipRecords),
+            paginatedData: list.slice(skipRecords, to),
+            userData: list.slice(skipRecords, to),
+        }));
+    };
+
+    useEffect(() => {
+        setPagination((prev) => ({ ...prev, list: paginatedData }));
+    }, [paginatedData?.length , paginatedData?.length]);
+
+    useEffect(() => {
+        onPageChange(activePage);
+    }, [list, activePage]);
+
     return (
         <>
             <Modal
@@ -99,7 +157,7 @@ const AdminLeaveComponent = () => {
                 </Form>
             </Modal>
             <div className="container">
-                <div className="row mt-5">
+                <div className="row mt-2">
                     <div className="col-md-6 ">
                         <h2>Leaves</h2>
                     </div>
@@ -109,12 +167,12 @@ const AdminLeaveComponent = () => {
                         </button>
                     </div>
                 </div>
-                <div className="row my-3">
+                <div className="row mt-2">
                     <div className="col-md-3 col-xl-3">
                         <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Today Presents</h6>
-                                <h4>12 / 60</h4>
+                                <h5>12 / 60</h5>
                             </div>
                         </div>
                     </div>
@@ -122,7 +180,7 @@ const AdminLeaveComponent = () => {
                         <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Planned Leaves</h6>
-                                <h4>1</h4>
+                                <h5>1</h5>
                             </div>
                         </div>
                     </div>
@@ -130,7 +188,7 @@ const AdminLeaveComponent = () => {
                         <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Unplanned Leaves</h6>
-                                <h4>0</h4>
+                                <h5>0</h5>
                             </div>
                         </div>
                     </div>
@@ -138,7 +196,7 @@ const AdminLeaveComponent = () => {
                         <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                             <div className="card-block text-dark text-center">
                                 <h6 className="m-b-20">Pending Requests</h6>
-                                <h4>16</h4>
+                                <h5>16</h5>
                             </div>
                         </div>
                     </div>
@@ -224,9 +282,9 @@ const AdminLeaveComponent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {paginatedData.map((entry, i) => (
-                                <tr key={i} className="border" itemScope='row'>                                
-                                    <td>{i + 1}</td>
+                            {userData.map((entry, i) => (
+                                <tr key={i} className="border" itemScope='row'>
+                                    <td>{skip+i + 1}</td>
                                     <td>{entry?.empName}</td>
                                     <td>{entry?.leaveType}</td>
                                     <td>{entry?.from}</td>
@@ -286,6 +344,16 @@ const AdminLeaveComponent = () => {
                         </tbody>
                     </Table>
                 </div>
+            </div>
+            <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
+                <PaginationComponent
+                    currentPage={activePage}
+                    list={list}
+                    skip={skip}
+                    limitPerPage={limitPerPage}
+                    //   loading={loading}
+                    onPageChange={onPageChange}
+                />
             </div>
         </>
     );

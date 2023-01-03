@@ -471,7 +471,7 @@ export default function BasicInfo() {
           <Form.Group className="col-md-4" controlId="formGridState">
             <Form.Label className="fw-bold">State</Form.Label>
             <Form.Select
-              defaultValue="Choose..."
+              // defaultValue="Choose..."
               onChange={handleChange}
               name="state"
               value={data.state}
@@ -537,7 +537,7 @@ export default function BasicInfo() {
           <Form.Group className="col-md-4" controlId="formGridState">
             <Form.Label className="fw-bold">State</Form.Label>
             <Form.Select
-              defaultValue="Choose..."
+              // defaultValue="Choose..."
               onChange={handleChange}
               name="permanent_state"
               value={data.permanent_state}
@@ -701,10 +701,10 @@ export default function BasicInfo() {
         </Row>
 
         <Button
-          variant="primary"
+          // variant="primary"
           type="submit"
-          className="mb-3"
-          onClick={handleClick}
+          className="mb-3 bg-btn-green"
+          onClick={handleClick}          
         >
           Submit
         </Button>

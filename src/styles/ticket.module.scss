@@ -44,9 +44,6 @@
   height: 40px;
 }
 
-.ticketHeader{
-  color: #3c5f4b;
-}
 
 .saveButton{
   background-color: #3c5f4b !important;
@@ -62,8 +59,33 @@
   }
 }
 
+.tableResponsive{
+  border-radius: 20px;
+  background: radial-gradient(328px at 2.9% 15%, rgb(191, 224, 251) 0%, rgb(232, 233, 251) 25.8%, rgb(252, 239, 250) 50.8%, rgb(234, 251, 251) 77.6%, rgb(240, 251, 244) 100.7%);
+}
+.table{
+background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );  
+border-radius: 20px;
+}
+.tableHead{
+   background: #93e4c1;
+}
+.cardContainer{
+   background: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0.1%, rgba(233, 226, 226, 0.28) 90.1%);
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 16px );
+-webkit-backdrop-filter: blur( 16px );
+border-radius: 10px;
+border: 2px solid rgba( 255, 255, 255, 0.18 );
+}
+
 .tableHeadRow{
   background-color: #3c5f4b;
+  background-color: #0bb884;
   color: white;
   // color: #3c5f4b;
 }
