@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,12 +8,20 @@ import styles from "../../styles/attendance.module.scss"
 import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import Calendar from "react-calendar";
-import API from "../../helpers/api";
-import { setattendanceList } from "../../stores/actions/attendance";
-
+import { useDispatch, useSelector } from "react-redux";
+import { attendanceList } from "../../stores/actions/attendance";
 const Attendance = () => {
 
-  // const studentList = [{ name: "neeraj verma" }]
+  const [stuList] = useSelector((Gstate) => [Gstate.attendanceList?.attendanceList]);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+      dispatch(attendanceList());
+  },[attendanceList?.length]);
+  
+  // console.log(stuList);
+  
+  const studentList = [{ name: "neeraj verma" }]
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
   const [segmentValue, setSegment] = useState();
  const dispatch = useDispatch();
