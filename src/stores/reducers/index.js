@@ -3,12 +3,14 @@ import user from '../reducers/mainPage';
 import ticketManagement from '../reducers/ticketManagement'
 import ticketsList from '../reducers/ticketManagement'
 import dsr from '../reducers/dsr'
+import attendanceList from '../reducers/attendance';
 
 const appReducer = combineReducers({
   user,
   ticketManagement,
   ticketsList,
-  dsr
+  dsr,
+  attendanceList,
 });
 
 const rootReducer = (state, action) => {

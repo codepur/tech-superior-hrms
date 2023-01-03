@@ -1,6 +1,7 @@
 import { ImageAspectRatio } from "@material-ui/icons";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { Card } from "react-bootstrap";
 
 export default function ProfilePictureComponent() {
   const[images,setImages]=useState([]);
@@ -44,11 +45,11 @@ export default function ProfilePictureComponent() {
             </button>
             </div>
             <div className="row">
-            <card className='w-50 '>
+            <Card className='w-50 '>
             {imageURls.map(imageSrc=>
             <img className="w-100" src={imageSrc}/>
             )}
-            </card>
+            </Card>
             </div>
 
           </div>

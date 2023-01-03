@@ -1,3 +1,4 @@
+
 const apiKeys = {
   login: "users/login",
   getlogin: "users/profile",
@@ -27,7 +28,12 @@ const apiKeys = {
   projectList: "project/list",
   DsrList: "dsr/list",
   dsrReject_Approvel:"dsr/status",
-  updateDsr: "dsr/update"
+  updateDsr: "dsr/update",
+
+  //Attendence
+  attendanceList : "attendance/list",
+  createkAttendance:"attendance/create"
+
 };
 
 export default apiKeys;

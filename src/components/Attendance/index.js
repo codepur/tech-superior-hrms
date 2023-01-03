@@ -1,17 +1,28 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Image, InputGroup, Modal, Table } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import styles from "../../styles/attendance.module.scss"
 import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import Calendar from "react-calendar";
+import API from "../../helpers/api";
+import { setattendanceList } from "../../stores/actions/attendance";
 
 const Attendance = () => {
 
-  const studentList = [{ name: "neeraj verma" }]
+  // const studentList = [{ name: "neeraj verma" }]
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
-  const [segmentValue, setSegment] = useState()
+  const [segmentValue, setSegment] = useState();
+ const dispatch = useDispatch();
+  const [attendanceList] =useSelector((Gstate)=>[
+    Gstate.attendanceList?.attendanceList,])
+  
+  useEffect(()=>{
+    dispatch(setattendanceList());
+  },[])
+
   const handleActiveTab = (e) => {
     setSegment(e.target.value);
   };
@@ -40,7 +51,7 @@ const Attendance = () => {
     );
     setChooseDsrList(arr);
   };
-
+console.log(attendanceList)
   //  const currentMonth = 31;
   //  const currMontDay = 17
   let arr = [];
@@ -54,6 +65,8 @@ const Attendance = () => {
   //    week();
   //  },[])
   week(18)
+
+
 
   return (
     <>
@@ -96,10 +109,10 @@ const Attendance = () => {
               </tr>
             </thead>
             <tbody>
-              {studentList?.map((row, i) => (
+              {attendanceList?.map((row, i) => (
                 <tr key={i} >
                   <td className="p-1 text-center">{i + 1}</td>
-                  <td className="p-1">{row?.name || ""}</td>
+                  <td className="p-1">{row?.status || ""}</td>
                   <td className={`${styles.segmentedBg}`}>
                     <div className="py-2">
                       <SegmentedControl
