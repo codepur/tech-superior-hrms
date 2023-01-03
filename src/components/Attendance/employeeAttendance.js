@@ -20,8 +20,6 @@ const EmployeeAttendanceComp = () => {
         setSegment(e.target.value);
     };
 
-    console.log(stuList);
-
     const handleFilter = (e) => {
         let searchvalue = e?.target?.value;
         let arr = dsrList?.filter(
@@ -59,13 +57,6 @@ const EmployeeAttendanceComp = () => {
     //    week();
     //  },[])
     week(18)
-  
-    const handlesubmit = ()=>{
-       
-        
-
-
-    }
 
 
 
