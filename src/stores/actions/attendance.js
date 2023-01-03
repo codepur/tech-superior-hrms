@@ -1,29 +1,20 @@
-
-import { get } from "lodash";
-import router from "next/router";
 import API from "../../helpers/api/index";
-import * as auth from "../../helpers/auth";
- 
 
-export function attendance(payload) {
+export function attendanceList(params) {
     return (dispatch) => {
-      const type = "AUTH";
-      dispatch({ type: `${type}_REQUEST` });
-      try {
-        API.apiPost("markAttendance",{payload:auth.encodeData(payload)})
-          .then(({ data }) => {
-            if (data && data.token) {
-              auth.login(data.token);
-              dispatch({ type: `${type}_SUCCESS`, payload: data });
-              dispatch(getProfile());
-              router.push("/employee-dashboard");
-            }
-          })
-          .catch((err) => {
-            errorRequest(err, dispatch);
-          });
-      } catch (err) {
-        errorRequest(err, dispatch);
-      }
+      dispatch({ type: 'REQUEST_ATTENDANCE_LIST' });
+      API.apiGet('attendanceList')
+        .then((response) => {
+            console.log('response', response);
+
+          if (response.data && response.data.success === true && response.data.data) {
+            dispatch({ type: `SET_ATTENDANCE_LIST`, payload: response.data.data });
+          }
+        })
+        .catch((err) => {
+          dispatch({ type: `SET_ATTENDANCE_LIST`, payload: [] });
+        });
     };
-  }
+  } 
+
+ 

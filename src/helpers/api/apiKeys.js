@@ -29,8 +29,11 @@ const apiKeys = {
   dsrReject_Approvel:"dsr/status",
   updateDsr: "dsr/update",
 
-  //attendance
-  markAttendance:"attendance/create",
+
+  //Attendance
+  attendanceList :"attendance/list",
+  createAttendance : "attendance/create",
+
 };
 
 
