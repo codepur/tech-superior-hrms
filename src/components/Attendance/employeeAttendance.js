@@ -23,7 +23,7 @@ const EmployeeAttendanceComp = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(attendanceList());
-  }, []);
+  }, [stuList?.length]);
   const handleActiveTab = (e) => {
     setSegment(e.target.value);
   };
@@ -65,6 +65,27 @@ const EmployeeAttendanceComp = () => {
   //    week();
   //  },[])
   week(18);
+  const onPunch = () => {
+    const inTime = new Date().toISOString();
+    API.apiPost("createAttendance", { payload: encodeData(inTime) })
+      .then((response) => {
+        if (response.data && response.data.success === true) {
+          dispatch(attendanceList());
+          // setTicketSectionExpand(false);
+          toast.success(response.data.message, {
+            position: "top-right",
+            style: {
+              padding: "16px",
+              color: "#3c5f4b",
+              marginRight: "25px",
+            },
+          });
+        }
+      })
+      .catch((err) => {
+        handleErrorMessage(err);
+      });
+  };
 
   return (
     <>
@@ -107,8 +128,12 @@ const EmployeeAttendanceComp = () => {
                     </div>
                   </div>
                   <div className="d-flex align-item-center justify-content-center my-3">
-                    <button className={`${styles.button}`} role="button">
-                      Punch Out
+                    <button
+                      className={`${styles.button}`}
+                      role="button"
+                      onClick={onPunch}
+                    >
+                      Punch In
                     </button>
                   </div>
                   <div className="row">
@@ -239,7 +264,7 @@ const EmployeeAttendanceComp = () => {
                 className={`${styles.cardContainer} card order-card shadow border-1`}
               >
                 <div className="card-block text-dark text-center">
-                  <h6 className="m-b-20">Today Activites</h6>
+                  <h6 className="m-b-20">Unplanned Leaves</h6>
                   <h5>0</h5>
                 </div>
               </div>
@@ -280,12 +305,10 @@ const EmployeeAttendanceComp = () => {
                 {stuList?.map((row, i) => (
                   <tr key={i}>
                     <td className="p-1">{i + 1}</td>
-                    <td className="p-1 ">{row?.inTime.split("T")[0] || ""}</td>
+                    <td className="p-1 ">{moment(row?.inTime).format("LL")}</td>
+                    <td className="p-1">{moment(row?.inTime).format("LTS")}</td>
                     <td className="p-1">
-                      {row?.inTime.split("T")[1].split(".")[0] || ""}
-                    </td>
-                    <td className="p-1">
-                      {/* {row?.outTime.split("T")[1].split(".")[0] || ""} */}
+                      {moment(row?.outTime).format("LTS")}
                     </td>
                     <td className="p-1">10</td>
                     <td className="p-1">1</td>
