@@ -27,7 +27,13 @@ const apiKeys = {
   projectList: "project/list",
   DsrList: "dsr/list",
   dsrReject_Approvel:"dsr/status",
-  updateDsr: "dsr/update"
+  updateDsr: "dsr/update",
+
+
+  //Attendance
+  attendanceList :"attendance/list",
+  createAttendance : "attendance/create",
+
 };
 
 export default apiKeys;
