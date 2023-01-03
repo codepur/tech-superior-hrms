@@ -24,7 +24,7 @@ const EmployeeAttendanceComp = () => {
         setSegment(e.target.value);
     };
 
-    console.log(stuList);
+
 
     const handleFilter = (e) => {
         let searchvalue = e?.target?.value;
@@ -118,7 +118,7 @@ const EmployeeAttendanceComp = () => {
                                         </div>
                                     </div>
                                     <div className="d-flex align-item-center justify-content-center my-3">
-                                        <button className={`${styles.button}`} role="button" onClick={onPunch}>Punch Out</button>
+                                        <button className={`${styles.button}`} role="button" onClick={onPunch}>Punch In</button>
                                     </div>
                                     <div className="row" >
                                         <div className="col-6 text-center">
@@ -198,10 +198,7 @@ const EmployeeAttendanceComp = () => {
                                 aria-describedby="basic-addon2"
                                 onChange={handleFilter}
                             />
-                            <InputGroup.Text
-                                id="basic-addon2"
-                                className={`${styles.searchIcon}`}
-                            >
+                            <InputGroup.Text   id="basic-addon2" className={`${styles.searchIcon}`}>
                                 <Image src="/images/searchWhite.png" alt="search" />
                             </InputGroup.Text>
                         </InputGroup>
@@ -224,9 +221,9 @@ const EmployeeAttendanceComp = () => {
                                 {stuList?.map((row, i) => (
                                     <tr key={i}>
                                         <td className="p-1">{i + 1}</td>
-                                        <td className="p-1 ">{moment(row?.date).format("ll")|| ""}</td>
-                                        <td className="p-1">{moment(row?.inTime).format("LTS") || ""}</td>
-                                        <td className="p-1">{moment(row?.outTime).format("LTS") || ""}</td>
+                                        <td className="p-1 ">{moment(row?.inTime).format('LL')}</td>
+                                        <td className="p-1">{moment(row?.inTime).format('LTS')}</td>
+                                        <td className="p-1">{moment(row?.outTime).format('LTS')}</td>
                                         <td className="p-1">10</td>
                                         <td className="p-1">1</td>
                                         <td className="p-1">0</td>
