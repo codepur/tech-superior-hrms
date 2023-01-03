@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Image, InputGroup, Modal, Table } from "react-bootstrap";
@@ -13,11 +14,11 @@ const AdminAttendanceComp = () => {
   const [stuList] = useSelector((Gstate) => [Gstate.attendanceList?.attendanceList]);
   const dispatch = useDispatch();
   useEffect(() => {
-      dispatch(attendanceList());
-  },[]);
-  
-  console.log("2",stuList);
-  
+    dispatch(attendanceList());
+  }, []);
+
+  console.log("2", stuList);
+
   const studentList = [{ name: "neeraj verma" }]
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
   const [segmentValue, setSegment] = useState()
