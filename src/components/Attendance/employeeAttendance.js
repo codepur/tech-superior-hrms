@@ -1,26 +1,33 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { Image, InputGroup, Modal, Table } from "react-bootstrap";
+import {
+  Image,
+  InputGroup,
+  Modal,
+  Table,
+  Card,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import styles from "../../styles/attendance.module.scss"
+import styles from "../../styles/attendance.module.scss";
 import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import Calendar from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { attendanceList } from "../../stores/actions/attendance";
 const EmployeeAttendanceComp = () => {
-
-  const [stuList] = useSelector((Gstate) => [Gstate.attendanceList?.attendanceList]);
+  const [stuList] = useSelector((Gstate) => [
+    Gstate.attendanceList?.attendanceList,
+  ]);
   const dispatch = useDispatch();
   useEffect(() => {
-      dispatch(attendanceList());
-  },[]);
-  
-  console.log(stuList);
-  
-  const studentList = [{ name: "neeraj verma" }]
-  const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
-  const [segmentValue, setSegment] = useState()
+    dispatch(attendanceList());
+  }, []);
+
+  const studentList = [{ name: "neeraj verma" }];
+  const segmentColor = { Present: "green", Absent: "red", Late: "yellow" };
+  const [segmentValue, setSegment] = useState();
   const handleActiveTab = (e) => {
     setSegment(e.target.value);
   };
@@ -35,13 +42,13 @@ const EmployeeAttendanceComp = () => {
       (item) =>
         (searchvalue
           ? item.user_id?.first_name
-            ?.toLowerCase()
-            .includes(searchvalue.toLowerCase())
+              ?.toLowerCase()
+              .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.user_id?.last_name
-            ?.toLowerCase()
-            .includes(searchvalue.toLowerCase())
+              ?.toLowerCase()
+              .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
@@ -57,12 +64,12 @@ const EmployeeAttendanceComp = () => {
     for (let i = curr; i > curr - 7; i--) {
       arr.push(i);
     }
-    arr.reverse()
-  }
+    arr.reverse();
+  };
   //  useEffect(()=>{
   //    week();
   //  },[])
-  week(18)
+  week(18);
 
   return (
     <>
@@ -71,7 +78,6 @@ const EmployeeAttendanceComp = () => {
           className={`d-flex justify-content-between ${styles.createTicket}`}
         >
           <h2 className="col-md-4"> Attendance </h2>
-
         </div>
         <hr className={`${styles.hr}`}></hr>
 
@@ -106,7 +112,7 @@ const EmployeeAttendanceComp = () => {
             </thead>
             <tbody>
               {studentList?.map((row, i) => (
-                <tr key={i} >
+                <tr key={i}>
                   <td className="p-1 text-center">{i + 1}</td>
                   <td className="p-1">{row?.name || ""}</td>
                   <td className={`${styles.segmentedBg}`}>
@@ -145,7 +151,6 @@ const EmployeeAttendanceComp = () => {
                           },
                         ]}
                       />
-
                     </div>
                   </td>
                   <td className="p-1">
@@ -153,14 +158,18 @@ const EmployeeAttendanceComp = () => {
                       <thead className={`${styles.center}`}>
                         <tr>
                           {arr.map((val, i) => (
-                            <th key={i} className="px-1">{val}</th>
+                            <th key={i} className="px-1">
+                              {val}
+                            </th>
                           ))}
                         </tr>
                       </thead>
                       <tbody className={`${styles.center}`}>
                         <tr>
                           {arr.map((val, i) => (
-                            <td key={i} className="px-1"><IconCheck color="green" size={18} /></td>
+                            <td key={i} className="px-1">
+                              <IconCheck color="green" size={18} />
+                            </td>
                           ))}
                           {/* <td><IconCheck color="green" size={20}/></td>
                              <td><IconX color="red" size={20}/></td>
@@ -179,5 +188,5 @@ const EmployeeAttendanceComp = () => {
       </div>
     </>
   );
-}
-export default EmployeeAttendanceComp
+};
+export default EmployeeAttendanceComp;
