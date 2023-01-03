@@ -106,6 +106,7 @@ const EmployeeAttendanceComp = () => {
                   <td className="p-1 ">{row?.inTime.split("T")[0] || ""}</td>
                   <td className="p-1">{row?.inTime.split("T")[1].split(".")[0] || ""}</td>
                   <td className="p-1">{row?.outTime.split("T")[1].split(".")[0] || ""}</td>
+                  {/* <td></td> */}
                   <td className="p-1">10</td>
                   <td className="p-1">1</td>
                   <td className="p-1">0</td>
