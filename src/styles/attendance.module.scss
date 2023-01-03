@@ -68,6 +68,7 @@ backdrop-filter: blur( 16px );
 -webkit-backdrop-filter: blur( 16px );
 border-radius: 10px;
 border: 2px solid rgba(88, 87, 87, 0.18);
+height: 440px;
 }
 .round{
   display: flex;
@@ -79,6 +80,11 @@ border: 2px solid rgba(88, 87, 87, 0.18);
   background-color: #bbe4e9;
   border: 5px solid #5585b5;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  touch-action: manipulation;
+  transition : all 0.5s ease;
+}
+.round:hover{
+  transform: scale(1.05) rotate(-1deg);
 }
 
 /* CSS */
