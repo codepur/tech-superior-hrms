@@ -39,7 +39,6 @@ export default function DashboardComponent() {
     setEventModal(true);
   }, []);
 
-
   return (
     <>
       <Modal centered show={showModal} onHide={closeModal}>
