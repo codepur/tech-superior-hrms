@@ -17,7 +17,7 @@ const AdminAttendanceComp = () => {
     dispatch(attendanceList());
   }, []);
 
-  console.log("2", stuList);
+  // console.log("2", stuList);
 
   const studentList = [{ name: "neeraj verma" }]
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
