@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Image, InputGroup, Modal, Table } from "react-bootstrap";
@@ -10,21 +11,22 @@ import { attendanceList } from "../../stores/actions/attendance";
 import API from "../../helpers/api";
 import { encodeData } from "../../helpers/auth";
 import { handleErrorMessage } from "../../utils/commonFunctions";
-// import moment from "moment/moment";
 import moment from "moment/moment";
 const EmployeeAttendanceComp = () => {
+
   const [stuList] = useSelector((Gstate) => [
     Gstate.attendanceList?.attendanceList,
   ]);
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(attendanceList());
   }, [stuList?.length]);
+
   const handleActiveTab = (e) => {
     setSegment(e.target.value);
   };
-
-
 
   const handleFilter = (e) => {
     let searchvalue = e?.target?.value;
@@ -47,9 +49,9 @@ const EmployeeAttendanceComp = () => {
     setChooseDsrList(arr);
   };
 
-  const onSearchHandler = (event) => {
-    setSearchKey(event?.target?.value);
-  };
+  // const onSearchHandler = (event) => {
+  //   setSearchKey(event?.target?.value);
+  // };
   //  const currentMonth = 31;
   //  const currMontDay = 17
   let arr = [];
@@ -175,9 +177,7 @@ const EmployeeAttendanceComp = () => {
                       <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
                     </div>
                   </div>
-
                 </div >
-
               </div >
             </div >
             <div className="col-md-4 col-xl-4">
@@ -191,12 +191,13 @@ const EmployeeAttendanceComp = () => {
           </div >
 
           <div className="col-md-3 d-flex">
-            <InputGroup className="mb-3 d-flex" onChange={onSearchHandler}>
+            <InputGroup className="mb-3 d-flex" //</div>onChange={onSearchHandler}
+            >
               <Form.Control
                 placeholder="Search"
                 aria-label="Recipient's username"
                 aria-describedby="basic-addon2"
-                onChange={handleFilter}
+                //onChange={handleFilter}
               />
               <InputGroup.Text id="basic-addon2" className={`${styles.searchIcon}`}>
                 <Image src="/images/searchWhite.png" alt="search" />
@@ -212,9 +213,9 @@ const EmployeeAttendanceComp = () => {
                   <th className="p-3 col-md-3">Date</th>
                   <th className="p-3 col-md-3">Punch In</th>
                   <th className="p-3 ">Punch out</th>
-                  <th className="p-3 text-center">Production</th>
-                  <th className="p-3 text-center">Break</th>
-                  <th className="p-3 text-center">Overtime</th>
+                  <th className="p-3 ">Production</th>
+                  <th className="p-3 ">Break</th>
+                  <th className="p-3 ">Overtime</th>
                 </tr>
               </thead>
               <tbody>
