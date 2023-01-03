@@ -5,6 +5,7 @@ export function attendanceList(params) {
     dispatch({ type: 'REQUEST_ATTENDANCE_LIST' });
     API.apiGet('attendanceList')
       .then((response) => {
+    
         if (response.data && response.data.success === true && response.data.data) {
           dispatch({ type: `SET_ATTENDANCE_LIST`, payload: response.data.data });
         }

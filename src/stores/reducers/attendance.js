@@ -15,7 +15,7 @@ const AttendanceReducers = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         attendanceList: action.payload,
-      };
+      }; 
     default:
       return state;
   }
