@@ -13,6 +13,6 @@ export function attendanceList(params) {
           dispatch({ type: `SET_ATTENDANCE_LIST`, payload: [] });
         });
     };
-  }
+  } 
 
  

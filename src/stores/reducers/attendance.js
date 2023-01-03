@@ -14,7 +14,7 @@ const INITIAL_STATE = {
         return {
           ...state,
           loading: false,
-          dsrList: action.payload,
+          attendanceList: action.payload,
         };  
       default:
         return state;

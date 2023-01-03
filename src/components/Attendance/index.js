@@ -9,6 +9,9 @@ import Calendar from "react-calendar";
 
 const Attendance = () => {
 
+  const [userData] = useSelector((Gstate) => [Gstate.attendance?.attendanceList]);
+  const dispatch = useDispatch();
+  
   const studentList = [{ name: "neeraj verma" }]
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
   const [segmentValue, setSegment] = useState()
