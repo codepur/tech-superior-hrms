@@ -27,7 +27,7 @@ $active_color: #50ff39;
 }
 
 .ContainerDiv{
-    box-shadow: -2px 7px 38px -15px grey;
+    // box-shadow: -2px 7px 38px -15px grey;
     padding: 25px;
 }
 
@@ -59,4 +59,85 @@ $active_color: #50ff39;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.cardContainer{
+  background: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0.1%, rgba(233, 226, 226, 0.28) 90.1%);
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 16px );
+-webkit-backdrop-filter: blur( 16px );
+border-radius: 10px;
+border: 2px solid rgba(88, 87, 87, 0.18);
+}
+.round{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 120px !important;
+  height: 120px;
+  background-color: #bbe4e9;
+  border: 5px solid #5585b5;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* CSS */
+.button {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.stats{
+  background-color: #f9f9f9;
+  border: 1px solid #e3e3e3;
+  margin-bottom: 5px;
+  padding: 2px;
+  text-align: center;
+  border-radius: 10px;
+  p{
+    margin-bottom: 0.4rem !important;
+  }
+}
+
+.cardBody{
+padding: 1rem 1rem;
+}
+.cardTittle{
+  color: #1f1f1f;
+  font-size: 20px;
+  font-weight: 500;
+}
+.statsInfo{
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+  margin: 10px 0px;
+}
+.statsInfo p{ 
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
 }
