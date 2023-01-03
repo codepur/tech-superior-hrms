@@ -6,11 +6,17 @@ import styles from "../../styles/attendance.module.scss"
 import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import Calendar from "react-calendar";
-
+import { useDispatch, useSelector } from "react-redux";
+import { attendanceList } from "../../stores/actions/attendance";
 const Attendance = () => {
 
-  const [userData] = useSelector((Gstate) => [Gstate.attendance?.attendanceList]);
+  const [stuList] = useSelector((Gstate) => [Gstate.attendanceList?.attendanceList]);
   const dispatch = useDispatch();
+  useEffect(() => {
+      dispatch(attendanceList());
+  },[]);
+  
+  console.log(stuList);
   
   const studentList = [{ name: "neeraj verma" }]
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
