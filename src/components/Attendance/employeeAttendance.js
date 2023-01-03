@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Image, InputGroup, Modal, Table } from "react-bootstrap";
@@ -11,15 +10,14 @@ import { attendanceList } from "../../stores/actions/attendance";
 import API from "../../helpers/api";
 import { encodeData } from "../../helpers/auth";
 import { handleErrorMessage } from "../../utils/commonFunctions";
+// import moment from "moment/moment";
 import moment from "moment/moment";
+import { toast } from "react-hot-toast";
 const EmployeeAttendanceComp = () => {
-
   const [stuList] = useSelector((Gstate) => [
     Gstate.attendanceList?.attendanceList,
   ]);
-
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(attendanceList());
   }, [stuList?.length]);
@@ -27,6 +25,7 @@ const EmployeeAttendanceComp = () => {
   const handleActiveTab = (e) => {
     setSegment(e.target.value);
   };
+
 
   const handleFilter = (e) => {
     let searchvalue = e?.target?.value;
@@ -49,43 +48,28 @@ const EmployeeAttendanceComp = () => {
     setChooseDsrList(arr);
   };
 
-  // const onSearchHandler = (event) => {
-  //   setSearchKey(event?.target?.value);
-  // };
-  //  const currentMonth = 31;
-  //  const currMontDay = 17
-  let arr = [];
-  const week = (curr) => {
-    for (let i = curr; i > curr - 7; i--) {
-      arr.push(i);
-    }
-    arr.reverse()
-  }
-  //  useEffect(()=>{
-  //    week();
-  //  },[])
-  week(18)
+  const onSearchHandler = (event) => {
+    setSearchKey(event?.target?.value);
+  };
+
+
   const onPunch = () => {
     const inTime = new Date().toISOString();
-    API.apiPost("createAttendance", { payload: encodeData(inTime) })
+    console.log(inTime);
+    const time = { inTime: inTime }
+    API.apiPost("createAttendance", { payload: encodeData(time) })
       .then((response) => {
         if (response.data && response.data.success === true) {
+          console.log(response);
+          toast.success(response.data.message)
           dispatch(attendanceList());
-          // setTicketSectionExpand(false);
-          toast.success(response.data.message, {
-            position: "top-right",
-            style: {
-              padding: "16px",
-              color: "#3c5f4b",
-              marginRight: "25px",
-            },
-          });
         }
       })
       .catch((err) => {
         handleErrorMessage(err);
       });
   }
+
 
   return (
     <>
@@ -120,7 +104,7 @@ const EmployeeAttendanceComp = () => {
                     </div>
                   </div>
                   <div className="d-flex align-item-center justify-content-center my-3">
-                    <button className={`${styles.button}`} role="button" onClick={onPunch}>Punch In</button>
+                    <button className={`${styles.button}`} role="button" onClick={onPunch}>Punch Out</button>
                   </div>
                   <div className="row" >
                     <div className="col-6 text-center">
@@ -177,7 +161,9 @@ const EmployeeAttendanceComp = () => {
                       <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
                     </div>
                   </div>
+
                 </div >
+
               </div >
             </div >
             <div className="col-md-4 col-xl-4">
@@ -191,13 +177,12 @@ const EmployeeAttendanceComp = () => {
           </div >
 
           <div className="col-md-3 d-flex">
-            <InputGroup className="mb-3 d-flex" //</div>onChange={onSearchHandler}
-            >
+            <InputGroup className="mb-3 d-flex" onChange={onSearchHandler}>
               <Form.Control
                 placeholder="Search"
                 aria-label="Recipient's username"
                 aria-describedby="basic-addon2"
-                //onChange={handleFilter}
+                onChange={handleFilter}
               />
               <InputGroup.Text id="basic-addon2" className={`${styles.searchIcon}`}>
                 <Image src="/images/searchWhite.png" alt="search" />
@@ -213,18 +198,18 @@ const EmployeeAttendanceComp = () => {
                   <th className="p-3 col-md-3">Date</th>
                   <th className="p-3 col-md-3">Punch In</th>
                   <th className="p-3 ">Punch out</th>
-                  <th className="p-3 ">Production</th>
-                  <th className="p-3 ">Break</th>
-                  <th className="p-3 ">Overtime</th>
+                  <th className="p-3 text-center">Production</th>
+                  <th className="p-3 text-center">Break</th>
+                  <th className="p-3 text-center">Overtime</th>
                 </tr>
               </thead>
               <tbody>
                 {stuList?.map((row, i) => (
                   <tr key={i}>
                     <td className="p-1">{i + 1}</td>
-                    <td className="p-1 ">{moment(row?.inTime).format('LL')}</td>
-                    <td className="p-1">{moment(row?.inTime).format('LTS')}</td>
-                    <td className="p-1">{moment(row?.outTime).format('LTS')}</td>
+                    <td className="p-1 ">{moment(row?.date).format("ll") || ""}</td>
+                    <td className="p-1">{moment(row?.inTime).format("LTS") || ""}</td>
+                    <td className="p-1">{moment(row?.outTime).format("LTS") || ""}</td>
                     <td className="p-1">10</td>
                     <td className="p-1">1</td>
                     <td className="p-1">0</td>
