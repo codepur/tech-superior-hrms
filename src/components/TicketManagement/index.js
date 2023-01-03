@@ -48,13 +48,14 @@ function TicketManagement() {
   const editorRef = useRef(null);
   const [searchKey, setSearchKey] = useState("");
   const [searchData, setSearchData] = useState([]);
-  const { activePage, skip, limitPerPage, list} = pagination;
+  const { activePage, skip, limitPerPage,paginatedData, list} = pagination;
   // const { skip = [] } = pagination;
   const [departmentList,userData,  ticketsList] = useSelector((Gstate) => [
     Gstate.ticketManagement?.departmentList,
     Gstate.user?.userData,
     Gstate.ticketManagement?.ticketsList,
   ]);
+  
 
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
@@ -429,7 +430,7 @@ useEffect(() => {
                 </tr>
               </thead>
               <tbody>
-                {ticketsList.map((row, i) => (
+                {paginatedData.map((row, i) => (
                   <tr key={i} className="border" itemScope="row">
                     <td>{skip + i + 1}</td>
                     <td>{row?.ticket_code || ""}</td>

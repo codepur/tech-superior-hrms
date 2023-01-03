@@ -391,7 +391,7 @@ export default function BasicInfo() {
           <Form.Group className="col-md-6" controlId="formGridPassword">
             <Form.Label>Months</Form.Label>
             <Form.Control
-              type="number"
+              type="months"
               onChange={handleChange}
               placeholder="Enter Months"
               value={Tmonths}
