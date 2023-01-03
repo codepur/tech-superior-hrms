@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Image, InputGroup, Modal, Table } from "react-bootstrap";
@@ -8,6 +7,10 @@ import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { attendanceList } from "../../stores/actions/attendance";
+import API from "../../helpers/api";
+import { encodeData } from "../../helpers/auth";
+import { handleErrorMessage } from "../../utils/commonFunctions";
+// import moment from "moment/moment";
 import moment from "moment/moment";
 const EmployeeAttendanceComp = () => {
   const [stuList] = useSelector((Gstate) => [
@@ -16,12 +19,12 @@ const EmployeeAttendanceComp = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(attendanceList());
-  }, []);
+  }, [stuList?.length]);
   const handleActiveTab = (e) => {
     setSegment(e.target.value);
   };
 
-  // console.log(stuList);
+
 
   const handleFilter = (e) => {
     let searchvalue = e?.target?.value;
@@ -60,6 +63,27 @@ const EmployeeAttendanceComp = () => {
   //    week();
   //  },[])
   week(18)
+  const onPunch = () => {
+    const inTime = new Date().toISOString();
+    API.apiPost("createAttendance", { payload: encodeData(inTime) })
+      .then((response) => {
+        if (response.data && response.data.success === true) {
+          dispatch(attendanceList());
+          // setTicketSectionExpand(false);
+          toast.success(response.data.message, {
+            position: "top-right",
+            style: {
+              padding: "16px",
+              color: "#3c5f4b",
+              marginRight: "25px",
+            },
+          });
+        }
+      })
+      .catch((err) => {
+        handleErrorMessage(err);
+      });
+  }
 
   return (
     <>
@@ -94,7 +118,7 @@ const EmployeeAttendanceComp = () => {
                     </div>
                   </div>
                   <div className="d-flex align-item-center justify-content-center my-3">
-                    <button className={`${styles.button}`} role="button">Punch Out</button>
+                    <button className={`${styles.button}`} role="button" onClick={onPunch}>Punch In</button>
                   </div>
                   <div className="row" >
                     <div className="col-6 text-center">
@@ -151,7 +175,9 @@ const EmployeeAttendanceComp = () => {
                       <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
                     </div>
                   </div>
+
                 </div >
+
               </div >
             </div >
             <div className="col-md-4 col-xl-4">
@@ -172,10 +198,7 @@ const EmployeeAttendanceComp = () => {
                 aria-describedby="basic-addon2"
                 onChange={handleFilter}
               />
-              <InputGroup.Text
-                id="basic-addon2"
-                className={`${styles.searchIcon}`}
-              >
+              <InputGroup.Text id="basic-addon2" className={`${styles.searchIcon}`}>
                 <Image src="/images/searchWhite.png" alt="search" />
               </InputGroup.Text>
             </InputGroup>
@@ -198,9 +221,9 @@ const EmployeeAttendanceComp = () => {
                 {stuList?.map((row, i) => (
                   <tr key={i}>
                     <td className="p-1">{i + 1}</td>
-                    <td className="p-1 ">{moment(row?.inTime?.split("T")[0]).format('LL') || "-"}</td>
-                    <td className="p-1">{row?.inTime?.split("T")[1]?.split(".")[0] || "-"}</td>
-                    <td className="p-1">{row?.outTime?.split("T")[1]?.split(".")[0] || "-"}</td>
+                    <td className="p-1 ">{moment(row?.inTime).format('LL')}</td>
+                    <td className="p-1">{moment(row?.inTime).format('LTS')}</td>
+                    <td className="p-1">{moment(row?.outTime).format('LTS')}</td>
                     <td className="p-1">10</td>
                     <td className="p-1">1</td>
                     <td className="p-1">0</td>
