@@ -7,7 +7,12 @@ import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { attendanceList } from "../../stores/actions/attendance";
+import API from "../../helpers/api";
+import { encodeData } from "../../helpers/auth";
+import { handleErrorMessage } from "../../utils/commonFunctions";
+// import moment from "moment/moment";
 import moment from "moment/moment";
+import { toast } from "react-hot-toast";
 const EmployeeAttendanceComp = () => {
     const [stuList] = useSelector((Gstate) => [
         Gstate.attendanceList?.attendanceList,
@@ -15,10 +20,12 @@ const EmployeeAttendanceComp = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(attendanceList());
-    }, []);
+    }, [stuList?.length]);
+
     const handleActiveTab = (e) => {
         setSegment(e.target.value);
     };
+
 
     const handleFilter = (e) => {
         let searchvalue = e?.target?.value;
@@ -44,20 +51,24 @@ const EmployeeAttendanceComp = () => {
     const onSearchHandler = (event) => {
         setSearchKey(event?.target?.value);
     };
-    //  const currentMonth = 31;
-    //  const currMontDay = 17
-    let arr = [];
-    const week = (curr) => {
-        for (let i = curr; i > curr - 7; i--) {
-            arr.push(i);
-        }
-        arr.reverse()
+ 
+    
+    const onPunch=()=>{
+        const inTime=new Date().toISOString();
+        console.log(inTime);
+        const time = {inTime : inTime}
+        API.apiPost("createAttendance", { payload: encodeData(time) })
+        .then((response) => {
+          if (response.data && response.data.success === true) {
+            console.log(response);
+            toast.success(response.data.message)
+            dispatch(attendanceList());
+          }
+        })
+        .catch((err) => {
+          handleErrorMessage(err);
+        });
     }
-    //  useEffect(()=>{
-    //    week();
-    //  },[])
-    week(18)
-
 
 
     return (
@@ -93,7 +104,7 @@ const EmployeeAttendanceComp = () => {
                                         </div>
                                     </div>
                                     <div className="d-flex align-item-center justify-content-center my-3">
-                                        <button className={`${styles.button}`} role="button" onClick={handlesubmit}>Punch Out</button>
+                                        <button className={`${styles.button}`} role="button" onClick={onPunch}>Punch Out</button>
                                     </div>
                                     <div className="row" >
                                         <div className="col-6 text-center">
@@ -196,9 +207,9 @@ const EmployeeAttendanceComp = () => {
                                 {stuList?.map((row, i) => (
                                     <tr key={i}>
                                         <td className="p-1">{i + 1}</td>
-                                        <td className="p-1 ">{moment(row?.inTime).format('LL')}</td>
-                                        <td className="p-1">{moment(row?.inTime).format('LTS')}</td>
-                                        <td className="p-1">{moment(row?.outTime).format('LTS')}</td>
+                                        <td className="p-1 ">{moment(row?.date).format("ll")|| ""}</td>
+                                        <td className="p-1">{moment(row?.inTime).format("LTS") || ""}</td>
+                                        <td className="p-1">{moment(row?.outTime).format("LTS") || ""}</td>
                                         <td className="p-1">10</td>
                                         <td className="p-1">1</td>
                                         <td className="p-1">0</td>
