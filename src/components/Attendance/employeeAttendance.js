@@ -7,6 +7,10 @@ import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { attendanceList } from "../../stores/actions/attendance";
+import API from "../../helpers/api";
+import { encodeData } from "../../helpers/auth";
+import { handleErrorMessage } from "../../utils/commonFunctions";
+// import moment from "moment/moment";
 import moment from "moment/moment";
 const EmployeeAttendanceComp = () => {
     const [stuList] = useSelector((Gstate) => [
@@ -15,7 +19,7 @@ const EmployeeAttendanceComp = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(attendanceList());
-    }, []);
+    }, [stuList?.length]);
     const handleActiveTab = (e) => {
         setSegment(e.target.value);
     };
@@ -59,7 +63,27 @@ const EmployeeAttendanceComp = () => {
     //    week();
     //  },[])
     week(18)
-
+    const onPunch=()=>{
+        const inTime=new Date().toISOString();
+        API.apiPost("createAttendance", { payload: encodeData(inTime) })
+        .then((response) => {
+          if (response.data && response.data.success === true) {
+            dispatch(attendanceList());
+            // setTicketSectionExpand(false);
+            toast.success(response.data.message, {
+              position: "top-right",
+              style: {
+                padding: "16px",
+                color: "#3c5f4b",
+                marginRight: "25px",
+              },
+            });
+          }
+        })
+        .catch((err) => {
+          handleErrorMessage(err);
+        });
+    }
 
     return (
         <>
@@ -94,7 +118,7 @@ const EmployeeAttendanceComp = () => {
                                         </div>
                                     </div>
                                     <div className="d-flex align-item-center justify-content-center my-3">
-                                        <button className={`${styles.button}`} role="button">Punch Out</button>
+                                        <button className={`${styles.button}`} role="button" onClick={onPunch}>Punch Out</button>
                                     </div>
                                     <div className="row" >
                                         <div className="col-6 text-center">
@@ -190,6 +214,7 @@ const EmployeeAttendanceComp = () => {
                                     <th className="p-3 col-md-1">Sr. No</th>
                                     <th className="p-3 col-md-3">Date</th>
                                     <th className="p-3 col-md-3">Punch In</th>
+                                    <th className="p-3 ">Punch out</th>
                                     <th className="p-3 text-center">Production</th>
                                     <th className="p-3 text-center">Break</th>
                                     <th className="p-3 text-center">Overtime</th>
@@ -199,8 +224,9 @@ const EmployeeAttendanceComp = () => {
                                 {stuList?.map((row, i) => (
                                     <tr key={i}>
                                         <td className="p-1">{i + 1}</td>
-                                        <td className="p-1 ">{row?.inTime.split("T")[0] || ""}</td>
-                                        <td className="p-1">{row?.inTime.split("T")[1].split(".")[0] || ""}</td>
+                                        <td className="p-1 ">{moment(row?.date).format("ll")|| ""}</td>
+                                        <td className="p-1">{moment(row?.inTime).format("LTS") || ""}</td>
+                                        <td className="p-1">{moment(row?.outTime).format("LTS") || ""}</td>
                                         <td className="p-1">10</td>
                                         <td className="p-1">1</td>
                                         <td className="p-1">0</td>
