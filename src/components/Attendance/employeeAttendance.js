@@ -220,6 +220,7 @@ const EmployeeAttendanceComp = () => {
                             <tbody>
                                 {stuList?.map((row, i) => (
                                     <tr key={i}>
+                                        {console.log('row', row)}
                                         <td className="p-1">{i + 1}</td>
                                         <td className="p-1 ">{moment(row?.inTime).format('LL')}</td>
                                         <td className="p-1">{moment(row?.inTime).format('LTS')}</td>
