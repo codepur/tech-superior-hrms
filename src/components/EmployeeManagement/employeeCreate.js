@@ -22,6 +22,9 @@ const initial = {
   last_name: "",
   employee_ID: "",
   phone: "",
+  dob: "",
+  gender: "",
+  blood_group: "",
 };
 
 const initialPaginationState = {
@@ -57,6 +60,9 @@ function TicketManagement() {
     email,
     employee_ID,
     phone,
+    dob,
+    gender,
+    blood_group,
   } = employeeData;
 
   const onChangeHandler = (e) => {
@@ -80,7 +86,7 @@ function TicketManagement() {
 
   const createEmployee = () => {
     employeeData.level = "Level2";
-    API.apiPost("candidateInvite",{ payload:encodeData(employeeData)})
+    API.apiPost("candidateInvite", { payload: encodeData(employeeData) })
       .then((response) => {
         if (response.data && response.data.success === true) {
           setEmployeeData(initial);
@@ -115,7 +121,7 @@ function TicketManagement() {
   //   setIndex(row);
   //
   const handleDelete = (row) => {
-    API.apiPost("deleteProfile", {payload:encodeData({ email: row.email })})
+    API.apiPost("deleteProfile", { payload: encodeData({ email: row.email }) })
       .then((response) => {
         if (response.data && response.data.success === true) {
           dispatch(setUserlist());
@@ -163,10 +169,10 @@ function TicketManagement() {
     setSearchData(userList);
     // let department = filters.user_type || "all";
   }, [userList?.length]);
-  
+
   const updateEmployee = () => {
     employeeData.level = "Level2";
-    API.apiPut("candidateInvite", {payload:encodeData(employeeData)})
+    API.apiPut("candidateInvite", { payload: encodeData(employeeData) })
       .then((response) => {
         if (response.data && response.data.success === true) {
           setEmployeeData(initial);
@@ -251,6 +257,19 @@ function TicketManagement() {
                   onChange={onChangeHandler}
                 />
               </FormGroup>
+              <FormGroup>
+                <Label for="blood_group">
+                  <b>Blood Group</b>
+                </Label>
+                <Input
+                  value={blood_group}
+                  type="text"
+                  name="blood_group"
+                  id="blood_group"
+                  placeholder="Blood Group"
+                  onChange={onChangeHandler}
+                />
+              </FormGroup>
 
               <FormGroup>
                 <Label for="Email">
@@ -328,6 +347,31 @@ function TicketManagement() {
                   maxLength={10}
                 />
               </FormGroup>
+              <FormGroup>
+                <Label for="gender">
+                  <b>Gender</b>
+                </Label>
+                <Input
+                  value={gender}
+                  type="text"
+                  name="gender"
+                  id="gender"
+                  placeholder="Gender"
+                  onChange={onChangeHandler}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="dob">
+                  <b>Date of Birth</b>
+                </Label>
+                <Input
+                  value={dob}
+                  type="date"
+                  name="dob"
+                  id="dob"
+                  onChange={onChangeHandler}
+                />
+              </FormGroup>
             </div>
             <Button
               className={`btn col-md-1 ${styles.saveButton}`}
@@ -345,7 +389,7 @@ function TicketManagement() {
           </div>
           <hr className={`${styles.hr}`}></hr>
           <div className="row justify-content-end">
-            <div className="col-md-3 d-flex "      onChange={onChangeHandler}>
+            <div className="col-md-3 d-flex " onChange={onChangeHandler}>
               <InputGroup className="mb-3 d-flex">
                 <Form.Control
                   placeholder="Search"
