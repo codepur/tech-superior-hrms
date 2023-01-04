@@ -1,22 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import {
-  Image,
-  InputGroup,
-  Modal,
-  Table,
-  Card,
-  ListGroup,
-  ListGroupItem,
+    Image,
+    InputGroup,
+    Modal,
+    Table,
+    Card,
+    ListGroup,
+    ListGroupItem,
 } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import styles from "../../styles/attendance.module.scss";
-import { Center, SegmentedControl, Box } from "@mantine/core";
-import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { attendanceList } from "../../stores/actions/attendance";
+import API from "../../helpers/api";
+import { encodeData } from "../../helpers/auth";
+import { handleErrorMessage } from "../../utils/commonFunctions";
 import moment from "moment/moment";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
+import LiveTime from "../common/liveTime";
 
 const EmployeeAttendanceComp = () => {
     const [stuList] = useSelector((Gstate) => [
@@ -25,12 +28,12 @@ const EmployeeAttendanceComp = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(attendanceList());
-    }, [stuList?.length]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [stuList.length]);
 
     const handleActiveTab = (e) => {
         setSegment(e.target.value);
     };
-
 
     const handleFilter = (e) => {
         let searchvalue = e?.target?.value;
@@ -56,29 +59,57 @@ const EmployeeAttendanceComp = () => {
     const onSearchHandler = (event) => {
         setSearchKey(event?.target?.value);
     };
- 
-    
-    const onPunch=()=>{
-        const inTime=new Date().toISOString();
-        console.log(inTime);
-        const time = {inTime : inTime}
-        API.apiPost("createAttendance", { payload: encodeData(time) })
-        .then((response) => {
-          if (response.data && response.data.success === true) {
-            console.log(response);
-            toast.success(response.data.message)
-            dispatch(attendanceList());
-          }
-        })
-        .catch((err) => {
-          handleErrorMessage(err);
-        });
+
+    const [punch, setPunch] = useState(true);
+    const [punchbtn, setPunchbtn] = useState(false);
+    useEffect(() => {
+        if (stuList[0]?.inTime) {
+            setPunch(false);
+        }
+        if (stuList[0]?.outTime && stuList[0]?.InTime) {
+            setPunch(!punch);
+            setPunchbtn(!punchbtn);
+        }
+    }, [punch, punchbtn, stuList, stuList.length]);
+
+    const onPunchIn = () => {
+        const inTime = new Date().toISOString();
+        const time = { inTime: inTime }
+        API.apiPost("punchIn", { payload: encodeData(time) })
+            .then((response) => {
+                if (response.data && response.data.success === true) {
+                    setPunch(!punch);
+                    toast.success(response.data.message)
+                    dispatch(attendanceList());
+                }
+            })
+            .catch((err) => {
+                handleErrorMessage(err);
+            });
     }
+
+    const onPunchOut = () => {
+        const outTime = new Date().toISOString();
+        const time = { outTime: outTime }
+        API.apiPost("punchOut", { payload: encodeData(time) })
+            .then((response) => {
+                if (response.data && response.data.success === true) {
+                    setPunchbtn(!punch);
+                    toast.success(response.data.message)
+                    dispatch(attendanceList());
+                }
+            })
+            .catch((err) => {
+                handleErrorMessage(err);
+            });
+    }
+
 
 
     return (
         <>
             <div className="container textFont">
+                <Toaster />
                 <div className={`row d-flex mt-4 ${styles.ContainerDiv}`}>
                     <div className={`d-flex justify-content-between ${styles.createTicket}`}>
                         <h2 className="col-md-4">Attendance</h2>
@@ -90,7 +121,7 @@ const EmployeeAttendanceComp = () => {
                             <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                                 <div className="card-header text-dark">
                                     <h5 className="d-inline">Time sheet &nbsp;  </h5>
-                                    <span className=" text-muted">{moment().format('dddd d MMM YYYY')}</span>
+                                    <span className=" text-muted">{moment().format('ddd d MMM YYYY')}</span>
                                 </div>
                                 <div className="card-body">
                                     <div className="card border-1">
@@ -99,17 +130,19 @@ const EmployeeAttendanceComp = () => {
                                                 Punch In at
                                             </div>
                                             <div className="card-text text-muted">
-                                                {moment().format('ddd, do MMM YYYY, h:mm:ss a ')}
+                                                {stuList[0]?.inTime ? moment(stuList[0].inTime).format('ddd, do MMM YYYY, h:mm:ss a ') : "-------"}
                                             </div>
                                         </div>
                                     </div>
                                     <div className={`d-flex align-item-center justify-content-center rounded-circle`}>
                                         <div className={`${styles.round} rounded-circle text-center`}>
-                                            3.5 hrs
+                                            <LiveTime />
+                                            {/* {elapsedTime} */}
                                         </div>
                                     </div>
                                     <div className="d-flex align-item-center justify-content-center my-3">
-                                        <button className={`${styles.button}`} role="button" onClick={onPunch}>Punch Out</button>
+                                        <button className={`${punch ? styles.buttongreen : styles.buttonred}`} role="button"
+                                            disabled={punchbtn} onClick={punch ? onPunchIn : onPunchOut}>Punch {punch ? "In" : "Out"}</button>
                                     </div>
                                     <div className="row" >
                                         <div className="col-6 text-center">
@@ -136,34 +169,34 @@ const EmployeeAttendanceComp = () => {
                                     <div className={`${styles.statsList}`}>
                                         <div className={`${styles.statsInfo}`}>
                                             <p> Today<strong> 3.45<small>/8hrs</small> </strong> </p>
-                                            <div class="progress ">
-                                                <div class="progress-bar bg-primary w-25" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
+                                            <div className="progress ">
+                                                <div className="progress-bar bg-primary w-25" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className={`${styles.statsInfo}`}>
                                         <p >This week<strong> 3.45<small>/8hrs</small></strong></p>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-warning w-50" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div className="progress">
+                                            <div className="progress-bar bg-warning w-50" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div className={`${styles.statsInfo}`}>
                                         <p> this month<strong> 3.45<small>/8hrs</small> </strong> </p>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
+                                        <div className="progress">
+                                            <div className="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
                                         </div>
                                     </div>
                                     <div className={`${styles.statsInfo}`}>
                                         <p> Remaining<strong> 3.45<small>/8hrs</small> </strong> </p>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
+                                        <div className="progress">
+                                            <div className="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
                                         </div>
                                     </div>
                                     <div className={`${styles.statsInfo}`}>
                                         <p> Overtime<strong> 3.45<small>/8hrs</small> </strong> </p>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
+                                        <div className="progress">
+                                            <div className="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
                                         </div>
                                     </div>
 
@@ -189,7 +222,7 @@ const EmployeeAttendanceComp = () => {
                                 aria-describedby="basic-addon2"
                                 onChange={handleFilter}
                             />
-                            <InputGroup.Text   id="basic-addon2" className={`${styles.searchIcon}`}>
+                            <InputGroup.Text id="basic-addon2" className={`${styles.searchIcon}`}>
                                 <Image src="/images/searchWhite.png" alt="search" />
                             </InputGroup.Text>
                         </InputGroup>
@@ -212,10 +245,10 @@ const EmployeeAttendanceComp = () => {
                                 {stuList?.map((row, i) => (
                                     <tr key={i}>
                                         <td className="p-1">{i + 1}</td>
-                                        <td className="p-1 ">{moment(row?.date).format("ll")|| ""}</td>
-                                        <td className="p-1">{moment(row?.inTime).format("LTS") || ""}</td>
-                                        <td className="p-1">{moment(row?.outTime).format("LTS") || ""}</td>
-                                        <td className="p-1">10</td>
+                                        <td className="p-1 ">{moment(row?.date).format("ll") || ""}</td>
+                                        <td className="p-1">{row?.inTime ? moment(row?.inTime).format("LTS") : "-----"}</td>
+                                        <td className="p-1">{row?.outTime ? moment(row?.outTime).format("LTS") : "-----"}</td>
+                                        <td className="p-1">{row?.duration ? row.duration + " hrs" : "------"}</td>
                                         <td className="p-1">1</td>
                                         <td className="p-1">0</td>
                                     </tr>
@@ -226,5 +259,6 @@ const EmployeeAttendanceComp = () => {
                 </div >
             </div >
         </>
-    )}
-export default EmployeeAttendanceComp;
+    );
+}
+export default EmployeeAttendanceComp
