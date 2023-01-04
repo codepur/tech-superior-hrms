@@ -36,7 +36,7 @@ const intialData = {
   alternateContact: "",
   aadhar: "",
   pan: "",
-  bloodGroup: "",
+  blood_group: "",
   doj: "",
   permanent_address: "",
   permanent_city: "",
@@ -45,7 +45,7 @@ const intialData = {
 };
 
 export default function BasicInfo(props) {  
-  const { first_name, last_name, dob, gender, bloodGroup } = props.userData;
+  const { first_name, last_name, dob, gender, blood_group } = props.userData;  
   const ALlState = State?.getStatesOfCountry("IN");
   const [data, setData] = useState(intialData);
   const userData = useSelector((Gstate) => Gstate.user.userData);
@@ -55,7 +55,7 @@ export default function BasicInfo(props) {
     //last_name,
     //dob,
     //gender,
-    //bloodGroup, 
+    //blood_group, 
     marital_status,
     phone,
     address_line1,
@@ -195,12 +195,12 @@ export default function BasicInfo(props) {
             />
           </Form.Group>
 
-          <Form.Group className="col-md-4" controlId="formGridBloodGroup">
+          <Form.Group className="col-md-4" controlId="formGridblood_group">
             <Form.Label className="fw-bold">Blood Group</Form.Label>
             <Form.Control
               type="text"
-              value={bloodGroup ? bloodGroup : "-----"}
-              name="bloodGroup"
+              value={blood_group ? blood_group : "-----"}
+              name="blood_group"
               disabled
             />
           </Form.Group>
