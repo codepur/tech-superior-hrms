@@ -85,13 +85,14 @@ export default function EmergenctContact() {
             </Form.Select>
           </Form.Group>
           <Form.Group className="col-md-4" controlId="formGridAddress1">
-            <Form.Label className="fw-bold">PhoneNumber</Form.Label>
+            <Form.Label className="fw-bold">Phone Number</Form.Label>
             <Form.Control
-              type="number"
+              type="tel"
               onChange={(e) => handleChange( e)}
-              value={phone}
+              value={phone?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
               placeholder="Enter your Phone Number"
               name="phone"
+              maxLength={10}
               isInvalid={
                 showErrors &&  !Validation.numericPhone(phone)
               }

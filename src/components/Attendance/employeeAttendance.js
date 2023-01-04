@@ -1,6 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { Image, InputGroup, Modal, Table } from "react-bootstrap";
+import {
+  Image,
+  InputGroup,
+  Modal,
+  Table,
+  Card,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import styles from "../../styles/attendance.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,31 +31,30 @@ const EmployeeAttendanceComp = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stuList.length]);
 
-    const handleActiveTab = (e) => {
-        setSegment(e.target.value);
-    };
+  const handleActiveTab = (e) => {
+    setSegment(e.target.value);
+  };
 
-
-    const handleFilter = (e) => {
-        let searchvalue = e?.target?.value;
-        let arr = dsrList?.filter(
-            (item) =>
-                (searchvalue
-                    ? item.user_id?.first_name
-                        ?.toLowerCase()
-                        .includes(searchvalue.toLowerCase())
-                    : true) ||
-                (searchvalue
-                    ? item.user_id?.last_name
-                        ?.toLowerCase()
-                        .includes(searchvalue.toLowerCase())
-                    : true) ||
-                (searchvalue
-                    ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
-                    : true)
-        );
-        setChooseDsrList(arr);
-    };
+  const handleFilter = (e) => {
+    let searchvalue = e?.target?.value;
+    let arr = dsrList?.filter(
+      (item) =>
+        (searchvalue
+          ? item.user_id?.first_name
+            ?.toLowerCase()
+            .includes(searchvalue.toLowerCase())
+          : true) ||
+        (searchvalue
+          ? item.user_id?.last_name
+            ?.toLowerCase()
+            .includes(searchvalue.toLowerCase())
+          : true) ||
+        (searchvalue
+          ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
+          : true)
+    );
+    setChooseDsrList(arr);
+  };
 
     const onSearchHandler = (event) => {
         setSearchKey(event?.target?.value);
