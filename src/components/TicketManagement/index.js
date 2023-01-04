@@ -25,6 +25,7 @@ const initial = {
   category: "",
   priority: "",
   description: "",
+  assignee:"",
 };
 
 const initialPaginationState = {
@@ -456,17 +457,17 @@ function TicketManagement() {
               </tbody>
             </Table>
           </div>
+          <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
+            <PaginationComponent
+              currentPage={activePage}
+              list={list}
+              skip={skip}
+              limitPerPage={limitPerPage}
+              //   loading={loading}
+              onPageChange={onPageChange}
+            />
+          </div>
         </div>
-      </div>
-      <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
-        <PaginationComponent
-          currentPage={activePage}
-          list={list}
-          skip={skip}
-          limitPerPage={limitPerPage}
-          //   loading={loading}
-          onPageChange={onPageChange}
-        />
       </div>
     </>
   );

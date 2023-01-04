@@ -22,13 +22,13 @@ const TicketModal = (props) => {
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Ticket Code :</b>
                     </td>
-                    <td>{indexData.ticket_code}</td>
+                    <td>{indexData.ticket_code ? indexData.ticket_code : "-"}</td>
                   </tr>
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Ticket Subject :</b>
                     </td>
-                    <td>{indexData.subject}</td>
+                    <td>{indexData.subject ? indexData.subject : "-"}</td>
                   </tr>
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
@@ -40,13 +40,19 @@ const TicketModal = (props) => {
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Ticket Description :</b>
                     </td>
-                    <td className={styles.discriptionData} dangerouslySetInnerHTML={{ __html: indexData?.description }}></td>
+                    <td className={styles.discriptionData} dangerouslySetInnerHTML={{ __html: indexData?.description ? indexData?.description : "-" }}></td>
                   </tr>
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Ticket Priority :</b>
                     </td>
-                    <td>{indexData.priority}</td>
+                    <td>{indexData.priority ? indexData.priority : "-" }</td>
+                  </tr>
+                  <tr className={`${styles.ticketRows}`}>
+                    <td className={`${styles.ticketHeadings}`}>
+                      <b>Assignee :</b>
+                    </td>
+                    <td>{indexData.assignee ? indexData.assignee : "-" }</td>
                   </tr>
                 </tbody>
               </table>
