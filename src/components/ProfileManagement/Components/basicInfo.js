@@ -45,8 +45,7 @@ const intialData = {
 };
 
 export default function BasicInfo(props) {  
-  const { first_name, last_name, dob, gender, blood_group } = props.userData;  
-  console.log("PROPS", props.userData)
+  const { first_name, last_name, dob, gender, blood_group } = props.userData;    
   const ALlState = State?.getStatesOfCountry("IN");
   const [data, setData] = useState(intialData);
   const userData = useSelector((Gstate) => Gstate.user.userData);
