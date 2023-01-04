@@ -38,7 +38,7 @@ const initialPaginationState = {
 
 
 function TicketManagement() {
- 
+
   const [ticketData, setTicketData] = useState(initial);
   const [ticketSectionExpand, setTicketSectionExpand] = useState(false);
   const [pagination, setPagination] = useState(initialPaginationState);
@@ -48,13 +48,14 @@ function TicketManagement() {
   const editorRef = useRef(null);
   const [searchKey, setSearchKey] = useState("");
   const [searchData, setSearchData] = useState([]);
-  const { activePage, skip, limitPerPage, list} = pagination;
+  const { activePage, skip, limitPerPage, paginatedData, list } = pagination;
   // const { skip = [] } = pagination;
-  const [departmentList,userData,  ticketsList] = useSelector((Gstate) => [
+  const [departmentList, userData, ticketsList] = useSelector((Gstate) => [
     Gstate.ticketManagement?.departmentList,
     Gstate.user?.userData,
     Gstate.ticketManagement?.ticketsList,
   ]);
+
 
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
@@ -75,21 +76,21 @@ function TicketManagement() {
     var skipRecords = (page - 1) * limitPerPage;
     const to = limitPerPage * page;
     setPagination((prev) => ({
-        ...prev,
-        activePage: page,
-        skip: JSON.parse(skipRecords),
-        paginatedData: list.slice(skipRecords, to),
-        userData: list.slice(skipRecords, to),
+      ...prev,
+      activePage: page,
+      skip: JSON.parse(skipRecords),
+      paginatedData: list.slice(skipRecords, to),
+      userData: list.slice(skipRecords, to),
     }));
-};
+  };
 
-useEffect(() => {
-  setPagination((prev) => ({ ...prev, list:ticketsList}));
-}, [ ticketsList?.length]);
+  useEffect(() => {
+    setPagination((prev) => ({ ...prev, list: ticketsList }));
+  }, [ticketsList?.length]);
 
-useEffect(() => {
-  onPageChange(activePage);
-}, [list, activePage]);
+  useEffect(() => {
+    onPageChange(activePage);
+  }, [list, activePage]);
 
   const handleFilter = (e) => {
     let searchvalue = e?.target?.value;
@@ -429,7 +430,7 @@ useEffect(() => {
                 </tr>
               </thead>
               <tbody>
-                {ticketsList.map((row, i) => (
+                {paginatedData.map((row, i) => (
                   <tr key={i} className="border" itemScope="row">
                     <td>{skip + i + 1}</td>
                     <td>{row?.ticket_code || ""}</td>
@@ -458,15 +459,15 @@ useEffect(() => {
         </div>
       </div>
       <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
-                <PaginationComponent
-                    currentPage={activePage}
-                    list={list}
-                    skip={skip}
-                    limitPerPage={limitPerPage}
-                    //   loading={loading}
-                    onPageChange={onPageChange}
-                />
-            </div>
+        <PaginationComponent
+          currentPage={activePage}
+          list={list}
+          skip={skip}
+          limitPerPage={limitPerPage}
+          //   loading={loading}
+          onPageChange={onPageChange}
+        />
+      </div>
     </>
   );
 }
