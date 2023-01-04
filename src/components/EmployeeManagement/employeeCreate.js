@@ -162,6 +162,7 @@ function TicketManagement() {
   };
 
   const handleEdit = (row) => {
+    
     setTicketSectionExpand(true);
     setButtonChnage(true);
     setTimeout(() => {
@@ -353,7 +354,7 @@ function TicketManagement() {
                   <b>Contact Number</b>
                 </Label>
                 <Input
-                  value={phone?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+                  value={phone}
                   type="tel"
                   name="phone"
                   id="phone"

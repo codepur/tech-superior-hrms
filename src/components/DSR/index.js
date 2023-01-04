@@ -69,7 +69,7 @@ function DSRManagement() {
       Gstate.dsr?.AdmindsrList,
       Gstate.dsr?.loading,
     ]);
-  const [chooseDsrList, setChooseDsrList] = useState();
+  const [chooseDsrList, setChooseDsrList] = useState([]);
   const [change, setChange] = useState();
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
@@ -111,22 +111,6 @@ function DSRManagement() {
     }));
   };
 
-  const onPageChange = (page) => {
-    var skipRecords = (page - 1) * limitPerPage;
-    const to = limitPerPage * page;
-    setPagination((prev) => ({
-        ...prev,
-        activePage: page,
-        skip: JSON.parse(skipRecords),
-        paginatedData: list.slice(skipRecords, to),
-        userData: list.slice(skipRecords, to),
-    }));
-};
-
-useEffect(() => {
-  setPagination((prev) => ({ ...prev, list:chooseDsrList}));
-}, [ chooseDsrList?.length]);
-
   useEffect(() => {
     if (edit) {
       ticketData.hours = totalTime?.hoursTaken + ":" + totalTime?.minTaken;
@@ -142,6 +126,7 @@ useEffect(() => {
       description: updatedDesc,
     }));
   };
+
 
   useEffect(() => {
     if (ticketSectionExpand) {
@@ -162,11 +147,12 @@ useEffect(() => {
     const ApprovedList = dsrList.filter((item) => item.status == "Approved");
     setChooseDsrList(ApprovedList);
   }, [dsrList]);
+ 
 
   const ticketSubmit = () => {
     // delete ticketData.totalHours;
     // delete ticketData.totalMin;
-    API.apiPost("updateDsr", { payload: encodeData(ticketData) })
+    API.apiPost("createDsr", { payload: encodeData(ticketData) })
       .then((response) => {
         if (response.data && response.data.success === true) {
           setTicketData(initial);
@@ -194,6 +180,28 @@ useEffect(() => {
     }
     setOpenModal(false);
   };
+
+  const onPageChange = (page) => {
+    var skipRecords = (page - 1) * limitPerPage;
+    const to = limitPerPage * page;
+    setPagination((prev) => ({
+        ...prev,
+        activePage: page,
+        skip: JSON.parse(skipRecords),
+        paginatedData: list.slice(skipRecords, to),
+        userData: list.slice(skipRecords, to),
+    }));
+};
+
+useEffect(() => {
+  setPagination((prev) => ({ ...prev, list:chooseDsrList}));
+}, [chooseDsrList?.length]);
+
+useEffect(() => {
+   onPageChange(activePage);
+ }, [list, activePage,chooseDsrList?.length,]);
+
+
 
   const viewTicket = (row) => {
     setOpenModal(true);
@@ -563,6 +571,11 @@ useEffect(() => {
                   <th itemScope="col">
                     <span className="alignTableHeading">
                       <span className="">Date</span>
+                    </span>
+                  </th>
+                  <th itemScope="col">
+                    <span className="alignTableHeading">
+                      <span className=""></span>
                     </span>
                   </th>
                 </tr>
