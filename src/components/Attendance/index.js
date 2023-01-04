@@ -8,8 +8,6 @@ import {
 import AdminAttendanceComp from "./adminAttendance";
 import EmployeeAttendanceComp from "./employeeAttendance";
 
-
-
 const LeaveComponent = () => {
     const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
     const roleId = userData?.roles;

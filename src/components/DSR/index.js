@@ -449,7 +449,7 @@ function DSRManagement() {
           <div className={`row justify-content-between `}>
             <SegmentedControl
               className="col-md-4 mb-3"
-              color="teal"
+              color="green"
               onClick={handleActiveTab}
               data={[
                 {

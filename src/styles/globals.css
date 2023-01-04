@@ -1,6 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,400&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400&family=Questrial&family=Signika+Negative:wght@600&family=Ubuntu:ital@1&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 a {
   color: inherit;
@@ -59,13 +59,7 @@ a {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  /* overflow: hidden; */
 }
-
-body {
-  overflow-x: hidden;
-}
-
 
 body::-webkit-scrollbar {
   display: none;
@@ -80,6 +74,7 @@ body::-webkit-scrollbar {
   }
 
   body {
+    overflow-x: hidden !important;
     color: white;
     background: black;
   }
@@ -142,7 +137,7 @@ body::-webkit-scrollbar {
 }
 
 .order-card {
-  color: #fff;
+  color: black;
 }
 
 .bg-c-blue {
@@ -150,7 +145,8 @@ body::-webkit-scrollbar {
 }
 
 .bg-c-glassgreen {
-  background: linear-gradient(117.5deg, rgb(89, 233, 162) 20.5%, rgb(29, 209, 185) 100.2%);
+  background: linear-gradient(110.1deg, rgb(34 126 34 / 25%) 2.9%, rgb(168 251 60 / 75%) 90.3%);
+
 }
 
 .bg-c-green {
@@ -167,8 +163,8 @@ body::-webkit-scrollbar {
 
 .bg-btn-green {
   /* background-color: #3c5f4b!important; */
-  background-color: #33a351 !important;
-  color: white !important;
+  background: linear-gradient(110.1deg, rgb(34, 126, 34) 2.9%, rgb(168, 251, 60) 90.3%);
+  color: black !important;
 }
 
 
@@ -337,7 +333,7 @@ body::-webkit-scrollbar {
 }
 
 .todoContainer {
-  max-height: 240px;
+  max-height: 168px;
   overflow-y: scroll;
 }
 
@@ -345,18 +341,13 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-.sortImg{
-  height: 15px;
-}
-
-.textFont{
+.textFont {
   font-family: 'Poppins', sans-serif;
-  font-size: 12px!important;
 }
 
-/* 
-
-*/
+.sortImg{
+  height: 20px;
+}
 
 .glass{
   background: rgba( 255, 255, 255, 0.25 );
@@ -372,7 +363,7 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30%;
+  /* width: 30%; */
   margin: 0 auto;
   border: 1px solid #ccc;
   border-radius: 15px;
@@ -394,7 +385,8 @@ body::-webkit-scrollbar {
   cursor: pointer;
   padding: 5px 10px;
   border: none;
-  background-color: #33a351 !important;
+  /* background-color: #33a351 !important; */
+  background: linear-gradient(110.1deg, rgb(34, 126, 34) 2.9%, rgb(168, 251, 60) 90.3%);
   border-radius: 5px;
 }
 

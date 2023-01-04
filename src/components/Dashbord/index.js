@@ -217,20 +217,21 @@ export default function DashboardComponent() {
           <div className="col-md-4 ps-4">
             <div className="row">
               <div className="card bg-c-glassgreen order-card shadow border-0 calenderCard">
-                <div className="p-2">
-                  <h3 className="text-center">Calendar</h3>
+                <div className="p-2 pt-3 mt-1">
+                  {/* <h3 className="text-center">Calendar</h3> */}
                   <div className="calendar-container ">
-                    <Calendar
+                    {/* <Calendar
                       // onChange={setDate}
                       selectRange={true}
                       defaultValue={new Date()}
-                    />
+                    /> */}
+                    <CalendarAi/>
                   </div>
                   <div className="row p-3">
-                    <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
-                      <Card.Body className="text-white">
+                    <Card style={{ width: '25rem' }} bg="dark" className={`${styles.calenderCard} mb-0`}>
+                      <Card.Body className="text-black">
                         <Card.Title>Birthday this month 🎂</Card.Title>
-                        <div className="row">
+                        <div className="row ">
                           <div className="col-md-2">
                             <Image src="/images/profileIcon.png" width="30" />
                           </div>
@@ -242,8 +243,8 @@ export default function DashboardComponent() {
                     </Card>
                   </div>
                   <div className="row p-3">
-                    <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
-                      <Card.Body className="text-white">
+                    <Card style={{ width: '25rem' }} bg="dark" className={`${styles.calenderCard} mb-0`} >
+                      <Card.Body className="text-black">
                         <Card.Title>Event this month</Card.Title>
                         {event?.map((item, index) => (                          
                             <div key={index}>
@@ -260,7 +261,7 @@ export default function DashboardComponent() {
           </div>
         </div>
         <div>
-           <CalendarAi/>
+           {/* <CalendarAi/> */}
            <div className="row">
             <br/>
            </div>

@@ -17,8 +17,8 @@ export const appMenuItems = [
     id: 3,
     name: "Directory",
     link: "/directory",
-    Icon: "/images/employees.png",
-    IconActive: "/images/employees.png",
+    Icon:"/images/telephone-directory.png",
+    IconActive: "/images/telephone-directory.png",
   },
   {
     id: 4,
