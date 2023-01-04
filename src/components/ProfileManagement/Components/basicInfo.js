@@ -32,8 +32,8 @@ const intialData = {
   nominee_aadhar: "",
   nominee_contact: "",
 
-  companyContact: "",
-  alternateContact: "",
+  company_contact: "",
+  alternate_contact: "",
   aadhar: "",
   pan: "",
   blood_group: "",
@@ -41,11 +41,12 @@ const intialData = {
   permanent_address: "",
   permanent_city: "",
   permanent_state: "",
-  personalEmail: "",
+  personal_email: "",
 };
 
 export default function BasicInfo(props) {  
   const { first_name, last_name, dob, gender, blood_group } = props.userData;  
+  console.log("PROPS", props.userData)
   const ALlState = State?.getStatesOfCountry("IN");
   const [data, setData] = useState(intialData);
   const userData = useSelector((Gstate) => Gstate.user.userData);
@@ -75,15 +76,15 @@ export default function BasicInfo(props) {
     nominee_aadhar,
     nominee_contact,
 
-    companyContact,
-    alternateContact,
+    company_contact,
+    alternate_contact,
     aadhar,
     pan,
     doj,
     permanent_address,
     permanent_city,
     permanent_state,
-    personalEmail,
+    personal_email,
   } = data;  
 
   const handleChange = (e) => {
@@ -112,8 +113,8 @@ export default function BasicInfo(props) {
       !Validation.maxOf(nominee_relation, 20) ||
       !Validation.maxOf(nominee_name, 20) ||
 
-      !Validation.numericPhone(companyContact) ||
-      !Validation.numericPhone(alternateContact) ||
+      !Validation.numericPhone(company_contact) ||
+      !Validation.numericPhone(alternate_contact) ||
       !Validation.maxOf(aadhar, 12) ||
       !Validation.maxOf(pan, 10) ||
       !Validation.date(doj) ||
@@ -211,8 +212,8 @@ export default function BasicInfo(props) {
               type="email"
               placeholder="Enter your Personal Email"
               onChange={handleChange}
-              value={personalEmail}
-              name="personalEmail"
+              value={personal_email}
+              name="personal_email"
               maxLength="40"
             />
           </Form.Group>
@@ -240,8 +241,8 @@ export default function BasicInfo(props) {
               type="tel"
               placeholder="Alternate Contact Number"
               onChange={handleChange}
-              value={alternateContact?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
-              name="alternateContact"
+              value={alternate_contact?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+              name="alternate_contact"
               maxLength="10"
             />
           </Form.Group>
