@@ -85,7 +85,7 @@ export default function EmergenctContact() {
             </Form.Select>
           </Form.Group>
           <Form.Group className="col-md-4" controlId="formGridAddress1">
-            <Form.Label className="fw-bold">PhoneNumber</Form.Label>
+            <Form.Label className="fw-bold">Phone Number</Form.Label>
             <Form.Control
               type="tel"
               onChange={(e) => handleChange( e)}
