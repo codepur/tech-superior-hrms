@@ -32,21 +32,20 @@ const intialData = {
   nominee_aadhar: "",
   nominee_contact: "",
 
-  companyContact: "",
-  alternateContact: "",
+  company_contact: "",
+  alternate_contact: "",
   aadhar: "",
   pan: "",
-  bloodGroup: "",
+  blood_group: "",
   doj: "",
   permanent_address: "",
   permanent_city: "",
   permanent_state: "",
-  personalEmail: "",
+  personal_email: "",
 };
 
-export default function BasicInfo(props) {
-  console.log("props basicInfo", props);
-  const { first_name, last_name, dob, gender, bloodGroup } = props.userData;
+export default function BasicInfo(props) {  
+  const { first_name, last_name, dob, gender, blood_group } = props.userData;    
   const ALlState = State?.getStatesOfCountry("IN");
   const [data, setData] = useState(intialData);
   const userData = useSelector((Gstate) => Gstate.user.userData);
@@ -56,7 +55,7 @@ export default function BasicInfo(props) {
     //last_name,
     //dob,
     //gender,
-    //bloodGroup, 
+    //blood_group, 
     marital_status,
     phone,
     address_line1,
@@ -76,18 +75,16 @@ export default function BasicInfo(props) {
     nominee_aadhar,
     nominee_contact,
 
-    companyContact,
-    alternateContact,
+    company_contact,
+    alternate_contact,
     aadhar,
     pan,
     doj,
     permanent_address,
     permanent_city,
     permanent_state,
-    personalEmail,
-  } = data;
-
-  // console.log("data", data)
+    personal_email,
+  } = data;  
 
   const handleChange = (e) => {
     setShowErrors(false);
@@ -115,8 +112,8 @@ export default function BasicInfo(props) {
       !Validation.maxOf(nominee_relation, 20) ||
       !Validation.maxOf(nominee_name, 20) ||
 
-      !Validation.numericPhone(companyContact) ||
-      !Validation.numericPhone(alternateContact) ||
+      !Validation.numericPhone(company_contact) ||
+      !Validation.numericPhone(alternate_contact) ||
       !Validation.maxOf(aadhar, 12) ||
       !Validation.maxOf(pan, 10) ||
       !Validation.date(doj) ||
@@ -198,12 +195,12 @@ export default function BasicInfo(props) {
             />
           </Form.Group>
 
-          <Form.Group className="col-md-4" controlId="formGridBloodGroup">
+          <Form.Group className="col-md-4" controlId="formGridblood_group">
             <Form.Label className="fw-bold">Blood Group</Form.Label>
             <Form.Control
               type="text"
-              value={bloodGroup ? bloodGroup : "-----"}
-              name="bloodGroup"
+              value={blood_group ? blood_group : "-----"}
+              name="blood_group"
               disabled
             />
           </Form.Group>
@@ -214,8 +211,8 @@ export default function BasicInfo(props) {
               type="email"
               placeholder="Enter your Personal Email"
               onChange={handleChange}
-              value={personalEmail}
-              name="personalEmail"
+              value={personal_email}
+              name="personal_email"
               maxLength="40"
             />
           </Form.Group>
@@ -243,8 +240,8 @@ export default function BasicInfo(props) {
               type="tel"
               placeholder="Alternate Contact Number"
               onChange={handleChange}
-              value={alternateContact?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
-              name="alternateContact"
+              value={alternate_contact?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+              name="alternate_contact"
               maxLength="10"
             />
           </Form.Group>
