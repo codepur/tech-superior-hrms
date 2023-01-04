@@ -9,6 +9,7 @@ import API from "../../helpers/api";
 import styles from "../../styles/ticket.module.scss";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 import RequestModel from "./requestModel";
+import PaginationComponent from "../common/PaginationComponent";
 import toast, { Toaster } from "react-hot-toast";
 
 import {
@@ -33,7 +34,12 @@ const initial = {
 };
 
 const initialPaginationState = {
+  activePage: 1,
   skip: 0,
+  limitPerPage: 5,
+  paginatedData: [],
+  userData: [],
+  list: [],
 };
 
 function DSRManagement() {
@@ -41,6 +47,7 @@ function DSRManagement() {
   const editorRef = useRef(null);
   const [ticketSectionExpand, setTicketSectionExpand] = useState(false);
   const [pagination, setPagination] = useState(initialPaginationState);
+  const { activePage, skip, limitPerPage,paginatedData, list} = pagination;
   const [openModal, setOpenModal] = useState(false);
   const [index, setIndex] = useState();
   const [edit, setEdit] = useState(false);
@@ -52,7 +59,6 @@ function DSRManagement() {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
   const roleId = userData?.roles;
   const [activeTab, setActiveTab] = useState("Approved");
-  const { skip = [] } = pagination;
   const [searchKey, setSearchKey] = useState("");
   const [projectList, dsrList, departmentList, AdmindsrList, loading] =
     useSelector((Gstate) => [
@@ -103,6 +109,22 @@ function DSRManagement() {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const onPageChange = (page) => {
+    var skipRecords = (page - 1) * limitPerPage;
+    const to = limitPerPage * page;
+    setPagination((prev) => ({
+        ...prev,
+        activePage: page,
+        skip: JSON.parse(skipRecords),
+        paginatedData: list.slice(skipRecords, to),
+        userData: list.slice(skipRecords, to),
+    }));
+};
+
+useEffect(() => {
+  setPagination((prev) => ({ ...prev, list:chooseDsrList}));
+}, [ chooseDsrList?.length]);
 
   useEffect(() => {
     if (edit) {
@@ -545,7 +567,7 @@ function DSRManagement() {
                 </tr>
               </thead>
               <tbody>
-                {chooseDsrList?.map((row, i) => (
+                {paginatedData?.map((row, i) => (
                   <tr key={i} className="border" itemScope="row">
                     <td className="p-1">{skip + i + 1}</td>
                     <td className="p-1">{row?.project_id || ""}</td>
@@ -606,6 +628,16 @@ function DSRManagement() {
                 ))}
               </tbody>
             </Table>
+            <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
+                <PaginationComponent
+                    currentPage={activePage}
+                    list={list}
+                    skip={skip}
+                    limitPerPage={limitPerPage}
+                    loading={loading}
+                    onPageChange={onPageChange}
+                />
+            </div>
           </div>
         </div>
       </div>
