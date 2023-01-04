@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { attendanceList } from "../../stores/actions/attendance";
 import moment from "moment/moment";
 import { toast } from "react-hot-toast";
+
 const EmployeeAttendanceComp = () => {
   const [stuList] = useSelector((Gstate) => [
     Gstate.attendanceList?.attendanceList,
@@ -58,13 +59,11 @@ const EmployeeAttendanceComp = () => {
 
 
   const onPunch = () => {
-    const inTime = new Date().toISOString();
-    console.log(inTime);
+    const inTime = new Date().toISOString();    
     const time = { inTime: inTime }
     API.apiPost("createAttendance", { payload: encodeData(time) })
       .then((response) => {
-        if (response.data && response.data.success === true) {
-          console.log(response);
+        if (response.data && response.data.success === true) {          
           toast.success(response.data.message)
           dispatch(attendanceList());
         }

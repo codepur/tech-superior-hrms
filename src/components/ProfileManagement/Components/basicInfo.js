@@ -44,8 +44,7 @@ const intialData = {
   personalEmail: "",
 };
 
-export default function BasicInfo(props) {
-  console.log("props basicInfo", props);
+export default function BasicInfo(props) {  
   const { first_name, last_name, dob, gender, bloodGroup } = props.userData;
   const ALlState = State?.getStatesOfCountry("IN");
   const [data, setData] = useState(intialData);
@@ -85,9 +84,7 @@ export default function BasicInfo(props) {
     permanent_city,
     permanent_state,
     personalEmail,
-  } = data;
-
-  // console.log("data", data)
+  } = data;  
 
   const handleChange = (e) => {
     setShowErrors(false);
