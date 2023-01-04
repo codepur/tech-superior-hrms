@@ -167,9 +167,7 @@ function TicketManagement() {
   
   const updateEmployee = () => {
     employeeData.level = "Level2";
-    console.log('employeeData', employeeData)
     API.apiPut("candidateInvite", {payload:encodeData(employeeData)})
-    
       .then((response) => {
         if (response.data && response.data.success === true) {
           setEmployeeData(initial);
