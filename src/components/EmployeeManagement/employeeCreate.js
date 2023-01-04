@@ -153,6 +153,7 @@ function TicketManagement() {
   };
 
   const handleEdit = (row) => {
+    
     setTicketSectionExpand(true);
     setButtonChnage(true);
     setTimeout(() => {
@@ -166,7 +167,9 @@ function TicketManagement() {
   
   const updateEmployee = () => {
     employeeData.level = "Level2";
+    console.log('employeeData', employeeData)
     API.apiPut("candidateInvite", {payload:encodeData(employeeData)})
+    
       .then((response) => {
         if (response.data && response.data.success === true) {
           setEmployeeData(initial);
@@ -319,7 +322,7 @@ function TicketManagement() {
                   <b>Contact Number</b>
                 </Label>
                 <Input
-                  value={phone?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+                  value={phone}
                   type="tel"
                   name="phone"
                   id="phone"
