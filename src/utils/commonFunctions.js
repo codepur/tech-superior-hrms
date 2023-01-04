@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import toast from 'react-hot-toast';
-import 'reactjs-toastr/lib/toast.css';
 
 export const handleErrorMessage = (err) => {
     if (
