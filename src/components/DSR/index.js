@@ -132,7 +132,7 @@ function DSRManagement() {
     }
     dispatch(setProjectList());
     dispatch(setdepartmentList());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectList?.length, departmentList.length, dsrList?.length]);
 
   useEffect(() => {
@@ -249,13 +249,13 @@ function DSRManagement() {
       (item) =>
         (searchvalue
           ? item.user_id?.first_name
-            ?.toLowerCase()
-            .includes(searchvalue.toLowerCase())
+              ?.toLowerCase()
+              .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.user_id?.last_name
-            ?.toLowerCase()
-            .includes(searchvalue.toLowerCase())
+              ?.toLowerCase()
+              .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
@@ -300,8 +300,9 @@ function DSRManagement() {
             </div>
             <hr className={`${styles.hr}`}></hr>
             <Form
-              className={` ${ticketSectionExpand ? "form row d-flex" : "d-none"
-                }`}
+              className={` ${
+                ticketSectionExpand ? "form row d-flex" : "d-none"
+              }`}
             >
               <div className="col-md-6">
                 <FormGroup>
@@ -316,7 +317,9 @@ function DSRManagement() {
                   >
                     <option hidden>Project List</option>
                     {projectList?.map((item, i) => (
-                      <option value={item._id} key={i}>{item.project_name}</option>
+                      <option value={item._id} key={i}>
+                        {item.project_name}
+                      </option>
                     ))}
                   </Form.Select>
                 </FormGroup>
@@ -432,7 +435,9 @@ function DSRManagement() {
                 >
                   <option hidden>Department List</option>
                   {departmentList?.map((item, i) => (
-                    <option value={item._id} key={i}>{item.name}</option>
+                    <option value={item._id} key={i}>
+                      {item.name}
+                    </option>
                   ))}
                 </Form.Select>
               </FormGroup>
@@ -503,23 +508,45 @@ function DSRManagement() {
           </div>
           <hr className={`${styles.hr}`}></hr>
           <div>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr className={`${styles.tableHeadRow}`}>
-                  <th className="p-3">S. No.</th>
-                  <th className="p-3">Project ID</th>
+            <Table className={`${styles.table} table table-hover `}>
+              <thead className={`${styles.tableHead} `}>
+                <tr className={`${styles.tableHead}`}>
+                  <th itemScope="col">Sr.No.</th>
+                  <th itemScope="col">
+                    <span className="alignTableHeading">
+                      <span className="">Project ID</span>
+                    </span>
+                  </th>
                   {roleId === 3 ? (
-                    <th className="p-3">Description</th>
+                    <th itemScope="col">
+                      <span className="alignTableHeading">
+                        <span className="">Description</span>
+                      </span>
+                    </th>
                   ) : (
-                    <th>Employee Name</th>
+                    <th itemScope="col">
+                      <span className="alignTableHeading">
+                        <span className="">Employee Name</span>
+                        <span className="ms-1">
+                          <Image
+                            src={"/images/sort.png"}
+                            className="cursor-pointer sortImg"
+                            alt=""
+                          />
+                        </span>
+                      </span>
+                    </th>
                   )}
-                  <th className="p-3">Date</th>
-                  <th className="p-3"></th>
+                  <th itemScope="col">
+                    <span className="alignTableHeading">
+                      <span className="">Date</span>
+                    </span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {chooseDsrList?.map((row, i) => (
-                  <tr key={i}>
+                  <tr key={i} className="border" itemScope="row">
                     <td className="p-1">{skip + i + 1}</td>
                     <td className="p-1">{row?.project_id || ""}</td>
                     {roleId === 3 ? (
