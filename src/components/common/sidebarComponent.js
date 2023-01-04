@@ -39,7 +39,7 @@ const SidebarComponent = (props) => {
     }
     if (roleId && roleId === EMPLOYEE_ROLE) {
       const menu = appMenuItems?.filter(
-        (item) => [1, 2, 3, 4, 7, 9].includes(item.id)
+        (item) => [1, 2, 3, 4, 7, 8, 9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
@@ -141,6 +141,10 @@ const SidebarComponent = (props) => {
                 <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Logout</span>
               </div>
             </div>
+          </div>
+          <div className={`${styles.version} text-center text-muted`}>
+              <span>v 1.2.0 &nbsp;</span> 
+              <span className={`${toggle ? 'd-inline-block' : 'd-none'}`}>Terms & Conditions</span>
           </div>
         </div>
       </div>

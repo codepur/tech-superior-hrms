@@ -345,15 +345,12 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-.textFont {
-  font-family: 'Poppins', sans-serif;
-}
-
 .sortImg{
   height: 15px;
 }
 
 .textFont{
+  font-family: 'Poppins', sans-serif;
   font-size: 12px!important;
 }
 
