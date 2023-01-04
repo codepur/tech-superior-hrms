@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -448,12 +449,12 @@ function TicketManagement() {
                       <td className="px-3">{row.email || ""}</td>
                       <td className="px-3">
                         <center onClick={() => handleEdit(row)}>
-                          <Image src="/images/edit.png" width={30}></Image>
+                          <Image alt="" src="/images/edit.png" width={30}></Image>
                         </center>
                       </td>
                       <td className="px-3">
                         <center onClick={() => handleDelete(row)}>
-                          <Image src="/images/delete.png" width={30}></Image>
+                          <Image alt="" src="/images/delete.png" width={30}></Image>
                         </center>
                       </td>
                     </tr>
