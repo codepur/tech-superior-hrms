@@ -200,8 +200,9 @@ function MainLoginPage(props) {
                 </div>
               )}
               {resetPassword && (
-                <div className={`col-md-6 row gx-0 ${styles.backgroundSecondHalf}`}>
-                  <div className={`col-md-8 ${styles.formStyle}`}>
+                // <div className={`col-md-7 row gx-0 ${styles.backgroundSecondHalf}`}>
+                  // <div className={`col-md-8 ${styles.formStyle}`}>
+                  <div className={`col-md-7`}>
                     <Form.Group className={`${styles.AuthformReset}`}>
                       <div className={`${styles.AuthFormContent}`}>
                         <h3
@@ -235,7 +236,7 @@ function MainLoginPage(props) {
                       </div>
                     </Form.Group>
                   </div>
-                </div>
+                // </div>
               )}
             </div>
           </div>

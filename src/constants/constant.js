@@ -4,7 +4,7 @@ export const appMenuItems = [
     name: "Dashboard",
     link: "/employee-dashboard",
     Icon: "/images/dashboard.png",
-    IconActive: "/images/dashboard.png",
+    IconActive: "/images/dashboard (1).png",
   },
   {
     id: 2,
