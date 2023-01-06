@@ -1,3 +1,4 @@
+
 const apiKeys = {
   login: "users/login",
   getlogin: "users/profile",
@@ -33,6 +34,8 @@ const apiKeys = {
   //Attendance
   attendanceList :"attendance/list",
   createAttendance : "attendance/create",
+  punchIn : "attendance/punchIn",
+  punchOut : "attendance/punchOut" 
 
 };
 

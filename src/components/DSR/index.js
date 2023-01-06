@@ -10,6 +10,7 @@ import styles from "../../styles/ticket.module.scss";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 import RequestModel from "./requestModel";
 import toast, { Toaster } from "react-hot-toast";
+import { Tabs,Tab } from "@mantine/core";
 
 import {
   setAdminDsrList,
@@ -502,6 +503,7 @@ function DSRManagement() {
             </div>
           </div>
           <hr className={`${styles.hr}`}></hr>
+
           <div>
             <Table striped bordered hover size="sm">
               <thead>
@@ -580,6 +582,7 @@ function DSRManagement() {
               </tbody>
             </Table>
           </div>
+         
         </div>
       </div>
     </>

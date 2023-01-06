@@ -25,6 +25,7 @@ const initial = {
   category: "",
   priority: "",
   description: "",
+  assign_to:"",
 };
 
 const initialPaginationState = {
@@ -50,11 +51,16 @@ function TicketManagement() {
   const [searchData, setSearchData] = useState([]);
   const { activePage, skip, limitPerPage, paginatedData, list } = pagination;
   // const { skip = [] } = pagination;
-  const [departmentList, userData, ticketsList] = useSelector((Gstate) => [
+  const [departmentList, userData, ticketsList,userList] = useSelector((Gstate) => [
     Gstate.ticketManagement?.departmentList,
     Gstate.user?.userData,
     Gstate.ticketManagement?.ticketsList,
+    Gstate.user?.userList,
   ]);
+  console.log('ticketsList', ticketsList)
+  console.log('userList', userList)
+   
+  
 
 
   const dispatch = useDispatch();
@@ -62,7 +68,11 @@ function TicketManagement() {
     setTicketSectionExpand(!ticketSectionExpand);
   };
 
-  const { subject, department, category, priority, description } = ticketData;
+  const { subject, department,assign_to, priority, description } = ticketData;
+
+  console.log('department', department);
+  
+
 
   const onChangeHandler = (e) => {
     setTicketData((prev) => ({
@@ -162,6 +172,7 @@ function TicketManagement() {
     setOpenModal(true);
     setIndex(row);
   };
+  const filterUserList = userList.filter((item) => item.department===department);
 
   return (
     <>
@@ -232,22 +243,27 @@ function TicketManagement() {
                         {item?.name || ""}
                       </option>
                     ))}
+                  
                 </Form.Select>
               </FormGroup>
               <FormGroup>
-                <Label for="ticketCategory">
-                  <b>Ticket Category</b>
+                <Label for="assign_to">
+                  <b>Assign To</b>
                 </Label>
                 <Form.Select
                   aria-label="Default select example"
-                  value={category}
-                  name="category"
+                  value={assign_to}
+                  name="assign_to"
                   onChange={onChangeHandler}
                 >
-                  <option hidden>Ticket Category</option>
-                  <option value="Stationary">Stationary</option>
-                  <option value="Health">Health</option>
-                  <option value="Leave">Leave</option>
+                <option hidden>Assign To</option>
+                  {filterUserList?.length?  
+                    filterUserList?.map((item) => (
+                      <option key={item?._id} value={item?.first_name+" "+item?.last_name}>
+                        {item?.first_name+" "+item?.last_name || ""}
+                      </option>
+                    )) :  <option>No records found</option>}                     
+
                 </Form.Select>
               </FormGroup>
               <FormGroup>
@@ -372,7 +388,22 @@ function TicketManagement() {
                       className="alignTableHeading"
                       onClick={() => handleSort("to")}
                     >
-                      <span className="">Employee Name</span>
+                      <span className="">Assignee</span>
+                      <span className="ms-1">
+                        <Image
+                          src={"/images/sort.png"}
+                          className="cursor-pointer sortImg"
+                          alt=""
+                        />
+                      </span>
+                    </span>
+                  </th>
+                  <th itemScope="col">
+                    <span
+                      className="alignTableHeading"
+                      onClick={() => handleSort("to")}
+                    >
+                      <span className="">Assign To</span>
                       <span className="ms-1">
                         <Image
                           src={"/images/sort.png"}
@@ -436,6 +467,7 @@ function TicketManagement() {
                     <td>{row?.ticket_code || ""}</td>
                     <td>{row?.priority || ""}</td>
                     <td> {userData.first_name + " " + userData.last_name}</td>
+                    <td></td>
                     <td>{row.subject}</td>
                     <td>
                       {" "}
@@ -456,17 +488,17 @@ function TicketManagement() {
               </tbody>
             </Table>
           </div>
+          <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
+            <PaginationComponent
+              currentPage={activePage}
+              list={list}
+              skip={skip}
+              limitPerPage={limitPerPage}
+              //   loading={loading}
+              onPageChange={onPageChange}
+            />
+          </div>
         </div>
-      </div>
-      <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
-        <PaginationComponent
-          currentPage={activePage}
-          list={list}
-          skip={skip}
-          limitPerPage={limitPerPage}
-          //   loading={loading}
-          onPageChange={onPageChange}
-        />
       </div>
     </>
   );

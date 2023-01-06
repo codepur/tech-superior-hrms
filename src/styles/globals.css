@@ -165,6 +165,8 @@ body::-webkit-scrollbar {
   /* background-color: #3c5f4b!important; */
   background: linear-gradient(110.1deg, rgb(34, 126, 34) 2.9%, rgb(168, 251, 60) 90.3%);
   color: black !important;
+  box-shadow: rgb(187 56 44 / 20%) 0 -25px 18px -14px inset, rgb(187 44 44 / 15%) 0 1px 2px, rgb(187 65 44 / 15%) 0 2px 4px, rgb(187 63 44 / 15%) 0 4px 8px, rgb(187 51 44 / 15%) 0 8px 16px, rgb(187 65 44 / 15%) 0 16px 32px;
+  border: none !important;
 }
 
 

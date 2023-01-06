@@ -7,6 +7,7 @@ import styles from "../../../src/styles/header.module.scss";
 import { logout } from "../../helpers/auth";
 import { getProfile, setUserlist } from "../../stores/actions/mainPage";
 import { IconCaretDown, IconDropCircle } from "@tabler/icons";
+import LiveTime from "./liveTime";
 
 function HeaderComponent({ isPublic, hasSideBar }) {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
@@ -36,7 +37,10 @@ function HeaderComponent({ isPublic, hasSideBar }) {
               className={`${styles.headerLogo}`}
             /> */}
           </div>
-          <div className="col-md-3 d-flex justify-content-end">
+          {/* <div className="textFont col-md-2 d-flex justify-content-end mt-3 fw-bold" >
+             <LiveTime/>
+          </div> */}
+          <div className="col-md-2 d-flex justify-content-end">
             <Dropdown className={styles.dropdownMenu}>
               <Dropdown.Toggle
                 id="dropdown-basic"

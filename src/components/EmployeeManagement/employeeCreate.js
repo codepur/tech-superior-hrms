@@ -319,12 +319,13 @@ function TicketManagement() {
                   <b>Contact Number</b>
                 </Label>
                 <Input
-                  value={phone}
-                  type="number"
+                  value={phone?.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+                  type="tel"
                   name="phone"
                   id="phone"
                   placeholder="Contact Number"
                   onChange={onChangeHandler}
+                  maxLength={10}
                 />
               </FormGroup>
             </div>
