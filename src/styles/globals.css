@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,400&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400&family=Questrial&family=Signika+Negative:wght@600&family=Ubuntu:ital@1&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 a {
@@ -166,7 +164,6 @@ body::-webkit-scrollbar {
 }
 
 .bg-btn-green {
-  /* background-color: #3c5f4b!important; */
   background: linear-gradient(110.1deg, rgb(34, 126, 34) 2.9%, rgb(168, 251, 60) 90.3%);
   color: black !important;
   box-shadow: rgb(187 56 44 / 20%) 0 -25px 18px -14px inset, rgb(187 44 44 / 15%) 0 1px 2px, rgb(187 65 44 / 15%) 0 2px 4px, rgb(187 63 44 / 15%) 0 4px 8px, rgb(187 51 44 / 15%) 0 8px 16px, rgb(187 65 44 / 15%) 0 16px 32px;
@@ -295,51 +292,42 @@ body::-webkit-scrollbar {
   margin: 0px;
   padding: 0;
   width: 18% !important;
-  /* height: 20% !important;   */
   position: absolute;
 }
 
 .checkList6 {
-  /* top: 31%; */
   bottom: 0;
   right: 0%;
   margin: 0px;
   padding: 0;
   width: 20% !important;
-  /* height: 20% !important;   */
   position: absolute;
 }
 
 .laptop {
   top: 24%;
   left: 0;
-  /* right: 0%; */
   margin: 0px;
   padding: 0;
   width: 18% !important;
-  /* height: 20% !important;   */
   position: absolute;
 }
 
 .graph {
   top: 0%;
-  /* le: 0; */
   right: 0%;
   margin: 0px;
   padding: 0;
   width: 24% !important;
-  /* height: 24% !important;   */
   position: absolute;
 }
 
 .win {
   top: 32%;
-  /* le: 0; */
   right: 0%;
   margin: 0px;
   padding: 0;
   width: 15% !important;
-  /* height: 24% !important;   */
   position: absolute;
 }
 
@@ -397,7 +385,6 @@ body::-webkit-scrollbar {
   cursor: pointer;
   padding: 5px 10px;
   border: none;
-  /* background-color: #33a351 !important; */
   background: linear-gradient(110.1deg, rgb(34, 126, 34) 2.9%, rgb(168, 251, 60) 90.3%);
   border-radius: 5px;
 }
@@ -433,14 +420,12 @@ body::-webkit-scrollbar {
 .calendar-cells {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
   align-items: center;
   width: 100%;
   padding: 4px;
 }
 
 .calendar-cells div {
-  /* width: 14.28%; */
   width : calc(86%/7);
   margin: 1%;
   height: 40px;

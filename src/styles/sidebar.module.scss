@@ -121,15 +121,6 @@ $tran-03: all 0.2s ease;
 $tran-03: all 0.3s ease;
 $tran-04: all 0.3s ease;
 $tran-05: all 0.3s ease;
-
-// dark mode color
-// $body-color: #18191a;
-// $sidebar-color: #242526;
-// $primary-color: #3a3b3c;
-// $primary-color-light: #3a3b3c;
-// $toggle-color: #fff;
-// $text-color: #ccc;
-
 /* ===== Sidebar ===== */
 .sidebar {
   font-family: "Poppins", sans-serif;
@@ -189,13 +180,6 @@ $tran-05: all 0.3s ease;
   justify-items: center;
   align-items: center;
 }
-// .menuItemsImg {
-//   display: flex;
-//   justify-content: center;
-//   text-align: center;
-//   align-items: center;
-// }
-
 .menuItemActive {
   background:linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60 / 99%) 90.3%);;
   border-radius: 15px;
@@ -241,7 +225,6 @@ $tran-05: all 0.3s ease;
 .toggle{
   position: absolute;
   top: 35px;
-  // left: 96% ;
   right: -17px;
   transform: translateY(-50%) rotate(180deg);
   height: 25px;

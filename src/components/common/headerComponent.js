@@ -26,20 +26,9 @@ function HeaderComponent({ isPublic, hasSideBar }) {
 
   return (
     <>
-    
       <Navbar bg="light" className={`row ${styles.mainHeader}  m-0 p-0`}>
-      {/* <div bg="light" className={`row ${styles.mainHeaderContainer} g-0 gx-0 m-0 p-0`} > */}
         <Navbar.Brand href="#home" className={`d-flex justify-content-between`}>
-          <div className="col-md-2">
-            {/* <Image
-              src="/images/LogoTSC.svg"
-              alt="LogoTsc"
-              className={`${styles.headerLogo}`}
-            /> */}
-          </div>
-          {/* <div className="textFont col-md-2 d-flex justify-content-end mt-3 fw-bold" >
-             <LiveTime/>
-          </div> */}
+          <div className="col-md-2"></div>
           <div className="col-md-2 d-flex justify-content-end">
             <Dropdown className={styles.dropdownMenu}>
               <Dropdown.Toggle
@@ -47,23 +36,25 @@ function HeaderComponent({ isPublic, hasSideBar }) {
                 data-toggle="tooltip"
                 title="Profile"
                 className={`border-0 p-0 ${styles.toggleButton}`}
-              >  
-                <div className={styles.profileContainer}>
-
-                </div>
-                <Image src="/images/photo_6325701050312536371_x.jpg" alt="Logo" className={styles.profileImg}/>
+              >
+                <div className={styles.profileContainer}></div>
+                <Image
+                  src="/images/photo_6325701050312536371_x.jpg"
+                  alt="Logo"
+                  className={styles.profileImg}
+                />
                 <span className="text-dark p-2 fw-bold">
-                  {userData && `${userData?.first_name || ""} ${userData?.last_name || ""}`}
+                  {userData &&
+                    `${userData?.first_name || ""} ${
+                      userData?.last_name || ""
+                    }`}
                 </span>
                 <IconCaretDown className="me-1" />
               </Dropdown.Toggle>
               <div className="row">
                 <div className="col-md-3">
                   <Dropdown.Menu align="end">
-                    <Dropdown.Item
-                      className={styles.menuItems}
-                      // onClick={logoutUser}
-                    >
+                    <Dropdown.Item className={styles.menuItems}>
                       <Image
                         src="/images/changePass.png"
                         alt="Logo"
@@ -71,10 +62,7 @@ function HeaderComponent({ isPublic, hasSideBar }) {
                       />
                       <span>Change Password</span>
                     </Dropdown.Item>
-                    <Dropdown.Item
-                      className={styles.menuItems}
-                      // onClick={changePass}
-                    >
+                    <Dropdown.Item className={styles.menuItems}>
                       <Image
                         src="/images/settings.png"
                         alt="Logo"
@@ -101,7 +89,6 @@ function HeaderComponent({ isPublic, hasSideBar }) {
         </Navbar.Brand>
         {/* </div> */}
       </Navbar>
-      
     </>
   );
 }
