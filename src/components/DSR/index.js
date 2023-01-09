@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
@@ -9,6 +10,7 @@ import API from "../../helpers/api";
 import styles from "../../styles/ticket.module.scss";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 import RequestModel from "./requestModel";
+import PaginationComponent from "../common/PaginationComponent";
 import toast, { Toaster } from "react-hot-toast";
 import { Tabs,Tab } from "@mantine/core";
 
@@ -34,7 +36,12 @@ const initial = {
 };
 
 const initialPaginationState = {
+  activePage: 1,
   skip: 0,
+  limitPerPage: 5,
+  paginatedData: [],
+  userData: [],
+  list: [],
 };
 
 function DSRManagement() {
@@ -42,6 +49,7 @@ function DSRManagement() {
   const editorRef = useRef(null);
   const [ticketSectionExpand, setTicketSectionExpand] = useState(false);
   const [pagination, setPagination] = useState(initialPaginationState);
+  const { activePage, skip, limitPerPage,paginatedData, list} = pagination;
   const [openModal, setOpenModal] = useState(false);
   const [index, setIndex] = useState();
   const [edit, setEdit] = useState(false);
@@ -53,7 +61,6 @@ function DSRManagement() {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
   const roleId = userData?.roles;
   const [activeTab, setActiveTab] = useState("Approved");
-  const { skip = [] } = pagination;
   const [searchKey, setSearchKey] = useState("");
   const [projectList, dsrList, departmentList, AdmindsrList, loading] =
     useSelector((Gstate) => [
@@ -63,7 +70,7 @@ function DSRManagement() {
       Gstate.dsr?.AdmindsrList,
       Gstate.dsr?.loading,
     ]);
-  const [chooseDsrList, setChooseDsrList] = useState();
+  const [chooseDsrList, setChooseDsrList] = useState([]);
   const [change, setChange] = useState();
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
@@ -121,6 +128,7 @@ function DSRManagement() {
     }));
   };
 
+
   useEffect(() => {
     if (ticketSectionExpand) {
       setTicketData(initial);
@@ -133,18 +141,19 @@ function DSRManagement() {
     }
     dispatch(setProjectList());
     dispatch(setdepartmentList());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectList?.length, departmentList.length, dsrList?.length]);
 
   useEffect(() => {
     const ApprovedList = dsrList.filter((item) => item.status == "Approved");
     setChooseDsrList(ApprovedList);
   }, [dsrList]);
+ 
 
   const ticketSubmit = () => {
     // delete ticketData.totalHours;
     // delete ticketData.totalMin;
-    API.apiPost("updateDsr", { payload: encodeData(ticketData) })
+    API.apiPost("createDsr", { payload: encodeData(ticketData) })
       .then((response) => {
         if (response.data && response.data.success === true) {
           setTicketData(initial);
@@ -172,6 +181,28 @@ function DSRManagement() {
     }
     setOpenModal(false);
   };
+
+  const onPageChange = (page) => {
+    var skipRecords = (page - 1) * limitPerPage;
+    const to = limitPerPage * page;
+    setPagination((prev) => ({
+        ...prev,
+        activePage: page,
+        skip: JSON.parse(skipRecords),
+        paginatedData: list.slice(skipRecords, to),
+        userData: list.slice(skipRecords, to),
+    }));
+};
+
+useEffect(() => {
+  setPagination((prev) => ({ ...prev, list:chooseDsrList}));
+}, [chooseDsrList?.length]);
+
+useEffect(() => {
+   onPageChange(activePage);
+ }, [list, activePage,chooseDsrList?.length,]);
+
+
 
   const viewTicket = (row) => {
     setOpenModal(true);
@@ -250,13 +281,13 @@ function DSRManagement() {
       (item) =>
         (searchvalue
           ? item.user_id?.first_name
-            ?.toLowerCase()
-            .includes(searchvalue.toLowerCase())
+              ?.toLowerCase()
+              .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.user_id?.last_name
-            ?.toLowerCase()
-            .includes(searchvalue.toLowerCase())
+              ?.toLowerCase()
+              .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
@@ -301,8 +332,9 @@ function DSRManagement() {
             </div>
             <hr className={`${styles.hr}`}></hr>
             <Form
-              className={` ${ticketSectionExpand ? "form row d-flex" : "d-none"
-                }`}
+              className={` ${
+                ticketSectionExpand ? "form row d-flex" : "d-none"
+              }`}
             >
               <div className="col-md-6">
                 <FormGroup>
@@ -317,7 +349,9 @@ function DSRManagement() {
                   >
                     <option hidden>Project List</option>
                     {projectList?.map((item, i) => (
-                      <option value={item._id} key={i}>{item.project_name}</option>
+                      <option value={item._id} key={i}>
+                        {item.project_name}
+                      </option>
                     ))}
                   </Form.Select>
                 </FormGroup>
@@ -433,7 +467,9 @@ function DSRManagement() {
                 >
                   <option hidden>Department List</option>
                   {departmentList?.map((item, i) => (
-                    <option value={item._id} key={i}>{item.name}</option>
+                    <option value={item._id} key={i}>
+                      {item.name}
+                    </option>
                   ))}
                 </Form.Select>
               </FormGroup>
@@ -505,23 +541,50 @@ function DSRManagement() {
           <hr className={`${styles.hr}`}></hr>
 
           <div>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr className={`${styles.tableHeadRow}`}>
-                  <th className="p-3">S. No.</th>
-                  <th className="p-3">Project ID</th>
+            <Table className={`${styles.table} table table-hover `}>
+              <thead className={`${styles.tableHead} `}>
+                <tr className={`${styles.tableHead}`}>
+                  <th itemScope="col">Sr.No.</th>
+                  <th itemScope="col">
+                    <span className="alignTableHeading">
+                      <span className="">Project ID</span>
+                    </span>
+                  </th>
                   {roleId === 3 ? (
-                    <th className="p-3">Description</th>
+                    <th itemScope="col">
+                      <span className="alignTableHeading">
+                        <span className="">Description</span>
+                      </span>
+                    </th>
                   ) : (
-                    <th>Employee Name</th>
+                    <th itemScope="col">
+                      <span className="alignTableHeading">
+                        <span className="">Employee Name</span>
+                        <span className="ms-1">
+                          <Image
+                            src={"/images/sort.png"}
+                            className="cursor-pointer sortImg"
+                            alt=""
+                          />
+                        </span>
+                      </span>
+                    </th>
                   )}
-                  <th className="p-3">Date</th>
-                  <th className="p-3"></th>
+                  <th itemScope="col">
+                    <span className="alignTableHeading">
+                      <span className="">Date</span>
+                    </span>
+                  </th>
+                  <th itemScope="col">
+                    <span className="alignTableHeading">
+                      <span className=""></span>
+                    </span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {chooseDsrList?.map((row, i) => (
-                  <tr key={i}>
+                {paginatedData?.map((row, i) => (
+                  <tr key={i} className="border" itemScope="row">
                     <td className="p-1">{skip + i + 1}</td>
                     <td className="p-1">{row?.project_id || ""}</td>
                     {roleId === 3 ? (
@@ -581,6 +644,16 @@ function DSRManagement() {
                 ))}
               </tbody>
             </Table>
+            <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
+                <PaginationComponent
+                    currentPage={activePage}
+                    list={list}
+                    skip={skip}
+                    limitPerPage={limitPerPage}
+                    loading={loading}
+                    onPageChange={onPageChange}
+                />
+            </div>
           </div>
          
         </div>
