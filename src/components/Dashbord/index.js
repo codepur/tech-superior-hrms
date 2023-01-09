@@ -119,12 +119,12 @@ export default function DashboardComponent() {
 
 
       <div className="container">
-        <div className="row">
+        <div className="row gx-0">
           <div className="col-md-8">
-            <div className="row">
+            <div className="row gx-0">
               <div className={`${styles.mainCard}  card bg-c-glassgreen`}>
                 <div className={`${styles.cardText} card-body`}>
-                  <div className="row">
+                  <div className="row gx-0">
                     <div className="col-md-3">
                       <div className={`${styles.empImgCard} `}>
                         <Image src="images/photo_6325701050312536371_x.jpg" alt="Profile pic" className={`${styles.empImg} `} />
@@ -147,7 +147,7 @@ export default function DashboardComponent() {
                 </div>
               </div>
             </div>
-            {/* <div className="row"> */}
+            {/* <div className="row gx-0"> */}
             <div className="row">
               <div className="col-12">
                 <div className="row">
@@ -231,7 +231,7 @@ export default function DashboardComponent() {
                     <Card style={{ width: '25rem' }} bg="dark" className={`${styles.calenderCard} mb-0`}>
                       <Card.Body className="text-black">
                         <Card.Title>Birthday this month 🎂</Card.Title>
-                        <div className="row ">
+                        <div className="row gx-0 ">
                           <div className="col-md-2">
                             <Image src="/images/profileIcon.png" width="30" />
                           </div>
@@ -242,7 +242,7 @@ export default function DashboardComponent() {
                       </Card.Body>
                     </Card>
                   </div>
-                  <div className="row p-3">
+                  <div className="row gx-0 p-3">
                     <Card style={{ width: '25rem' }} bg="dark" className={`${styles.calenderCard} mb-0`} >
                       <Card.Body className="text-black">
                         <Card.Title>Event this month</Card.Title>
@@ -262,7 +262,7 @@ export default function DashboardComponent() {
         </div>
         <div>
            {/* <CalendarAi/> */}
-           <div className="row">
+           <div className="row gx-0">
             <br/>
            </div>
         </div>

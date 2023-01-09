@@ -7,6 +7,10 @@ a {
   text-decoration: none;
 }
 
+body{
+  overflow-x: hidden;
+}
+
 .loader {
   --b: 5px;
   /* border thickness */
@@ -350,6 +354,7 @@ body::-webkit-scrollbar {
 
 .textFont {
   font-family: 'Poppins', sans-serif;
+  font-size: 12px !important;
 }
 
 .sortImg{

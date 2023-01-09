@@ -27,8 +27,8 @@ function HeaderComponent({ isPublic, hasSideBar }) {
   return (
     <>
     
-      <Navbar bg="light" className={`row ${styles.mainHeader} m-0 p-0`}>
-      <div bg="light" className={`row ${styles.mainHeaderContainer} m-0 p-0`} >
+      <Navbar bg="light" className={`row ${styles.mainHeader}  m-0 p-0`}>
+      {/* <div bg="light" className={`row ${styles.mainHeaderContainer} g-0 gx-0 m-0 p-0`} > */}
         <Navbar.Brand href="#home" className={`d-flex justify-content-between`}>
           <div className="col-md-2">
             {/* <Image
@@ -99,7 +99,7 @@ function HeaderComponent({ isPublic, hasSideBar }) {
             </Dropdown>
           </div>
         </Navbar.Brand>
-        </div>
+        {/* </div> */}
       </Navbar>
       
     </>
