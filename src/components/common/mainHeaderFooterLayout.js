@@ -17,11 +17,13 @@ const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }
        e.preventDefault(); 
        setToggle(!toggle);
     }
-    // useEffect(()=>{
-    //   setToggle();
-    // },[toggle])
+
+    const [smalltoggle,setSmallToggle] = useState(true);
+    const mobileToggle = (e)=>{
+        e.preventDefault(); 
+        setSmallToggle(!smalltoggle);
+     }
     
-     
     return (
         <React.Fragment>
             <Head>
@@ -34,11 +36,12 @@ const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }
                 <meta itemProp="description" content={description} />
                 <link rel="shortcut icon" href="/images/favicon.png"/>
             </Head>
-            {data?.pageScreen != 'login' && data?.pageScreen != 'setPassword' && <HeaderComponent isPublic={isPublic} hasSideBar={hasSideBar}/>}
+            {data?.pageScreen != 'login' && data?.pageScreen != 'setPassword' && <HeaderComponent isPublic={isPublic} hasSideBar={hasSideBar} mobileToggle={mobileToggle} smalltoggle={smalltoggle}
+            />}
 
             <Row className={`${styles.mainBodyWrapper}`}>
                 {notLoginScreen && hasSideBar &&(
-                    <Col md={`${toggle?'2':'1' } `} className={`${styles.sidebar}`} >
+                    <Col md={`${toggle?'2':'1' }`} xs={5}  className={`${smalltoggle ? styles.sidebar: styles.sidebarblock}`} >
                         <Sidebar  sidebarToggle={sidebarToggle} toggle={toggle}/>
                     </Col>
                 )}

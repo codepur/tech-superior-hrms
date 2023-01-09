@@ -222,12 +222,11 @@ const EmployeeLeaveComponent = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`${styles.tableResponsive} col-lg-12`}>
-                    <Table className={`${styles.table} table table-hover`}>
+                <div className={`${styles.tableResponsive} col-lg-12 `}>
+                    <Table className={`${styles.table} table table-hover col-sm-12`}>
                         <thead className={`${styles.tableHead} `}>
                             <tr className={`${styles.tableHead}`}>
                                 <th itemScope='col'>
-
                                     #
                                 </th>
                                 <th itemScope='col'>

@@ -35,7 +35,8 @@ const apiKeys = {
   attendanceList :"attendance/list",
   createAttendance : "attendance/create",
   punchIn : "attendance/punchIn",
-  punchOut : "attendance/punchOut" 
+  punchOut : "attendance/punchOut",
+  allUserList : "attendance/allUsersList",
 
 };
 
