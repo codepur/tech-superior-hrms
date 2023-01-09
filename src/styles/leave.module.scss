@@ -3,8 +3,9 @@
     border-radius: 41px;
     font-weight: bold;
     margin: auto 160px;
-    background-color:#33a351;
-    color:white;
+    // background-color:#33a351;
+    background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60 / 99%) 90.3%);
+    color:black;
     border:none;
 } 
 .tableResponsive{
@@ -22,7 +23,8 @@ border-radius: 20px;
 
 }
 .tableHead{
-    background: #93e4c1;
+    // background: #93e4c1;
+    background:linear-gradient(110.1deg, rgb(34 126 34 / 16%) 2.9%, rgb(168 251 60 / 69%) 90.3%);
 }
 .cardContainer{
     background: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0.1%, rgba(233, 226, 226, 0.28) 90.1%);

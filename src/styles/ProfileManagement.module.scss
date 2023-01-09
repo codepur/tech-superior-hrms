@@ -20,20 +20,24 @@
 }
 
 .activeTab{
- background-color: #0bb884;
-  color: white;
+//  background-color: #0bb884;
+background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%);
+  color:black;
+  border:none !important;
 }
 
 .listItem:hover {
-  background-color: #3c5f4b;
-  color: white;
+  // background-color: #3c5f4b;
+  // background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%);
+  // color: white;
 }
 
 .info {
   font-size: 1.2em;
   border-bottom-style: groove;
   text-align: left;
-  color: #3c5f4b;;
+  // color: #3c5f4b;;
+  color:#209f48;
 }
 // .drop_down {
 //   text-align: left;

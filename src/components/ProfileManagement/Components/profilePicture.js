@@ -33,7 +33,7 @@ export default function ProfilePictureComponent() {
 
           <div className="col-6 float-end">
             <Button
-              className="btn btn-success btn-sm"
+              className="btn bg-btn-green btn-sm "
             >
               Upload
             </Button>

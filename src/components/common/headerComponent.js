@@ -89,7 +89,9 @@ function HeaderComponent({ isPublic, hasSideBar,mobileToggle }) {
             </Dropdown>
           </div>
         </Navbar.Brand>
+        {/* </div> */}
       </Navbar>
+      
     </>
   );
 }

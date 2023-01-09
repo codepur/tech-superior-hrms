@@ -128,7 +128,7 @@ const SidebarComponent = (props) => {
           <div className={`${styles.sidebarOuterItems}`}>
             <div className={` ${styles.menuOtherItem}   p-1 `}>
               <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={() => (router.push("/gethelp"))} role='button'>
-                <Image src="/images/information.png" alt="Logo" height="25" width="25" className="me-2 " />
+                <Image src="/images/help-web-button.png" alt="Logo" height="25" width="25" className="me-2 " />
                 <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Get Help</span>
               </div>
 

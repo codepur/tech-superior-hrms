@@ -4,11 +4,12 @@
 
 .addTicket{
     width: auto;
-    background-color:#33a351;
+    // background-color:#33a351;
+    background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%);
     color: white;
     cursor: pointer;
     &:hover {
-      background-color: #3c5f4b !important;
+      // background-color: #3c5f4b !important;
       color: white !important;
     }
 }
@@ -25,6 +26,7 @@
 
 .saveButton{
   margin-left: 13px;
+  border:none;
 }
 
 .hr{
@@ -46,17 +48,19 @@
 
 
 .saveButton{
-  background-color: #3c5f4b !important;
+  // background-color: #3c5f4b !important;
+  background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%);
     color: white;
 }
 
 .searchIcon {
-  background-color: #3c5f4b;
+  // background-color: #3c5f4b;
+  background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%);
   border: none;
   cursor: pointer;
-  &:hover {
-    background-color: #3c5f4b !important;
-  }
+  // &:hover {
+  //   background-color: #3c5f4b !important;
+  // }
 }
 
 .tableResponsive{
@@ -69,10 +73,11 @@ box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 backdrop-filter: blur( 4px );
 -webkit-backdrop-filter: blur( 4px );
 border: 1px solid rgba( 255, 255, 255, 0.18 );  
-border-radius: 20px;
+// border-radius: 20px;
 }
 .tableHead{
-   background: #93e4c1;
+  //  background: #93e4c1;
+  background: linear-gradient(110.1deg, rgb(34 126 34 / 16%) 2.9%, rgb(168 251 60 / 69%) 90.3%);
 }
 .cardContainer{
    background: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0.1%, rgba(233, 226, 226, 0.28) 90.1%);
@@ -84,9 +89,11 @@ border: 2px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .tableHeadRow{
-  background-color: #3c5f4b;
-  background-color: #0bb884;
-  color: white;
+  // background-color: #3c5f4b;
+  // background-color: #0bb884;
+  background: linear-gradient(110.1deg, rgb(34 126 34 / 16%) 2.9%, rgb(168 251 60 / 69%) 90.3%);
+
+  color: black;
   // color: #3c5f4b;
 }
 

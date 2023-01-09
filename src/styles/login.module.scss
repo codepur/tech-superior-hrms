@@ -37,7 +37,7 @@
 // }
 
 .backgroundSecondHalf {
-  background-image: linear-gradient(to left, black, #2d994a 28%);
+  // background-image: linear-gradient(to left, black, #2d994a 28%);
   padding: 0px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
@@ -85,10 +85,10 @@
 .formStyle {
   border-radius: 0 83px 83px 0;
   /* background: linear-gradient(to right, #C4E0A6 13.4%, #96E6A1 86.6%); */
-  background: linear-gradient(to right, #d4e3c4 13.4%, #96e6a1 86.6%);
+  // background: linear-gradient(to right, #d4e3c4 13.4%, #96e6a1 86.6%);
   height: 525px;
-  position: relative;
-  top: 8%;
+  // position: relative;
+  // top: 8%;
   // box-shadow: 1rem .5rem 0rem rgba(0,0,0,0.35)!important;
   box-shadow: 1rem 0.5rem 1.5rem -1rem rgb(0 0 0 / 35%);
 }
@@ -136,8 +136,8 @@
   top: 100px;
 }
 .AuthformReset {
-  position: relative;
-  top: 150px;
+  // position: relative;
+  // top: 150px;
 }
 .loginBtn {
   color: #1aebb6;

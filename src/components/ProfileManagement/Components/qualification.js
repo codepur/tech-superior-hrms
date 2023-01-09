@@ -338,7 +338,7 @@ export default function QualificationComponent() {
               <Button
                 variant="primary"
                 type="submit"
-                className="mb-2 mt-4 "
+                className="mb-2 mt-4 bg-btn-green "
                 onClick={(e) => handleClick(e, item)}
               >
                 Save
