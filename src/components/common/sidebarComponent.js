@@ -83,7 +83,7 @@ const SidebarComponent = (props) => {
       </Modal>
       <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
         <Nav>
-          <header>
+          <header className={`${styles.headerBody}`}>
             <div className={`${styles.head}`} onClick={() => { router.push('/employee-dashboard') }} role='button'>
               <div className="logoImg d-flex align-item-center justify-content-center p-1 ">
                 <Image src="/images/LogoTSC.svg" alt="logo" className={`${toggle ? 'img-fluid' : 'img-fluid w-50 '}`} />

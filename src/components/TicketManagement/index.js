@@ -81,8 +81,8 @@ function TicketManagement() {
       ...prev,
       activePage: page,
       skip: JSON.parse(skipRecords),
-      paginatedData: list.slice(skipRecords, to),
-      userData: list.slice(skipRecords, to),
+      // paginatedData: list.slice(skipRecords, to),
+      // userData: list.slice(skipRecords, to),
     }));
   };
 
