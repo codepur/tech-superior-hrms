@@ -75,6 +75,7 @@ function TicketManagement() {
 
 
   const onChangeHandler = (e) => {
+    debugger
     setTicketData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
