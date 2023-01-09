@@ -20,16 +20,17 @@ import { handleErrorMessage } from "../../utils/commonFunctions";
 import moment from "moment/moment";
 import { toast, Toaster } from "react-hot-toast";
 import LiveTime from "../common/liveTime";
+import { set } from "lodash";
 
 const EmployeeAttendanceComp = () => {
-    const [stuList] = useSelector((Gstate) => [
+    const [empAttendList] = useSelector((Gstate) => [
         Gstate.attendanceList?.attendanceList,
     ]);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(attendanceList());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [stuList.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [empAttendList.length]);
 
     const handleActiveTab = (e) => {
         setSegment(e.target.value);
@@ -62,15 +63,24 @@ const EmployeeAttendanceComp = () => {
 
     const [punch, setPunch] = useState(true);
     const [punchbtn, setPunchbtn] = useState(false);
+   
     useEffect(() => {
-        if (stuList[0]?.inTime) {
-            setPunch(false);
-        }
-        if (stuList[0]?.outTime && stuList[0]?.InTime) {
+        const currDate = new Date(); 
+        if(moment(empAttendList[empAttendList.length-1]?.date).format('ll')  !== moment(currDate).format('ll'))
+        {    
             setPunch(!punch);
-            setPunchbtn(!punchbtn);
+            // setPunchbtn(!punchbtn); 
         }
-    }, [punch, punchbtn, stuList, stuList.length]);
+        else{
+            if (empAttendList[0]?.inTime ) {
+                setPunch(false);
+            }
+            if (empAttendList[0]?.outTime && empAttendList[0]?.InTime) {
+                setPunch(!punch);
+                setPunchbtn(!punchbtn);
+            }
+        }
+    }, [empAttendList.length]);
 
     const onPunchIn = () => {
         const inTime = new Date().toISOString();
@@ -103,20 +113,19 @@ const EmployeeAttendanceComp = () => {
                 handleErrorMessage(err);
             });
     }
-
-
+   console.log(empAttendList);
+ 
 
     return (
         <>
             <div className="container textFont">
                 <Toaster />
-                <div className={`row d-flex mt-4 ${styles.ContainerDiv}`}>
+                <div className={`row d-flex  ${styles.ContainerDiv}`}>
                     <div className={`d-flex justify-content-between ${styles.createTicket}`}>
                         <h2 className="col-md-4">Attendance</h2>
                     </div>
-                    {/* <hr className={`${styles.hr}`}></hr> */}
 
-                    <div className="row mt-3">
+                    <div className="row mt-2">
                         <div className="col-md-4 col-xl-4">
                             <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                                 <div className="card-header text-dark">
@@ -130,7 +139,7 @@ const EmployeeAttendanceComp = () => {
                                                 Punch In at
                                             </div>
                                             <div className="card-text text-muted">
-                                                {stuList[0]?.inTime ? moment(stuList[0].inTime).format('ddd, do MMM YYYY, h:mm:ss a ') : "-------"}
+                                                {empAttendList[empAttendList.length-1]?.inTime ? moment(empAttendList[empAttendList.length-1].inTime).format('ddd, do MMM YYYY, h:mm:ss a ') : "-------"}
                                             </div>
                                         </div>
                                     </div>
@@ -207,7 +216,7 @@ const EmployeeAttendanceComp = () => {
                         <div className="col-md-4 col-xl-4">
                             <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                                 <div className="card-block text-dark text-center">
-                                    <h6 className="m-b-20">Unplanned Leaves</h6>
+                                    <h6 className="m-b-20">Attendance Graph</h6>
                                     <h5>0</h5>
                                 </div>
                             </div>
@@ -242,7 +251,7 @@ const EmployeeAttendanceComp = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {stuList?.map((row, i) => (
+                                {empAttendList?.map((row, i) => (
                                     <tr key={i}>
                                         <td className="p-1">{i + 1}</td>
                                         <td className="p-1 ">{moment(row?.date).format("ll") || ""}</td>

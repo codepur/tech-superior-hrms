@@ -30,7 +30,7 @@ export default function DashboardComponent() {
   const openModal = () => {
     setShowModal(true);
   };
-  const [eventModal, setEventModal] = useState();
+  const [eventModal, setEventModal] = useState(false);
   const closeEventModal = () => {
     setEventModal(false);
   };
@@ -114,12 +114,12 @@ export default function DashboardComponent() {
       </Modal>
 
       <div className="container">
-        <div className="row gx-0">
+        <div className="row ">
           <div className="col-md-8">
-            <div className="row gx-0">
+            <div className="row">
               <div className={`${styles.mainCard}  card bg-c-glassgreen`}>
                 <div className={`${styles.cardText} card-body`}>
-                  <div className="row gx-0">
+                  <div className="row">
                     <div className="col-md-3">
                       <div className={`${styles.empImgCard} `}>
                         <Image
@@ -150,39 +150,47 @@ export default function DashboardComponent() {
               <div className="col-12">
                 <div className="row">
                   <div className="col-md-6 col-xl-6">
-                    <div className="card bg-c-glassgreen order-card shadow border-0">
-                      <div className="card-block">
-                        <h6 className="m-b-20">Attendance</h6>
-                        <h2 className="text-right float-start mt-3">
-                          <i className="fa fa-cart-plus f-left"></i>
-                          <button
-                            className="bg-btn-green px-3 btn"
-                            onClick={openModal}
-                          >
-                            Mark
-                          </button>
-                        </h2>
-                        <Image
-                          src="/images/calendar.png"
-                          className="float-end"
-                          width={70}
-                        />
+                    <div className="row">
+                      <div className="card bg-c-glassgreen order-card shadow border-0">
+                        <div className="card-block py-4 mt-4">
+                          <h6 className="m-b-20 pt-2">Attendance</h6>
+                          <h2 className="text-right float-start mt-3">
+                            <i className="fa fa-cart-plus f-left"></i>
+                            <button className="bg-btn-green px-3 btn" onClick={openModal}>Mark</button>
+                          </h2>
+                          {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
+                          <Image
+                            src="/images/calendar.png"
+                            className="float-end"
+                            width={70}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="card bg-c-glassgreen order-card shadow border-0">
+                        <div className="card-body px-4 pt-4 pb-3">
+                          <div className="time-list d-flex ">
+                            <div className="col-md-6 text-center dash-stats-list ">
+                              <h4>4.5</h4>
+                              <span>Leave taken</span>
+                            </div>
+                            <div className="col-md-6 text-center border-start dash-stats-list">
+                              <h4>12</h4>
+                              <span>Remaining</span>
+                            </div>
+                          </div>
+                          <div className="request-btn text-center mt-4 pt-1">
+                            <button className="btn bg-btn-green px-3" >Apply Leave</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div className="col-md-6 col-xl-6">
-                    <div className="card bg-c-glassgreen order-card shadow border-0">
-                      <div className="card-block ">
-                        <h6 className="m-b-20">Number of Leave</h6>
-                        <h2 className="text-right float-start">
-                          <i className="fa fa-rocket f-left"></i>
-                          <span>500</span>
-                        </h2>
-                        <Image
-                          src="/images/leave.png"
-                          width={70}
-                          className="float-end"
-                        />
+                    <div className="card order-card bg-c-glassgreen shadow border-0" >
+                      <div className="card-block todoContainer overflow-auto">
+                        <h6 className="m-b-20 mt-1"><TodoContainer /></h6>
                       </div>
                     </div>
                   </div>
@@ -190,38 +198,6 @@ export default function DashboardComponent() {
               </div>
             </div>
             {/* </div> */}
-            <div className="row">
-              <div className="col-md-6 col-xl-6">
-                <div className="card order-card bg-c-glassgreen shadow border-0">
-                  <div className="card-block todoContainer overflow-auto">
-                    <h6 className="m-b-20 mt-1">
-                      <TodoContainer />
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-6">
-                <div className="card bg-c-glassgreen order-card shadow border-0">
-                  <div className="card-body px-4 pt-4 pb-3">
-                    <div className="time-list d-flex ">
-                      <div className="col-md-6 text-center dash-stats-list ">
-                        <h4>4.5</h4>
-                        <span>Leave taken</span>
-                      </div>
-                      <div className="col-md-6 text-center border-start dash-stats-list">
-                        <h4>12</h4>
-                        <span>Remaining</span>
-                      </div>
-                    </div>
-                    <div className="request-btn text-center mt-4 pt-1">
-                      <button className="btn bg-btn-green px-3">
-                        Apply Leave
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="col-md-4 ps-4">
             <div className="row">
@@ -238,7 +214,7 @@ export default function DashboardComponent() {
                     >
                       <Card.Body className="text-black">
                         <Card.Title>Birthday this month 🎂</Card.Title>
-                        <div className="row gx-0 ">
+                        <div className="row ">
                           <div className="col-md-2">
                             <Image src="/images/profileIcon.png" width="30" />
                           </div>
@@ -269,11 +245,6 @@ export default function DashboardComponent() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div>
-          <div className="row gx-0">
-            <br />
           </div>
         </div>
       </div>

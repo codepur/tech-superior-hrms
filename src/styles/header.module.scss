@@ -7,7 +7,7 @@
   background: linear-gradient(110.1deg, rgba(34, 126, 34, 0.16) 2.9%, rgba(168, 251, 60, 0.69) 90.3%);
 }
 .headerLogo {
-  width: 30px;
+  display: none;
 }
 
 .dropdownMenu {
@@ -51,6 +51,39 @@
   width: 50px;
   height: 50px;
 }
-.row{
-  -bs-gutter-x:0 !important;
+.menu{
+  display: none;
+}
+
+$block : block;
+
+@media only screen and (max-width: 600px) {
+  .sidebar{
+    display: none;
+  }
+  .sidebarblock{
+    display: block;
+  }
+  .headerLogo{
+    display: block;
+    max-width:30px;
+  }
+  .menu{
+    display: block;
+  }
+  .profileImg{
+    display: none;
+    span{
+     display: none;
+    }
+  }
+  .dropdownMenu{
+    .menuItems {
+      font-size: 12px;
+      img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
 }

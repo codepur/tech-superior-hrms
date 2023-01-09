@@ -24,7 +24,7 @@ const initial = {
   employee_ID: "",
   phone: "",
   dob: "",
-  doj:"",
+  doj: "",
   gender: "",
   blood_group: "",
 };
@@ -58,7 +58,7 @@ function TicketManagement() {
     department,
     user_type,
     first_name,
-    last_name,    
+    last_name,
     email,
     employee_ID,
     phone,
@@ -88,7 +88,7 @@ function TicketManagement() {
   }, []);
 
   const createEmployee = () => {
-    employeeData.level = "Level2";    
+    employeeData.level = "Level2";
     API.apiPost("candidateInvite", { payload: encodeData(employeeData) })
       .then((response) => {
         if (response.data && response.data.success === true) {
@@ -208,6 +208,7 @@ function TicketManagement() {
   >
     <TicketModal handleClose={handleClose} index={index} />
   </Modal> */}
+
       <div className={` ${styles.OuterTicketDiv}`}>
         <Toaster />
         <div className={`row d-flex  ${styles.ContainerDiv}`}>

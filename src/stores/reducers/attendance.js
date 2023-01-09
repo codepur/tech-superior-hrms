@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   attendanceList: [],
+  allUserList:[],
   loading: false,
 };
 
@@ -16,6 +17,12 @@ const AttendanceReducers = (state = INITIAL_STATE, action) => {
         loading: false,
         attendanceList: action.payload,
       }; 
+    case "GET_ALL_USER_LIST":
+       return {
+        ...state,
+        loading: false,
+        allUserList: action.payload,
+       }  
     default:
       return state;
   }

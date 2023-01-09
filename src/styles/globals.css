@@ -187,7 +187,7 @@ body::-webkit-scrollbar {
 }
 
 .card .card-block {
-  padding: 25px;
+  padding: 31px;
 }
 
 .order-card i {
@@ -332,7 +332,9 @@ body::-webkit-scrollbar {
 }
 
 .todoContainer {
-  max-height: 168px;
+  /* max-height: 374px;
+  min-height: 374px; */
+  height: 374px;
   overflow-y: scroll;
 }
 
@@ -438,3 +440,4 @@ body::-webkit-scrollbar {
 .calendar-cells div:empty {
   background-color: #fff;
 }
+

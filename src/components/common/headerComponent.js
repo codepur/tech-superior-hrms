@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import { Dropdown, Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,7 +9,7 @@ import { getProfile, setUserlist } from "../../stores/actions/mainPage";
 import { IconCaretDown, IconDropCircle } from "@tabler/icons";
 import LiveTime from "./liveTime";
 
-function HeaderComponent({ isPublic, hasSideBar }) {
+function HeaderComponent({ isPublic, hasSideBar,mobileToggle }) {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
   const dispatch = useDispatch();
 
@@ -23,6 +23,7 @@ function HeaderComponent({ isPublic, hasSideBar }) {
   const logoutUser = () => {
     logout();
   };
+ 
 
   return (
     <>
@@ -60,15 +61,7 @@ function HeaderComponent({ isPublic, hasSideBar }) {
                         alt="Logo"
                         className="cursor-pointer me-2"
                       />
-                      <span>Change Password</span>
-                    </Dropdown.Item>
-                    <Dropdown.Item className={styles.menuItems}>
-                      <Image
-                        src="/images/settings.png"
-                        alt="Logo"
-                        className="cursor-pointer me-2"
-                      />
-                      <span>Settings</span>
+                      <span>My Profile</span>
                     </Dropdown.Item>
                     <Dropdown.Item
                       className={styles.menuItems}
