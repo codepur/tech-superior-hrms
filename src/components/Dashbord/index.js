@@ -93,7 +93,7 @@ export default function DashboardComponent() {
         </Modal.Footer>
       </Modal>
 
-      {/* <Modal centered show={eventModal} onHide={closeEventModal}>
+      <Modal centered show={eventModal} onHide={closeEventModal}>
         <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
           <Modal.Title className={`${styles.header} ms-auto`}>
             <span>Today&apos;s Events</span>
@@ -114,9 +114,7 @@ export default function DashboardComponent() {
             Save
           </button>
         </Modal.Footer>
-      </Modal> */}
-
-
+      </Modal>
 
       <div className="container">
         <div className="row">

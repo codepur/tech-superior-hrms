@@ -154,7 +154,7 @@ export default function BasicInfo(props) {
   };
   return (
     <>
-      <p className={`${styles.info} fw-bold p-2`}> Personal Information <sup className="text-danger" >*</sup></p>
+      <p className={`${styles.info} fw-bold p-2`}> Personal Information <span className="text-danger" >*</span></p>
       <Form>
         <Row className="mb-3">
           <Form.Group className="col-md-4" controlId="formGridFirstName">
@@ -361,7 +361,7 @@ export default function BasicInfo(props) {
           </Form.Group>
         </Row>
 
-        <p className={`${styles.info} fw-bold p-2`}>Address Information <sup className="text-danger" >*</sup> </p>
+        <p className={`${styles.info} fw-bold p-2`}>Address Information <span className="text-danger" >*</span> </p>
         <Row className="">
           <Form.Group className="" controlId="formGridCorresAdd">
             <Form.Label className="fw-bold">Corresponding Address</Form.Label>
@@ -531,7 +531,7 @@ export default function BasicInfo(props) {
           </Row>
         </Row>
 
-        <p className={`${styles.info} fw-bold p-2`}> Nominee Information <sup className="text-danger" >*</sup></p>
+        <p className={`${styles.info} fw-bold p-2`}> Nominee Information <span className="text-danger" >*</span></p>
         <Row className="mt-4">
           <Row className="mb-3">
             <Form.Group className="col-md-4" controlId="formGridNomName">

@@ -47,7 +47,7 @@ function TicketManagement() {
   const [userList, departmentList] = useSelector((Gstate) => [
     Gstate.user?.userList,
     Gstate.ticketManagement?.departmentList,
-  ]);
+  ]);  
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
     setButtonChnage(false);
