@@ -1,6 +1,27 @@
+$inactive_btn: #afacc5;
+$active_color:linear-gradient(110.1deg, rgb(34, 126, 34) 2.9%, rgba(168, 251, 60, 0.99) 90.3%);
 .createTicket{
   padding: 15px;
 }
+@mixin tabs-mixin($bg) {
+  background: $bg !important;
+  border: none;
+  color: #fff !important;
+  outline: none;
+  box-shadow: none !important;
+  &:hover {
+    color: #fff;
+    background: $bg;
+  }
+}
+
+.inactive {
+  @include tabs-mixin($inactive_btn);
+}
+.active {
+  @include tabs-mixin($active_color);
+}
+
 
 .addTicket{
     width: auto;

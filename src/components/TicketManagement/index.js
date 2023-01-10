@@ -40,6 +40,7 @@ const initialPaginationState = {
 
 function TicketManagement() {
   const [ticketData, setTicketData] = useState(initial);
+  const [activeTab, setActiveTab] = useState("recieved");
   const [ticketSectionExpand, setTicketSectionExpand] = useState(false);
   const [pagination, setPagination] = useState(initialPaginationState);
   const [openModal, setOpenModal] = useState(false);
@@ -48,6 +49,7 @@ function TicketManagement() {
   const editorRef = useRef(null);
   const [searchKey, setSearchKey] = useState("");
   const [searchData, setSearchData] = useState([]);
+  const [issued, setIssued] = useState(false);
   const { activePage, skip, limitPerPage, paginatedData, list } = pagination;
   const [departmentList, userData, ticketsList, userList] = useSelector(
     (Gstate) => [
@@ -58,12 +60,17 @@ function TicketManagement() {
       Gstate.user?.userList,
     ]
   );
+  console.log("ticketsList", ticketsList);
   const userDepartmentId = userData?.department?._id;
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
     setTicketSectionExpand(!ticketSectionExpand);
   };
-
+  const handleActiveTab = (e) => {
+    if (e.target.value) {
+      setActiveTab(e.target.value);
+    }
+  };
   const {
     subject,
     department,
@@ -179,6 +186,10 @@ function TicketManagement() {
   const HRData = userList?.filter(
     (item) => item?.department === HRDepartmentId
   );
+
+  const recieveTicketData=paginatedData.filter((item)=>item.assign_to===userData.first_name+" "+userData.last_name);
+  const issueTicketData=paginatedData.filter((item)=>item.assign_by===userData.first_name+" "+userData.last_name)
+
   return (
     <>
       <Modal
@@ -328,7 +339,6 @@ function TicketManagement() {
           >
             <h2 className="col-md-4">List All Tickets</h2>
           </div>
-          <hr className={`${styles.hr}`}></hr>
           <div className="row justify-content-end">
             <div className="col-md-3 d-flex " onChange={onChangeHandler}>
               <InputGroup className="mb-3 d-flex">
@@ -348,6 +358,36 @@ function TicketManagement() {
               </InputGroup>
             </div>
           </div>
+          <div
+            className="btn-group"
+            role="group"
+            aria-label="languages"
+            onClick={handleActiveTab}
+          >
+            <button
+              name="RECIEVED"
+              value="recieved"
+              className={`fw-bold btn me-1 ${
+                activeTab === "recieved" ? styles.active : styles.inactive
+              }`}
+              onClick={() => setIssued(false)}
+            >
+              Recieved Tickets
+            </button>
+
+            <button
+              name="ISSUED"
+              value="issued"
+              className={`fw-bold btn ${
+                activeTab === "issued" ? styles.active : styles.inactive
+              }`}
+              onClick={() => setIssued(true)}
+            >
+              Issued Tickets
+            </button>
+          </div>
+          {/* <hr className={`${styles.hr}`}></hr> */}
+
           <hr className={`${styles.hr}`}></hr>
           <div className={``}>
             <Table className={`${styles.table} table table-hover`}>
@@ -389,7 +429,15 @@ function TicketManagement() {
                       className="alignTableHeading"
                       onClick={() => handleSort("to")}
                     >
-                      <span className="">Assignee</span>
+                      {!issued &&(
+                      <span className="">Assign By</span>
+                      )
+                      }
+                      {
+                        issued &&(
+                          <span className="">Assign To</span>
+                        )
+                      }
                       <span className="ms-1">
                         <Image
                           src={"/images/sort.png"}
@@ -448,29 +496,55 @@ function TicketManagement() {
                 </tr>
               </thead>
               <tbody>
-                {paginatedData.map((row, i) => (
-                  <tr key={i} className="border" itemScope="row">
-                    <td>{skip + i + 1}</td>
-                    <td>{row?.ticket_code || ""}</td>
-                    <td>{row?.priority || ""}</td>
-                    <td> {userData.first_name + " " + userData.last_name}</td>
-                    <td>{row.subject}</td>
-                    <td>
-                      {" "}
-                      {moment(row?.created_at).format("MM-DD-YYYY") || ""}
-                    </td>
-                    <td>
-                      <center>
-                        <Image
-                          src="images/view.png"
-                          alt="viewImage"
-                          className={`mx-2 ${styles.hoverInfo}`}
-                          onClick={() => viewTicket(row)}
-                        />
-                      </center>
-                    </td>
-                  </tr>
-                ))}
+                {!issued && 
+                    recieveTicketData.map((row, i) => (
+                    <tr key={i} className="border" itemScope="row">
+                      <td>{skip + i + 1}</td>
+                      <td>{row?.ticket_code || ""}</td>
+                      <td>{row?.priority || ""}</td>
+                      <td> {row?.assign_by}</td>
+                      <td>{row.subject}</td>
+                      <td>
+                        {" "}
+                        {moment(row?.created_at).format("MM-DD-YYYY") || ""}
+                      </td>
+                      <td>
+                        <center>
+                          <Image
+                            src="images/view.png"
+                            alt="viewImage"
+                            className={`mx-2 ${styles.hoverInfo}`}
+                            onClick={() => viewTicket(row)}
+                          />
+                        </center>
+                      </td>
+                    </tr>
+                  ))}
+                    {issued && 
+                    issueTicketData.map((row, i) => (
+                    <tr key={i} className="border" itemScope="row">
+                      <td>{skip + i + 1}</td>
+                      <td>{row?.ticket_code || ""}</td>
+                      <td>{row?.priority || ""}</td>
+                      <td> {row?.assign_by}</td>
+                      <td>{row.subject}</td>
+                      <td>
+                        {" "}
+                        {moment(row?.created_at).format("MM-DD-YYYY") || ""}
+                      </td>
+                      <td>
+                        <center>
+                          <Image
+                            src="images/view.png"
+                            alt="viewImage"
+                            className={`mx-2 ${styles.hoverInfo}`}
+                            onClick={() => viewTicket(row)}
+                          />
+                        </center>
+                      </td>
+                    </tr>
+                  ))}
+                   
               </tbody>
             </Table>
           </div>
