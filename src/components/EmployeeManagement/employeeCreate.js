@@ -24,7 +24,7 @@ const initial = {
   employee_ID: "",
   phone: "",
   dob: "",
-  doj: "",
+  date_of_joining: "",
   gender: "",
   blood_group: "",
 };
@@ -62,7 +62,7 @@ function TicketManagement() {
     employee_ID,
     phone,
     dob,
-    doj,
+    date_of_joining,
     gender,
     blood_group,
   } = employeeData;
@@ -309,14 +309,14 @@ function TicketManagement() {
                 </Form.Select>
               </FormGroup>
               <FormGroup>
-                <Label for="doj">
+                <Label for="date_of_joining">
                   <b>Date of Joining</b>
                 </Label>
                 <Input
-                  value={moment(doj)?.format('YYYY-MM-DD')}
+                  value={date_of_joining ? moment(date_of_joining)?.format('YYYY-MM-DD') : " " }                  
                   type="date"
-                  name="doj"
-                  id="doj"
+                  name="date_of_joining"
+                  id="date_of_joining"
                   onChange={onChangeHandler}
                 />
               </FormGroup>
@@ -379,7 +379,7 @@ function TicketManagement() {
                   <b>Date of Birth</b>
                 </Label>
                 <Input
-                  value={moment(dob)?.format('YYYY-MM-DD')}
+                  value={dob ? moment(dob)?.format('YYYY-MM-DD') : " "}
                   type="date"
                   name="dob"
                   id="dob"
