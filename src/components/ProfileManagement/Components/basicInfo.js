@@ -179,9 +179,9 @@ export default function BasicInfo(props) {
             <Form.Label className="fw-bold">DOB</Form.Label>
             <Form.Control
               type="date"
-              value={moment(dob).format("YYYY-MM-DD")}
+              value={dob ? moment(dob).format("YYYY-MM-DD") : " "}
               name="dob"
-              disabled
+              disabled={dob ? true : false}
             />
           </Form.Group>
         </Row>

@@ -57,22 +57,12 @@ function TicketManagement() {
     Gstate.ticketManagement?.ticketsList,
     Gstate.user?.userList,
   ]);
-  console.log('ticketsList', ticketsList)
-  console.log('userList', userList)
-   
-  
-
-
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
     setTicketSectionExpand(!ticketSectionExpand);
   };
 
   const { subject, department,assign_to, priority, description } = ticketData;
-
-  console.log('department', department);
-  
-
 
   const onChangeHandler = (e) => {
     debugger

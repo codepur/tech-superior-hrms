@@ -313,7 +313,7 @@ function TicketManagement() {
                   <b>Date of Joining</b>
                 </Label>
                 <Input
-                  value={date_of_joining ? moment(date_of_joining)?.format('YYYY-MM-DD') : " " }                  
+                  value={date_of_joining ? moment(date_of_joining)?.format('YYYY-MM-DD') : " "}
                   type="date"
                   name="date_of_joining"
                   id="date_of_joining"
