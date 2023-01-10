@@ -38,7 +38,7 @@ const intialData = {
   aadhar: "",
   pan: "",
   blood_group: "",
-  doj: "",
+  date_of_joining: "",
   permanent_address: "",
   permanent_city: "",
   permanent_state: "",
@@ -80,7 +80,7 @@ export default function BasicInfo(props) {
     alternate_contact,
     aadhar,
     pan,
-    doj,
+    date_of_joining,
     permanent_address,
     permanent_city,
     permanent_state,
@@ -117,7 +117,7 @@ export default function BasicInfo(props) {
       !Validation.numericPhone(alternate_contact) ||
       !Validation.maxOf(aadhar, 12) ||
       !Validation.maxOf(pan, 10) ||
-      !Validation.date(doj) ||
+      !Validation.date(date_of_joining) ||
       !Validation.maxOf(permanent_state, 30) ||
       !Validation.maxOf(permanent_city, 30) ||
       !Validation.maxOf(permanent_address, 50)
