@@ -13,7 +13,7 @@ import { handleErrorMessage } from "../../utils/commonFunctions";
 // import TicketModal from "./viewModal";
 import toast, { Toaster } from "react-hot-toast";
 import { setUserlist } from "../../stores/actions/mainPage";
-import { encodeData } from "../../helpers/auth";
+import { encodeData, login } from "../../helpers/auth";
 
 const initial = {
   department: "",
@@ -53,7 +53,6 @@ function TicketManagement() {
     setButtonChnage(false);
     setTicketSectionExpand(!ticketSectionExpand);
   };
-
   const {
     department,
     user_type,
@@ -67,6 +66,7 @@ function TicketManagement() {
     gender,
     blood_group,
   } = employeeData;
+
 
   const onChangeHandler = (e) => {
     setEmployeeData((prev) => ({
@@ -162,7 +162,7 @@ function TicketManagement() {
   };
 
   const handleEdit = (row) => {
-    
+
     setTicketSectionExpand(true);
     setButtonChnage(true);
     setTimeout(() => {
@@ -313,7 +313,7 @@ function TicketManagement() {
                   <b>Date of Joining</b>
                 </Label>
                 <Input
-                  value={doj}
+                  value={moment(doj)?.format('YYYY-MM-DD')}
                   type="date"
                   name="doj"
                   id="doj"
@@ -356,7 +356,7 @@ function TicketManagement() {
                 </Label>
                 <Input
                   value={phone}
-                  type="tel"
+                  type="number"
                   name="phone"
                   id="phone"
                   placeholder="Contact Number"
@@ -368,21 +368,18 @@ function TicketManagement() {
                 <Label for="gender">
                   <b>Gender</b>
                 </Label>
-                <Input
-                  value={gender}
-                  type="text"
-                  name="gender"
-                  id="gender"
-                  placeholder="Gender"
-                  onChange={onChangeHandler}
-                />
+                <div onChange={onChangeHandler}>
+                  <Input type="radio" value="Male" checked={gender === "Male"} name="gender" className="" /> Male
+                  <Input type="radio" value="Female" checked={gender === "Female"} name="gender" className="ms-3" /> Female
+                  <Input type="radio" value="Other" checked={gender === "Other"} name="gender" className="ms-3" /> Other
+                </div>
               </FormGroup>
               <FormGroup>
                 <Label for="dob">
                   <b>Date of Birth</b>
                 </Label>
                 <Input
-                  value={dob}
+                  value={moment(dob)?.format('YYYY-MM-DD')}
                   type="date"
                   name="dob"
                   id="dob"
@@ -439,7 +436,7 @@ function TicketManagement() {
               </thead>
               <tbody>
                 {userList
-                  .filter(
+                  ?.filter(
                     (item) =>
                       item.user_type == "Employee" && item.status == "Active"
                   )
