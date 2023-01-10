@@ -95,8 +95,7 @@ function MainLoginPage(props) {
 
   return (
     <>
- 
-      <div className={`${styles.mainBox} `}>
+      <div className={`${styles.mainBox}`}>
         <div className={`${styles.outerbox} row gx-0 d-flex`}>
           <div className={`${styles.imgContainer} row gx-0 d-flex justify-content-between col-md-2`}>
             <div>
@@ -251,6 +250,11 @@ function MainLoginPage(props) {
               <img src="./images/checkList6.png" alt="" className={`${styles.loginImg}`} />
             </div>
           </div>
+
+
+
+
+
           {/* <img src="./images/win2.png" alt="" className="win2" /> */}
 
           <div className={`${styles.backgroundFirsthalf}`}>
@@ -263,4 +267,3 @@ function MainLoginPage(props) {
   )
 }
 export default MainLoginPage;
-

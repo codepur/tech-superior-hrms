@@ -28,7 +28,8 @@ const EmployeeAttendanceComp = () => {
     ]);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(attendanceList());
+            dispatch(attendanceList());
+        console.log('empAttendList', empAttendList)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [empAttendList.length]);
 
@@ -90,7 +91,7 @@ const EmployeeAttendanceComp = () => {
                 if (response.data && response.data.success === true) {
                     setPunch(!punch);
                     toast.success(response.data.message)
-                    dispatch(attendanceList());
+                    // dispatch(attendanceList());
                 }
             })
             .catch((err) => {
@@ -106,16 +107,15 @@ const EmployeeAttendanceComp = () => {
                 if (response.data && response.data.success === true) {
                     setPunchbtn(!punch);
                     toast.success(response.data.message)
-                    dispatch(attendanceList());
+                    // dispatch(attendanceList());
                 }
             })
             .catch((err) => {
                 handleErrorMessage(err);
             });
     }
-   console.log(empAttendList);
  
-
+    
     return (
         <>
             <div className="container textFont">

@@ -16,7 +16,8 @@ const AdminAttendanceComp = () => {
   useEffect(() => {
     dispatch(attendanceList());
     dispatch(allUserList());
-  }, []);
+  }, [empAttendList.length]);
+  
   const studentList = [{ name: "neeraj verma" },{ name: "neeraj verma" },{ name: "neeraj verma" },{ name: "neeraj verma" }]
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
   const [segmentValue, setSegment] = useState()

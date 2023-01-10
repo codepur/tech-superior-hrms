@@ -12,7 +12,7 @@ import CalendarAi from "./calender";
 
 
 export default function DashboardComponent() {
-  const [Count] = useSelector((Gstate) => [Gstate.user?.CountParticipant]);
+  const [Count, userData] = useSelector((Gstate) => [Gstate.user?.CountParticipant,Gstate.user?.userData]); 
 
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" };
   const event = [
@@ -38,7 +38,7 @@ export default function DashboardComponent() {
   useEffect(() => {
     setEventModal(true);
   }, []);
-
+ 
   return (
     <>
       <Modal centered show={showModal} onHide={closeModal}>

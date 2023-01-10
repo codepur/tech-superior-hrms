@@ -23,7 +23,7 @@ export default function FamilyMember() {
 
   useEffect(() => {
     dispatch(setFamilyList());
-  }, []);
+  }, [familyList?.length]);
 
   useEffect(() => {
     if (familyList?.length) {

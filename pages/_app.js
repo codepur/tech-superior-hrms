@@ -5,6 +5,7 @@ import { SSRProvider, ThemeProvider } from 'react-bootstrap'
 import { Provider } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 
+
 function MyApp({ Component, pageProps }) {
 
   return (
