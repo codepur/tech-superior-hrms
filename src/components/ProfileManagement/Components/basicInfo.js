@@ -9,6 +9,7 @@ import Validation from "../../../utils/validations";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
 import { State } from "country-state-city";
+import moment from "moment/moment";
 
 const intialData = {
   first_name: "",
@@ -44,8 +45,8 @@ const intialData = {
   personal_email: "",
 };
 
-export default function BasicInfo(props) {  
-  const { first_name, last_name, dob, gender, blood_group } = props.userData;    
+export default function BasicInfo(props) {
+  const { first_name, last_name, dob, gender, blood_group } = props.userData;
   const ALlState = State?.getStatesOfCountry("IN");
   const [data, setData] = useState(intialData);
   const userData = useSelector((Gstate) => Gstate.user.userData);
@@ -84,7 +85,7 @@ export default function BasicInfo(props) {
     permanent_city,
     permanent_state,
     personal_email,
-  } = data;  
+  } = data;
 
   const handleChange = (e) => {
     setShowErrors(false);
@@ -178,7 +179,7 @@ export default function BasicInfo(props) {
             <Form.Label className="fw-bold">DOB</Form.Label>
             <Form.Control
               type="date"
-              value={dob}
+              value={moment(dob).format("YYYY-MM-DD")}
               name="dob"
               disabled
             />
