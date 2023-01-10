@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import dynamic from "next/dynamic";
-import { Card, Image, Modal } from "react-bootstrap";
+import { Button, Card, Image, Modal } from "react-bootstrap";
 import styles from "../../styles/dashboard.module.scss";
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
@@ -13,6 +13,7 @@ import CalendarAi from "./calender";
 
 export default function DashboardComponent() {
   const [Count] = useSelector((Gstate) => [Gstate.user?.CountParticipant]);
+  const [todomodal, setTodoModal] = useState(false);
 
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" };
   const event = [
@@ -38,6 +39,12 @@ export default function DashboardComponent() {
   useEffect(() => {
     setEventModal(true);
   }, []);
+  const handleTodoModal = () => {
+    setTodoModal(true);
+  }
+  const closeTodoModal = () => {
+    setTodoModal(false);
+  }
 
   return (
     <>
@@ -93,7 +100,30 @@ export default function DashboardComponent() {
         </Modal.Footer>
       </Modal>
 
-      <Modal centered show={eventModal} onHide={closeEventModal}>
+      {/* <Modal centered show={eventModal} onHide={closeEventModal}>
+        <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
+          <Modal.Title className={`${styles.header} ms-auto`}>
+            <span>Today&apos;s Events</span>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
+          <h2>
+            <div className="text-center text-danger">
+              HAPPY Holiday!!!!!!!!
+            </div>
+          </h2>
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            className="btn bg-btn-green text-center"
+            onClick={closeEventModal}
+          >
+            Save
+          </button>
+        </Modal.Footer>
+      </Modal> */}
+
+      <Modal centered show={todomodal} onHide={closeTodoModal}>
         <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
           <Modal.Title className={`${styles.header} ms-auto`}>
             <span>Today&apos;s Events</span>
@@ -191,6 +221,7 @@ export default function DashboardComponent() {
                     <div className="card order-card bg-c-glassgreen shadow border-0" >
                       <div className="card-block todoContainer overflow-auto">
                         <h6 className="m-b-20 mt-1"><TodoContainer /></h6>
+                        <Button onClick={handleTodoModal}>Open todo</Button>
                       </div>
                     </div>
                   </div>
