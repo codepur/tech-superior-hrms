@@ -8,6 +8,7 @@ const LoginComponent = dynamic(() =>
 export default function Index() {
   return (
     <div>
+      
       <Layout title="Home | HRMS" data={{ layoutType: "PAGE", pageScreen: "login" }} description="HRMS Portal">
         <LoginComponent/>
       </Layout>

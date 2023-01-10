@@ -63,7 +63,7 @@ const EmployeeAttendanceComp = () => {
 
     const [punch, setPunch] = useState(true);
     const [punchbtn, setPunchbtn] = useState(false);
-   
+    
     useEffect(() => {
         const currDate = new Date(); 
         if(moment(empAttendList[empAttendList.length-1]?.date).format('ll')  !== moment(currDate).format('ll'))

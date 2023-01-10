@@ -18,14 +18,16 @@ import toast, { Toaster } from "react-hot-toast";
 import { Editor } from "@tinymce/tinymce-react";
 import { encodeData } from "../../helpers/auth";
 import { object } from "underscore";
-
+import { isEmpty } from "lodash";
+import EmployeeTicketForm from "./EmployeeTicketForm";
 const initial = {
   subject: "",
   department: "",
   category: "",
   priority: "",
   description: "",
-  assign_to:"",
+  approval: "",
+  assign_to: "",
 };
 
 const initialPaginationState = {
@@ -37,9 +39,7 @@ const initialPaginationState = {
   list: [],
 };
 
-
 function TicketManagement() {
-
   const [ticketData, setTicketData] = useState(initial);
   const [ticketSectionExpand, setTicketSectionExpand] = useState(false);
   const [pagination, setPagination] = useState(initialPaginationState);
@@ -50,32 +50,31 @@ function TicketManagement() {
   const [searchKey, setSearchKey] = useState("");
   const [searchData, setSearchData] = useState([]);
   const { activePage, skip, limitPerPage, paginatedData, list } = pagination;
-  // const { skip = [] } = pagination;
-  const [departmentList, userData, ticketsList,userList] = useSelector((Gstate) => [
-    Gstate.ticketManagement?.departmentList,
-    Gstate.user?.userData,
-    Gstate.ticketManagement?.ticketsList,
-    Gstate.user?.userList,
-  ]);
-  console.log('ticketsList', ticketsList)
-  console.log('userList', userList)
-   
-  
+  const [departmentList, userData, ticketsList, userList] = useSelector(
+    (Gstate) => [
+      Gstate.ticketManagement?.departmentList,
+      Gstate.user?.userData,
 
-
+      Gstate.ticketManagement?.ticketsList,
+      Gstate.user?.userList,
+    ]
+  );
+  const userDepartmentId = userData?.department?._id;
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
     setTicketSectionExpand(!ticketSectionExpand);
   };
 
-  const { subject, department,assign_to, priority, description } = ticketData;
-
-  console.log('department', department);
-  
-
-
+  const {
+    subject,
+    department,
+    priority,
+    description,
+    category,
+    approval,
+    assign_to,
+  } = ticketData;
   const onChangeHandler = (e) => {
-    debugger
     setTicketData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -90,8 +89,8 @@ function TicketManagement() {
       ...prev,
       activePage: page,
       skip: JSON.parse(skipRecords),
-      // paginatedData: list.slice(skipRecords, to),
-      // userData: list.slice(skipRecords, to),
+      paginatedData: list.slice(skipRecords, to),
+      userData: list.slice(skipRecords, to),
     }));
   };
 
@@ -173,8 +172,14 @@ function TicketManagement() {
     setOpenModal(true);
     setIndex(row);
   };
-  const filterUserList = userList.filter((item) => item.department===department);
 
+  const HRDepartmentDetails = departmentList?.filter(
+    (item) => item.name === "HR"
+  );
+  const HRDepartmentId = HRDepartmentDetails[0]?._id;
+  const HRData = userList?.filter(
+    (item) => item?.department === HRDepartmentId
+  );
   return (
     <>
       <Modal
@@ -185,7 +190,7 @@ function TicketManagement() {
         keyboard={false}
         centered
       >
-        <TicketModal handleClose={handleClose} index={index} />
+        <TicketModal handleClose={handleClose} index={index} HRData={HRData} />
       </Modal>
       <div className={` ${styles.OuterTicketDiv}`}>
         <Toaster />
@@ -227,6 +232,7 @@ function TicketManagement() {
                   onChange={onChangeHandler}
                 />
               </FormGroup>
+
               <FormGroup>
                 <Label for="department">
                   <b>Department</b>
@@ -244,27 +250,22 @@ function TicketManagement() {
                         {item?.name || ""}
                       </option>
                     ))}
-                  
                 </Form.Select>
               </FormGroup>
               <FormGroup>
-                <Label for="assign_to">
-                  <b>Assign To</b>
+                <Label for="category">
+                  <b>Category</b>
                 </Label>
                 <Form.Select
                   aria-label="Default select example"
-                  value={assign_to}
-                  name="assign_to"
+                  value={category}
+                  name="category"
                   onChange={onChangeHandler}
                 >
-                <option hidden>Assign To</option>
-                  {filterUserList?.length?  
-                    filterUserList?.map((item) => (
-                      <option key={item?._id} value={item?.first_name+" "+item?.last_name}>
-                        {item?.first_name+" "+item?.last_name || ""}
-                      </option>
-                    )) :  <option>No records found</option>}                     
-
+                  <option hidden>Ticket Category</option>
+                  <option value="Stationary">Stationary</option>
+                  <option value="Health">Health</option>
+                  <option value="Leave">Leave</option>
                 </Form.Select>
               </FormGroup>
               <FormGroup>
@@ -349,7 +350,7 @@ function TicketManagement() {
             </div>
           </div>
           <hr className={`${styles.hr}`}></hr>
-          <div className={``} >
+          <div className={``}>
             <Table className={`${styles.table} table table-hover`}>
               <thead className={`${styles.tableHead} `}>
                 <tr className={`${styles.tableHead}`}>
@@ -399,21 +400,7 @@ function TicketManagement() {
                       </span>
                     </span>
                   </th>
-                  <th itemScope="col">
-                    <span
-                      className="alignTableHeading"
-                      onClick={() => handleSort("to")}
-                    >
-                      <span className="">Assign To</span>
-                      <span className="ms-1">
-                        <Image
-                          src={"/images/sort.png"}
-                          className="cursor-pointer sortImg"
-                          alt=""
-                        />
-                      </span>
-                    </span>
-                  </th>
+
                   <th itemScope="col">
                     <span
                       className="alignTableHeading"
@@ -468,7 +455,6 @@ function TicketManagement() {
                     <td>{row?.ticket_code || ""}</td>
                     <td>{row?.priority || ""}</td>
                     <td> {userData.first_name + " " + userData.last_name}</td>
-                    <td></td>
                     <td>{row.subject}</td>
                     <td>
                       {" "}
@@ -489,13 +475,17 @@ function TicketManagement() {
               </tbody>
             </Table>
           </div>
-          <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
+          <div
+            className={`d-flex justify-content-${
+              list?.length ? "end" : "center"
+            }`}
+          >
             <PaginationComponent
               currentPage={activePage}
               list={list}
               skip={skip}
               limitPerPage={limitPerPage}
-              //   loading={loading}
+              loading={loading}
               onPageChange={onPageChange}
             />
           </div>
