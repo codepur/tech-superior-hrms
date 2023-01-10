@@ -19,7 +19,6 @@ import { Editor } from "@tinymce/tinymce-react";
 import { encodeData } from "../../helpers/auth";
 import { object } from "underscore";
 import { isEmpty } from "lodash";
-import EmployeeTicketForm from "./EmployeeTicketForm";
 const initial = {
   subject: "",
   department: "",
