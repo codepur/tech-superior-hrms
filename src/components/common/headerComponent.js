@@ -1,15 +1,13 @@
 import { memo, useEffect, useState } from "react";
-import { Dropdown, Image } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
+import { Dropdown, Image, Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../src/styles/header.module.scss";
 import { logout } from "../../helpers/auth";
 import { getProfile, setUserlist } from "../../stores/actions/mainPage";
-import { IconCaretDown, IconDropCircle } from "@tabler/icons";
-import LiveTime from "./liveTime";
+import { IconCaretDown} from "@tabler/icons";
 
-function HeaderComponent({ isPublic, hasSideBar,mobileToggle }) {
+function HeaderComponent({ isPublic, hasSideBar, mobileToggle }) {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
   const dispatch = useDispatch();
 
@@ -23,14 +21,13 @@ function HeaderComponent({ isPublic, hasSideBar,mobileToggle }) {
   const logoutUser = () => {
     logout();
   };
- 
 
   return (
     <>
       <Navbar bg="light" className={`row ${styles.mainHeader} m-0 p-0`}>
-        <Navbar.Brand href="#home" className={`d-flex justify-content-between`}>
+        <div href="#home" className={`d-flex justify-content-between p-1`}>
           <div className={`${styles.toggle}`} onClick={mobileToggle}>
-            <Image  src="/images/menu.png" alt="LogoTsc" className={`${styles.menu} w-100 mt-2`}/> 
+            <Image src="/images/menu.png" alt="LogoTsc" className={`${styles.menu} w-100 mt-2`} />
           </div>
           <div className="col-md-2 d-flex justify-content-end">
             <Image
@@ -39,9 +36,6 @@ function HeaderComponent({ isPublic, hasSideBar,mobileToggle }) {
               className={`${styles.headerLogo}`}
             />
           </div>
-          {/* <div className="textFont col-md-2 d-flex justify-content-end mt-3 fw-bold" >
-             <LiveTime/>
-          </div> */}
           <div className="col-md-2 d-flex justify-content-end">
             <Dropdown className={styles.dropdownMenu}>
               <Dropdown.Toggle
@@ -49,11 +43,11 @@ function HeaderComponent({ isPublic, hasSideBar,mobileToggle }) {
                 data-toggle="tooltip"
                 title="Profile"
                 className={`border-0 p-0 ${styles.toggleButton}`}
-              >  
+              >
                 <div className={styles.profileContainer}>
- 
+
                 </div>
-                <Image src="/images/photo_6325701050312536371_x.jpg" alt="Logo" className={styles.profileImg}/>
+                <Image src="/images/photo_6325701050312536371_x.jpg" alt="Logo" className={styles.profileImg} />
                 <span className="text-dark p-2 fw-bold">
                   {userData && `${userData?.first_name || ""} ${userData?.last_name || ""}`}
                 </span>
@@ -88,7 +82,7 @@ function HeaderComponent({ isPublic, hasSideBar,mobileToggle }) {
               </div>
             </Dropdown>
           </div>
-        </Navbar.Brand>
+        </div>
       </Navbar>
     </>
   );

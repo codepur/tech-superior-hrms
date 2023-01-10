@@ -234,3 +234,24 @@ $active_color: #50ff39;
 }
 
 // Checkbox css  
+
+
+// Search css
+.inputGroup{
+ input {
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #e8e8e8;
+  box-shadow: 6px 6px 12px #ffffff, -6px -6px 12px #c5c5c5;
+  font-size: small;
+  font-weight: bold;
+  width: 225px;
+  max-width: 250px;
+ }
+ input[type="text"]:focus {
+  color: rgb(90, 89, 89);
+  outline-color: white;
+  place-content: "";
+ }
+}
