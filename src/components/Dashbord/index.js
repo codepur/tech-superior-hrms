@@ -31,7 +31,7 @@ export default function DashboardComponent() {
   const openModal = () => {
     setShowModal(true);
   };
-  const [eventModal, setEventModal] = useState();
+  const [eventModal, setEventModal] = useState(false);
   const closeEventModal = () => {
     setEventModal(false);
   };
@@ -135,8 +135,6 @@ export default function DashboardComponent() {
                         <h2 className="mt-3">Welcome, Neeraj</h2>
                         <p className="fst-italic mt-3">
                           <q>
-                            Lorem Ipsum dolor emette Lorem Ipsum dolor emette
-                            Lorem Ipsum dolor emette Lorem Ipsum dolor emette
                             Lorem Ipsum dolor emette Lorem Ipsum dolor emette
                             Lorem Ipsum dolor emette Lorem Ipsum dolor emette
                           </q>
