@@ -9,7 +9,6 @@ import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import TodoContainer from "../TodoContainer";
 import CalendarAi from "./calender";
 
-
 export default function DashboardComponent() {
   const [Count] = useSelector((Gstate) => [Gstate.user?.CountParticipant]);
 
@@ -100,9 +99,7 @@ export default function DashboardComponent() {
         </Modal.Header>
         <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
           <h2>
-            <div className="text-center text-danger">
-              HAPPY Holiday!!!!!!!!
-            </div>
+            <div className="text-center text-danger">HAPPY Holiday!!!!!!!!</div>
           </h2>
         </Modal.Body>
         <Modal.Footer>
@@ -115,10 +112,8 @@ export default function DashboardComponent() {
         </Modal.Footer>
       </Modal>
 
-
-
       <div className="container">
-        <div className="row">
+        <div className="row ">
           <div className="col-md-8">
             <div className="row">
               <div className={`${styles.mainCard}  card bg-c-glassgreen`}>
@@ -126,14 +121,20 @@ export default function DashboardComponent() {
                   <div className="row">
                     <div className="col-md-3">
                       <div className={`${styles.empImgCard} `}>
-                        <Image src="images/photo_6325701050312536371_x.jpg" alt="Profile pic" className={`${styles.empImg} `} />
-                      </div> 
+                        <Image
+                          src="images/photo_6325701050312536371_x.jpg"
+                          alt="Profile pic"
+                          className={`${styles.empImg} `}
+                        />
+                      </div>
                     </div>
                     <div className="col-md-9">
                       <div className={`${styles.empText}`}>
                         <h2 className="mt-3">Welcome, Neeraj</h2>
                         <p className="fst-italic mt-3">
                           <q>
+                            Lorem Ipsum dolor emette Lorem Ipsum dolor emette
+                            Lorem Ipsum dolor emette Lorem Ipsum dolor emette
                             Lorem Ipsum dolor emette Lorem Ipsum dolor emette
                             Lorem Ipsum dolor emette Lorem Ipsum dolor emette
                           </q>
@@ -144,37 +145,51 @@ export default function DashboardComponent() {
                 </div>
               </div>
             </div>
-            {/* <div className="row"> */}
             <div className="row">
               <div className="col-12">
                 <div className="row">
                   <div className="col-md-6 col-xl-6">
-                    <div className="card bg-c-glassgreen order-card shadow border-0">
-                      <div className="card-block">
-                        <h6 className="m-b-20">Attendance</h6>
-                        <h2 className="text-right float-start mt-3">
-                          <i className="fa fa-cart-plus f-left"></i>
-                          <button className="bg-btn-green px-3 btn" onClick={openModal}>Mark</button>
-                        </h2>
-                        {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
-                        <Image
-                          src="/images/calendar.png"
-                          className="float-end"
-                          width={70}
-                        />
+                    <div className="row">
+                      <div className="card bg-c-glassgreen order-card shadow border-0">
+                        <div className="card-block py-4 mt-4">
+                          <h6 className="m-b-20 pt-2">Attendance</h6>
+                          <h2 className="text-right float-start mt-3">
+                            <i className="fa fa-cart-plus f-left"></i>
+                            <button className="bg-btn-green px-3 btn" onClick={openModal}>Mark</button>
+                          </h2>
+                          {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
+                          <Image
+                            src="/images/calendar.png"
+                            className="float-end"
+                            width={70}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="card bg-c-glassgreen order-card shadow border-0">
+                        <div className="card-body px-4 pt-4 pb-3">
+                          <div className="time-list d-flex ">
+                            <div className="col-md-6 text-center dash-stats-list ">
+                              <h4>4.5</h4>
+                              <span>Leave taken</span>
+                            </div>
+                            <div className="col-md-6 text-center border-start dash-stats-list">
+                              <h4>12</h4>
+                              <span>Remaining</span>
+                            </div>
+                          </div>
+                          <div className="request-btn text-center mt-4 pt-1">
+                            <button className="btn bg-btn-green px-3" >Apply Leave</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div className="col-md-6 col-xl-6">
-                    <div className="card bg-c-glassgreen order-card shadow border-0">
-                      <div className="card-block ">
-                        <h6 className="m-b-20">Number of Leave</h6>
-                        <h2 className="text-right float-start">
-                          <i className="fa fa-rocket f-left"></i>
-                          <span>500</span>
-                        </h2>
-                        {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
-                        <Image src="/images/leave.png" width={70} className="float-end" />
+                    <div className="card order-card bg-c-glassgreen shadow border-0" >
+                      <div className="card-block todoContainer overflow-auto">
+                        <h6 className="m-b-20 mt-1"><TodoContainer /></h6>
                       </div>
                     </div>
                   </div>
@@ -182,52 +197,23 @@ export default function DashboardComponent() {
               </div>
             </div>
             {/* </div> */}
-            <div className="row">
-              <div className="col-md-6 col-xl-6">
-                <div className="card order-card bg-c-glassgreen shadow border-0" >
-                  <div className="card-block todoContainer overflow-auto">
-                    <h6 className="m-b-20 mt-1"><TodoContainer /></h6>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-6">
-                <div className="card bg-c-glassgreen order-card shadow border-0">
-                  <div className="card-body px-4 pt-4 pb-3">
-                    <div className="time-list d-flex ">
-                      <div className="col-md-6 text-center dash-stats-list ">
-                        <h4>4.5</h4>
-                        <span>Leave taken</span>
-                      </div>
-                      <div className="col-md-6 text-center border-start dash-stats-list">
-                        <h4>12</h4>
-                        <span>Remaining</span>
-                      </div>
-                    </div>
-                    <div className="request-btn text-center mt-4 pt-1">
-                      <button className="btn bg-btn-green px-3" >Apply Leave</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="col-md-4 ps-4">
             <div className="row">
               <div className="card bg-c-glassgreen order-card shadow border-0 calenderCard">
-                <div className="p-2">
-                  <h3 className="text-center">Calendar</h3>
+                <div className="p-2 pt-3 mt-1">
                   <div className="calendar-container ">
-                    <Calendar
-                      // onChange={setDate}
-                      selectRange={true}
-                      defaultValue={new Date()}
-                    />
+                    <CalendarAi />
                   </div>
                   <div className="row p-3">
-                    <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
-                      <Card.Body className="text-white">
+                    <Card
+                      style={{ width: "25rem" }}
+                      bg="dark"
+                      className={`${styles.calenderCard} mb-0`}
+                    >
+                      <Card.Body className="text-black">
                         <Card.Title>Birthday this month 🎂</Card.Title>
-                        <div className="row">
+                        <div className="row ">
                           <div className="col-md-2">
                             <Image src="/images/profileIcon.png" width="30" />
                           </div>
@@ -239,14 +225,18 @@ export default function DashboardComponent() {
                     </Card>
                   </div>
                   <div className="row p-3">
-                    <Card style={{ width: '25rem' }} bg="dark" className="mb-0">
-                      <Card.Body className="text-white">
+                    <Card
+                      style={{ width: "25rem" }}
+                      bg="dark"
+                      className={`${styles.calenderCard} mb-0`}
+                    >
+                      <Card.Body className="text-black">
                         <Card.Title>Event this month</Card.Title>
-                        {event?.map((item, index) => (                          
-                            <div key={index}>
-                              <span>{item.eventName}</span>
-                              <span className="float-end">{item.date}</span>
-                            </div>                         
+                        {event?.map((item, index) => (
+                          <div key={index}>
+                            <span>{item.eventName}</span>
+                            <span className="float-end">{item.date}</span>
+                          </div>
                         ))}
                       </Card.Body>
                     </Card>
@@ -255,12 +245,6 @@ export default function DashboardComponent() {
               </div>
             </div>
           </div>
-        </div>
-        <div>
-           <CalendarAi/>
-           <div className="row">
-            <br/>
-           </div>
         </div>
       </div>
     </>

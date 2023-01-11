@@ -2,13 +2,13 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import {
-  Image,
-  InputGroup,
-  Modal,
-  Table,
-  Card,
-  ListGroup,
-  ListGroupItem,
+    Image,
+    InputGroup,
+    Modal,
+    Table,
+    Card,
+    ListGroup,
+    ListGroupItem,
 } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import styles from "../../styles/attendance.module.scss";
@@ -32,30 +32,30 @@ const EmployeeAttendanceComp = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [empAttendList.length]);
 
-  const handleActiveTab = (e) => {
-    setSegment(e.target.value);
-  };
+    const handleActiveTab = (e) => {
+        setSegment(e.target.value);
+    };
 
-  const handleFilter = (e) => {
-    let searchvalue = e?.target?.value;
-    let arr = dsrList?.filter(
-      (item) =>
-        (searchvalue
-          ? item.user_id?.first_name
-            ?.toLowerCase()
-            .includes(searchvalue.toLowerCase())
-          : true) ||
-        (searchvalue
-          ? item.user_id?.last_name
-            ?.toLowerCase()
-            .includes(searchvalue.toLowerCase())
-          : true) ||
-        (searchvalue
-          ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
-          : true)
-    );
-    setChooseDsrList(arr);
-  };
+    const handleFilter = (e) => {
+        let searchvalue = e?.target?.value;
+        let arr = dsrList?.filter(
+            (item) =>
+                (searchvalue
+                    ? item.user_id?.first_name
+                        ?.toLowerCase()
+                        .includes(searchvalue.toLowerCase())
+                    : true) ||
+                (searchvalue
+                    ? item.user_id?.last_name
+                        ?.toLowerCase()
+                        .includes(searchvalue.toLowerCase())
+                    : true) ||
+                (searchvalue
+                    ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
+                    : true)
+        );
+        setChooseDsrList(arr);
+    };
 
     const onSearchHandler = (event) => {
         setSearchKey(event?.target?.value);
@@ -63,7 +63,7 @@ const EmployeeAttendanceComp = () => {
 
     const [punch, setPunch] = useState(true);
     const [punchbtn, setPunchbtn] = useState(false);
-   
+    
     useEffect(() => {
         const currDate = new Date(); 
         if(moment(empAttendList[empAttendList.length-1]?.date).format('ll')  !== moment(currDate).format('ll'))
@@ -216,7 +216,7 @@ const EmployeeAttendanceComp = () => {
                         <div className="col-md-4 col-xl-4">
                             <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                                 <div className="card-block text-dark text-center">
-                                    <h6 className="m-b-20">Unplanned Leaves</h6>
+                                    <h6 className="m-b-20">Attendance Graph</h6>
                                     <h5>0</h5>
                                 </div>
                             </div>

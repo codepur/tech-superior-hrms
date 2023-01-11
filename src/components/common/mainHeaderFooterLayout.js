@@ -14,11 +14,11 @@ const MainHeaderFooterLayout = ({ children, title, data, description }) => {
     const notLoginScreen = data?.pageScreen !== 'login' ;
     const [toggle,setToggle] = useState(true);
 
-    const sidebarToggle = (e)=>{
-       e.preventDefault(); 
-       setToggle(!toggle);
-    }
-
+  const sidebarToggle = (e) => {
+    e.preventDefault();
+    setToggle(!toggle);
+  };
+  
     const [smalltoggle,setSmallToggle] = useState(true);
     const mobileToggle = (e)=>{
         e.preventDefault(); 
