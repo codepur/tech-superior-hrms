@@ -62,6 +62,13 @@ export const appMenuItems = [
     Icon: "/images/logout.png",
     IconActive: "/images/logout.png",
   },
+  {
+    id: 10,
+    name: "Payroll",
+    link: "/payroll",
+    Icon: "/images/payroll.png",
+    IconActive: "/images/payroll.png",
+  },
 ];
 
 export const ADMIN_ROLE = 1;
@@ -124,6 +131,12 @@ export const routesConfig = {
   },
   "/leave": {
     path: "/leave",
+    redirect: "/dashboard",
+    protected: true,
+    access: [SUB_ADMIN_ROLE, EMPLOYEE_ROLE],
+  },
+  "/payroll": {
+    path: "/payroll",
     redirect: "/dashboard",
     protected: true,
     access: [SUB_ADMIN_ROLE, EMPLOYEE_ROLE],
