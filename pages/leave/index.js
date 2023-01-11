@@ -12,9 +12,9 @@ const LeaveComponent = dynamic(
 export default function TicketManagement() {
   return (
     <Layout
-      title={`Hiring | HRMS`}
+      title={`Leave | HRMS`}
       data={{ layoutType: "HOME" }}
-      description={`HRMS Hiring`}
+      description={`HRMS Leave`}
     >
       <div className={`container ${styles.fullContainer}`}>
         <LeaveComponent />

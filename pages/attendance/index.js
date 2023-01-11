@@ -12,9 +12,9 @@ const Attendance = dynamic(
 export default function directory() {
   return (
     <Layout
-      title={`Directory | HRMS`}
+      title={`Attendance | HRMS`}
       data={{ layoutType: "HOME" }}
-      description={`HRMS Candidate Details`}
+      description={`HRMS Attendence Details`}
     >
       <div className="container">
         <Attendance />

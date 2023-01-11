@@ -12,9 +12,9 @@ const HiringComponent = dynamic(
 export default function TicketManagement() {
   return (
     <Layout
-      title={`Hiring | HRMS`}
+      title={`DSR | HRMS`}
       data={{ layoutType: "HOME" }}
-      description={`HRMS Hiring`}
+      description={`HRMS Dsr`}
     >
       <div className={`container ${styles.fullContainer}`}>
         <HiringComponent />

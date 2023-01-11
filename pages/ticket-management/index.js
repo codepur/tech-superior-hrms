@@ -8,7 +8,7 @@ const TicketComponent = dynamic(() => import('../../src/components/TicketManagem
 
 export default function TicketManagement() {
   return (
-    <Layout title={`Dashboard | HRMS`} data={{ layoutType: 'HOME' }} description={`HRMS Dashboard`}>
+    <Layout title={`Ticket | HRMS`} data={{ layoutType: 'HOME' }} description={`HRMS Dashboard`}>
           <div className="container">
         <TicketComponent />
       </div>

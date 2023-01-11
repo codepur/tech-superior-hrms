@@ -12,9 +12,9 @@ const GetHelp = dynamic(
 export default function TicketManagement() {
   return (
     <Layout
-      title={`Hiring | HRMS`}
+      title={`Help | HRMS`}
       data={{ layoutType: "HOME" }}
-      description={`HRMS Hiring`}
+      description={`HRMS Get Help`}
     >
       <div className={`container ${styles.fullContainer}`}>
         <GetHelp />
