@@ -42,7 +42,7 @@ function CalendarAi() {
         </div>
         <div className="calendar-cells">
           {renderCalendarCells().map((cell, index) => (
-            <div className={`${index%7 == 0 || index%7 == 6 ? 'text-danger':''} glass`} key={index}>{cell}</div>
+            <div className={`${index%7 == 0 || index%7 == 6 ? 'text-danger':''} glass ${cell==new Date()}`} key={index}>{cell}</div>
           ))}
         </div>
       </div>

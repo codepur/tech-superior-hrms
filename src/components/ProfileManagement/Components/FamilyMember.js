@@ -246,7 +246,7 @@ export default function FamilyMember() {
       <Button
         variant="primary"
         type="submit"
-        className="mt-3 mb-3"
+        className="mt-3 mb-3 bg-btn-green"
         onClick={handleClick}
       >
         Save

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Button, Container, FloatingLabel, Form, Image, Input, InputGroup, Modal, Table } from "react-bootstrap";
@@ -8,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { attendanceList, allUserList } from "../../stores/actions/attendance";
 import moment from "moment/moment";
 import LiveTime from "../common/liveTime";
+
 const AdminAttendanceComp = () => {
 
   const [empAttendList, allUserAttendList] = useSelector((Gstate) => [Gstate.attendanceList?.attendanceList,

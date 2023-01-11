@@ -63,7 +63,7 @@ const EmployeeAttendanceComp = () => {
 
     const [punch, setPunch] = useState(true);
     const [punchbtn, setPunchbtn] = useState(false);
-   
+    
     useEffect(() => {
         const currDate = new Date(); 
         if(moment(empAttendList[empAttendList.length-1]?.date).format('ll')  !== moment(currDate).format('ll'))
@@ -216,7 +216,7 @@ const EmployeeAttendanceComp = () => {
                         <div className="col-md-4 col-xl-4">
                             <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                                 <div className="card-block text-dark text-center">
-                                    <h6 className="m-b-20">Unplanned Leaves</h6>
+                                    <h6 className="m-b-20">Attendance Graph</h6>
                                     <h5>0</h5>
                                 </div>
                             </div>

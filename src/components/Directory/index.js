@@ -22,7 +22,6 @@ const EmployeeGrid = dynamic(() => import("./employeeGrid"));
 
 function Directory() {
   const [userList] = useSelector((Gstate) => [Gstate.user?.userList]);
-  // const router = useRouter();
   const [gridView, setGridView] = useState(true);
   const [filters, setFilters] = useState({});
   const [searchKey, setSearchKey] = useState("");
@@ -45,20 +44,15 @@ function Directory() {
           : true)
     );
     setSearchData(arr);
-    // setPagination((prev) => ({
-    //   ...prev,
-    //   list: arr,
-    // }));
   };
- 
+
   const filterData = "";
   const handleSelectFilter = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, value }));
-    // setSearchData(filters)
     if (value !== "all") {
       filterData = userList?.filter((item) => item?.user_type === value);
-      setSearchData(filterData)
+      setSearchData(filterData);
     } else {
       setSearchData(userList);
     }
@@ -116,9 +110,10 @@ function Directory() {
                   }
                   data-toggle="tooltip"
                   title="List View"
-                  className={`float-end ${styles.gridIcon} ${gridView ? `pt-2` : ""
-                    }`}
-                    alt=''
+                  className={`float-end ${styles.gridIcon} ${
+                    gridView ? `pt-2` : ""
+                  }`}
+                  alt=""
                   onClick={() => setGridView(false)}
                 />
               </div>
@@ -132,8 +127,9 @@ function Directory() {
                   data-toggle="tooltip"
                   title="Grid View"
                   alt=""
-                  className={`float-end ms-1 ${styles.gridIcon} ${gridView ? `` : "pt-2"
-                    }`}
+                  className={`float-end ms-1 ${styles.gridIcon} ${
+                    gridView ? `` : "pt-2"
+                  }`}
                   onClick={() => setGridView(true)}
                 />
               </div>
