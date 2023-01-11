@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import dynamic from "next/dynamic";
 import { Card, Image, Modal } from "react-bootstrap";
 import styles from "../../styles/dashboard.module.scss";

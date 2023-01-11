@@ -1,27 +1,17 @@
-import { memo, useEffect, useState } from "react";
-import { Dropdown, Image, Nav } from "react-bootstrap";
+import { memo} from "react";
+import { Dropdown, Image} from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../src/styles/header.module.scss";
 import { logout } from "../../helpers/auth";
-import { getProfile, setUserlist } from "../../stores/actions/mainPage";
 import { IconCaretDown} from "@tabler/icons";
 
 function HeaderComponent({ isPublic, hasSideBar, mobileToggle }) {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (userData) {
-      dispatch(getProfile());
-      dispatch(setUserlist());
-    }
-  }, []);
-
   const logoutUser = () => {
     logout();
   };
-
+ 
   return (
     <>
       <Navbar bg="light" className={`row ${styles.mainHeader} m-0 p-0`}>

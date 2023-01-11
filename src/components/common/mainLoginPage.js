@@ -95,7 +95,6 @@ function MainLoginPage(props) {
 
   return (
     <>
- 
       <div className={`${styles.mainBox} `}>
         <div className={`${styles.outerbox} row gx-0 d-flex`}>
           <div className={`${styles.imgContainer} row gx-0 d-flex justify-content-between col-md-2`}>
