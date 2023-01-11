@@ -12,6 +12,7 @@ import { handleErrorMessage } from "../../utils/commonFunctions";
 import RequestModel from "./requestModel";
 import PaginationComponent from "../common/PaginationComponent";
 import toast, { Toaster } from "react-hot-toast";
+import { Tabs, Tab } from "@mantine/core";
 
 import {
   setAdminDsrList,
@@ -48,7 +49,7 @@ function DSRManagement() {
   const editorRef = useRef(null);
   const [ticketSectionExpand, setTicketSectionExpand] = useState(false);
   const [pagination, setPagination] = useState(initialPaginationState);
-  const { activePage, skip, limitPerPage,paginatedData, list} = pagination;
+  const { activePage, skip, limitPerPage, paginatedData, list } = pagination;
   const [openModal, setOpenModal] = useState(false);
   const [index, setIndex] = useState();
   const [edit, setEdit] = useState(false);
@@ -127,7 +128,6 @@ function DSRManagement() {
     }));
   };
 
-
   useEffect(() => {
     if (ticketSectionExpand) {
       setTicketData(initial);
@@ -147,7 +147,6 @@ function DSRManagement() {
     const ApprovedList = dsrList.filter((item) => item.status == "Approved");
     setChooseDsrList(ApprovedList);
   }, [dsrList]);
- 
 
   const ticketSubmit = () => {
     // delete ticketData.totalHours;
@@ -185,23 +184,21 @@ function DSRManagement() {
     var skipRecords = (page - 1) * limitPerPage;
     const to = limitPerPage * page;
     setPagination((prev) => ({
-        ...prev,
-        activePage: page,
-        skip: JSON.parse(skipRecords),
-        paginatedData: list.slice(skipRecords, to),
-        userData: list.slice(skipRecords, to),
+      ...prev,
+      activePage: page,
+      skip: JSON.parse(skipRecords),
+      paginatedData: list.slice(skipRecords, to),
+      userData: list.slice(skipRecords, to),
     }));
-};
+  };
 
-useEffect(() => {
-  setPagination((prev) => ({ ...prev, list:chooseDsrList}));
-}, [chooseDsrList?.length]);
+  useEffect(() => {
+    setPagination((prev) => ({ ...prev, list: chooseDsrList }));
+  }, [chooseDsrList?.length]);
 
-useEffect(() => {
-   onPageChange(activePage);
- }, [list, activePage,chooseDsrList?.length,]);
-
-
+  useEffect(() => {
+    onPageChange(activePage);
+  }, [list, activePage, chooseDsrList?.length]);
 
   const viewTicket = (row) => {
     setOpenModal(true);
@@ -485,12 +482,11 @@ useEffect(() => {
           <div className={`row justify-content-between `}>
             <SegmentedControl
               className="col-md-4 mb-3"
-              color="teal"
+              color="green"
               onClick={handleActiveTab}
               data={[
                 {
                   value: "Approved",
-                  // onClick: { handleActiveTab },
                   label: (
                     <Center>
                       <IconThumbUp size={16} />
@@ -500,7 +496,6 @@ useEffect(() => {
                 },
                 {
                   value: "Pending",
-                  // onClick: { handleActiveTab },
                   label: (
                     <Center>
                       <IconClock size={16} />
@@ -510,7 +505,6 @@ useEffect(() => {
                 },
                 {
                   value: "Rejected",
-                  // onClick: { handleActiveTab },
                   label: (
                     <Center>
                       <IconX size={16} />
@@ -538,6 +532,7 @@ useEffect(() => {
             </div>
           </div>
           <hr className={`${styles.hr}`}></hr>
+
           <div>
             <Table className={`${styles.table} table table-hover `}>
               <thead className={`${styles.tableHead} `}>
@@ -624,8 +619,6 @@ useEffect(() => {
                                 onClick={() => editTask(row)}
                               />
                             </center>
-                            {/* </div>
-                          <div> */}
                             <center>
                               <Image
                                 src="images/delete.png"
@@ -642,15 +635,19 @@ useEffect(() => {
                 ))}
               </tbody>
             </Table>
-            <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
-                <PaginationComponent
-                    currentPage={activePage}
-                    list={list}
-                    skip={skip}
-                    limitPerPage={limitPerPage}
-                    loading={loading}
-                    onPageChange={onPageChange}
-                />
+            <div
+              className={`d-flex justify-content-${
+                list?.length ? "end" : "center"
+              }`}
+            >
+              <PaginationComponent
+                currentPage={activePage}
+                list={list}
+                skip={skip}
+                limitPerPage={limitPerPage}
+                loading={loading}
+                onPageChange={onPageChange}
+              />
             </div>
           </div>
         </div>

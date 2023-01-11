@@ -4,7 +4,7 @@ export const appMenuItems = [
     name: "Dashboard",
     link: "/employee-dashboard",
     Icon: "/images/dashboard.png",
-    IconActive: "/images/dashboard.png",
+    IconActive: "/images/dashboard (1).png",
   },
   {
     id: 2,
@@ -17,8 +17,8 @@ export const appMenuItems = [
     id: 3,
     name: "Directory",
     link: "/directory",
-    Icon: "/images/employees.png",
-    IconActive: "/images/employees.png",
+    Icon:"/images/telephone-directory.png",
+    IconActive: "/images/telephone-directory.png",
   },
   {
     id: 4,
@@ -61,6 +61,13 @@ export const appMenuItems = [
     link: "/leave",
     Icon: "/images/logout.png",
     IconActive: "/images/logout.png",
+  },
+  {
+    id: 10,
+    name: "Payroll",
+    link: "/payroll",
+    Icon: "/images/payroll.png",
+    IconActive: "/images/payroll.png",
   },
 ];
 
@@ -124,6 +131,12 @@ export const routesConfig = {
   },
   "/leave": {
     path: "/leave",
+    redirect: "/dashboard",
+    protected: true,
+    access: [SUB_ADMIN_ROLE, EMPLOYEE_ROLE],
+  },
+  "/payroll": {
+    path: "/payroll",
     redirect: "/dashboard",
     protected: true,
     access: [SUB_ADMIN_ROLE, EMPLOYEE_ROLE],
