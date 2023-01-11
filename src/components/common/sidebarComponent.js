@@ -27,8 +27,8 @@ const SidebarComponent = (props) => {
   const dispatch = useDispatch();
 
   function openlogoutModal() {
-    setLogoutModal(true)
-  };
+    setLogoutModal(true);
+  }
 
   useEffect(() => {
     if (roleId && roleId === SUB_ADMIN_ROLE) {
@@ -38,8 +38,8 @@ const SidebarComponent = (props) => {
       setAppMenuItemsData(menu);
     }
     if (roleId && roleId === EMPLOYEE_ROLE) {
-      const menu = appMenuItems?.filter(
-        (item) => [1, 2, 3, 4, 7, 8, 9].includes(item.id)
+      const menu = appMenuItems?.filter((item) =>
+        [1, 2, 3, 4, 7, 8, 9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }
@@ -47,7 +47,6 @@ const SidebarComponent = (props) => {
 
   useEffect(() => {
     dispatch(getProfile());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const collapesSidebar = () => {
@@ -64,7 +63,10 @@ const SidebarComponent = (props) => {
   return (
     <>
       <Modal centered show={logoutModal} onHide={() => setLogoutModal(false)}>
-        <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}></Modal.Header>
+        <Modal.Header
+          closeButton
+          className={`${styles.modalHeaderBorderNone}`}
+        ></Modal.Header>
         <Modal.Body className="bodyModal">
           <h3>
             <div className="d-flex-justify-content-center fw-bold text-center">
@@ -73,37 +75,74 @@ const SidebarComponent = (props) => {
           </h3>
         </Modal.Body>
         <Modal.Footer className="justify-content-center">
-          <button className="btn bg-btn-green text-center" onClick={logoutUser} >
+          <button className="btn bg-btn-green text-center" onClick={logoutUser}>
             Logout
           </button>
-          <button className="btn btn-danger text-center" onClick={() => setLogoutModal(false)} >
+          <button
+            className="btn btn-danger text-center"
+            onClick={() => setLogoutModal(false)}
+          >
             Cancel
           </button>
         </Modal.Footer>
       </Modal>
-      <div id="header" className={`col-md-12 d-none d-md-block ${styles.sidebar} `}>
+      <div
+        id="header"
+        className={`col-md-12 d-none d-md-block ${styles.sidebar} `}
+      >
         <Nav>
           <header>
-            <div className={`${styles.head}`} onClick={() => { router.push('/employee-dashboard') }} role='button'>
+            <div
+              className={`${styles.head}`}
+              onClick={() => {
+                router.push("/employee-dashboard");
+              }}
+              role="button"
+            >
               <div className="logoImg d-flex align-item-center justify-content-center p-1 ">
-                <Image src="/images/LogoTSC.svg" alt="logo" className={`${toggle ? 'img-fluid' : 'img-fluid w-50 '}`} />
+                <Image
+                  src="/images/LogoTSC.svg"
+                  alt="logo"
+                  className={`${toggle ? "img-fluid" : "img-fluid w-50 "}`}
+                />
               </div>
-              <div className={`${toggle ? 'd-block' : 'd-none'} logoText pe-1`}>
-                <Image src="images/textLogo.png" alt="logo" className="img-fluid" />
+              <div className={`${toggle ? "d-block" : "d-none"} logoText pe-1`}>
+                <Image
+                  src="images/textLogo.png"
+                  alt="logo"
+                  className="img-fluid"
+                />
               </div>
             </div>
-            <IconCircleChevronLeft className={`${styles.toggle} ${toggle ? styles.toggleRigth : styles.toggleLeft}`} onClick={sidebarToggle} />
+            <IconCircleChevronLeft
+              className={`${styles.toggle} ${
+                toggle ? styles.toggleRigth : styles.toggleLeft
+              }`}
+              onClick={sidebarToggle}
+            />
           </header>
           <div className={`${styles.sidebarInnerItems} mt-4 pt-2 w-100`}>
             {appMenuItemsData?.map((item, i) => (
               <Nav.Item
                 href={item.link}
                 key={i}
-                className={`${styles.menuItem} ${router.pathname.includes(item.link) && styles.menuItemActive
-                  }  d-flex p-1 align-items-center `}
+                className={`${styles.menuItem} ${
+                  router.pathname.includes(item.link) && styles.menuItemActive
+                }  d-flex p-1 align-items-center `}
               >
-                <Nav.Link className={`${toggle ? '' : 'd-flex align-item-center justify-content-center'} float-left`} href={item.link}>
-                  <Link href={item.link} passHref className="flex-grow-1 menuList">
+                <Nav.Link
+                  className={`${
+                    toggle
+                      ? ""
+                      : "d-flex align-item-center justify-content-center"
+                  } float-left`}
+                  href={item.link}
+                >
+                  <Link
+                    href={item.link}
+                    passHref
+                    className="flex-grow-1 menuList"
+                  >
                     <div className={`side-menu`}>
                       <Image
                         src={
@@ -116,7 +155,13 @@ const SidebarComponent = (props) => {
                         width="25"
                         className="me-2 "
                       />
-                      <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>{item.name}</span>
+                      <span
+                        className={`${
+                          toggle ? "d-inline-block" : "d-none"
+                        } flex-grow-1`}
+                      >
+                        {item.name}
+                      </span>
                     </div>
                   </Link>
                 </Nav.Link>
@@ -127,24 +172,65 @@ const SidebarComponent = (props) => {
         <div className="lastItems">
           <div className={`${styles.sidebarOuterItems}`}>
             <div className={` ${styles.menuOtherItem}   p-1 `}>
-              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={() => (router.push("/gethelp"))} role='button'>
-                <Image src="/images/information.png" alt="Logo" height="25" width="25" className="me-2 " />
-                <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Get Help</span>
+              <div
+                className={`${styles.other} ${
+                  toggle
+                    ? ""
+                    : "d-flex align-item-center justify-content-center"
+                }`}
+                onClick={() => router.push("/gethelp")}
+                role="button"
+              >
+                <Image
+                  src="/images/help-web-button.png"
+                  alt="Logo"
+                  height="25"
+                  width="25"
+                  className="me-2 "
+                />
+                <span
+                  className={`${
+                    toggle ? "d-inline-block" : "d-none"
+                  } flex-grow-1`}
+                >
+                  Get Help
+                </span>
               </div>
-
             </div>
           </div>
           <div className={`${styles.sidebarOuterItems}`}>
             <div className={` ${styles.menuOtherItem}   p-1 `}>
-              <div className={`${styles.other} ${toggle ? '' : 'd-flex align-item-center justify-content-center'}`} onClick={openlogoutModal} role='button'>
-                <Image src="/images/logout1.png" alt="Logo" height="25" width="25" className="me-2 " />
-                <span className={`${toggle ? 'd-inline-block' : 'd-none'} flex-grow-1`}>Logout</span>
+              <div
+                className={`${styles.other} ${
+                  toggle
+                    ? ""
+                    : "d-flex align-item-center justify-content-center"
+                }`}
+                onClick={openlogoutModal}
+                role="button"
+              >
+                <Image
+                  src="/images/logout1.png"
+                  alt="Logo"
+                  height="25"
+                  width="25"
+                  className="me-2 "
+                />
+                <span
+                  className={`${
+                    toggle ? "d-inline-block" : "d-none"
+                  } flex-grow-1`}
+                >
+                  Logout
+                </span>
               </div>
             </div>
           </div>
           <div className={`${styles.version} text-center text-muted`}>
-              <span>v 1.2.0 &nbsp;</span> 
-              <span className={`${toggle ? 'd-inline-block' : 'd-none'}`}>Terms & Conditions</span>
+            <span>v 1.2.0 &nbsp;</span>
+            <span className={`${toggle ? "d-inline-block" : "d-none"}`}>
+              Terms & Conditions
+            </span>
           </div>
         </div>
       </div>

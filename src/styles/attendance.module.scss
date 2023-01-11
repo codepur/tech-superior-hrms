@@ -2,74 +2,78 @@ $inactive_btn: #929292;
 $active_color: #50ff39;
 
 @mixin tabs-mixin($bg) {
-    background: $bg !important;
-    border: none;
-    color: #fff !important;
-    outline: none;
-    box-shadow: none !important;
-    &:hover {
-      color: #fff;
-      background: $bg;
-    }
+  background: $bg !important;
+  border: none;
+  color: #fff !important;
+  outline: none;
+  box-shadow: none !important;
+  &:hover {
+    color: #fff;
+    background: $bg;
   }
-    
-  .inactive {
-    @include tabs-mixin($inactive_btn);
-  }
-  .active {
-    @include tabs-mixin($active_color);
-  }
-
-.TaskDiv{
-    box-shadow: -2px 7px 38px -15px grey;
-    // border-radius: 15px 15px 15px 15px;
-    padding: 25px;
 }
 
-.ContainerDiv{
-    // box-shadow: -2px 7px 38px -15px grey;
-    padding: 25px;
+.inactive {
+  @include tabs-mixin($inactive_btn);
 }
-.saveButton{
-    background-color: #3c5f4b !important;
-      color: white;
-  }
+.active {
+  @include tabs-mixin($active_color);
+}
 
-.segmented{
-    margin-left: 1vw !important;    
-    padding-left: 6px !important;
+.TaskDiv {
+  box-shadow: -2px 7px 38px -15px grey;
+  // border-radius: 15px 15px 15px 15px;
+  padding: 25px;
+}
+
+.ContainerDiv {
+  // box-shadow: -2px 7px 38px -15px grey;
+  padding: 25px;
+}
+.saveButton {
+  background-color: #3c5f4b !important;
+  color: white;
+}
+
+.segmented {
+  margin-left: 1vw !important;
+  padding-left: 6px !important;
 }
 
 .hoverInfo {
-    cursor: pointer;
-    width: 30px;
-  }
+  cursor: pointer;
+  width: 30px;
+}
 .segmentedBg {
-    background-color: white !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: white !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.segment{
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: white;
+.segment {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: white;
 }
-.center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cardContainer{
-  background: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0.1%, rgba(233, 226, 226, 0.28) 90.1%);
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 16px );
--webkit-backdrop-filter: blur( 16px );
-border-radius: 10px;
-border: 2px solid rgba(88, 87, 87, 0.18);
-height: 440px;
+.cardContainer {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgba(216, 241, 230, 0.46) 0.1%,
+    rgba(233, 226, 226, 0.28) 90.1%
+  );
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
+  border: 2px solid rgba(88, 87, 87, 0.18);
+  height: 440px;
 }
-.round{
+.round {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,10 +83,10 @@ height: 440px;
   background-color: #bbe4e9;
   border: 5px solid #5585b5;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  touch-action: manipulation;
-  transition : all 0.5s ease;
+  touch-action: manipulation; 
+  transition: all 0.5s ease;
 }
-.round:hover{
+.round:hover {
   transform: scale(1.05) rotate(-1deg);
 }
 
@@ -90,11 +94,14 @@ height: 440px;
 .buttongreen {
   background-color: #c2fbd7;
   border-radius: 100px;
-  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+    rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+    rgba(44, 187, 99, 0.15) 0 16px 32px;
   color: green;
   cursor: pointer;
   display: inline-block;
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
   padding: 7px 20px;
   text-align: center;
   text-decoration: none;
@@ -107,19 +114,27 @@ height: 440px;
 }
 
 .buttongreen:hover {
-  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+    rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+    rgba(44, 187, 99, 0.25) 0 16px 32px;
   transform: scale(1.05) rotate(-1deg);
 }
 
 .buttonred {
   background-color: #fbc9c2;
   border-radius: 100px;
-  box-shadow: rgba(187, 56, 44, 0.2) 0 -25px 18px -14px inset,rgba(187, 44, 44, 0.15) 0 1px 2px,rgba(187, 65, 44, 0.15) 0 2px 4px,rgba(187, 63, 44, 0.15) 0 4px 8px,rgba(187, 51, 44, 0.15) 0 8px 16px,rgba(187, 65, 44, 0.15) 0 16px 32px;
+  box-shadow: rgba(187, 56, 44, 0.2) 0 -25px 18px -14px inset,
+    rgba(187, 44, 44, 0.15) 0 1px 2px, rgba(187, 65, 44, 0.15) 0 2px 4px,
+    rgba(187, 63, 44, 0.15) 0 4px 8px, rgba(187, 51, 44, 0.15) 0 8px 16px,
+    rgba(187, 65, 44, 0.15) 0 16px 32px;
   color: red;
-  cursor: pointer;
   display: inline-block;
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
   padding: 7px 20px;
+  box-shadow: rgba(187, 56, 44, 0.2) 0 -25px 18px -14px inset,rgba(187, 44, 44, 0.15) 0 1px 2px,rgba(187, 65, 44, 0.15) 0 2px 4px,rgba(187, 63, 44, 0.15) 0 4px 8px,rgba(187, 51, 44, 0.15) 0 8px 16px,rgba(187, 65, 44, 0.15) 0 16px 32px;
+  cursor: pointer;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
   text-align: center;
   text-decoration: none;
   transition: all 250ms;
@@ -130,32 +145,34 @@ height: 440px;
   touch-action: manipulation;
 }
 .buttonred:hover {
-  box-shadow: rgba(187, 56, 44, 0.35) 0 -25px 18px -14px inset,rgba(187, 68, 44, 0.25) 0 1px 2px,rgba(187, 65, 44, 0.25) 0 2px 4px,rgba(187, 44, 44, 0.25) 0 4px 8px,rgba(187, 53, 44, 0.25) 0 8px 16px,rgba(187, 65, 44, 0.25) 0 16px 32px;
+  box-shadow: rgba(187, 56, 44, 0.35) 0 -25px 18px -14px inset,
+    rgba(187, 68, 44, 0.25) 0 1px 2px, rgba(187, 65, 44, 0.25) 0 2px 4px,
+    rgba(187, 44, 44, 0.25) 0 4px 8px, rgba(187, 53, 44, 0.25) 0 8px 16px,
+    rgba(187, 65, 44, 0.25) 0 16px 32px;
   transform: scale(1.05) rotate(-1deg);
 }
 
-
-.stats{
+.stats {
   background-color: #f9f9f9;
   border: 1px solid #e3e3e3;
   margin-bottom: 5px;
   padding: 2px;
   text-align: center;
   border-radius: 10px;
-  p{
+  p {
     margin-bottom: 0.4rem !important;
   }
 }
 
-.cardBody{
-padding: 1rem 1rem;
+.cardBody {
+  padding: 1rem 1rem;
 }
-.cardTittle{
+.cardTittle {
   color: #1f1f1f;
   font-size: 20px;
   font-weight: 500;
 }
-.statsInfo{
+.statsInfo {
   background-color: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 4px;
@@ -163,10 +180,59 @@ padding: 1rem 1rem;
   text-align: center;
   margin: 10px 0px;
 }
-.statsInfo p{ 
+.statsInfo p {
   display: flex;
   font-size: 12px;
   justify-content: space-between;
   margin-bottom: 5px;
-
 }
+
+//Table Css 
+.tableResponsive {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch !important;
+  border-radius: 15px !important;
+  background: radial-gradient( 328px at 2.9% 15%,  rgb(191, 224, 251) 0%,  rgb(232, 233, 251) 25.8%,  rgb(252, 239, 250) 50.8%,  rgb(234, 251, 251) 77.6%,  rgb(240, 251, 244) 100.7%);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 8.5px );
+  -webkit-backdrop-filter: blur( 8.5px );
+  border-radius: 10px;
+}
+
+// If there is scroll in table
+.tableResponsive::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  margin:0px 5px;
+}
+.tableResponsive::-webkit-scrollbar {
+  height: 5px;
+}
+.tableResponsive::-webkit-scrollbar-thumb {
+  width: 10px;
+  border-radius: 15px;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear,40% 0%,75% 84%,from(#4d9c41),to(#19911d),color-stop(0.6, #54de5d));
+  margin-left: 10px;
+}
+
+.customtable {
+  caption-side: bottom;
+  border-collapse: collapse; 
+  thead > tr > th {
+    letter-spacing: 0.05em;
+    padding: 10px 15px !important;
+  }
+  tbody > tr > td{
+    padding: 10px 15px !important;
+  }
+}
+.tableHead {
+  background: #93e4c1;
+}
+
+// Checkbox css  

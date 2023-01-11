@@ -1,4 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.sidebarMenuAppend {
+  font-family: "Poppins", sans-serif;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-wrap: nowrap;
+  position: fixed;
+  flex-direction: column;
+  z-index: 100;
+  color: white !important;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200px;
+}
+
+.sidebarMenuCollape {
+  background-color: #3c5f4b;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  width: 108px;
+  top: 0;
+  z-index: 100;
+  bottom: 0;
+  padding-top: 76px;
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  color: white !important;
+  height: 20px;
+  overflow: hidden;
+  transition: 0.5s;
+}
 
 .sidebarItems {
   .hover {
@@ -34,6 +74,35 @@
   text-align: center;
 }
 
+.upperArrowKey {
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+  border-radius: 50%;
+  height: 44px;
+  width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.downArrowKey {
+  position: fixed;
+  top: 24px;
+  left: 20px;
+  border-radius: 50%;
+  height: 44px;
+  width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upperImg,
+.downImg {
+  width: 20px;
+  cursor: pointer;
+}
 
 /* ===== Colors ===== */
 $body-color: #e4e9f7;
@@ -51,8 +120,7 @@ $text-color: #0e0b0b;
 $tran-03: all 0.2s ease;
 $tran-03: all 0.3s ease;
 $tran-04: all 0.3s ease;
-$tran-05: all 0.5s ease;
-
+$tran-05: all 0.3s ease;
 /* ===== Sidebar ===== */
 .sidebar {
   font-family: "Poppins", sans-serif;
@@ -62,6 +130,7 @@ $tran-05: all 0.5s ease;
   height: 100%;
   max-width: 210px;
   width: inherit;
+  // padding: 10px 14px;
   padding: 2px;
   transition: $tran-05;
   z-index: 100;
@@ -73,14 +142,12 @@ $tran-05: all 0.5s ease;
   }
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  display: flex !important;
-  flex-direction: column;
-  justify-content: space-between !important;
-  
+}
+.sidebar.close {
+  width: 88px;
 }
 .sidebarInnerItems {
-  height: 375px;
-  // height: 65vh;
+  height: 65vh;
   overflow-y: auto;
   overflow-x: hidden;
   border-bottom: 2px solid #b3b8bc;
@@ -92,7 +159,6 @@ $tran-05: all 0.5s ease;
 }
 
 .menuItem {
-  
   a {
     font-size: 13px;
     font-weight: 500;
@@ -107,7 +173,6 @@ $tran-05: all 0.5s ease;
     text-decoration: none;
     font-weight: 600;
     border-radius: 15px;
-
   }
 }
 .menuList {
@@ -115,18 +180,10 @@ $tran-05: all 0.5s ease;
   justify-items: center;
   align-items: center;
 }
-// .menuItemsImg {
-//   display: flex;
-//   justify-content: center;
-//   text-align: center;
-//   align-items: center;
-// }
-
 .menuItemActive {
-  background: $primary-color;
+  background:linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60 / 99%) 90.3%);;
   border-radius: 15px;
   display: flex;
-  
   a {
     list-style: none;
     height: 100%;
@@ -138,13 +195,23 @@ $tran-05: all 0.5s ease;
     text-decoration: none;
     transition: $tran-03;
     border-radius: 15px;
-    font-weight: 700;
   }
   a:hover {
     color: #000000;
     font-size: 13px;
     border-radius: 15px;
   }
+}
+
+.menuBar {
+  height: calc(100% - 55px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+.menuBar::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -158,7 +225,6 @@ $tran-05: all 0.5s ease;
 .toggle{
   position: absolute;
   top: 35px;
-  // left: 96% ;
   right: -17px;
   transform: translateY(-50%) rotate(180deg);
   height: 25px;
@@ -200,7 +266,7 @@ $tran-05: all 0.5s ease;
 }
  
 .menuOtherItemActive {
-  background: $primary-color;
+  background:linear-gradient(110.1deg, rgb(34 126 34 / 16%) 2.9%, rgb(168 251 60 / 69%) 90.3%);
   border-radius: 15px;
   .other{
     list-style: none;
@@ -223,3 +289,22 @@ $tran-05: all 0.5s ease;
 .version{
   font-size: 12px !important;
 }
+
+@media only screen and (max-width: 600px) {
+  .sidebar{
+    margin-top: 65px;
+  }
+  .headerBody{
+    display: none;
+  }  
+  .sidebar{
+    background: rgba( 255, 255, 255, 0.55 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6px );
+    -webkit-backdrop-filter: blur( 6px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    height: auto;
+  }
+
+} 
