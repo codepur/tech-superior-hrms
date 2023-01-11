@@ -16,19 +16,11 @@ const AdminAttendanceComp = () => {
   Gstate.attendanceList?.allUserList]);
   const dispatch = useDispatch();
   useEffect(() => {
-<<<<<<< HEAD
-    dispatch(attendanceList());
-    dispatch(allUserList());
-  }, [empAttendList.length]);
-  
-  const studentList = [{ name: "neeraj verma" },{ name: "neeraj verma" },{ name: "neeraj verma" },{ name: "neeraj verma" }]
-=======
     // dispatch(attendanceList());
      dispatch(allUserList());
   }, [] );
  
   const studentList = [{ name: "neeraj verma" }, { name: "neeraj verma" }, { name: "neeraj verma" }, { name: "neeraj verma" }]
->>>>>>> 62216e1a3cb46203a2cb1ca37e9468848e007106
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
   const [segmentValue, setSegment] = useState()
   const handleActiveTab = (e) => {

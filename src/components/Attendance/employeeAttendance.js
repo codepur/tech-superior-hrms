@@ -28,12 +28,7 @@ const EmployeeAttendanceComp = () => {
     ]);
     const dispatch = useDispatch();
     useEffect(() => {
-<<<<<<< HEAD
-            dispatch(attendanceList());
-        console.log('empAttendList', empAttendList)
-=======
         dispatch(attendanceList());
->>>>>>> 62216e1a3cb46203a2cb1ca37e9468848e007106
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [empAttendList.length]);
 
