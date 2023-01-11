@@ -64,8 +64,7 @@ function TicketManagement() {
 
   const { subject, department,assign_to, priority, description } = ticketData;
 
-  const onChangeHandler = (e) => {
-    debugger
+  const onChangeHandler = (e) => {    
     setTicketData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -80,8 +79,8 @@ function TicketManagement() {
       ...prev,
       activePage: page,
       skip: JSON.parse(skipRecords),
-      // paginatedData: list.slice(skipRecords, to),
-      // userData: list.slice(skipRecords, to),
+      paginatedData: list.slice(skipRecords, to),
+      userData: list.slice(skipRecords, to),
     }));
   };
 

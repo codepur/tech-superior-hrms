@@ -8,6 +8,8 @@ const apiKeys = {
   updatePassword: "users/password/change",
   sendResetEmail: "users/password/reset/link",
   // userProfilePicture:"users/profilePicture",
+  userProfilePicture: "users/profile/picture/upload",  
+  userProfile:"images/ProfileImages",
   userFamilyEmergencyUpdate: "users/family/profile",
   userFamilyListdelete: "users/family/profile/delete",
   qualificationList: "users/qualification/List",
@@ -27,17 +29,16 @@ const apiKeys = {
   createDsr: "dsr/create",
   projectList: "project/list",
   DsrList: "dsr/list",
-  dsrReject_Approvel:"dsr/status",
+  dsrReject_Approvel: "dsr/status",
   updateDsr: "dsr/update",
 
 
   //Attendance
-  attendanceList :"attendance/list",
-  createAttendance : "attendance/create",
-  punchIn : "attendance/punchIn",
-  punchOut : "attendance/punchOut",
-  allUserList : "attendance/allUsersList",
-
+  attendanceList: "attendance/list",
+  createAttendance: "attendance/create",
+  punchIn: "attendance/punchIn",
+  punchOut: "attendance/punchOut",
+  allUserList: "attendance/allUsersList",
 };
 
 

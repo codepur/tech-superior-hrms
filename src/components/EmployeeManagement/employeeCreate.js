@@ -103,7 +103,7 @@ function TicketManagement() {
               marginRight: "25px",
             },
           });
-        }
+        }    
       })
       .catch((err) => {
         handleErrorMessage(err);

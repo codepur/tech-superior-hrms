@@ -4,6 +4,7 @@ import ticketManagement from '../reducers/ticketManagement'
 import ticketsList from '../reducers/ticketManagement'
 import dsr from '../reducers/dsr'
 import attendanceList from '../reducers/attendance';
+import profilePicture from '../reducers/profilePicture'
 
 const appReducer = combineReducers({
   user,
@@ -11,6 +12,7 @@ const appReducer = combineReducers({
   ticketsList,
   dsr,
   attendanceList,
+  profilePicture,
 });
 
 const rootReducer = (state, action) => {

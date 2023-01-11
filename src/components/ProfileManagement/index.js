@@ -8,7 +8,14 @@ import moment from "moment/moment";
 
 export default function MainPage() {
   // const dispatch = useDispatch();
-  const userData = useSelector((Gstate) => Gstate.user.userData);
+  // const userData = useSelector((Gstate) => Gstate.user.userData);
+  const [userData, userList] = useSelector((Gstate) => [
+    Gstate.user?.userData,
+    Gstate.user?.userList,
+  ]);
+  // console.log('userList', userList)
+  // console.log('userData', userData)
+  // console.log('userList', userList)
   const [state, Setstate] = useState("Basic Information");
 
   const handleClick = (data) => {
@@ -24,7 +31,7 @@ export default function MainPage() {
               className={`rounded-circle  ms-5  mt-3 ${styles.circleimg} border`}
             >
               <Image
-                src="/images/men.png"
+                src={userData.Image}
                 alt="userProfile"
                 className={`${styles.userProfile} img-fluid`}
               />
