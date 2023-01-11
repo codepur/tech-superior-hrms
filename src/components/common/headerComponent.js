@@ -14,7 +14,7 @@ function HeaderComponent({ isPublic, hasSideBar, mobileToggle }) {
   useEffect(() => {
     if (userData) {
       dispatch(getProfile());
-      dispatch(setUserlist());
+      
     }
   }, []);
 
