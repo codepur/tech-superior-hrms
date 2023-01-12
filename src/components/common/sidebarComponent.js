@@ -47,6 +47,7 @@ const SidebarComponent = (props) => {
 
   useEffect(() => {
     dispatch(getProfile());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const collapesSidebar = () => {

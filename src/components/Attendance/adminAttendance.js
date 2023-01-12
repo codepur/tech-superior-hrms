@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { Button, Container, Image, Input, InputGroup, Modal, Table } from "react-bootstrap";
+import { Button, Container, FloatingLabel, Form, Image, Input, InputGroup, Modal, Table } from "react-bootstrap";
 import styles from "../../styles/attendance.module.scss"
 import { Center, SegmentedControl, Box } from "@mantine/core";
-import { IconClock, IconX, IconCheck } from "@tabler/icons";
+import { IconClock, IconX, IconCheck, IconQuestionCircle } from "@tabler/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { attendanceList, allUserList } from "../../stores/actions/attendance";
 import moment from "moment/moment";
@@ -12,13 +12,14 @@ import LiveTime from "../common/liveTime";
 
 const AdminAttendanceComp = () => {
 
-  const [empAttendList, allUserAttendList] = useSelector((Gstate) =>
-    [Gstate.attendanceList?.attendanceList, Gstate.attendanceList?.allUserList]);
+  const [empAttendList, allUserAttendList] = useSelector((Gstate) => [Gstate.attendanceList?.attendanceList,
+  Gstate.attendanceList?.allUserList]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(attendanceList());
-    dispatch(allUserList());
-  }, []);
+    // dispatch(attendanceList());
+     dispatch(allUserList());
+  }, [] );
+ 
   const studentList = [{ name: "neeraj verma" }, { name: "neeraj verma" }, { name: "neeraj verma" }, { name: "neeraj verma" }]
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
   const [segmentValue, setSegment] = useState()
@@ -42,8 +43,22 @@ const AdminAttendanceComp = () => {
 
     closeModal();
   }
+  const set = new Set();
+  allUserAttendList.map((val)=>{
+    set.add(val.user_id._id);
+  })
+  set = [...set];
+  let allUserGrid = Array.from(Array(set.length), () => new Array());
+  allUserAttendList.forEach((val)=>{
+      allUserGrid[set.indexOf(val.user_id._id)].push(val);
+  })
+  
+  const markAllAttendance = ()=>{
 
 
+    
+  }
+ 
   return (
     <>
       <Modal centered size="lg" show={showModal} onHide={closeModal} className="textFont">
@@ -153,8 +168,16 @@ const AdminAttendanceComp = () => {
       <div className="conatiner-fluid">
         <div className={`row d-flex mt-1 ${styles.ContainerDiv}`}>
           <h2 className="col-md-4 mb-5">Attendance</h2>
-          <div className="col-md-12 d-flex justify-content-end pe-5">
-            <Button className="">Save</Button>
+          <div className="col-md-12 d-flex justify-content-between pe-4 my-2">
+            <div className={`${styles.inputGroup}`}>
+              <input type="text" name="text" className="input" placeholder="Search here!" />
+            </div>
+            <div>
+                <Form.Select aria-label="Floating label select example">
+                  <option>{`${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`}</option>
+                </Form.Select>
+            </div>
+            <Button className="border rounded-3 mx-3 px-3" onClick={markAllAttendance}>Save All</Button>
           </div>
           <div className="row">
             <div className="col-md-12 col-lg-12">
@@ -173,14 +196,18 @@ const AdminAttendanceComp = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {allUserAttendList?.map((row, i) => (
+                    {allUserGrid?.map((row, i) => (
                       <tr key={i} >
                         <td className="p-1 text-center">{i + 1}</td>
-                        <td className="p-1">{row?.name || ""}</td>
-                        {Array(daysInMonth).fill(0).map((val, day) => (
-                          <td className="p-1" key={day}><IconCheck onClick={openModal} size={18} color="green" />
+                        <td className="p-1">{row[0].status || ""}</td>
+                        {row.map((val, day) => {
+                         return <td className="p-1" key={day}>
+                            { 
+                              val.status == "Approved" ? <IconCheck onClick={openModal} size={18} color="green" /> :
+                              <IconQuestionCircle onClick={openModal} size={18} color="yellow" />
+                            }
                           </td>
-                        ))}
+                        })}
                       </tr>
                     ))}
                   </tbody>

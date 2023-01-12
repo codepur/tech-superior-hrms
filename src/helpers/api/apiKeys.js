@@ -18,6 +18,8 @@ const apiKeys = {
   departmentList: "department/list",
   createTicket: "tickets/create",
   ticketsList: "tickets/list",
+  ticketUpdate:"tickets/update",
+
 
   //hiring-portal
   candidateInvite: "users/profile",

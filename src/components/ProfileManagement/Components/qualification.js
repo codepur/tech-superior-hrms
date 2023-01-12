@@ -19,9 +19,7 @@ export default function QualificationComponent() {
     (Gstate) => Gstate.user.qualificationList
     );
     const userData = useSelector((Gstate) => Gstate.user.userData);
-    console.log('qualificationList', qualificationList)
   const user_id=encodeData(userData._id);
-  console.log('userData', userData);
   useEffect(() => {
     dispatch(setQualificationList(user_id));
   }, []);

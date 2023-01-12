@@ -113,7 +113,6 @@ const EmployeeAttendanceComp = () => {
                 handleErrorMessage(err);
             });
     }
-   console.log(empAttendList);
  
 
     return (

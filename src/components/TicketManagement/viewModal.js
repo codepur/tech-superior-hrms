@@ -4,25 +4,46 @@ import { Dropdown } from "react-bootstrap";
 import { Icon123, IconCircleDot } from "@tabler/icons";
 import e from "cors";
 import { useState } from "react";
+import API from "../../helpers/api";
+import { encodeData } from "../../helpers/auth";
 
 const TicketModal = (props) => {
-  console.log("props", props);
   const initial = {
     status: props.index.status,
-    priority: props.index.priority,
-    department: props.index.department.name,
+     
   };
-  const { index } = props;
+  const { index,userData,userList } = props;
   const indexData = index;
   const [data, setData] = useState(initial);
-  const { status, priority } = props.index;
+  const { status } = props.index;
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-
+  const handleSubmit=()=>{
+    indexData._id = props?.userData?._id;
+    API.apiPost("ticketUpdate", { payload: encodeData(data) })
+      .then((response) => {
+        if (response.data && response.data.success === true) {
+          setData(initial);
+          dispatch(setTicketList());
+          toast.success(response.data.message, {
+            position: "top-right",
+            style: {
+              padding: "16px",
+              color: "#3c5f4b",
+              marginRight: "25px",
+            },
+          });
+        }
+      })
+      .catch((err) => {
+        handleErrorMessage(err);
+      });
+      props.handleClose();
+  }
   return (
     <>
       <Modal.Header closeButton className="modal-header pb-0">
@@ -83,7 +104,7 @@ const TicketModal = (props) => {
                         aria-label="Default select example"
                         onChange={handleChange}
                         name="priority"
-                        value={data.priority}
+                        value={indexData.priority}
                         disabled
                       >
                         <option>Select Priority</option>
@@ -102,7 +123,7 @@ const TicketModal = (props) => {
                         aria-label="Default select example"
                         onChange={handleChange}
                         name="department"
-                        value={data.department}
+                        value={indexData.department.name}
                         disabled
                       >
                         <option>Select Department</option>
@@ -120,7 +141,7 @@ const TicketModal = (props) => {
                     <td>
                       <Form.Select
                         aria-label="Default select example"
-                        name="approval"
+                        name="category"
                         onChange={handleChange}
                         disabled
                       >
@@ -178,7 +199,7 @@ const TicketModal = (props) => {
         </Form>
       </Modal.Body>
       <Modal.Footer closeButton className="modal-header pb-0">
-        <button className="btn btn-success">Save</button>
+        <button className="btn btn-success" onClick={handleSubmit}>Save</button>
       </Modal.Footer>
     </>
   );

@@ -88,7 +88,6 @@ function TicketManagement() {
     }
     setSearchKey(e.target.value)
   };
-  console.log('employeeData', employeeData)
 
   useEffect(() => {
     if (ticketSectionExpand) {
