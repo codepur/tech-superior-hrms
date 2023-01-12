@@ -44,7 +44,6 @@ const AdminAttendanceComp = () => {
 
     closeModal();
   }
-
   const set = new Set();
   allUserAttendList.map((val) => {
     set.add(val.user_id._id);

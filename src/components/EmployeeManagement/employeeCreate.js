@@ -1,3 +1,4 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
@@ -27,6 +28,7 @@ const initial = {
   date_of_joining: "",
   gender: "",
   blood_group: "",
+  department_head:false,
 };
 
 const initialPaginationState = {
@@ -65,14 +67,26 @@ function TicketManagement() {
     date_of_joining,
     gender,
     blood_group,
+    department_head,
   } = employeeData;
+  
+
 
 
   const onChangeHandler = (e) => {
-    setEmployeeData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    const value = '';
+    if (e.target.name === 'department_head') {
+      value = e.target.value === 'false' ? false : true;
+      setEmployeeData((prev) => ({
+        ...prev,
+        [e.target.name]:value,
+      }));
+    } else {
+      setEmployeeData((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    }
     setSearchKey(e.target.value)
   };
 
@@ -386,7 +400,40 @@ function TicketManagement() {
                   onChange={onChangeHandler}
                 />
               </FormGroup>
-            </div>
+              {/* <FormGroup>
+                <Label for="department_head">
+                  <b>Department Head</b>
+                </Label>
+                <div onChange={onChangeHandler}>
+                  <Input type="radio" value={true} checked name="department_head" className="" /> true
+                  
+                  <Input type="radio" value={false} checked name="department_head" className="ms-3" /> false
+                </div>
+              </FormGroup> */}
+              <Form.Group controlId="department_head">
+                <Label for="department_head">
+                  <b>Department Head</b>
+                </Label>
+                <Form.Check
+                  value={true}
+                  type="radio"
+                  aria-label="radio 1"
+                  label="Yes"
+                  name="department_head"
+                  onChange={onChangeHandler}
+                  checked={department_head}
+                />
+                <Form.Check
+                  value={false}
+                  type="radio"
+                  aria-label="radio 2"
+                  label="No"
+                  name="department_head"
+                  onChange={onChangeHandler}
+                  checked={!department_head}
+                />
+              </Form.Group>
+               </div>
             <Button
               className={`btn col-md-1 ${styles.saveButton}`}
               onClick={!buttonChnage ? createEmployee : updateEmployee}

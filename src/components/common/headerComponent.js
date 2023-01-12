@@ -5,9 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../src/styles/header.module.scss";
 import { logout } from "../../helpers/auth";
 import { IconCaretDown} from "@tabler/icons";
+import { useEffect } from "react";
+import { getProfile,setUserlist } from "../../stores/actions/mainPage";
 
 function HeaderComponent({ isPublic, hasSideBar, mobileToggle }) {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userData) {
+      dispatch(getProfile());
+      dispatch(setUserlist())
+    }
+  }, []);
+
   const logoutUser = () => {
     logout();
   };
