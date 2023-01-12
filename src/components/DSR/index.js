@@ -35,21 +35,10 @@ const initial = {
   description: "",
 };
 
-const initialPaginationState = {
-  activePage: 1,
-  skip: 0,
-  limitPerPage: 5,
-  paginatedData: [],
-  userData: [],
-  list: [],
-};
-
 function DSRManagement() {
   const [ticketData, setTicketData] = useState(initial);
   const editorRef = useRef(null);
   const [ticketSectionExpand, setTicketSectionExpand] = useState(false);
-  const [pagination, setPagination] = useState(initialPaginationState);
-  const { activePage, skip, limitPerPage, paginatedData, list } = pagination;
   const [openModal, setOpenModal] = useState(false);
   const [index, setIndex] = useState();
   const [edit, setEdit] = useState(false);
@@ -179,26 +168,6 @@ function DSRManagement() {
     }
     setOpenModal(false);
   };
-
-  const onPageChange = (page) => {
-    var skipRecords = (page - 1) * limitPerPage;
-    const to = limitPerPage * page;
-    setPagination((prev) => ({
-      ...prev,
-      activePage: page,
-      skip: JSON.parse(skipRecords),
-      paginatedData: list.slice(skipRecords, to),
-      userData: list.slice(skipRecords, to),
-    }));
-  };
-
-  useEffect(() => {
-    setPagination((prev) => ({ ...prev, list: chooseDsrList }));
-  }, [chooseDsrList?.length]);
-
-  useEffect(() => {
-    onPageChange(activePage);
-  }, [list, activePage, chooseDsrList?.length]);
 
   const viewTicket = (row) => {
     setOpenModal(true);
@@ -576,9 +545,9 @@ function DSRManagement() {
                 </tr>
               </thead>
               <tbody>
-                {paginatedData?.map((row, i) => (
+                {chooseDsrList?.map((row, i) => (
                   <tr key={i} className="border" itemScope="row">
-                    <td className="p-1">{skip + i + 1}</td>
+                    <td className="p-1">{ i + 1}</td>
                     <td className="p-1">{row?.project_id || ""}</td>
                     {roleId === 3 ? (
                       <td
@@ -635,20 +604,7 @@ function DSRManagement() {
                 ))}
               </tbody>
             </Table>
-            <div
-              className={`d-flex justify-content-${
-                list?.length ? "end" : "center"
-              }`}
-            >
-              <PaginationComponent
-                currentPage={activePage}
-                list={list}
-                skip={skip}
-                limitPerPage={limitPerPage}
-                loading={loading}
-                onPageChange={onPageChange}
-              />
-            </div>
+            {chooseDsrList ==""&& <div className="text-center">No records found</div>}
           </div>
         </div>
       </div>
