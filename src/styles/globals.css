@@ -5,7 +5,7 @@ a {
   text-decoration: none;
 }
 
-body{
+body {
   overflow-x: hidden;
 }
 
@@ -168,10 +168,11 @@ body::-webkit-scrollbar {
   color: black !important;
   box-shadow: rgb(187 56 44 / 20%) 0 -25px 18px -14px inset, rgb(187 44 44 / 15%) 0 1px 2px, rgb(187 65 44 / 15%) 0 2px 4px, rgb(187 63 44 / 15%) 0 4px 8px, rgb(187 51 44 / 15%) 0 8px 16px, rgb(187 65 44 / 15%) 0 16px 32px;
   border: none !important;
-  
+
 }
-.bg-btn-green:hover{
-  box-shadow: rgba(187, 56, 44, 0.35) 0 -25px 18px -14px inset,rgba(187, 68, 44, 0.25) 0 1px 2px,rgba(187, 65, 44, 0.25) 0 2px 4px,rgba(187, 44, 44, 0.25) 0 4px 8px,rgba(187, 53, 44, 0.25) 0 8px 16px,rgba(187, 65, 44, 0.25) 0 16px 32px;
+
+.bg-btn-green:hover {
+  box-shadow: rgba(187, 56, 44, 0.35) 0 -25px 18px -14px inset, rgba(187, 68, 44, 0.25) 0 1px 2px, rgba(187, 65, 44, 0.25) 0 2px 4px, rgba(187, 44, 44, 0.25) 0 4px 8px, rgba(187, 53, 44, 0.25) 0 8px 16px, rgba(187, 65, 44, 0.25) 0 16px 32px;
   transform: scale(1.05) rotate(-1deg);
 }
 
@@ -347,17 +348,17 @@ body::-webkit-scrollbar {
   font-size: 12px !important;
 }
 
-.sortImg{
-  height: 20px;
+.sortImg {
+  height: 15px !important;
 }
 
-.glass{
-  background: rgba( 255, 255, 255, 0.25 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 4px );
-  -webkit-backdrop-filter: blur( 4px );
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .calendar {
@@ -432,7 +433,7 @@ body::-webkit-scrollbar {
   margin: 1%;
   height: 40px;
   text-align: center;
-  line-height: 40px; 
+  line-height: 40px;
   background: #F2F2F5;
   align-items: center;
 }
@@ -440,4 +441,3 @@ body::-webkit-scrollbar {
 .calendar-cells div:empty {
   background-color: #fff;
 }
-

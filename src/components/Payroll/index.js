@@ -5,7 +5,7 @@ import { Dropdown } from "react-bootstrap";
 import { Card, Image, Modal, Form, Button } from "react-bootstrap";
 import styles from "../../styles/leave.module.scss";
 import { setUserlist } from "../../stores/actions/mainPage";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 const PayrollComponent = () => {
@@ -40,42 +40,42 @@ const PayrollComponent = () => {
         <Form className="p-4">
           {/* <fieldset disabled> */}
           <div className="row">
-          <Form.Group className="col-md-6 mb-3">
-            <Form.Label htmlFor="leaveSelect" className="fw-bold">
-             Employee name
-            </Form.Label>
-            <Form.Select id="leaveSelect">
-              <option type="hidden">Select Employee</option>
-              <option>Casual Leave</option>
-              <option>Medical Leave</option>
-              <option>Unpaid Leave</option>
-            </Form.Select>
-          </Form.Group>
-         
-          <Form.Group className="col-md-6 mb-3 ">
-            <Form.Label htmlFor="leaveFrom" className="fw-bold">
-              Net Salary
-            </Form.Label>
-            <Form.Control id="leaveFrom" type="number" />
-          </Form.Group>
+            <Form.Group className="col-md-6 mb-3">
+              <Form.Label htmlFor="leaveSelect" className="fw-bold">
+                Employee name
+              </Form.Label>
+              <Form.Select id="leaveSelect">
+                <option type="hidden">Select Employee</option>
+                <option>Casual Leave</option>
+                <option>Medical Leave</option>
+                <option>Unpaid Leave</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="col-md-6 mb-3 ">
+              <Form.Label htmlFor="leaveFrom" className="fw-bold">
+                Net Salary
+              </Form.Label>
+              <Form.Control id="leaveFrom" type="number" />
+            </Form.Group>
           </div>
           <div className="row">
-          <Form.Group className=" col-md-6 mb-3">
-            <Form.Label htmlFor="leaveTo" className="fw-bold">
-              To
-            </Form.Label>
-            <Form.Control id="leaveTo" type="date" />
-          </Form.Group>
+            <Form.Group className=" col-md-6 mb-3">
+              <Form.Label htmlFor="leaveTo" className="fw-bold">
+                To
+              </Form.Label>
+              <Form.Control id="leaveTo" type="date" />
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label className="fw-bold">Subject</Form.Label>
-            <Form.Control id="subject" type="text" />
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label className="fw-bold">Subject</Form.Label>
+              <Form.Control id="subject" type="text" />
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label className="fw-bold">Attachment</Form.Label>
-            <Form.Control as="textarea" rows={3} />
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+              <Form.Label className="fw-bold">Attachment</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
           </div>
           <Button type="submit" className={`${styles.leaveSubmit}`}>
             Submit
@@ -140,8 +140,8 @@ const PayrollComponent = () => {
           </div>
         </div>
         <div className={`${styles.tableResponsive} col-lg-12 textFont`}>
-          <Table className={`${styles.table} table table-hover`}>
-            <thead className={`${styles.tableHead} `}>
+          <Table className={`${styles.table} table table-hover text-center`}>
+            <thead className={`${styles.tableHead} text-center `}>
               <tr className={`${styles.tableHead}`}>
                 <th itemScope="col">
                   <span className="">Sr No</span>
@@ -248,16 +248,16 @@ const PayrollComponent = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {userList.map((item, i) => (
                 <tr key={i} className="border" itemScope="row">
-                  <td>{ i + 1}</td>
+                  <td>{i + 1}</td>
                   <td> {item?.first_name} {item?.last_name}</td>
                   <td>{item?.employee_ID ? item?.employee_ID : "--"}</td>
                   <td>{item?.email}</td>
                   <td>{item?.designation ? item?.designation : "Software Engineer"}</td>
-                  <td></td>
-                  <td><Image src={"/images/download.png"}></Image></td>
+                  <td>{item?.salary ? item?.salary : "-"}</td>
+                  <td><Image src={"/images/download.png"} className='sortImg mt-1' alt=""></Image></td>
                   <td>
                     <div>
                       <Dropdown>
@@ -291,7 +291,7 @@ const PayrollComponent = () => {
           </Table>
         </div>
       </div>
-    
+
     </>
   );
 };
