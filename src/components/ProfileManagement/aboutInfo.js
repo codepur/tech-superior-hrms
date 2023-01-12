@@ -7,13 +7,13 @@ import ChangePassword from "./Components/ChangePassword";
 import DepartmentChange from "./Components/DepartmentChange";
 
 export default function AboutInfo(props) {
-  const {type , userData} = props;
+  const {type , userData,setSrc} = props;
 
   switch (type) {
     case "Basic Information":
       return <BasicInfo userData = { userData } />;
     case "Profile Picture":
-      return <ProfilePicture />;
+      return <ProfilePicture setSrc={setSrc} />;
     case "Qualification":
       return <Qualification />;
     case "EmergencyContact":
