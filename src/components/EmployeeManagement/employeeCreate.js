@@ -1,4 +1,3 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
@@ -27,7 +26,7 @@ const initial = {
   doj: "",
   gender: "",
   blood_group: "",
-  department_head:false,
+  department_head: false,
 };
 
 const initialPaginationState = {
@@ -68,9 +67,6 @@ function TicketManagement() {
     blood_group,
     department_head,
   } = employeeData;
-  
-
-
 
   const onChangeHandler = (e) => {
     const value = '';
@@ -78,7 +74,7 @@ function TicketManagement() {
       value = e.target.value === 'false' ? false : true;
       setEmployeeData((prev) => ({
         ...prev,
-        [e.target.name]:value,
+        [e.target.name]: value,
       }));
     } else {
       setEmployeeData((prev) => ({
@@ -101,7 +97,7 @@ function TicketManagement() {
   }, []);
 
   const createEmployee = () => {
-    employeeData.level = "Level2";    
+    employeeData.level = "Level2";
     API.apiPost("candidateInvite", { payload: encodeData(employeeData) })
       .then((response) => {
         if (response.data && response.data.success === true) {
@@ -116,7 +112,7 @@ function TicketManagement() {
               marginRight: "25px",
             },
           });
-        }    
+        }
       })
       .catch((err) => {
         handleErrorMessage(err);
@@ -175,13 +171,13 @@ function TicketManagement() {
   };
 
   const handleEdit = (row) => {
-
     setTicketSectionExpand(true);
     setButtonChnage(true);
     setTimeout(() => {
       setEmployeeData(row);
     }, 800);
   };
+  
   useEffect(() => {
     setSearchData(userList);
     // let department = filters.user_type || "all";
@@ -399,16 +395,6 @@ function TicketManagement() {
                   onChange={onChangeHandler}
                 />
               </FormGroup>
-              {/* <FormGroup>
-                <Label for="department_head">
-                  <b>Department Head</b>
-                </Label>
-                <div onChange={onChangeHandler}>
-                  <Input type="radio" value={true} checked name="department_head" className="" /> true
-                  
-                  <Input type="radio" value={false} checked name="department_head" className="ms-3" /> false
-                </div>
-              </FormGroup> */}
               <Form.Group controlId="department_head">
                 <Label for="department_head">
                   <b>Department Head</b>
@@ -432,7 +418,7 @@ function TicketManagement() {
                   checked={!department_head}
                 />
               </Form.Group>
-               </div>
+            </div>
             <Button
               className={`btn col-md-1 ${styles.saveButton}`}
               onClick={!buttonChnage ? createEmployee : updateEmployee}
