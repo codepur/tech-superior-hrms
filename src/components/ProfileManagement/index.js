@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import router from "next/router";
 import styles from "../../styles/ProfileManagement.module.scss";
@@ -7,14 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Image } from "react-bootstrap";
 import moment from "moment/moment";
 
-export default function MainPage() {
-  // const dispatch = useDispatch();
+export default function MainPage() {  
   const userData = useSelector((Gstate) => Gstate.user.userData);
-  const [state, Setstate] = useState("Basic Information");
-  // const HOST = 'http://13.232.215.173:9003';
-  // const imagePath = userData?.Image
-  // const src = HOST + imagePath
-
+  const [state, Setstate] = useState("Basic Information"); 
   const handleClick = (data) => {
     Setstate(data);
   };
@@ -32,8 +26,7 @@ export default function MainPage() {
             <div
               className={`rounded-circle  ms-5  mt-3 ${styles.circleimg} border`}
             >            
-              <img
-                // src="/images/men.png"
+              <Image                
                 src={src ? src :  imagePath ? altSrc : "/images/men.png"}               
                 alt="userProfile"
                 className={`${src} ? ${styles.aspectRatio} img-fluid :  ${styles.userProfile} img-fluid`}
