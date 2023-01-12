@@ -14,6 +14,7 @@ import {
 import styles from "../../styles/ticket.module.scss";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 import TicketModal from "./viewModal";
+import TicketHeadModal from "./viewHeadModal"
 import toast, { Toaster } from "react-hot-toast";
 import { Editor } from "@tinymce/tinymce-react";
 import { encodeData } from "../../helpers/auth";
@@ -55,11 +56,13 @@ function TicketManagement() {
     (Gstate) => [
       Gstate.ticketManagement?.departmentList,
       Gstate.user?.userData,
-
+      
       Gstate.ticketManagement?.ticketsList,
       Gstate.user?.userList,
     ]
-  );
+    );
+    console.log('userData', userData)
+    console.log('departmentList', departmentList)
   console.log("ticketsList", ticketsList);
   const userDepartmentId = userData?.department?._id;
   const dispatch = useDispatch();
@@ -187,8 +190,11 @@ function TicketManagement() {
     (item) => item?.department === HRDepartmentId
   );
 
-  const recieveTicketData=paginatedData.filter((item)=>item.assign_to===userData.first_name+" "+userData.last_name);
-  const issueTicketData=paginatedData.filter((item)=>item.assign_by===userData.first_name+" "+userData.last_name)
+  const recieveTicketData=ticketsList.filter((item)=>item.department.name===userData.department.name && (userData.department_head===true ||item.assign_to===userData.first_name+" "+userData.last_name ));
+  const issueTicketData=ticketsList.filter((item)=>item.assign_by===userData.first_name+" "+userData.last_name)
+  console.log('issueTicketData', issueTicketData);
+  
+   
 
   return (
     <>
@@ -199,8 +205,13 @@ function TicketManagement() {
         backdrop="static"
         keyboard={false}
         centered
-      >
-        <TicketModal handleClose={handleClose} index={index} HRData={HRData} />
+      >{ userData && !userData?.department_head &&
+        <TicketModal handleClose={handleClose} index={index} />
+      }
+      { userData && userData?.department_head &&
+        <TicketHeadModal handleClose={handleClose} index={index} userList={userList} userData={userData} />
+      }
+
       </Modal>
       <div className={` ${styles.OuterTicketDiv}`}>
         <Toaster />
@@ -435,7 +446,7 @@ function TicketManagement() {
                       }
                       {
                         issued &&(
-                          <span className="">Assign To</span>
+                          <span className="">Department</span>
                         )
                       }
                       <span className="ms-1">
@@ -526,7 +537,7 @@ function TicketManagement() {
                       <td>{skip + i + 1}</td>
                       <td>{row?.ticket_code || ""}</td>
                       <td>{row?.priority || ""}</td>
-                      <td> {row?.assign_by}</td>
+                      <td> {row?.department?.name}</td>
                       <td>{row.subject}</td>
                       <td>
                         {" "}

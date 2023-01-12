@@ -1,3 +1,4 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
@@ -13,7 +14,7 @@ import { handleErrorMessage } from "../../utils/commonFunctions";
 // import TicketModal from "./viewModal";
 import toast, { Toaster } from "react-hot-toast";
 import { setUserlist } from "../../stores/actions/mainPage";
-import { encodeData } from "../../helpers/auth";
+import { encodeData, login } from "../../helpers/auth";
 
 const initial = {
   department: "",
@@ -24,9 +25,10 @@ const initial = {
   employee_ID: "",
   phone: "",
   dob: "",
-  doj: "",
+  date_of_joining: "",
   gender: "",
   blood_group: "",
+  department_head:false,
 };
 
 const initialPaginationState = {
@@ -53,7 +55,6 @@ function TicketManagement() {
     setButtonChnage(false);
     setTicketSectionExpand(!ticketSectionExpand);
   };
-
   const {
     department,
     user_type,
@@ -63,18 +64,31 @@ function TicketManagement() {
     employee_ID,
     phone,
     dob,
-    doj,
+    date_of_joining,
     gender,
     blood_group,
+    department_head,
   } = employeeData;
+  
+
 
   const onChangeHandler = (e) => {
-    setEmployeeData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    const value = '';
+    if (e.target.name === 'department_head') {
+      value = e.target.value === 'false' ? false : true;
+      setEmployeeData((prev) => ({
+        ...prev,
+        [e.target.name]:value,
+      }));
+    } else {
+      setEmployeeData((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    }
     setSearchKey(e.target.value)
   };
+  console.log('employeeData', employeeData)
 
   useEffect(() => {
     if (ticketSectionExpand) {
@@ -103,7 +117,7 @@ function TicketManagement() {
               marginRight: "25px",
             },
           });
-        }
+        }    
       })
       .catch((err) => {
         handleErrorMessage(err);
@@ -162,7 +176,7 @@ function TicketManagement() {
   };
 
   const handleEdit = (row) => {
-    
+
     setTicketSectionExpand(true);
     setButtonChnage(true);
     setTimeout(() => {
@@ -309,14 +323,14 @@ function TicketManagement() {
                 </Form.Select>
               </FormGroup>
               <FormGroup>
-                <Label for="doj">
+                <Label for="date_of_joining">
                   <b>Date of Joining</b>
                 </Label>
                 <Input
-                  value={doj}
+                  value={date_of_joining ? moment(date_of_joining)?.format('YYYY-MM-DD') : " "}
                   type="date"
-                  name="doj"
-                  id="doj"
+                  name="date_of_joining"
+                  id="date_of_joining"
                   onChange={onChangeHandler}
                 />
               </FormGroup>
@@ -356,7 +370,7 @@ function TicketManagement() {
                 </Label>
                 <Input
                   value={phone}
-                  type="tel"
+                  type="number"
                   name="phone"
                   id="phone"
                   placeholder="Contact Number"
@@ -368,28 +382,58 @@ function TicketManagement() {
                 <Label for="gender">
                   <b>Gender</b>
                 </Label>
-                <Input
-                  value={gender}
-                  type="text"
-                  name="gender"
-                  id="gender"
-                  placeholder="Gender"
-                  onChange={onChangeHandler}
-                />
+                <div onChange={onChangeHandler}>
+                  <Input type="radio" value="Male" checked={gender === "Male"} name="gender" className="" /> Male
+                  <Input type="radio" value="Female" checked={gender === "Female"} name="gender" className="ms-3" /> Female
+                  <Input type="radio" value="Other" checked={gender === "Other"} name="gender" className="ms-3" /> Other
+                </div>
               </FormGroup>
               <FormGroup>
                 <Label for="dob">
                   <b>Date of Birth</b>
                 </Label>
                 <Input
-                  value={dob}
+                  value={dob ? moment(dob)?.format('YYYY-MM-DD') : " "}
                   type="date"
                   name="dob"
                   id="dob"
                   onChange={onChangeHandler}
                 />
               </FormGroup>
-            </div>
+              {/* <FormGroup>
+                <Label for="department_head">
+                  <b>Department Head</b>
+                </Label>
+                <div onChange={onChangeHandler}>
+                  <Input type="radio" value={true} checked name="department_head" className="" /> true
+                  
+                  <Input type="radio" value={false} checked name="department_head" className="ms-3" /> false
+                </div>
+              </FormGroup> */}
+              <Form.Group controlId="department_head">
+                <Label for="department_head">
+                  <b>Department Head</b>
+                </Label>
+                <Form.Check
+                  value={true}
+                  type="radio"
+                  aria-label="radio 1"
+                  label="Yes"
+                  name="department_head"
+                  onChange={onChangeHandler}
+                  checked={department_head}
+                />
+                <Form.Check
+                  value={false}
+                  type="radio"
+                  aria-label="radio 2"
+                  label="No"
+                  name="department_head"
+                  onChange={onChangeHandler}
+                  checked={!department_head}
+                />
+              </Form.Group>
+               </div>
             <Button
               className={`btn col-md-1 ${styles.saveButton}`}
               onClick={!buttonChnage ? createEmployee : updateEmployee}
@@ -439,7 +483,7 @@ function TicketManagement() {
               </thead>
               <tbody>
                 {userList
-                  .filter(
+                  ?.filter(
                     (item) =>
                       item.user_type == "Employee" && item.status == "Active"
                   )

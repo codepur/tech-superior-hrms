@@ -6,16 +6,18 @@ import e from "cors";
 import { useState } from "react";
 
 const TicketModal = (props) => {
-  console.log("props", props);
   const initial = {
     status: props.index.status,
     priority: props.index.priority,
-    department: props.index.department.name,
-  };
-  const { index } = props;
+    department: props.index.department._id,
+};
+
+  const { index, userList,userData } = props;
+  console.log('index', index)
   const indexData = index;
   const [data, setData] = useState(initial);
   const { status, priority } = props.index;
+  const userDetails = userList.filter((item)=>item.department===data.department);
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
@@ -84,7 +86,6 @@ const TicketModal = (props) => {
                         onChange={handleChange}
                         name="priority"
                         value={data.priority}
-                        disabled
                       >
                         <option>Select Priority</option>
                         <option value="High">High</option>
@@ -102,7 +103,7 @@ const TicketModal = (props) => {
                         aria-label="Default select example"
                         onChange={handleChange}
                         name="department"
-                        value={data.department}
+                        value={index.department.name}
                         disabled
                       >
                         <option>Select Department</option>
@@ -131,7 +132,32 @@ const TicketModal = (props) => {
                     </td>
                   </tr>
 
-                   
+                  {data.department === userData.department._id && userData.department_head === true && (
+                    // user_id.department==="HR" && -------------->add department in user_id in ticketList data api
+                    <tr className={`${styles.ticketRows}`}>
+                      <td className={`${styles.ticketHeadings}`}>
+                        <b>Assign To:</b>
+                      </td>
+                      <td>
+                        <Form.Select
+                          aria-label="Default select example"
+                          onChange={handleChange}
+                          name="assign_to"
+                          value="assign_to"
+                        >
+                          {userDetails?.map((item) => (
+                            <>
+                              <option hidden>Select employee</option>
+                              <option>
+                                {item.first_name + " " + item.last_name}
+                              </option>
+                            </>
+                          ))}
+                        </Form.Select>
+                      </td>
+                    </tr>
+                  )}
+
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Status:</b>
@@ -163,7 +189,6 @@ const TicketModal = (props) => {
                         aria-label="Default select example"
                         name="approval"
                         onChange={handleChange}
-                        disabled
                       >
                         <option hidden>Approval</option>
                         <option value="Stationary">Accept</option>
