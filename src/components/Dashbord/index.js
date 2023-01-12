@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import dynamic from "next/dynamic";
 import { Card, Image, Modal } from "react-bootstrap";
 import styles from "../../styles/dashboard.module.scss";
@@ -92,7 +91,7 @@ export default function DashboardComponent() {
         </Modal.Footer>
       </Modal>
 
-      <Modal centered show={eventModal} onHide={closeEventModal}>
+      <Modal centered show={false} onHide={closeEventModal}>
         <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
           <Modal.Title className={`${styles.header} ms-auto`}>
             <span>Today&apos;s Events</span>
@@ -136,8 +135,6 @@ export default function DashboardComponent() {
                           <q>
                             Lorem Ipsum dolor emette Lorem Ipsum dolor emette
                             Lorem Ipsum dolor emette Lorem Ipsum dolor emette
-                            Lorem Ipsum dolor emette Lorem Ipsum dolor emette
-                            Lorem Ipsum dolor emette Lorem Ipsum dolor emette
                           </q>
                         </p>
                       </div>
@@ -163,7 +160,7 @@ export default function DashboardComponent() {
                             src="/images/calendar.png"
                             className="float-end"
                             width={70}
-                          />
+                          alt="logo"  />
                         </div>
                       </div>
                     </div>
@@ -216,7 +213,7 @@ export default function DashboardComponent() {
                         <Card.Title>Birthday this month 🎂</Card.Title>
                         <div className="row ">
                           <div className="col-md-2">
-                            <Image src="/images/profileIcon.png" width="30" />
+                            <Image src="/images/profileIcon.png" width="30"  alt="logo"/>
                           </div>
                           <div className="col-md-4">Ashutosh</div>
                           <div className="col-md-2">SE</div>

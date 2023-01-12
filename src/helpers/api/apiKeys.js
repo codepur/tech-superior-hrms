@@ -7,7 +7,7 @@ const apiKeys = {
   resetUserPassword: "users/password/reset",
   updatePassword: "users/password/change",
   sendResetEmail: "users/password/reset/link",
-  // userProfilePicture:"users/profilePicture",
+  userProfilePicture:"profile/picture/upload",
   userFamilyEmergencyUpdate: "users/family/profile",
   userFamilyListdelete: "users/family/profile/delete",
   qualificationList: "users/qualification/List",
@@ -39,7 +39,7 @@ const apiKeys = {
   punchIn : "attendance/punchIn",
   punchOut : "attendance/punchOut",
   allUserList : "attendance/allUsersList",
-
+  bulkApproval : "attendance/bulkApproval",
 };
 
 

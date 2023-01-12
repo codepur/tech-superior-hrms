@@ -6,21 +6,32 @@ import e from "cors";
 import { useState } from "react";
 import API from "../../helpers/api";
 import { encodeData } from "../../helpers/auth";
+import { handleErrorMessage } from "../../utils/commonFunctions";
+import { useDispatch } from "react-redux";
+import { setTicketList } from "../../stores/actions/ticketManagement";
+import { toast } from "react-hot-toast";
 
 const TicketModal = (props) => {
   const initial = {
     status: props?.index?.status,
     priority: props?.index?.priority,
-    department: props?.index?.department?._id,
     assign_to:props?.index?.assign_to,
-    id:props.index?.user_id?._id,
+    approval:"",
+    _id:props.index?._id,
+    
 };
-
+console.log('_id',props.userData?._id)
+const dispatch=useDispatch();
   const { index, userList,userData ,handleClose} = props;
+  console.log('index', index)
   const indexData = index;
+  console.log('indexData',indexData.department._id)
+
   const [data, setData] = useState(initial);
-  const { status, priority ,assign_to,id,department} = props.index;
-  const userDetails = userList.filter((item)=>item.department===data.department);
+  const { status, priority ,assign_to,_id,approval} = props.index;
+  const userDetails = userList.filter((item)=>item.department===indexData.department._id);
+  console.log('userList', userList)
+  console.log('userDetails', userDetails)
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
@@ -157,8 +168,8 @@ const TicketModal = (props) => {
                       </Form.Select>
                     </td>
                   </tr>
-
-                  {data.department === userData.department._id && userData.department_head === true && (
+                  {/* {console.log("check",indexData.department._id === userData.department._id && userData.department_head === true)} */}
+                  {indexData.department._id === userData.department._id && userData.department_head === true && (
                     // user_id.department==="HR" && -------------->add department in user_id in ticketList data api
                     <tr className={`${styles.ticketRows}`}>
                       <td className={`${styles.ticketHeadings}`}>
@@ -223,6 +234,8 @@ const TicketModal = (props) => {
                     </td>
                   </tr>
                 </tbody>
+                
+                
               </table>
             </div>
           </div>

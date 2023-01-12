@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Container, FloatingLabel, Form, Image, Input, InputGroup, Modal, Table } from "react-bootstrap";
 import styles from "../../styles/attendance.module.scss"
 import { Center, SegmentedControl, Box } from "@mantine/core";
-import { IconClock, IconX, IconCheck, IconQuestionCircle } from "@tabler/icons";
+import { IconClock, IconX, IconCheck, IconQuestionCircle, IconQuestionMark } from "@tabler/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { attendanceList, allUserList } from "../../stores/actions/attendance";
 import moment from "moment/moment";
 import LiveTime from "../common/liveTime";
-
+import { toast, Toaster } from "react-hot-toast";
+import API from "../../helpers/api";
+import { encodeData } from "../../helpers/auth";
 const AdminAttendanceComp = () => {
 
   const [empAttendList, allUserAttendList] = useSelector((Gstate) => [Gstate.attendanceList?.attendanceList,
@@ -17,10 +19,9 @@ const AdminAttendanceComp = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(attendanceList());
-     dispatch(allUserList());
-  }, [] );
- 
-  const studentList = [{ name: "neeraj verma" }, { name: "neeraj verma" }, { name: "neeraj verma" }, { name: "neeraj verma" }]
+    dispatch(allUserList());
+  }, []); 
+
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
   const [segmentValue, setSegment] = useState()
   const handleActiveTab = (e) => {
@@ -44,23 +45,50 @@ const AdminAttendanceComp = () => {
     closeModal();
   }
   const set = new Set();
-  allUserAttendList.map((val)=>{
+  allUserAttendList.map((val) => {
     set.add(val.user_id._id);
   })
   set = [...set];
-  let allUserGrid = Array.from(Array(set.length), () => new Array());
-  allUserAttendList.forEach((val)=>{
-      allUserGrid[set.indexOf(val.user_id._id)].push(val);
+  let allUserGrid = Array.from(Array(set.length), () => new Array(daysInMonth + 1).fill(null));
+  allUserAttendList.forEach((val) => {
+    allUserGrid[set.indexOf(val.user_id._id)][0] = val.user_id.first_name + " " + val.user_id.last_name;
+    allUserGrid[set.indexOf(val.user_id._id)][(moment(val.date).format("D"))] = val;
   })
+
   
-  const markAllAttendance = ()=>{
 
+  //Select column by use of checkbox
+     let attenListdayFormat = Array.from(Array(daysInMonth), () => new Array());
+     allUserAttendList.map((value,index)=>{
+       attenListdayFormat[(moment(value.date).format("D"))].push(value)
+     })
+   
+  const [selectedColumn, setSelectedColumn] = useState([]);
+  const handleCheckboxChange = (event, day) => {
+     (event.target.checked) ? setSelectedColumn([...selectedColumn,...attenListdayFormat[day+1]]) : 
+      setSelectedColumn(selectedColumn.filter((rem) => ((moment(rem.date).format("D")) != (day+1))));  // please dont add =
+  };
 
-    
+  const markAllAttendance = () => {
+    let data = [];
+    selectedColumn.forEach((val)=> data.push({ "id" : val.user_id._id,"status" : "Approved","date" : val.date,})) 
+    if(!data.length) {  toast.error("Please Select A Row"); return }
+    API.apiPost("bulkApproval", { payload: encodeData(data) })
+      .then((response) => {
+        if (response.data && response.data.success === true) {
+          toast.success(response.data.message, { position: "top-right" });
+          dispatch(allUserList());
+        }
+      })
+      .catch((err) => {
+        handleErrorMessage(err);
+      });
   }
- 
+
+
   return (
     <>
+      <Toaster />
       <Modal centered size="lg" show={showModal} onHide={closeModal} className="textFont">
         <Modal.Header closeButton className={`border-0`}>
           <h5 className="text-muted ms-auto">Attendance Info</h5>
@@ -173,15 +201,15 @@ const AdminAttendanceComp = () => {
               <input type="text" name="text" className="input" placeholder="Search here!" />
             </div>
             <div>
-                <Form.Select aria-label="Floating label select example">
-                  <option>{`${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`}</option>
-                </Form.Select>
+              <Form.Select aria-label="Floating label select example">
+                <option>{`${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`}</option>
+              </Form.Select>
             </div>
             <Button className="border rounded-3 mx-3 px-3" onClick={markAllAttendance}>Save All</Button>
           </div>
           <div className="row">
             <div className="col-md-12 col-lg-12">
-              <div className={`${styles.tableResponsive} `}>
+              <div className={`${styles.tableResponsive}`}>
                 <Table className={`${styles.customtable} table-hover table-striped table-nowrap rounded-pill mb-0 `}>
                   <thead className={`${styles.tableHead}`}>
                     <tr className={`${styles.tableHead}`}>
@@ -190,7 +218,9 @@ const AdminAttendanceComp = () => {
                       {Array(daysInMonth).fill(0).map((val, day) => (
                         <th itemScope='col' key={day} className={`${currentDate === day ? 'table-active bg-danger text-white rounded-1' : ''} `}>
                           {day + 1}
-                          <input class="form-check-input m-1" type="checkbox" value="" aria-label="Checkbox for following text input" />
+                          <input className="form-check-input m-1" type="checkbox"  
+                            onChange={event => handleCheckboxChange(event, day)} 
+                          />
                         </th>
                       ))}
                     </tr>
@@ -199,15 +229,15 @@ const AdminAttendanceComp = () => {
                     {allUserGrid?.map((row, i) => (
                       <tr key={i} >
                         <td className="p-1 text-center">{i + 1}</td>
-                        <td className="p-1">{row[0].status || ""}</td>
-                        {row.map((val, day) => {
-                         return <td className="p-1" key={day}>
-                            { 
-                              val.status == "Approved" ? <IconCheck onClick={openModal} size={18} color="green" /> :
-                              <IconQuestionCircle onClick={openModal} size={18} color="yellow" />
-                            }
-                          </td>
-                        })}
+                        {
+                          row.map((val, index) => (
+                            val == null ? <td key={index} className="p-1 text-center">-</td> :
+                              index == 0 ? <td className="p-1 " key={index}>{val}</td> : <td className="p-1 text-center" key={index}>{
+                                val.status == "Approved" ? <IconCheck onClick={openModal} size={18} color="green" strokeWidth="2.5" /> :
+                                  <IconQuestionMark onClick={openModal} size={18} strokeWidth="2.5" color="orange" />
+                              }</td>
+                          ))
+                        }
                       </tr>
                     ))}
                   </tbody>
