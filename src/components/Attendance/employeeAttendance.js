@@ -111,11 +111,6 @@ const EmployeeAttendanceComp = () => {
                 handleErrorMessage(err);
             });
     }
-<<<<<<< HEAD
-=======
- 
->>>>>>> 7c82e1c8dece7febeb5eac16e7cf069088121902
- 
     
     return (
         <>
