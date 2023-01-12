@@ -9,7 +9,6 @@ import { encodeData } from "../../helpers/auth";
 import { handleErrorMessage } from "../../utils/commonFunctions";
 
 const TicketModal = (props) => {
-  console.log('props', props)
   const initial = {
     status: props?.index?.status,
     priority: props?.index?.priority,
