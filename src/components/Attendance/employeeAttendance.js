@@ -240,8 +240,8 @@ const EmployeeAttendanceComp = () => {
                             <thead className={`${styles.tableHead}`}>
                                 <tr className={`${styles.tableHead}`}>
                                     <th className="p-3 col-md-1">Sr. No</th>
-                                    <th className="p-3 col-md-3">Date</th>
-                                    <th className="p-3 col-md-3">Punch In</th>
+                                    <th className="p-3 ">Date</th>
+                                    <th className="p-3 ">Punch In</th>
                                     <th className="p-3 ">Punch out</th>
                                     <th className="p-3 text-center">Production</th> 
                                     <th className="p-3 text-center">Break</th>
@@ -251,13 +251,13 @@ const EmployeeAttendanceComp = () => {
                             <tbody>
                                 {empAttendList?.map((row, i) => (
                                     <tr key={i}>
-                                        <td className="p-1">{i + 1}</td>
+                                        <td className="p-1 text-center">{i + 1}</td>
                                         <td className="p-1 ">{moment(row?.date).format("ll") || ""}</td>
-                                        <td className="p-1">{row?.inTime ? moment(row?.inTime).format("LTS") : "-----"}</td>
-                                        <td className="p-1">{row?.outTime ? moment(row?.outTime).format("LTS") : "-----"}</td>
-                                        <td className="p-1">{row?.duration ? row.duration + " hrs" : "------"}</td>
-                                        <td className="p-1">1</td>
-                                        <td className="p-1">0</td>
+                                        <td className="p-1 ">{row?.inTime ? moment(row?.inTime).format("LTS") : "-----"}</td>
+                                        <td className="p-1 ">{row?.outTime ? moment(row?.outTime).format("LTS") : "-----"}</td>
+                                        <td className="p-1 text-center">{row?.duration ? row.duration + " hrs" : "------"}</td>
+                                        <td className="p-1 text-center">1</td>
+                                        <td className="p-1 text-center">0</td>
                                     </tr>
                                 ))}
                             </tbody>
