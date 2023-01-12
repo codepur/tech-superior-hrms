@@ -7,10 +7,9 @@ import { handleErrorMessage } from "../../../utils/commonFunctions";
 import toast, { Toaster } from "react-hot-toast";
 import { Input } from "reactstrap";
 import { IconPencil } from "@tabler/icons";
-import { useDispatch, useSelector } from "react-redux";
-import { setProfilePicture } from "../../../stores/actions/profilePicture";
 
-export default function ProfilePictureComponent({setSrc}) {
+
+export default function ProfilePictureComponent({ setSrc }) {
 
   const [imageCrop, setimageCrop] = useState();
   const [images, setImages] = useState([]);
@@ -44,7 +43,7 @@ export default function ProfilePictureComponent({setSrc}) {
     formData.append('File', selectedFile);
     API.apiPost("userProfilePicture", formData)
       .then((response) => {
-        setSrc( response?.request?.responseURL)
+        setSrc(response?.request?.responseURL)
         if (response.data) {
           toast.success("Image uploaded successfully 🥳🎉", {
             position: "top-right",
@@ -126,7 +125,7 @@ export default function ProfilePictureComponent({setSrc}) {
             </Modal.Footer>
           </Modal>
         </div>
-      </div>    
+      </div>
     </>
   );
 }
