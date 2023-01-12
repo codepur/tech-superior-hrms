@@ -3,15 +3,9 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Input } from "reactstrap";
 import { Button, Card } from "react-bootstrap";
-<<<<<<< HEAD
-import React from 'react'
-import AvatarEditor from 'react-avatar-editor'
- 
-=======
 import API from "../../../helpers/api";
 import { encodeData } from "../../../helpers/auth";
 import { toast, Toaster } from "react-hot-toast";
->>>>>>> 7c82e1c8dece7febeb5eac16e7cf069088121902
 
 export default function ProfilePictureComponent() {
   // const [images, setImages] = useState([]);
@@ -26,24 +20,6 @@ export default function ProfilePictureComponent() {
   //   setImageURls(newURLs);
   // }, [images]);
 
-<<<<<<< HEAD
-  // const onImageChange = (e) => {
-  //   setImages([...e?.target?.files])
-  // }
-
-  return (
-   <>
-    <AvatarEditor
-        image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fflowers%2F&psig=AOvVaw22-PIcAZKl9YEcxg7Sy5TT&ust=1673585630873000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCIiSn7mewfwCFQAAAAAdAAAAABAE"
-        width={250}
-        height={250}
-        border={50}
-        color={[255, 255, 255, 0.6]} // RGBA
-        scale={1.2}
-        rotate={0}
-      />
-   </>
-=======
   const onImageChange = (e) => {
     setImages([...e?.target?.files])
   }
@@ -94,6 +70,5 @@ export default function ProfilePictureComponent() {
 
       </div>
     </>
->>>>>>> 7c82e1c8dece7febeb5eac16e7cf069088121902
   );
 }
