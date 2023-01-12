@@ -11,14 +11,19 @@ export default function MainPage() {
   // const dispatch = useDispatch();
   const userData = useSelector((Gstate) => Gstate.user.userData);
   const [state, Setstate] = useState("Basic Information");
-
-  const imagePath = userData?.Image
+  // const HOST = 'http://13.232.215.173:9003';
+  // const imagePath = userData?.Image
+  // const src = HOST + imagePath
 
   const handleClick = (data) => {
     Setstate(data);
   };
-  const [src, setSrc] = useState(null);
-  console.log(src);
+  const [src ,setSrc] = useState(null); 
+
+  const HOST = 'http://13.232.215.173:9003';
+  const imagePath = userData?.Image;
+  const altSrc = HOST + imagePath;
+
   return (
     <>
       <div className={`${styles.widgetcard} mt-3`}>
@@ -26,12 +31,12 @@ export default function MainPage() {
           <div className="col-md-2 col-10 offset-1 offset-md-0">
             <div
               className={`rounded-circle  ms-5  mt-3 ${styles.circleimg} border`}
-            >
+            >            
               <img
                 // src="/images/men.png"
-                src={src ? src : "/images/men.png"}
+                src={src ? src :  imagePath ? altSrc : "/images/men.png"}               
                 alt="userProfile"
-                className={`${src} ? ${styles.aspectRatio} img-fluid : ${styles.userProfile} img-fluid`}
+                className={`${src} ? ${styles.aspectRatio} img-fluid :  ${styles.userProfile} img-fluid`}
               />
             </div>
           </div>

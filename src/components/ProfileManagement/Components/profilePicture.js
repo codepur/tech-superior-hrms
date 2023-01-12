@@ -52,7 +52,7 @@ export default function ProfilePictureComponent({setSrc}) {
       .then((response) => {
         setSrc( response?.request?.responseURL)
         if (response.data) {
-          toast.success("Image submitted successfully, kindly refresh the page to update your profile picture", {
+          toast.success("Image uploaded successfully 🥳🎉", {
             position: "top-right",
             style: {
               padding: "16px",
@@ -96,7 +96,7 @@ export default function ProfilePictureComponent({setSrc}) {
               )
               :
               <img
-                alt="hh"
+                alt="user"
                 src={upload}
                 className={`${styles.userProfile}`}
               />
