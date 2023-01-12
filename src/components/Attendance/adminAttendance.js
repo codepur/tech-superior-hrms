@@ -210,7 +210,7 @@ const AdminAttendanceComp = () => {
           </div>
           <div className="row">
             <div className="col-md-12 col-lg-12">
-              <div className={`${styles.tableResponsive} `}>
+              <div className={`${styles.tableResponsive}`}>
                 <Table className={`${styles.customtable} table-hover table-striped table-nowrap rounded-pill mb-0 `}>
                   <thead className={`${styles.tableHead}`}>
                     <tr className={`${styles.tableHead}`}>

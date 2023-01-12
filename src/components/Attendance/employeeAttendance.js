@@ -233,15 +233,17 @@ const EmployeeAttendanceComp = () => {
                             </InputGroup.Text>
                         </InputGroup>
                     </div>
-                    <div>
-                        <Table striped bordered hover size="sm" className="text-center">
-                            <thead>
-                                <tr className={`${styles.tableHeadRow}`}>
+                    <div className="row">
+                        <div className="col-md-12 col-lg-12">
+                        <div className={`${styles.tableResponsive}`}>
+                        <Table className={`${styles.customtable} table-hover table-striped table-nowrap rounded-pill mb-0 `}>
+                            <thead className={`${styles.tableHead}`}>
+                                <tr className={`${styles.tableHead}`}>
                                     <th className="p-3 col-md-1">Sr. No</th>
                                     <th className="p-3 col-md-3">Date</th>
                                     <th className="p-3 col-md-3">Punch In</th>
                                     <th className="p-3 ">Punch out</th>
-                                    <th className="p-3 text-center">Production</th>
+                                    <th className="p-3 text-center">Production</th> 
                                     <th className="p-3 text-center">Break</th>
                                     <th className="p-3 text-center">Overtime</th>
                                 </tr>
@@ -261,6 +263,9 @@ const EmployeeAttendanceComp = () => {
                             </tbody>
                         </Table>
                     </div>
+                        </div>
+                    </div>
+                   
                 </div >
             </div >
         </>
