@@ -11,7 +11,6 @@ import API from "../../helpers/api";
 import { setdepartmentList } from "../../stores/actions/ticketManagement";
 import styles from "../../styles/ticket.module.scss";
 import { handleErrorMessage } from "../../utils/commonFunctions";
-// import TicketModal from "./viewModal";
 import toast, { Toaster } from "react-hot-toast";
 import { setUserlist } from "../../stores/actions/mainPage";
 import { encodeData, login } from "../../helpers/auth";
@@ -25,7 +24,7 @@ const initial = {
   employee_ID: "",
   phone: "",
   dob: "",
-  date_of_joining: "",
+  doj: "",
   gender: "",
   blood_group: "",
   department_head:false,
@@ -64,7 +63,7 @@ function TicketManagement() {
     employee_ID,
     phone,
     dob,
-    date_of_joining,
+    doj,
     gender,
     blood_group,
     department_head,
@@ -102,7 +101,7 @@ function TicketManagement() {
   }, []);
 
   const createEmployee = () => {
-    employeeData.level = "Level2";
+    employeeData.level = "Level2";    
     API.apiPost("candidateInvite", { payload: encodeData(employeeData) })
       .then((response) => {
         if (response.data && response.data.success === true) {
@@ -323,14 +322,14 @@ function TicketManagement() {
                 </Form.Select>
               </FormGroup>
               <FormGroup>
-                <Label for="date_of_joining">
+                <Label for="doj">
                   <b>Date of Joining</b>
                 </Label>
                 <Input
-                  value={date_of_joining ? moment(date_of_joining)?.format('YYYY-MM-DD') : " "}
+                  value={doj ? moment(doj)?.format('YYYY-MM-DD') : " "}
                   type="date"
-                  name="date_of_joining"
-                  id="date_of_joining"
+                  name="doj"
+                  id="doj"
                   onChange={onChangeHandler}
                 />
               </FormGroup>
