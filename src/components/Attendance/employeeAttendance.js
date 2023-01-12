@@ -66,7 +66,7 @@ const EmployeeAttendanceComp = () => {
         const currDate = new Date(); 
         if(moment(empAttendList[empAttendList.length-1]?.date).format('ll')  !== moment(currDate).format('ll'))
         {    
-            setPunch(!punch);
+            setPunch(true);
             // setPunchbtn(!punchbtn); 
         }
         else{
