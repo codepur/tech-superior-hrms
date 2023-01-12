@@ -8,15 +8,11 @@ import moment from "moment/moment";
 
 export default function MainPage() {
   // const dispatch = useDispatch();
-  // const userData = useSelector((Gstate) => Gstate.user.userData);
-  const [userData, userList] = useSelector((Gstate) => [
-    Gstate.user?.userData,
-    Gstate.user?.userList,
-  ]);
-  // console.log('userList', userList)
-  // console.log('userData', userData)
-  // console.log('userList', userList)
+  const userData = useSelector((Gstate) => Gstate.user.userData);
   const [state, Setstate] = useState("Basic Information");
+  const HOST = 'http://13.232.215.173:9003';
+  const imagePath = userData?.Image
+  const src = HOST + imagePath
 
   const handleClick = (data) => {
     Setstate(data);
@@ -31,7 +27,8 @@ export default function MainPage() {
               className={`rounded-circle  ms-5  mt-3 ${styles.circleimg} border`}
             >
               <Image
-                src={userData.Image}
+                // src="/images/men.png"
+                src={imagePath ? src : "/images/men.png"}
                 alt="userProfile"
                 className={`${styles.userProfile} img-fluid`}
               />
