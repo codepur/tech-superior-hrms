@@ -55,12 +55,10 @@ function TicketManagement() {
     (Gstate) => [
       Gstate.ticketManagement?.departmentList,
       Gstate.user?.userData,
-
       Gstate.ticketManagement?.ticketsList,
       Gstate.user?.userList,
     ]
   );
-  console.log("ticketsList", ticketsList);
   const userDepartmentId = userData?.department?._id;
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
@@ -187,8 +185,8 @@ function TicketManagement() {
     (item) => item?.department === HRDepartmentId
   );
 
-  const recieveTicketData=paginatedData.filter((item)=>item.assign_to===userData.first_name+" "+userData.last_name);
-  const issueTicketData=paginatedData.filter((item)=>item.assign_by===userData.first_name+" "+userData.last_name)
+  const recieveTicketData = paginatedData.filter((item) => item.assign_to === userData.first_name + " " + userData.last_name);
+  const issueTicketData = paginatedData.filter((item) => item.assign_by === userData.first_name + " " + userData.last_name)
 
   return (
     <>
@@ -367,9 +365,8 @@ function TicketManagement() {
             <button
               name="RECIEVED"
               value="recieved"
-              className={`fw-bold btn me-1 ${
-                activeTab === "recieved" ? styles.active : styles.inactive
-              }`}
+              className={`fw-bold btn me-1 ${activeTab === "recieved" ? styles.active : styles.inactive
+                }`}
               onClick={() => setIssued(false)}
             >
               Recieved Tickets
@@ -378,9 +375,8 @@ function TicketManagement() {
             <button
               name="ISSUED"
               value="issued"
-              className={`fw-bold btn ${
-                activeTab === "issued" ? styles.active : styles.inactive
-              }`}
+              className={`fw-bold btn ${activeTab === "issued" ? styles.active : styles.inactive
+                }`}
               onClick={() => setIssued(true)}
             >
               Issued Tickets
@@ -429,12 +425,12 @@ function TicketManagement() {
                       className="alignTableHeading"
                       onClick={() => handleSort("to")}
                     >
-                      {!issued &&(
-                      <span className="">Assign By</span>
+                      {!issued && (
+                        <span className="">Assign By</span>
                       )
                       }
                       {
-                        issued &&(
+                        issued && (
                           <span className="">Assign To</span>
                         )
                       }
@@ -496,8 +492,8 @@ function TicketManagement() {
                 </tr>
               </thead>
               <tbody>
-                {!issued && 
-                    recieveTicketData.map((row, i) => (
+                {!issued &&
+                  recieveTicketData.map((row, i) => (
                     <tr key={i} className="border" itemScope="row">
                       <td>{skip + i + 1}</td>
                       <td>{row?.ticket_code || ""}</td>
@@ -520,8 +516,8 @@ function TicketManagement() {
                       </td>
                     </tr>
                   ))}
-                    {issued && 
-                    issueTicketData.map((row, i) => (
+                {issued &&
+                  issueTicketData.map((row, i) => (
                     <tr key={i} className="border" itemScope="row">
                       <td>{skip + i + 1}</td>
                       <td>{row?.ticket_code || ""}</td>
@@ -544,14 +540,13 @@ function TicketManagement() {
                       </td>
                     </tr>
                   ))}
-                   
+
               </tbody>
             </Table>
           </div>
           <div
-            className={`d-flex justify-content-${
-              list?.length ? "end" : "center"
-            }`}
+            className={`d-flex justify-content-${list?.length ? "end" : "center"
+              }`}
           >
             <PaginationComponent
               currentPage={activePage}

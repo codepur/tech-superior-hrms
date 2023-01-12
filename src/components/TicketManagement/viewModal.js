@@ -3,7 +3,6 @@ import styles from "../../styles/ticket.module.scss";
 import { useState } from "react";
 
 const TicketModal = (props) => {
-  console.log("props", props);
   const initial = {
     status: props.index.status,
     priority: props.index.priority,
@@ -12,11 +11,7 @@ const TicketModal = (props) => {
   const { index, HRData } = props;
   const indexData = index;
   const [data, setData] = useState(initial);
-  const { status, priority } = props.index;
   const HRDetails = HRData;
-  console.log("HRDetails", HRDetails);
-  console.log("indexData", indexData);
-  console.log(data);
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
