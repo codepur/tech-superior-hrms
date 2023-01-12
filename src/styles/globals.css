@@ -349,7 +349,7 @@ body::-webkit-scrollbar {
 }
 
 .sortImg {
-  height: 20px;
+  height: 15px !important;
 }
 
 .glass {
