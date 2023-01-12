@@ -184,11 +184,11 @@ function TicketManagement() {
 
   const recieveTicketData = ticketsList.filter(
     (item) =>
-      item.department.name === userData.department.name &&
-      (userData.department_head === true ||
-        item.assign_to === userData.first_name + " " + userData.last_name)
+      item?.department?.name === userData?.department?.name &&
+      (userData?.department_head === true ||
+        item?.assign_to === userData?.first_name + " " + userData?.last_name)
   );
-  const issueTicketData = ticketsList.filter((item) => ((item.assign_by === userData.first_name + " " + userData.last_name) || (item?.department?._id === userData?.department?._id && userData?.department_head === true && item?.approval === "Approved"))
+  const issueTicketData = ticketsList.filter((item) => ((item?.assign_by === userData?.first_name + " " + userData?.last_name) || (item?.department?._id === userData?.department?._id && userData?.department_head === true && item?.approval === "Approved"))
   );
 
   return (
@@ -399,7 +399,7 @@ function TicketManagement() {
 
           <hr className={`${styles.hr}`}></hr>
           <div className={``}>
-            <Table className={`${styles.table} table table-hover`}>
+            <Table className={`${styles.table} table table-hover textFont`}>
               <thead className={`${styles.tableHead} `}>
                 <tr className={`${styles.tableHead}`}>
                   <th itemScope="col">#</th>
