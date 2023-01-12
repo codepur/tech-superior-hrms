@@ -21,8 +21,7 @@ export default function ProfilePictureComponent({ setSrc }) {
   const hideModal = () => {
     setimageCrop(false);
     setSelectedFile(null)
-  }
-  // console.log("PREVIEW", preview)
+  }  
   useEffect(() => {
     if (images.length < 1) return;
     const newURLs = [];
@@ -53,8 +52,7 @@ export default function ProfilePictureComponent({ setSrc }) {
               marginRight: "25px",
             },
           });
-        }
-        // response.json()
+        }        
       })
       .catch((err) => {
         handleErrorMessage(err);
@@ -75,8 +73,7 @@ export default function ProfilePictureComponent({ setSrc }) {
           <IconPencil onClick={() => setimageCrop(true)} className={`${styles.editIcon}`} />
           {
             selectedFile ?
-              imageURls.map((imageSrc, i) =>
-                // eslint-disable-next-line @next/next/no-img-element
+              imageURls.map((imageSrc, i) =>                
                 <img key={i}
                   className={`w-100 ${styles.userProfile}`}
                   src={imageSrc}
@@ -105,8 +102,7 @@ export default function ProfilePictureComponent({ setSrc }) {
                 <Input type="file" multiple accept="image/*" onChange={changeHandler} />
                 {selectedFile && <div className="row">
                   <Card className='w-25 m-3'>
-                    {imageURls.map((imageSrc, i) =>
-                      // eslint-disable-next-line @next/next/no-img-element
+                    {imageURls.map((imageSrc, i) =>                      
                       <img key={i}
                         className="w-100"
                         src={imageSrc}
