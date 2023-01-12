@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import router from "next/router";
 import styles from "../../styles/ProfileManagement.module.scss";
@@ -10,14 +11,14 @@ export default function MainPage() {
   // const dispatch = useDispatch();
   const userData = useSelector((Gstate) => Gstate.user.userData);
   const [state, Setstate] = useState("Basic Information");
-  const HOST = 'http://13.232.215.173:9003';
+
   const imagePath = userData?.Image
-  const src = HOST + imagePath
 
   const handleClick = (data) => {
     Setstate(data);
   };
-
+  const [src, setSrc] = useState(null);
+  console.log(src);
   return (
     <>
       <div className={`${styles.widgetcard} mt-3`}>
@@ -26,11 +27,11 @@ export default function MainPage() {
             <div
               className={`rounded-circle  ms-5  mt-3 ${styles.circleimg} border`}
             >
-              <Image
+              <img
                 // src="/images/men.png"
-                src={imagePath ? src : "/images/men.png"}
+                src={src ? src : "/images/men.png"}
                 alt="userProfile"
-                className={`${styles.userProfile} img-fluid`}
+                className={`${src} ? ${styles.aspectRatio} img-fluid : ${styles.userProfile} img-fluid`}
               />
             </div>
           </div>
@@ -149,7 +150,7 @@ export default function MainPage() {
         <div
           className={`col-md-12 border   bg-white  mb-5 ${styles.tableRound}`}
         >
-          <AboutInfo type={state} userData={userData} />
+          <AboutInfo type={state} userData={userData} setSrc={setSrc} />
         </div>
       </div>
     </>
