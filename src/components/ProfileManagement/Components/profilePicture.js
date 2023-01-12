@@ -3,6 +3,9 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Input } from "reactstrap";
 import { Button, Card } from "react-bootstrap";
+import API from "../../../helpers/api";
+import { encodeData } from "../../../helpers/auth";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function ProfilePictureComponent() {
   const [images, setImages] = useState([]);
@@ -20,9 +23,21 @@ export default function ProfilePictureComponent() {
   const onImageChange = (e) => {
     setImages([...e?.target?.files])
   }
+  const uploadImage = () =>{
+    API.apiPost("userProfilePicture", {payload: encodeData()})
+      .then((response) => {
+        if (response.data && response.data.success === true) {
+          toast.success(response.data.message, {position: "top-right"});
+        }
+      })
+      // .catch((err) => {
+      //   handleErrorMessage(err);
+      // });
+  }
 
   return (
     <>
+     <Toaster/>
       <div className="container py-5">
         <div className="row">
           <div className="col-md-6">

@@ -47,16 +47,8 @@ const SidebarComponent = (props) => {
 
   useEffect(() => {
     dispatch(getProfile());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const collapesSidebar = () => {
-    setMenuCollapse(true);
-  };
-
-  const appendSidebar = () => {
-    setMenuCollapse(false);
-  };
   const logoutUser = () => {
     logout();
   };
