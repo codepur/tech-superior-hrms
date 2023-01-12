@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import styles from "../../../styles/ProfileManagement.module.scss";
 import { Button, Card, Modal } from "react-bootstrap";
 import API from "../../../helpers/api";
-import { encodeData } from "../../../helpers/auth";
 import { handleErrorMessage } from "../../../utils/commonFunctions";
 import toast, { Toaster } from "react-hot-toast";
 import { Input } from "reactstrap";
@@ -17,11 +16,6 @@ export default function ProfilePictureComponent({setSrc}) {
   const [images, setImages] = useState([]);
   const [imageURls, setImageURls] = useState([]);
   const [selectedFile, setSelectedFile] = useState();
-  const dispatch = useDispatch();
-
-  const userData = useSelector((Gstate) => Gstate.user.userData);
-  const imagePath = userData?.Image?.split('/');
-  const imagePathFilter = imagePath ? imagePath[imagePath?.length - 1] : "";
 
   const upload = "/images/userpic.png";
 
@@ -66,10 +60,6 @@ export default function ProfilePictureComponent({setSrc}) {
       .catch((err) => {
         handleErrorMessage(err);
       });
-  }
-
-  const getPic = () => {
-    dispatch(setProfilePicture(imagePathFilter));
   }
 
   return (
@@ -136,12 +126,7 @@ export default function ProfilePictureComponent({setSrc}) {
             </Modal.Footer>
           </Modal>
         </div>
-      </div>
-      <Button variant="primary"
-        onClick={getPic}
-      >
-        get
-      </Button>
+      </div>    
     </>
   );
 }
