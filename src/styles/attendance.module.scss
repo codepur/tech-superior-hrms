@@ -90,68 +90,6 @@ $active_color: #50ff39;
   transform: scale(1.05) rotate(-1deg);
 }
 
-/* CSS */
-.buttongreen {
-  background-color: #c2fbd7;
-  border-radius: 100px;
-  box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
-    rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
-    rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
-    rgba(44, 187, 99, 0.15) 0 16px 32px;
-  color: green;
-  cursor: pointer;
-  display: inline-block;
-  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
-  padding: 7px 20px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 250ms;
-  border: 0;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.buttongreen:hover {
-  box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
-    rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
-    rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
-    rgba(44, 187, 99, 0.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
-}
-
-.buttonred {
-  background-color: #fbc9c2;
-  border-radius: 100px;
-  box-shadow: rgba(187, 56, 44, 0.2) 0 -25px 18px -14px inset,
-    rgba(187, 44, 44, 0.15) 0 1px 2px, rgba(187, 65, 44, 0.15) 0 2px 4px,
-    rgba(187, 63, 44, 0.15) 0 4px 8px, rgba(187, 51, 44, 0.15) 0 8px 16px,
-    rgba(187, 65, 44, 0.15) 0 16px 32px;
-  color: red;
-  display: inline-block;
-  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
-  padding: 7px 20px;
-  box-shadow: rgba(187, 56, 44, 0.2) 0 -25px 18px -14px inset,rgba(187, 44, 44, 0.15) 0 1px 2px,rgba(187, 65, 44, 0.15) 0 2px 4px,rgba(187, 63, 44, 0.15) 0 4px 8px,rgba(187, 51, 44, 0.15) 0 8px 16px,rgba(187, 65, 44, 0.15) 0 16px 32px;
-  cursor: pointer;
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
-  text-align: center;
-  text-decoration: none;
-  transition: all 250ms;
-  border: 0;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-.buttonred:hover {
-  box-shadow: rgba(187, 56, 44, 0.35) 0 -25px 18px -14px inset,
-    rgba(187, 68, 44, 0.25) 0 1px 2px, rgba(187, 65, 44, 0.25) 0 2px 4px,
-    rgba(187, 44, 44, 0.25) 0 4px 8px, rgba(187, 53, 44, 0.25) 0 8px 16px,
-    rgba(187, 65, 44, 0.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
-}
-
 .stats {
   background-color: #f9f9f9;
   border: 1px solid #e3e3e3;
@@ -236,3 +174,24 @@ $active_color: #50ff39;
 }
 
 // Checkbox css  
+
+
+// Search css
+.inputGroup{
+ input {
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #e8e8e8;
+  box-shadow: 6px 6px 12px #ffffff, -6px -6px 12px #c5c5c5;
+  font-size: small;
+  font-weight: bold;
+  width: 225px;
+  max-width: 250px;
+ }
+ input[type="text"]:focus {
+  color: rgb(90, 89, 89);
+  outline-color: white;
+  place-content: "";
+ }
+}

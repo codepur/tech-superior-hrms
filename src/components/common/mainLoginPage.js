@@ -95,21 +95,34 @@ function MainLoginPage(props) {
 
   return (
     <>
- 
       <div className={`${styles.mainBox} `}>
         <div className={`${styles.outerbox} row gx-0 d-flex`}>
-          <div className={`${styles.imgContainer} row gx-0 d-flex justify-content-between col-md-2`}>
+          <div
+            className={`${styles.imgContainer} row gx-0 d-flex justify-content-between col-md-2`}
+          >
             <div>
-              <img src="./images/clock.png" alt="clock" className={`${styles.loginImg}`} />
+              <img
+                src="./images/clock.png"
+                alt="clock"
+                className={`${styles.loginImg}`}
+              />
             </div>
             <div>
-              <img src="./images/laptop.png" alt="" className={`${styles.loginImg}`} />
+              <img
+                src="./images/laptop.png"
+                alt=""
+                className={`${styles.loginImg}`}
+              />
             </div>
             <div>
-              <img src="./images/officeLaptop.png" alt="" className={`${styles.loginImg}`} />
+              <img
+                src="./images/officeLaptop.png"
+                alt=""
+                className={`${styles.loginImg}`}
+              />
             </div>
           </div>
-          <div className={`${styles.imgContainer} d-flex col-md-8 row gx-0 `} >
+          <div className={`${styles.imgContainer} d-flex col-md-8 row gx-0 `}>
             <div className={`${styles.loginCard} col-md-12 row gx-0`}>
               <div className={` col-md-5 ${styles.divide}`}>
                 <Image
@@ -125,8 +138,6 @@ function MainLoginPage(props) {
                 <p>Developing Solutions For The Future</p>
               </div>
               {firstPageLogin && (
-                // <div className={`col-md-6 row ${styles.backgroundSecondHalf} `}>
-                // <div className={`col-md-8 ${styles.formStyle} parent`}>
                 <div className={`col-md-7`}>
                   <Form.Group className={`${styles.Authform}`}>
                     <div className={`${styles.AuthFormContent}`}>
@@ -183,8 +194,9 @@ function MainLoginPage(props) {
                         </button>
                       </div>
                       <div className={`row gx-0 ${styles.powerdByLogo} p-3`}>
-
-                        <div className={` ${styles.poweredBy} px-4`}>Powered By</div>
+                        <div className={` ${styles.poweredBy} px-4`}>
+                          Powered By
+                        </div>
 
                         <div className={`${styles.logoImage}`}>
                           <Image
@@ -197,71 +209,79 @@ function MainLoginPage(props) {
                     </div>
                   </Form.Group>
                   {/* </div> */}
-
                 </div>
               )}
               {resetPassword && (
-                // <div className={`col-md-7 row gx-0 ${styles.backgroundSecondHalf}`}>
-                  // <div className={`col-md-8 ${styles.formStyle}`}>
-                  <div className={`col-md-7`}>
-                    <Form.Group className={`${styles.AuthformReset}`}>
-                      <div className={`${styles.AuthFormContent}`}>
-                        <h3
-                          className={` ${styles.sparkle} ${styles.uhoversparkle} ${styles.Authformtitle}`}
-                        >
-                          Reset Password
-                        </h3>
-                        <div className="form-group mt-3">
-                          <Form.Label>
-                            <b>Email</b>
-                          </Form.Label>
-                          <Form.Control
-                            type="email"
-                            name="emailReset"
-                            isInvalid={showErrors && !Validation.email(emailReset)}
-                            className="form-control mt-1 p-2"
-                            placeholder="Enter email"
-                            onChange={handleChange}
-                            value={emailReset}
-                          />
-                        </div>
-                        <div className="d-grid gap-2 mt-3">
-                          <button
-                            type="submit"
-                            className={`btn ${styles.LoginBtn}`}
-                            onClick={sendEmail}
-                          >
-                            Send Email
-                          </button>
-                        </div>
+                <div className={`col-md-7`}>
+                  <Form.Group className={`${styles.AuthformReset}`}>
+                    <div className={`${styles.AuthFormContent}`}>
+                      <h3
+                        className={` ${styles.sparkle} ${styles.uhoversparkle} ${styles.Authformtitle}`}
+                      >
+                        Reset Password
+                      </h3>
+                      <div className="form-group mt-3">
+                        <Form.Label>
+                          <b>Email</b>
+                        </Form.Label>
+                        <Form.Control
+                          type="email"
+                          name="emailReset"
+                          isInvalid={
+                            showErrors && !Validation.email(emailReset)
+                          }
+                          className="form-control mt-1 p-2"
+                          placeholder="Enter email"
+                          onChange={handleChange}
+                          value={emailReset}
+                        />
                       </div>
-                    </Form.Group>
-                  </div>
+                      <div className="d-grid gap-2 mt-3">
+                        <button
+                          type="submit"
+                          className={`btn ${styles.LoginBtn}`}
+                          onClick={sendEmail}
+                        >
+                          Send Email
+                        </button>
+                      </div>
+                    </div>
+                  </Form.Group>
+                </div>
                 // </div>
               )}
             </div>
           </div>
-          <div className={`${styles.imgContainer} row gx-0 d-flex justify-content-between col-md-2 `} >
+          <div
+            className={`${styles.imgContainer} row gx-0 d-flex justify-content-between col-md-2 `}
+          >
             <div>
-              <img src="./images/graph.png" alt="" className={`${styles.loginImg}`} />
+              <img
+                src="./images/graph.png"
+                alt=""
+                className={`${styles.loginImg}`}
+              />
             </div>
             <div>
-              <img src="./images/win.png" alt="" className={`${styles.loginImg}`} />
+              <img
+                src="./images/win.png"
+                alt=""
+                className={`${styles.loginImg}`}
+              />
             </div>
             <div>
-              <img src="./images/checkList6.png" alt="" className={`${styles.loginImg}`} />
+              <img
+                src="./images/checkList6.png"
+                alt=""
+                className={`${styles.loginImg}`}
+              />
             </div>
           </div>
-          {/* <img src="./images/win2.png" alt="" className="win2" /> */}
 
-          <div className={`${styles.backgroundFirsthalf}`}>
-
-          </div>
-
+          <div className={`${styles.backgroundFirsthalf}`}></div>
         </div>
       </div>
     </>
-  )
+  );
 }
 export default MainLoginPage;
-

@@ -128,7 +128,6 @@ function DSRManagement() {
     }));
   };
 
-
   useEffect(() => {
     if (ticketSectionExpand) {
       setTicketData(initial);
@@ -148,7 +147,6 @@ function DSRManagement() {
     const ApprovedList = dsrList.filter((item) => item.status == "Approved");
     setChooseDsrList(ApprovedList);
   }, [dsrList]);
-
 
   const ticketSubmit = () => {
     // delete ticketData.totalHours;
@@ -202,7 +200,13 @@ function DSRManagement() {
     onPageChange(activePage);
   }, [list, activePage, chooseDsrList?.length,]);
 
+  useEffect(() => {
+    setPagination((prev) => ({ ...prev, list: chooseDsrList }));
+  }, [chooseDsrList?.length]);
 
+  useEffect(() => {
+    onPageChange(activePage);
+  }, [list, activePage, chooseDsrList?.length]);
 
   const viewTicket = (row) => {
     setOpenModal(true);
@@ -490,7 +494,6 @@ function DSRManagement() {
               data={[
                 {
                   value: "Approved",
-                  // onClick: { handleActiveTab },
                   label: (
                     <Center>
                       <IconThumbUp size={16} />
@@ -500,7 +503,6 @@ function DSRManagement() {
                 },
                 {
                   value: "Pending",
-                  // onClick: { handleActiveTab },
                   label: (
                     <Center>
                       <IconClock size={16} />
@@ -510,7 +512,6 @@ function DSRManagement() {
                 },
                 {
                   value: "Rejected",
-                  // onClick: { handleActiveTab },
                   label: (
                     <Center>
                       <IconX size={16} />
@@ -625,8 +626,6 @@ function DSRManagement() {
                                 onClick={() => editTask(row)}
                               />
                             </center>
-                            {/* </div>
-                          <div> */}
                             <center>
                               <Image
                                 src="images/delete.png"
@@ -654,7 +653,6 @@ function DSRManagement() {
               />
             </div>
           </div>
-
         </div>
       </div>
     </>

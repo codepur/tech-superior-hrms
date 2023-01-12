@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function LiveTime() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -14,4 +14,4 @@ function LiveTime() {
   return <div>{time}</div>;
 }
 
-export default LiveTime
+export default LiveTime;

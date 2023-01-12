@@ -5,25 +5,25 @@ import { Col, Row } from 'react-bootstrap';
 import HeaderComponent from './headerComponent';
 import Sidebar from './sidebarComponent';
 import styles from '../../styles/header.module.scss'
+import { getProfile } from '../../stores/actions/mainPage';
 
-const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }) => {
+const MainHeaderFooterLayout = ({ children, title, data, description }) => {
     const router = useRouter();
     const hasSideBarLayout = data && data.layoutType === 'HOME';
     const hasSideBar = (hasSideBarLayout)&&!['/set-password'].includes(router.pathname);
     const notLoginScreen = data?.pageScreen !== 'login' ;
     const [toggle,setToggle] = useState(true);
 
-    const sidebarToggle = (e)=>{
-       e.preventDefault(); 
-       setToggle(!toggle);
-    }
-
+  const sidebarToggle = (e) => {
+    e.preventDefault();
+    setToggle(!toggle);
+  };
+  
     const [smalltoggle,setSmallToggle] = useState(true);
     const mobileToggle = (e)=>{
         e.preventDefault(); 
         setSmallToggle(!smalltoggle);
-     }
-    
+     }    
     return (
         <React.Fragment>
             <Head>
@@ -36,7 +36,7 @@ const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }
                 <meta itemProp="description" content={description} />
                 <link rel="shortcut icon" href="/images/favicon.png"/>
             </Head>
-            {data?.pageScreen != 'login' && data?.pageScreen != 'setPassword' && <HeaderComponent isPublic={isPublic} hasSideBar={hasSideBar} mobileToggle={mobileToggle} smalltoggle={smalltoggle}
+            {data?.pageScreen != 'login' && data?.pageScreen != 'setPassword' && <HeaderComponent hasSideBar={hasSideBar} mobileToggle={mobileToggle} smalltoggle={smalltoggle}
             />}
 
             <Row className={`${styles.mainBodyWrapper}`}>
@@ -49,7 +49,7 @@ const MainHeaderFooterLayout = ({ children, title, data, description, isPublic }
                     {children}
                 </Col>
             </Row>
-        </React.Fragment>
+        </React.Fragment> 
     );
 };
 export default React.memo(MainHeaderFooterLayout);

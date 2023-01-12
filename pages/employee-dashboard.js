@@ -8,11 +8,8 @@ const DashboardComponent = dynamic(() => import("../src/components/Dashbord"), {
 
 export default function Dashboard() {
   return (
-    <Layout
-      title={`Dashboard | HRMS`}
-      data={{ layoutType: "HOME" }}
-      description={`HRMS Dashboard`}
-    >
+   
+    <Layout title={`Dashboard | HRMS`} data={{ layoutType: "HOME" }}description={`HRMS Dashboard`}>
       <div className="container pt-4">
         <DashboardComponent />
       </div>

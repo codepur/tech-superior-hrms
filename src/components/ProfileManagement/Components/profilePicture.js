@@ -72,6 +72,17 @@ export default function ProfilePictureComponent() {
   const getPic = () => {
     dispatch(setProfilePicture(imagePathFilter));
   }
+  const uploadImage = () =>{
+    API.apiPost("userProfilePicture", {payload: encodeData()})
+      .then((response) => {
+        if (response.data && response.data.success === true) {
+          toast.success(response.data.message, {position: "top-right"});
+        }
+      })
+      // .catch((err) => {
+      //   handleErrorMessage(err);
+      // });
+  }
 
   const onCrop = (view) => {
     // var src = window.URL.createObjectURL(view);

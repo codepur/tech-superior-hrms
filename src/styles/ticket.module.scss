@@ -1,6 +1,27 @@
+$inactive_btn: #afacc5;
+$active_color:linear-gradient(110.1deg, rgb(34, 126, 34) 2.9%, rgba(168, 251, 60, 0.99) 90.3%);
 .createTicket{
   padding: 15px;
 }
+@mixin tabs-mixin($bg) {
+  background: $bg !important;
+  border: none;
+  color: #fff !important;
+  outline: none;
+  box-shadow: none !important;
+  &:hover {
+    color: #fff;
+    background: $bg;
+  }
+}
+
+.inactive {
+  @include tabs-mixin($inactive_btn);
+}
+.active {
+  @include tabs-mixin($active_color);
+}
+
 
 .addTicket{
     width: auto;
@@ -48,19 +69,14 @@
 
 
 .saveButton{
-  // background-color: #3c5f4b !important;
   background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%);
     color: white;
 }
 
 .searchIcon {
-  // background-color: #3c5f4b;
   background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%);
   border: none;
   cursor: pointer;
-  // &:hover {
-  //   background-color: #3c5f4b !important;
-  // }
 }
 
 .tableResponsive{
@@ -73,10 +89,8 @@ box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 backdrop-filter: blur( 4px );
 -webkit-backdrop-filter: blur( 4px );
 border: 1px solid rgba( 255, 255, 255, 0.18 );  
-// border-radius: 20px;
 }
 .tableHead{
-  //  background: #93e4c1;
   background: linear-gradient(110.1deg, rgb(34 126 34 / 16%) 2.9%, rgb(168 251 60 / 69%) 90.3%);
 }
 .cardContainer{
@@ -89,12 +103,8 @@ border: 2px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .tableHeadRow{
-  // background-color: #3c5f4b;
-  // background-color: #0bb884;
   background: linear-gradient(110.1deg, rgb(34 126 34 / 16%) 2.9%, rgb(168 251 60 / 69%) 90.3%);
-
   color: black;
-  // color: #3c5f4b;
 }
 
 .discriptionData {

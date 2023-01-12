@@ -3,19 +3,25 @@ import styles from "../../styles/ticket.module.scss";
 import { useState } from "react";
 
 const TicketModal = (props) => {
+  console.log("props", props);
   const initial = {
     status: props.index.status,
     priority: props.index.priority,
-  }
-  const { index } = props;
+    department: props.index.department.name,
+  };
+  const { index, HRData } = props;
   const indexData = index;
   const [data, setData] = useState(initial);
   const { status, priority } = props.index;
+  const HRDetails = HRData;
+  console.log("HRDetails", HRDetails);
+  console.log("indexData", indexData);
+  console.log(data);
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }))
+    }));
   };
 
   return (
@@ -39,6 +45,7 @@ const TicketModal = (props) => {
                       {indexData.ticket_code ? indexData.ticket_code : "-"}
                     </td>
                   </tr>
+
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Ticket Subject :</b>
@@ -72,15 +79,14 @@ const TicketModal = (props) => {
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Ticket Priority :</b>
                     </td>
-                    {/* <td>{indexData.priority ? indexData.priority : "-"}</td> */}
                     <td>
                       <Form.Select
-
                         aria-label="Default select example"
-                        onChange={handleChange} name="priority"
+                        onChange={handleChange}
+                        name="priority"
                         value={data.priority}
                       >
-                        <option >Select Priority</option>
+                        <option>Select Priority</option>
                         <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
@@ -89,30 +95,102 @@ const TicketModal = (props) => {
                   </tr>
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
-                      <b>Assign To:</b>
+                      <b>Department :</b>
                     </td>
-                    <td>{indexData.assignee ? indexData.assignee : "-"}</td>
+                    <td>
+                      <Form.Select
+                        aria-label="Default select example"
+                        onChange={handleChange}
+                        name="department"
+                        value={data.department}
+                      >
+                        <option>Select Department</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="HR">HR</option>
+                        <option value="ENGINEERING">Engineering</option>
+                      </Form.Select>
+                    </td>
                   </tr>
+
+                  <tr className={`${styles.ticketRows}`}>
+                    <td className={`${styles.ticketHeadings}`}>
+                      <b>Category :</b>
+                    </td>
+                    <td>
+                      <Form.Select
+                        aria-label="Default select example"
+                        name="approval"
+                        onChange={handleChange}
+                      >
+                        <option hidden>Category</option>
+                        <option value="Stationary">Stationary</option>
+                        <option value="Health">Health</option>
+                      </Form.Select>
+                    </td>
+                  </tr>
+
+                  {data.department === "HR" && (
+                    // user_id.department==="HR" && -------------->add department in user_id in ticketList data api
+                    <tr className={`${styles.ticketRows}`}>
+                      <td className={`${styles.ticketHeadings}`}>
+                        <b>Assign To:</b>
+                      </td>
+                      <td>
+                        <Form.Select
+                          aria-label="Default select example"
+                          onChange={handleChange}
+                          name="assign_to"
+                          value="assign_to"
+                        >
+                          {HRDetails?.map((item) => (
+                            <>
+                              <option hidden>Select employee</option>
+                              <option>
+                                {item.first_name + " " + item.last_name}
+                              </option>
+                            </>
+                          ))}
+                        </Form.Select>
+                      </td>
+                    </tr>
+                  )}
+
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Status:</b>
                     </td>
                     <td>
                       <div>
-
                         <Form.Select
                           className="col-md-1"
                           aria-label="Default select example"
-                          onChange={handleChange} name="status"
+                          onChange={handleChange}
+                          name="status"
                           value={data.status}
                         >
-                          <option >Select Status</option>
+                          <option>Select Status</option>
                           <option value="Active">Active</option>
                           <option value="Inactive">Inactive</option>
                           <option value="Completed">Completed </option>
                           <option value="Incompleted">Incompleted</option>
                         </Form.Select>
                       </div>
+                    </td>
+                  </tr>
+                  <tr className={`${styles.ticketRows}`}>
+                    <td className={`${styles.ticketHeadings}`}>
+                      <b>Approval :</b>
+                    </td>
+                    <td>
+                      <Form.Select
+                        aria-label="Default select example"
+                        name="approval"
+                        onChange={handleChange}
+                      >
+                        <option hidden>Approval</option>
+                        <option value="Stationary">Accept</option>
+                        <option value="Health">Reject</option>
+                      </Form.Select>
                     </td>
                   </tr>
                 </tbody>

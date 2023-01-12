@@ -8,8 +8,8 @@ const apiKeys = {
   updatePassword: "users/password/change",
   sendResetEmail: "users/password/reset/link",
   // userProfilePicture:"users/profilePicture",
-  userProfilePicture: "users/profile/picture/upload",  
-  userProfile:"images/ProfileImages",
+  userProfilePicture: "users/profile/picture/upload",
+  userProfile: "images/ProfileImages",
   userFamilyEmergencyUpdate: "users/family/profile",
   userFamilyListdelete: "users/family/profile/delete",
   qualificationList: "users/qualification/List",
@@ -34,11 +34,12 @@ const apiKeys = {
 
 
   //Attendance
-  attendanceList: "attendance/list",
-  createAttendance: "attendance/create",
-  punchIn: "attendance/punchIn",
-  punchOut: "attendance/punchOut",
-  allUserList: "attendance/allUsersList",
+  attendanceList :"attendance/list",
+  createAttendance : "attendance/create",
+  punchIn : "attendance/punchIn",
+  punchOut : "attendance/punchOut",
+  allUserList : "attendance/allUsersList",
+  bulkApproval : "attendance/bulkApproval",
 };
 
 

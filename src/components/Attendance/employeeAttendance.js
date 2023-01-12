@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -29,7 +28,6 @@ const EmployeeAttendanceComp = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(attendanceList());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [empAttendList.length]);
 
     const handleActiveTab = (e) => {
@@ -63,12 +61,12 @@ const EmployeeAttendanceComp = () => {
 
     const [punch, setPunch] = useState(true);
     const [punchbtn, setPunchbtn] = useState(false);
-   
+    
     useEffect(() => {
         const currDate = new Date(); 
         if(moment(empAttendList[empAttendList.length-1]?.date).format('ll')  !== moment(currDate).format('ll'))
         {    
-            setPunch(!punch);
+            setPunch(true);
             // setPunchbtn(!punchbtn); 
         }
         else{
@@ -113,7 +111,7 @@ const EmployeeAttendanceComp = () => {
                 handleErrorMessage(err);
             });
     }
-   console.log(empAttendList);
+ 
  
 
     return (
@@ -150,7 +148,7 @@ const EmployeeAttendanceComp = () => {
                                         </div>
                                     </div>
                                     <div className="d-flex align-item-center justify-content-center my-3">
-                                        <button className={`${punch ? styles.buttongreen : styles.buttonred}`} role="button"
+                                        <button className={`${punch ? "btn-success" : "btn-danger"} btn rounded-5`} role="button"
                                             disabled={punchbtn} onClick={punch ? onPunchIn : onPunchOut}>Punch {punch ? "In" : "Out"}</button>
                                     </div>
                                     <div className="row" >
@@ -217,7 +215,6 @@ const EmployeeAttendanceComp = () => {
                             <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                                 <div className="card-block text-dark text-center">
                                     <h6 className="m-b-20">Attendance Graph</h6>
-                                    <h5>0</h5>
                                 </div>
                             </div>
                         </div>
@@ -236,16 +233,17 @@ const EmployeeAttendanceComp = () => {
                             </InputGroup.Text>
                         </InputGroup>
                     </div>
-                    {/* <button className="btn btn-warning col-1 p-0 m-0 ">save</button> */}
-                    <div>
-                        <Table striped bordered hover size="sm" className="text-center">
-                            <thead>
-                                <tr className={`${styles.tableHeadRow}`}>
+                    <div className="row">
+                        <div className="col-md-12 col-lg-12">
+                        <div className={`${styles.tableResponsive}`}>
+                        <Table className={`${styles.customtable} table-hover table-striped table-nowrap rounded-pill mb-0 `}>
+                            <thead className={`${styles.tableHead}`}>
+                                <tr className={`${styles.tableHead}`}>
                                     <th className="p-3 col-md-1">Sr. No</th>
-                                    <th className="p-3 col-md-3">Date</th>
-                                    <th className="p-3 col-md-3">Punch In</th>
+                                    <th className="p-3 ">Date</th>
+                                    <th className="p-3 ">Punch In</th>
                                     <th className="p-3 ">Punch out</th>
-                                    <th className="p-3 text-center">Production</th>
+                                    <th className="p-3 text-center">Production</th> 
                                     <th className="p-3 text-center">Break</th>
                                     <th className="p-3 text-center">Overtime</th>
                                 </tr>
@@ -253,18 +251,21 @@ const EmployeeAttendanceComp = () => {
                             <tbody>
                                 {empAttendList?.map((row, i) => (
                                     <tr key={i}>
-                                        <td className="p-1">{i + 1}</td>
+                                        <td className="p-1 text-center">{i + 1}</td>
                                         <td className="p-1 ">{moment(row?.date).format("ll") || ""}</td>
-                                        <td className="p-1">{row?.inTime ? moment(row?.inTime).format("LTS") : "-----"}</td>
-                                        <td className="p-1">{row?.outTime ? moment(row?.outTime).format("LTS") : "-----"}</td>
-                                        <td className="p-1">{row?.duration ? row.duration + " hrs" : "------"}</td>
-                                        <td className="p-1">1</td>
-                                        <td className="p-1">0</td>
+                                        <td className="p-1 ">{row?.inTime ? moment(row?.inTime).format("LTS") : "-----"}</td>
+                                        <td className="p-1 ">{row?.outTime ? moment(row?.outTime).format("LTS") : "-----"}</td>
+                                        <td className="p-1 text-center">{row?.duration ? row.duration + " hrs" : "------"}</td>
+                                        <td className="p-1 text-center">1</td>
+                                        <td className="p-1 text-center">0</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </Table>
                     </div>
+                        </div>
+                    </div>
+                   
                 </div >
             </div >
         </>
