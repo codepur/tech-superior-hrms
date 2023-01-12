@@ -1,4 +1,4 @@
-
+/* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -23,10 +23,10 @@ const initial = {
   employee_ID: "",
   phone: "",
   dob: "",
-  date_of_joining: "",
+  doj: "",
   gender: "",
   blood_group: "",
-  department_head:false,
+  department_head: false,
 };
 
 const initialPaginationState = {
@@ -62,13 +62,11 @@ function TicketManagement() {
     employee_ID,
     phone,
     dob,
-    date_of_joining,
+    doj,
     gender,
     blood_group,
     department_head,
   } = employeeData;
-  
-
 
   const onChangeHandler = (e) => {
     const value = '';
@@ -76,7 +74,7 @@ function TicketManagement() {
       value = e.target.value === 'false' ? false : true;
       setEmployeeData((prev) => ({
         ...prev,
-        [e.target.name]:value,
+        [e.target.name]: value,
       }));
     } else {
       setEmployeeData((prev) => ({
@@ -114,7 +112,7 @@ function TicketManagement() {
               marginRight: "25px",
             },
           });
-        }    
+        }
       })
       .catch((err) => {
         handleErrorMessage(err);
@@ -173,13 +171,13 @@ function TicketManagement() {
   };
 
   const handleEdit = (row) => {
-
     setTicketSectionExpand(true);
     setButtonChnage(true);
     setTimeout(() => {
       setEmployeeData(row);
     }, 800);
   };
+  
   useEffect(() => {
     setSearchData(userList);
     // let department = filters.user_type || "all";
@@ -309,14 +307,14 @@ function TicketManagement() {
                 </Form.Select>
               </FormGroup>
               <FormGroup>
-                <Label for="date_of_joining">
+                <Label for="doj">
                   <b>Date of Joining</b>
                 </Label>
                 <Input
-                  value={date_of_joining ? moment(date_of_joining)?.format('YYYY-MM-DD') : " "}
+                  value={doj ? moment(doj)?.format('YYYY-MM-DD') : " "}
                   type="date"
-                  name="date_of_joining"
-                  id="date_of_joining"
+                  name="doj"
+                  id="doj"
                   onChange={onChangeHandler}
                 />
               </FormGroup>
@@ -386,7 +384,6 @@ function TicketManagement() {
                   onChange={onChangeHandler}
                 />
               </FormGroup>
-             
               <Form.Group controlId="department_head">
                 <Label for="department_head">
                   <b>Department Head</b>
@@ -410,7 +407,7 @@ function TicketManagement() {
                   checked={!department_head}
                 />
               </Form.Group>
-               </div>
+            </div>
             <Button
               className={`btn col-md-1 ${styles.saveButton}`}
               onClick={!buttonChnage ? createEmployee : updateEmployee}

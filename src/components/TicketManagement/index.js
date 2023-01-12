@@ -56,11 +56,10 @@ function TicketManagement() {
     (Gstate) => [
       Gstate.ticketManagement?.departmentList,
       Gstate.user?.userData,
-
       Gstate.ticketManagement?.ticketsList,
       Gstate.user?.userList,
     ]
-    );
+  );
   const userDepartmentId = userData?.department?._id;
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
@@ -185,12 +184,12 @@ function TicketManagement() {
 
   const recieveTicketData = ticketsList.filter(
     (item) =>
-      item.department.name === userData.department.name &&
-      (userData.department_head === true ||
-        item.assign_to === userData.first_name + " " + userData.last_name)
-        );
-  const issueTicketData = ticketsList.filter((item) =>( (item.assign_by === userData.first_name + " " + userData.last_name)||(item?.department?._id===userData?.department?._id && userData?.department_head===true && item?.approval==="Approved"))
-    );
+      item?.department?.name === userData?.department?.name &&
+      (userData?.department_head === true ||
+        item?.assign_to === userData?.first_name + " " + userData?.last_name)
+  );
+  const issueTicketData = ticketsList.filter((item) => ((item?.assign_by === userData?.first_name + " " + userData?.last_name) || (item?.department?._id === userData?.department?._id && userData?.department_head === true && item?.approval === "Approved"))
+  );
 
   return (
     <>
@@ -203,7 +202,7 @@ function TicketManagement() {
         centered
       >
         {userData && !userData?.department_head && (
-          <TicketModal handleClose={handleClose} index={index} userData={userData} userList={userList}/>
+          <TicketModal handleClose={handleClose} index={index} userData={userData} userList={userList} />
         )}
         {userData && userData?.department_head && (
           <TicketHeadModal
@@ -379,9 +378,8 @@ function TicketManagement() {
             <button
               name="RECIEVED"
               value="recieved"
-              className={`fw-bold btn me-1 ${
-                activeTab === "recieved" ? styles.active : styles.inactive
-              }`}
+              className={`fw-bold btn me-1 ${activeTab === "recieved" ? styles.active : styles.inactive
+                }`}
               onClick={() => setIssued(false)}
             >
               Recieved Tickets
@@ -390,9 +388,8 @@ function TicketManagement() {
             <button
               name="ISSUED"
               value="issued"
-              className={`fw-bold btn ${
-                activeTab === "issued" ? styles.active : styles.inactive
-              }`}
+              className={`fw-bold btn ${activeTab === "issued" ? styles.active : styles.inactive
+                }`}
               onClick={() => setIssued(true)}
             >
               Issued Tickets
@@ -401,7 +398,7 @@ function TicketManagement() {
 
           <hr className={`${styles.hr}`}></hr>
           <div className={``}>
-            <Table className={`${styles.table} table table-hover`}>
+            <Table className={`${styles.table} table table-hover textFont`}>
               <thead className={`${styles.tableHead} `}>
                 <tr className={`${styles.tableHead}`}>
                   <th itemScope="col">#</th>
@@ -552,9 +549,8 @@ function TicketManagement() {
             </Table>
           </div>
           <div
-            className={`d-flex justify-content-${
-              list?.length ? "end" : "center"
-            }`}
+            className={`d-flex justify-content-${list?.length ? "end" : "center"
+              }`}
           >
             <PaginationComponent
               currentPage={activePage}

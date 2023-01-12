@@ -1,8 +1,5 @@
 import { Modal, Form } from "react-bootstrap";
 import styles from "../../styles/ticket.module.scss";
-import { Dropdown } from "react-bootstrap";
-import { Icon123, IconCircleDot } from "@tabler/icons";
-import e from "cors";
 import { useState } from "react";
 import API from "../../helpers/api";
 import { encodeData } from "../../helpers/auth";
@@ -17,7 +14,7 @@ const TicketModal = (props) => {
     _id:props?.index?._id,
      
   };
-  const { index,userData,userList } = props;
+  const { index, userData, userList } = props;
   const indexData = index;
   const [data, setData] = useState(initial);
   const {status, priority ,assign_to,_id,approval} = props?.index;
@@ -47,7 +44,7 @@ const TicketModal = (props) => {
       .catch((err) => {
         handleErrorMessage(err);
       });
-      props.handleClose();
+    props.handleClose();
   }
   return (
     <>
@@ -157,7 +154,7 @@ const TicketModal = (props) => {
                     </td>
                   </tr>
 
-                   
+
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
                       <b>Status:</b>

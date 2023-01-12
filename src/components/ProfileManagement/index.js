@@ -4,15 +4,19 @@ import styles from "../../styles/ProfileManagement.module.scss";
 import AboutInfo from "./aboutInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { Image } from "react-bootstrap";
+import moment from "moment/moment";
 
-export default function MainPage() {
-  // const dispatch = useDispatch();
+export default function MainPage() {  
   const userData = useSelector((Gstate) => Gstate.user.userData);
-  const [state, Setstate] = useState("Basic Information");
-
+  const [state, Setstate] = useState("Basic Information"); 
   const handleClick = (data) => {
     Setstate(data);
   };
+  const [src ,setSrc] = useState(null); 
+
+  const HOST = 'http://13.232.215.173:9003';
+  const imagePath = userData?.Image;
+  const altSrc = HOST + imagePath;
 
   return (
     <>
@@ -21,11 +25,11 @@ export default function MainPage() {
           <div className="col-md-2 col-10 offset-1 offset-md-0">
             <div
               className={`rounded-circle  ms-5  mt-3 ${styles.circleimg} border`}
-            >
-              <Image
-                src="/images/men.png"
+            >            
+              <Image                
+                src={src ? src :  imagePath ? altSrc : "/images/men.png"}               
                 alt="userProfile"
-                className={`${styles.userProfile} img-fluid`}
+                className={`${src} ? ${styles.aspectRatio} img-fluid :  ${styles.userProfile} img-fluid`}
               />
             </div>
           </div>
@@ -38,7 +42,7 @@ export default function MainPage() {
             <div>
               <span className="fw-bold ">Department Name : </span>&nbsp;
               <span className="">
-                {`${userData?.department?.name}`}
+                {`${userData?.department?.tech ? userData.department.tech : "TECHNOLOGY"}`}
               </span>
             </div>
           </div>
@@ -60,22 +64,22 @@ export default function MainPage() {
                 <tr>
                   <th>Designation</th>
                   <th className="px-4">:</th>
-                  <td>{`${userData?.user_type ? userData?.user_type : "-"}`}</td>
+                  <td>{`${userData?.designation ? userData?.designation : "-"}`}</td>
                 </tr>
                 <tr>
-                  <th>Date of Joining</th>
+                  <th>Joining Date</th>
                   <th className="px-4">:</th>
-                  <td>{`${userData?.doj ? userData?.doj : "-"}`}</td>
+                  <td>{`${userData?.date_of_joining ? moment(userData?.date_of_joining).format("DD-MM-YYYY") : "-"}`}</td>
                 </tr>
                 <tr>
                   <th>Date of Birth</th>
                   <th className="px-4">:</th>
-                  <td>{`${userData?.dob ? userData?.dob : "-"}`}</td>
+                  <td>{`${userData?.dob ? moment(userData?.dob).format("DD-MM-YYYY") : "-"}`}</td>
                 </tr>
                 <tr>
                   <th>Blood Group</th>
                   <th className="px-4">:</th>
-                  <td>{`${userData?.bloodGroup ? userData?.bloodGroup : "-"}`}</td>
+                  <td>{`${userData?.blood_group ? userData?.blood_group : "-"}`}</td>
                 </tr>
               </tbody>
             </table>
@@ -142,7 +146,7 @@ export default function MainPage() {
         <div
           className={`col-md-12 border   bg-white  mb-5 ${styles.tableRound}`}
         >
-          <AboutInfo type={state} userData={userData} />
+          <AboutInfo type={state} userData={userData} setSrc={setSrc} />
         </div>
       </div>
     </>

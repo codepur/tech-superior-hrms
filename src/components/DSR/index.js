@@ -196,6 +196,14 @@ function DSRManagement() {
 
   useEffect(() => {
     onPageChange(activePage);
+  }, [list, activePage, chooseDsrList?.length,]);
+
+  useEffect(() => {
+    setPagination((prev) => ({ ...prev, list: chooseDsrList }));
+  }, [chooseDsrList?.length]);
+
+  useEffect(() => {
+    onPageChange(activePage);
   }, [list, activePage, chooseDsrList?.length]);
 
   const viewTicket = (row) => {
@@ -252,15 +260,15 @@ function DSRManagement() {
       setActiveTab(e.target.value);
     }
     if (e.target.value == "Approved") {
-      const ApprovedList = dsrList.filter((item) => item.status == "Approved");
+      const ApprovedList = dsrList.filter((item) => item.status === "Approved");
       setChooseDsrList(ApprovedList);
     }
     if (e.target.value == "Pending") {
-      const PendingList = dsrList.filter((item) => item.status == "Pending");
+      const PendingList = dsrList.filter((item) => item.status === "Pending");
       setChooseDsrList(PendingList);
     }
     if (e.target.value == "Rejected") {
-      const RejectedList = dsrList.filter((item) => item.status == "Rejected");
+      const RejectedList = dsrList.filter((item) => item.status === "Rejected");
       setChooseDsrList(RejectedList);
     }
   };
@@ -275,13 +283,13 @@ function DSRManagement() {
       (item) =>
         (searchvalue
           ? item.user_id?.first_name
-              ?.toLowerCase()
-              .includes(searchvalue.toLowerCase())
+            ?.toLowerCase()
+            .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.user_id?.last_name
-              ?.toLowerCase()
-              .includes(searchvalue.toLowerCase())
+            ?.toLowerCase()
+            .includes(searchvalue.toLowerCase())
           : true) ||
         (searchvalue
           ? item.project_id?.toLowerCase().includes(searchvalue.toLowerCase())
@@ -326,9 +334,8 @@ function DSRManagement() {
             </div>
             <hr className={`${styles.hr}`}></hr>
             <Form
-              className={` ${
-                ticketSectionExpand ? "form row d-flex" : "d-none"
-              }`}
+              className={` ${ticketSectionExpand ? "form row d-flex" : "d-none"
+                }`}
             >
               <div className="col-md-6">
                 <FormGroup>
@@ -633,11 +640,7 @@ function DSRManagement() {
                 ))}
               </tbody>
             </Table>
-            <div
-              className={`d-flex justify-content-${
-                list?.length ? "end" : "center"
-              }`}
-            >
+            <div className={`d-flex justify-content-${list?.length ? 'end' : 'center'}`}>
               <PaginationComponent
                 currentPage={activePage}
                 list={list}

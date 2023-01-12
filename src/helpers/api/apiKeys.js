@@ -7,7 +7,9 @@ const apiKeys = {
   resetUserPassword: "users/password/reset",
   updatePassword: "users/password/change",
   sendResetEmail: "users/password/reset/link",
-  userProfilePicture:"profile/picture/upload",
+  // userProfilePicture:"users/profilePicture",
+  userProfilePicture: "users/profile/picture/upload",
+  userProfile: "images/ProfileImages",
   userFamilyEmergencyUpdate: "users/family/profile",
   userFamilyListdelete: "users/family/profile/delete",
   qualificationList: "users/qualification/List",
@@ -29,7 +31,7 @@ const apiKeys = {
   createDsr: "dsr/create",
   projectList: "project/list",
   DsrList: "dsr/list",
-  dsrReject_Approvel:"dsr/status",
+  dsrReject_Approvel: "dsr/status",
   updateDsr: "dsr/update",
 
 
