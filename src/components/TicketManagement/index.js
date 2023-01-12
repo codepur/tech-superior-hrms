@@ -61,7 +61,6 @@ function TicketManagement() {
       Gstate.user?.userList,
     ]
     );
-    console.log('ticketsList', ticketsList)
   const userDepartmentId = userData?.department?._id;
   const dispatch = useDispatch();
   const toggleTicketSection = () => {
@@ -190,10 +189,8 @@ function TicketManagement() {
       (userData.department_head === true ||
         item.assign_to === userData.first_name + " " + userData.last_name)
         );
-        console.log('userData', userData)
   const issueTicketData = ticketsList.filter((item) =>( (item.assign_by === userData.first_name + " " + userData.last_name)||(item?.department?._id===userData?.department?._id && userData?.department_head===true && item?.approval==="Approved"))
     );
-    console.log('issueTicketData', issueTicketData)
 
   return (
     <>
