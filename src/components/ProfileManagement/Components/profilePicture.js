@@ -67,8 +67,7 @@ export default function ProfilePictureComponent() {
       .catch((err) => {
         handleErrorMessage(err);
       });
-  }
-  const fileName = selectedFile?.name;
+  }  
 
   const getPic = () => {
     dispatch(setProfilePicture(imagePathFilter));
@@ -80,23 +79,16 @@ export default function ProfilePictureComponent() {
     var binaryData = [];
     binaryData.push(view);
     const cc = window.URL.createObjectURL(new Blob(binaryData, { type: "application/zip" }))
-    // console.log('window.URL.createObjectURL(new Blob(binaryData, {type: "image/jpeg/png/jpg"}))', cc)
+    console.log('window.URL.createObjectURL(new Blob(binaryData, {type: "image/jpeg/png/jpg"}))', cc)
 
-    // console.log('binaryData', binaryData)
-    
-    // setPreview(cc);
+    console.log('binaryData', binaryData)
 
-    URL.revokeObjectURL(cc);
-    console.log('URL.revokeObjectURL(cc);', URL.revokeObjectURL(cc))
-
+    setPreview(cc);
   };
 
   const onClose = () => {
     setPreview(null);
   };
-
-
-
 
   return (
     <>
