@@ -1,5 +1,4 @@
 
-/* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -11,7 +10,6 @@ import API from "../../helpers/api";
 import { setdepartmentList } from "../../stores/actions/ticketManagement";
 import styles from "../../styles/ticket.module.scss";
 import { handleErrorMessage } from "../../utils/commonFunctions";
-// import TicketModal from "./viewModal";
 import toast, { Toaster } from "react-hot-toast";
 import { setUserlist } from "../../stores/actions/mainPage";
 import { encodeData, login } from "../../helpers/auth";
@@ -211,17 +209,6 @@ function TicketManagement() {
   };
   return (
     <>
-      {/* <Modal
-    className="custom-modal"
-    show={openModal}
-    onHide={() => setOpenModal(false)}
-    backdrop="static"
-    keyboard={false}
-    centered
-  >
-    <TicketModal handleClose={handleClose} index={index} />
-  </Modal> */}
-
       <div className={` ${styles.OuterTicketDiv}`}>
         <Toaster />
         <div className={`row d-flex  ${styles.ContainerDiv}`}>
@@ -399,16 +386,7 @@ function TicketManagement() {
                   onChange={onChangeHandler}
                 />
               </FormGroup>
-              {/* <FormGroup>
-                <Label for="department_head">
-                  <b>Department Head</b>
-                </Label>
-                <div onChange={onChangeHandler}>
-                  <Input type="radio" value={true} checked name="department_head" className="" /> true
-                  
-                  <Input type="radio" value={false} checked name="department_head" className="ms-3" /> false
-                </div>
-              </FormGroup> */}
+             
               <Form.Group controlId="department_head">
                 <Label for="department_head">
                   <b>Department Head</b>

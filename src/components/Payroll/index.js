@@ -38,7 +38,6 @@ const PayrollComponent = () => {
           Add Salary
         </div>
         <Form className="p-4">
-          {/* <fieldset disabled> */}
           <div className="row">
           <Form.Group className="col-md-6 mb-3">
             <Form.Label htmlFor="leaveSelect" className="fw-bold">
@@ -80,7 +79,6 @@ const PayrollComponent = () => {
           <Button type="submit" className={`${styles.leaveSubmit}`}>
             Submit
           </Button>
-          {/* </fieldset> */}
         </Form>
       </Modal>
       <div className="container">

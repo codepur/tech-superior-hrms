@@ -83,7 +83,6 @@ export default function MainPage() {
         </div>
       </div>
 
-      {/*  Sidebar */}
       <div className="row mt-4 ">
         <nav
           className={`navbar navbar-expand-lg navbar-light bg-light ${styles.navPosition}`}
@@ -140,7 +139,6 @@ export default function MainPage() {
           </div>
         </nav>
 
-        {/* All Data */}
         <div
           className={`col-md-12 border   bg-white  mb-5 ${styles.tableRound}`}
         >
