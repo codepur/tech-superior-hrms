@@ -1,25 +1,20 @@
 import { Modal, Form } from "react-bootstrap";
 import styles from "../../styles/ticket.module.scss";
-import { Dropdown } from "react-bootstrap";
-import { Icon123, IconCircleDot } from "@tabler/icons";
-import e from "cors";
 import { useState } from "react";
- 
+
 const TicketModal = (props) => {
-  const initial={
-    status:props.index.status,
-    priority:props.index.priority,
+  const initial = {
+    status: props.index.status,
+    priority: props.index.priority,
   }
   const { index } = props;
   const indexData = index;
   const [data, setData] = useState(initial);
-  const {status,priority} = props.index;
-  console.log('indexData', indexData);
-  console.log(data);
+  const { status, priority } = props.index;
   const handleChange = (e) => {
-    setData((prev)=>({
+    setData((prev) => ({
       ...prev,
-      [e.target.name]:e.target.value,
+      [e.target.name]: e.target.value,
     }))
   };
 
@@ -79,17 +74,17 @@ const TicketModal = (props) => {
                     </td>
                     {/* <td>{indexData.priority ? indexData.priority : "-"}</td> */}
                     <td>
-                    <Form.Select
-                         
-                          aria-label="Default select example"
-                          onChange={handleChange} name="priority"
-                          value={data.priority}
-                        >
-                          <option >Select Priority</option>
-                          <option value="High">High</option>
-                          <option value="Medium">Medium</option>
-                          <option value="Low">Low</option>
-                        </Form.Select>
+                      <Form.Select
+
+                        aria-label="Default select example"
+                        onChange={handleChange} name="priority"
+                        value={data.priority}
+                      >
+                        <option >Select Priority</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                      </Form.Select>
                     </td>
                   </tr>
                   <tr className={`${styles.ticketRows}`}>
@@ -104,9 +99,9 @@ const TicketModal = (props) => {
                     </td>
                     <td>
                       <div>
-                          
+
                         <Form.Select
-                        className="col-md-1"
+                          className="col-md-1"
                           aria-label="Default select example"
                           onChange={handleChange} name="status"
                           value={data.status}
