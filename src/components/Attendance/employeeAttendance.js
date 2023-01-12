@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -29,7 +28,6 @@ const EmployeeAttendanceComp = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(attendanceList());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [empAttendList.length]);
 
     const handleActiveTab = (e) => {
@@ -150,7 +148,7 @@ const EmployeeAttendanceComp = () => {
                                         </div>
                                     </div>
                                     <div className="d-flex align-item-center justify-content-center my-3">
-                                        <button className={`${punch ? styles.buttongreen : styles.buttonred}`} role="button"
+                                        <button className={`${punch ? "btn-success" : "btn-danger"} btn rounded-5`} role="button"
                                             disabled={punchbtn} onClick={punch ? onPunchIn : onPunchOut}>Punch {punch ? "In" : "Out"}</button>
                                     </div>
                                     <div className="row" >
@@ -217,7 +215,6 @@ const EmployeeAttendanceComp = () => {
                             <div className={`${styles.cardContainer} card order-card shadow border-1`}>
                                 <div className="card-block text-dark text-center">
                                     <h6 className="m-b-20">Attendance Graph</h6>
-                                    <h5>0</h5>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +233,6 @@ const EmployeeAttendanceComp = () => {
                             </InputGroup.Text>
                         </InputGroup>
                     </div>
-                    {/* <button className="btn btn-warning col-1 p-0 m-0 ">save</button> */}
                     <div>
                         <Table striped bordered hover size="sm" className="text-center">
                             <thead>
