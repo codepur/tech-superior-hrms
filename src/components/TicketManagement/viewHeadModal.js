@@ -20,18 +20,13 @@ const TicketModal = (props) => {
     _id:props.index?._id,
     
 };
-console.log('_id',props.userData?._id)
 const dispatch=useDispatch();
   const { index, userList,userData ,handleClose} = props;
-  console.log('index', index)
   const indexData = index;
-  console.log('indexData',indexData.department._id)
 
   const [data, setData] = useState(initial);
   const { status, priority ,assign_to,_id,approval} = props.index;
   const userDetails = userList.filter((item)=>item.department===indexData.department._id);
-  console.log('userList', userList)
-  console.log('userDetails', userDetails)
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
@@ -168,9 +163,7 @@ const dispatch=useDispatch();
                       </Form.Select>
                     </td>
                   </tr>
-                  {/* {console.log("check",indexData.department._id === userData.department._id && userData.department_head === true)} */}
                   {indexData.department._id === userData.department._id && userData.department_head === true && (
-                    // user_id.department==="HR" && -------------->add department in user_id in ticketList data api
                     <tr className={`${styles.ticketRows}`}>
                       <td className={`${styles.ticketHeadings}`}>
                         <b>Assign To:</b>
