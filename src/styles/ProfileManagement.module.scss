@@ -1,9 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 .circleimg {
-  width: 160px;
+  // width: 160px;
   margin-bottom: 15px;
   font-family: "Poppins", sans-serif;
+  height: 86%;
+  width: 100%;
+  justify-content: center;
 }
+.userProfile {
+  border-radius: 50%;
+  // width: 160px;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  // object-fit:cover;
+  overflow: hidden;
+}
+.aspectRatio {
+  aspect-ratio: 3/2;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  // object-fit:cover;
+  overflow: hidden;
+}
+
 .widgetcard {
   box-shadow: 0px 3px 6px #39669a29;
   border-radius: 10px;
@@ -15,19 +37,20 @@
   font-family: "Poppins", sans-serif;
 }
 
-.activeTab{
-background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%);
-  color:black;
-  border:none !important;
+.activeTab {
+  background: linear-gradient(
+    110.1deg,
+    rgb(34 126 34) 2.9%,
+    rgb(168 251 60) 90.3%
+  );
+  color: black;
+  border: none !important;
 }
 .info {
   font-size: 1.2em;
   border-bottom-style: groove;
   text-align: left;
-  color:#209f48;
-}
-.userProfile {
-  border-radius: 50%;
+  color: #209f48;
 }
 
 .textdata {
@@ -39,9 +62,9 @@ background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%
   box-shadow: -2px 7px 26px -15px grey;
 }
 
-.navPosition{
+.navPosition {
   position: sticky;
-  top:56px;
+  top: 56px;
 }
 
 .errorPassview {
@@ -53,7 +76,7 @@ background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%
 .eyeSize {
   width: 25px;
 }
-.formOutline{
+.formOutline {
   border: solid #3c5f4b 2px;
   padding: 10px;
   border-radius: 20px;
@@ -67,8 +90,8 @@ background: linear-gradient(110.1deg, rgb(34 126 34) 2.9%, rgb(168 251 60) 90.3%
   padding: 4%;
 }
 
-.editIcon{
-  position:relative;
+.editIcon {
+  position: relative;
   top: 50%;
-  left: 93%;
+  left: 50%;
 }
