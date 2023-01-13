@@ -12,8 +12,7 @@ import { setFamilyList } from "../../../stores/actions/mainPage";
 export default function EmergenctContact() {
   const [formValues, setFormValues] = useState([
     { name: "", relationship: "", phone: "" },
-  ]);
-  console.log('formValues', formValues)
+  ]);  
   const familyList = useSelector((Gstate) => Gstate.user.familyList);
   const { emergency_contact } = familyList;
 
@@ -89,7 +88,6 @@ export default function EmergenctContact() {
 
   const removeFormFields = (i) => {
     formValues?.splice(i, 1);
-    console.log('Values', formValues)
     setFormValues([...formValues]);
   }
 
