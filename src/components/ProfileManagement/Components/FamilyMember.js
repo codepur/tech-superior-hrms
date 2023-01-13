@@ -20,20 +20,21 @@ export default function FamilyMember() {
   const dispatch = useDispatch();
   // const { name, relationship, dob, dependant } = formValues;
   const familyList = useSelector((Gstate) => Gstate.user.familyList);
+  const { family_member } = familyList;
 
   useEffect(() => {
     dispatch(setFamilyList());
   }, []);
 
   useEffect(() => {
-    if (familyList?.length) {
-      let itemData = familyList?.map((item) => {
+    if (family_member?.length) {
+      let itemData = family_member?.map((item) => {
         item.save = true;
         return item;
       });
       setFormValues(itemData);
     }
-  }, [familyList, familyList?.length]);
+  }, [family_member, family_member?.length]);
 
   const handleChange = (i, e) => {
     setShowErrors(false);
@@ -238,9 +239,9 @@ export default function FamilyMember() {
         </a> */}
         </Row>
       ))}
-      <div onClick={addFormFields} className="mt-2 mb-2">
-        <Image src="/images/add.png" alt="add" />
-        <a className="mt-5 ms-2 ">Add</a>
+      <div className="mt-2 mb-2">
+        <Image src="/images/add.png" alt="add" onClick={addFormFields}/>
+        <a onClick={addFormFields} className="mt-5 ms-2 ">Add</a>
       </div>
 
       <Button
