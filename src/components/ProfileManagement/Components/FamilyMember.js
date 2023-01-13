@@ -58,9 +58,9 @@ export default function FamilyMember() {
 
   const removeFormFields = (i, item) => {
 
-    API.apiDeletePost("userFamilyListdelete", {payload:encodeData({ id: item._id })})
+    API.apiDeletePost("userFamilyListdelete", { payload: encodeData({ id: item._id }) })
       .then((response) => {
-        
+
         if (response.data && response.data.success === true) {
           let newFormValues = [...formValues];
           newFormValues.splice(i, 1);
@@ -118,8 +118,8 @@ export default function FamilyMember() {
       return;
     } else {
       setShowErrors(false);
-  
-      API.apiPost("userFamilyEmergencyUpdate", {payload:encodeData({ family_member: formValues })})
+
+      API.apiPost("userFamilyEmergencyUpdate", { payload: encodeData({ family_member: formValues }) })
         .then((response) => {
           if (response.data && response.data.success === true) {
             toast.success(response.data.message, {

@@ -18,8 +18,7 @@ import TicketHeadModal from "./viewHeadModal";
 import toast, { Toaster } from "react-hot-toast";
 import { Editor } from "@tinymce/tinymce-react";
 import { encodeData } from "../../helpers/auth";
-import { object } from "underscore";
-import { isEmpty } from "lodash";
+
 const initial = {
   subject: "",
   department: "",
