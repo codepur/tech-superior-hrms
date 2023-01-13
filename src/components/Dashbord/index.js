@@ -53,7 +53,7 @@ export default function DashboardComponent() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
-          <h5 className="text-center">Please mark your attendance </h5>
+          <h5 className="text-center">Attendance Status</h5>
           <div className="py-2 d-flex align-item-center justify-content-center">
             <SegmentedControl
               className={`${styles.segment}`}
@@ -91,11 +91,6 @@ export default function DashboardComponent() {
             />
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <button className="btn btn-primary text-center" onClick={closeModal}>
-            Save
-          </button>
-        </Modal.Footer>
       </Modal>
 
       <Modal centered show={false} onHide={closeEventModal}>
@@ -160,7 +155,7 @@ export default function DashboardComponent() {
                           <h6 className="m-b-20 pt-2">Attendance</h6>
                           <h2 className="text-right float-start mt-3">
                             <i className="fa fa-cart-plus f-left"></i>
-                            <button className="bg-btn-green px-3 btn" onClick={openModal}>Mark</button>
+                            <button className="bg-btn-green px-3 btn" onClick={openModal}>Status</button>
                           </h2>
                           {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
                           <Image
