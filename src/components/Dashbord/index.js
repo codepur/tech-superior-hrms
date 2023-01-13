@@ -10,8 +10,12 @@ import TodoContainer from "../TodoContainer";
 import CalendarAi from "./calender";
 
 export default function DashboardComponent() {
-  const [Count] = useSelector((Gstate) => [Gstate.user?.CountParticipant]);
+  const [Count, userData] = useSelector((Gstate) => [Gstate.user?.CountParticipant, Gstate?.user?.userData]);
+  const HOST = 'http://13.232.215.173:9003';
+  const imagePath = userData?.Image;
+  const altSrc = HOST + imagePath;
   const [todomodal, setTodoModal] = useState(false);
+  const full_name = userData?.first_name + " " + userData?.last_name;
 
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" };
   const event = [
@@ -129,7 +133,7 @@ export default function DashboardComponent() {
                     <div className="col-md-3">
                       <div className={`${styles.empImgCard} `}>
                         <Image
-                          src="images/photo_6325701050312536371_x.jpg"
+                          src={/*imagePath ? altSrc :*/ "images/photo_6325701050312536371_x.jpg"}
                           alt="Profile pic"
                           className={`${styles.empImg} `}
                         />
@@ -137,7 +141,7 @@ export default function DashboardComponent() {
                     </div>
                     <div className="col-md-9">
                       <div className={`${styles.empText}`}>
-                        <h2 className="mt-3">Welcome, Neeraj</h2>
+                        <h2 className="mt-3">Welcome, {full_name} </h2>
                         <p className="fst-italic mt-3">
                           <q>
                             Lorem Ipsum dolor emette Lorem Ipsum dolor emette
@@ -167,7 +171,7 @@ export default function DashboardComponent() {
                             src="/images/calendar.png"
                             className="float-end"
                             width={70}
-                          alt="logo"  />
+                            alt="logo" />
                         </div>
                       </div>
                     </div>
@@ -221,7 +225,7 @@ export default function DashboardComponent() {
                         <Card.Title>Birthday this month 🎂</Card.Title>
                         <div className="row ">
                           <div className="col-md-2">
-                            <Image src="/images/profileIcon.png" width="30"  alt="logo"/>
+                            <Image src="/images/profileIcon.png" width="30" alt="logo" />
                           </div>
                           <div className="col-md-4">Ashutosh</div>
                           <div className="col-md-2">SE</div>
