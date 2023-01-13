@@ -1,26 +1,41 @@
 import { Modal, Form } from "react-bootstrap";
 import styles from "../../styles/ticket.module.scss";
+import { Dropdown } from "react-bootstrap";
+import { Icon123, IconCircleDot } from "@tabler/icons";
+import e from "cors";
 import { useState } from "react";
 import API from "../../helpers/api";
 import { encodeData } from "../../helpers/auth";
+import { handleErrorMessage } from "../../utils/commonFunctions";
+import { useDispatch } from "react-redux";
+import { setTicketList } from "../../stores/actions/ticketManagement";
+import { toast } from "react-hot-toast";
 
 const TicketModal = (props) => {
   const initial = {
-    status: props.index.status,
-
-  };
-  const { index, userData, userList } = props;
+    status: props?.index?.status,
+    priority: props?.index?.priority,
+    assign_to:props?.index?.assign_to,
+    approval:"",
+    _id:props.index?._id,
+    
+};
+const dispatch=useDispatch();
+  const { index, userList,userData ,handleClose} = props;
   const indexData = index;
+
   const [data, setData] = useState(initial);
-  const { status } = props.index;
+  const { status, priority ,assign_to,_id,approval} = props.index;
+  const userDetails = userList.filter((item)=>item.department===indexData.department._id);
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-  const handleSubmit = () => {
-    indexData._id = props?.userData?._id;
+
+  const handleSubmit=()=>{
+    indexData._id = userData._id;
     API.apiPost("ticketUpdate", { payload: encodeData(data) })
       .then((response) => {
         if (response.data && response.data.success === true) {
@@ -39,8 +54,9 @@ const TicketModal = (props) => {
       .catch((err) => {
         handleErrorMessage(err);
       });
-    props.handleClose();
+      props.handleClose();
   }
+
   return (
     <>
       <Modal.Header closeButton className="modal-header pb-0">
@@ -101,8 +117,7 @@ const TicketModal = (props) => {
                         aria-label="Default select example"
                         onChange={handleChange}
                         name="priority"
-                        value={indexData.priority}
-                        disabled
+                        value={data.priority}
                       >
                         <option>Select Priority</option>
                         <option value="High">High</option>
@@ -120,7 +135,7 @@ const TicketModal = (props) => {
                         aria-label="Default select example"
                         onChange={handleChange}
                         name="department"
-                        value={indexData.department.name}
+                        value={index.department.name}
                         disabled
                       >
                         <option>Select Department</option>
@@ -148,7 +163,30 @@ const TicketModal = (props) => {
                       </Form.Select>
                     </td>
                   </tr>
-
+                  {indexData.department._id === userData.department._id && userData.department_head === true && (
+                    <tr className={`${styles.ticketRows}`}>
+                      <td className={`${styles.ticketHeadings}`}>
+                        <b>Assign To:</b>
+                      </td>
+                      <td>
+                        <Form.Select
+                          aria-label="Default select example"
+                          onChange={handleChange}
+                          name="assign_to"
+                          value={data.assign_to}
+                        >
+                          {userDetails?.map((item) => (
+                            <>
+                              <option hidden>Select employee</option>
+                              <option>
+                                {item.first_name + " " + item.last_name}
+                              </option>
+                            </>
+                          ))}
+                        </Form.Select>
+                      </td>
+                    </tr>
+                  )}
 
                   <tr className={`${styles.ticketRows}`}>
                     <td className={`${styles.ticketHeadings}`}>
@@ -181,15 +219,16 @@ const TicketModal = (props) => {
                         aria-label="Default select example"
                         name="approval"
                         onChange={handleChange}
-                        disabled
                       >
                         <option hidden>Approval</option>
-                        <option value="Stationary">Accept</option>
-                        <option value="Health">Reject</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
                       </Form.Select>
                     </td>
                   </tr>
                 </tbody>
+                
+                
               </table>
             </div>
           </div>

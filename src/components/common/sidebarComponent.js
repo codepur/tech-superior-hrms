@@ -33,7 +33,7 @@ const SidebarComponent = (props) => {
   useEffect(() => {
     if (roleId && roleId === SUB_ADMIN_ROLE) {
       const menu = appMenuItems?.filter((item) =>
-        [1, 5, 6, 7, 8, 9,10].includes(item.id)
+        [1,4, 5, 6, 7, 8, 9].includes(item.id)
       );
       setAppMenuItemsData(menu);
     }

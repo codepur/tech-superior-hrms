@@ -102,7 +102,7 @@ export default function ChangePasswordComponent() {
           <Form.Label className="fw-bold">Confirm Password</Form.Label>
           <Form.Control
             type={showPass ? "text" : "password"}
-            onChange={handleChange}
+            onChange={handleChange}   
             value={ConfirmPass}
             placeholder="Enter Confirm Password"
             isInvalid={

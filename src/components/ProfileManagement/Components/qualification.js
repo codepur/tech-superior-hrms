@@ -17,10 +17,11 @@ export default function QualificationComponent() {
   const dispatch = useDispatch();
   const qualificationList = useSelector(
     (Gstate) => Gstate.user.qualificationList
-  );
-
+    );
+    const userData = useSelector((Gstate) => Gstate.user.userData);
+  const user_id=encodeData(userData._id);
   useEffect(() => {
-    dispatch(setQualificationList());
+    dispatch(setQualificationList(user_id));
   }, []);
 
   useEffect(() => {

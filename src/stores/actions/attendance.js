@@ -17,7 +17,7 @@ export function attendanceList(params) {
 } 
 
 export function allUserList(params) {
-  return (dispatch) => {
+  return (dispatch) => {  
     dispatch({ type: 'REQUEST_ATTENDANCE_LIST' });
     API.apiGet('allUserList')
       .then((response) => {
