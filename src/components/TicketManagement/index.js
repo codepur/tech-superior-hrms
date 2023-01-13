@@ -396,8 +396,8 @@ function TicketManagement() {
           </div>
           {/* <hr className={`${styles.hr}`}></hr> */}
 
-          <hr className={`${styles.hr}`}></hr>
-          <div className={``}>
+          {/* <hr className={`${styles.hr}`}></hr> */}
+          <div className={`mt-3`}>
             <Table className={`${styles.table} table table-hover textFont`}>
               <thead className={`${styles.tableHead} `}>
                 <tr className={`${styles.tableHead}`}>
