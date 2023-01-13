@@ -10,6 +10,7 @@ import { setFamilyList } from "../../../stores/actions/mainPage";
 import styles from "../../../styles/ProfileManagement.module.scss";
 import { handleErrorMessage } from "../../../utils/commonFunctions";
 import Validation from "../../../utils/validations";
+import moment from "moment/moment";
 
 export default function FamilyMember() {
   const [formValues, setFormValues] = useState([
@@ -207,7 +208,7 @@ export default function FamilyMember() {
             <Form.Control
               type="date"
               onChange={(e) => handleChange(index, e)}
-              value={item.dob}
+              value={item.dob ? moment(item?.dob).format("YYYY-MM-DD") : "-"}
               disabled={item.save == true}
               placeholder="Enter your Date of Birth"
               name="dob"
@@ -240,7 +241,7 @@ export default function FamilyMember() {
         </Row>
       ))}
       <div className="mt-2 mb-2">
-        <Image src="/images/add.png" alt="add" onClick={addFormFields}/>
+        <Image src="/images/add.png" alt="add" onClick={addFormFields} />
         <a onClick={addFormFields} className="mt-5 ms-2 ">Add</a>
       </div>
 
