@@ -16,7 +16,7 @@ const AdminAttendanceComp = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allUserList());
-  }, []);
+  },[dispatch]);
 
   const segmentColor = { Present: "green", Absent: "red", Late: "yellow" }
   const [segmentValue, setSegment] = useState()
