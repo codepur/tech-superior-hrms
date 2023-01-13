@@ -1,11 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
-
+.profileContainer{
+  padding: 1rem 2rem;
+}
 .circleimg {
   // width: 160px;
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
   font-family: "Poppins", sans-serif;
-  height: 86%;
-  width: 100%;
+  height: 10rem;
+  width: 10rem;
   justify-content: center;
 }
 .userProfile {
@@ -65,6 +67,7 @@
 .navPosition {
   position: sticky;
   top: 56px;
+  z-index: 1;
 }
 
 .errorPassview {
@@ -95,3 +98,30 @@
   top: 50%;
   left: 50%;
 }
+.formCard
+{
+    padding:0 !important;
+    margin: 1rem 2rem;
+    width: 61rem;
+    border-radius: 31px;
+    box-shadow: -2px 7px 26px -15px grey;
+}
+.cardInput{
+  
+  // display: flex;
+  // justify-content: space-evenly;
+  width:30rem;
+  padding:0.5rem;
+}
+.imgCard{
+  
+  width:22rem;
+  opacity: 0.7;
+  border-radius: 31px 0 0 31px;
+}
+.cardPoint{
+  text-align:left;
+   padding-top:0.3rem;
+}
+ 
+ 
