@@ -20,6 +20,7 @@ export default function MainPage() {
 
   return (
     <>
+    <div className={`${styles.profileContainer}`}>
       <div className={`${styles.widgetcard} mt-3`}>
         <div className={`row bg-white border ${styles.tableRound} `}>
           <div className="col-md-2 col-10 offset-1 offset-md-0">
@@ -148,6 +149,7 @@ export default function MainPage() {
         >
           <AboutInfo type={state} userData={userData} setSrc={setSrc} />
         </div>
+      </div>
       </div>
     </>
   );
