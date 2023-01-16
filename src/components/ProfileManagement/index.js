@@ -20,6 +20,7 @@ export default function MainPage() {
 
   return (
     <>
+    <div className={`${styles.profileContainer}`}>
       <div className={`${styles.widgetcard} mt-3`}>
         <div className={`row bg-white border ${styles.tableRound} `}>
           <div className="col-md-2 col-10 offset-1 offset-md-0">
@@ -87,7 +88,6 @@ export default function MainPage() {
         </div>
       </div>
 
-      {/*  Sidebar */}
       <div className="row mt-4 ">
         <nav
           className={`navbar navbar-expand-lg navbar-light bg-light ${styles.navPosition}`}
@@ -144,12 +144,12 @@ export default function MainPage() {
           </div>
         </nav>
 
-        {/* All Data */}
         <div
           className={`col-md-12 border   bg-white  mb-5 ${styles.tableRound}`}
         >
           <AboutInfo type={state} userData={userData} setSrc={setSrc} />
         </div>
+      </div>
       </div>
     </>
   );

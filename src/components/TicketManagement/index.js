@@ -394,7 +394,6 @@ function TicketManagement() {
               Issued Tickets
             </button>
           </div>
-          {/* <hr className={`${styles.hr}`}></hr> */}
 
           {/* <hr className={`${styles.hr}`}></hr> */}
           <div className={`mt-3`}>

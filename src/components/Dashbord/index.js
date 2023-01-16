@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { Button, Card, Image, Modal } from "react-bootstrap";
+import { Button, Card, Form, FormGroup, Image, Modal } from "react-bootstrap";
 import styles from "../../styles/dashboard.module.scss";
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
@@ -8,6 +8,8 @@ import { Center, SegmentedControl, Box } from "@mantine/core";
 import { IconClock, IconX, IconCheck } from "@tabler/icons";
 import TodoContainer from "../TodoContainer";
 import CalendarAi from "./calender";
+import { Input } from "reactstrap";
+import { template } from "lodash";
 
 export default function DashboardComponent() {
   const [Count, userData] = useSelector((Gstate) => [Gstate.user?.CountParticipant, Gstate?.user?.userData]);
@@ -41,13 +43,44 @@ export default function DashboardComponent() {
   useEffect(() => {
     setEventModal(true);
   }, []);
-  const handleTodoModal = () => {
-    setTodoModal(true);
-  }
+
   const closeTodoModal = () => {
     setTodoModal(false);
-  }
-
+  };
+  const openTodoModal = () => {
+    setTodoModal(true);
+  };
+  const [formValues, setFormValues] = useState([
+    {
+      category: "",
+      categoryInputLine1: "",
+      categoryInputLine2: "",
+      categoryInputLine3: "",
+    },
+  ]);
+  const addFormFields = () => {
+    debugger;
+    let item = [...formValues];
+    let obj = {
+      category: "",
+      categoryInputLine1: "",
+      categoryInputLine2: "",
+      categoryInputLine3: "",
+    };
+    item.push(obj);
+    setFormValues(item);
+  };
+  const handleChange = (i, e) => {
+    // setShowErrors(false);
+    let newFormValues = [...formValues];
+    newFormValues[i][e.target.name] = e.target.value;
+    setFormValues(newFormValues);
+  };
+  const removeFormFields = (i, item) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(i, 1);
+    setFormValues(newFormValues);
+  };
   return (
     <>
       <Modal centered show={showModal} onHide={closeModal}>
@@ -102,7 +135,7 @@ export default function DashboardComponent() {
         </Modal.Footer>
       </Modal>
 
-      <Modal centered show={false} onHide={closeEventModal}>
+      {/* <Modal centered show={eventModal} onHide={closeEventModal}>
         <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
           <Modal.Title className={`${styles.header} ms-auto`}>
             <span>Today&apos;s Events</span>
@@ -117,6 +150,88 @@ export default function DashboardComponent() {
           <button
             className="btn bg-btn-green text-center"
             onClick={closeEventModal}
+          >
+            Save
+          </button>
+        </Modal.Footer>
+      </Modal> */}
+
+      <Modal centered show={todomodal} onHide={closeTodoModal}>
+        <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
+          <Modal.Title className={`${styles.header} ms-auto`}>
+            <span>Todo List</span>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="px-5 pb-4 pt-2 bodyModal">
+          {formValues &&
+            formValues.map((item, index) => (
+              <>
+                <div
+                  className="float-end user-select-none"
+                  onClick={() => removeFormFields(index, item)}
+                >
+                  <Image src="/images/cancel.svg" alt="add" width={25} />
+                </div>
+
+                <div className="m-3">
+                  <Form.Group className="col-md-3" controlId="formGridEmail">
+                    <Form.Control
+                      type="text"
+                      // placeholder="Enter Name"
+                      // disabled={item.save == true ? true : false}
+                      value={item.category}
+                      placeholder="Category"
+                      name="category"
+                      onChange={(e) => handleChange(index, e)}
+                    // isInvalid={showErrors && !Validation.maxOf(item.name, 30)}
+                    />
+                  </Form.Group>
+
+                  <FormGroup>
+                    <Input
+                      value={item.categoryInputLine1}
+                      type="text"
+                      name="categoryInputLine1"
+                      // id="first_name"
+                      placeholder="Enter your task"
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Input
+                      value={item.categoryInputLine2}
+                      type="text"
+                      name="categoryInputLine2"
+                      // id="first_name"
+                      // placeholder="Enter your task"
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Input
+                      value={item.categoryInputLine3}
+                      type="text"
+                      name="categoryInputLine3"
+                      // id="first_name"
+                      // placeholder="Enter your task"
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                  </FormGroup>
+                </div>
+              </>
+            ))}
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            className="btn bg-btn-green text-center"
+            onClick={addFormFields}
+          >
+            Add
+          </button>
+          <button
+            className="btn bg-btn-green text-center"
+            onClick={closeTodoModal}
           >
             Save
           </button>
@@ -164,7 +279,12 @@ export default function DashboardComponent() {
                           <h6 className="m-b-20 pt-2">Attendance</h6>
                           <h2 className="text-right float-start mt-3">
                             <i className="fa fa-cart-plus f-left"></i>
-                            <button className="bg-btn-green px-3 btn" onClick={openModal}>Mark</button>
+                            <button
+                              className="bg-btn-green px-3 btn"
+                              onClick={openModal}
+                            >
+                              Mark
+                            </button>
                           </h2>
                           {/* <p className="m-b-0">Completed Orders<span className="f-right">351</span></p> */}
                           <Image
@@ -189,17 +309,22 @@ export default function DashboardComponent() {
                             </div>
                           </div>
                           <div className="request-btn text-center mt-4 pt-1">
-                            <button className="btn bg-btn-green px-3" >Apply Leave</button>
+                            <button className="btn bg-btn-green px-3">
+                              Apply Leave
+                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="col-md-6 col-xl-6">
-                    <div className="card order-card bg-c-glassgreen shadow border-0" >
+                    <div className="card order-card bg-c-glassgreen shadow border-0">
                       <div className="card-block todoContainer overflow-auto">
-                        <h6 className="m-b-20 mt-1"><TodoContainer /></h6>
-                        <Button onClick={handleTodoModal}>Open todo</Button>
+                        <h6 className="m-b-20 mt-1">
+                          Todo List
+                          {/* <TodoContainer /> */}
+                        </h6>
+                        <Button onClick={openTodoModal}>Open todo</Button>
                       </div>
                     </div>
                   </div>
@@ -226,14 +351,14 @@ export default function DashboardComponent() {
                         <div className="row ">
                           <div className="col-md-2">
                             <Image src="/images/profileIcon.png" width="30" alt="logo" />
-                          </div>
+                          </div >
                           <div className="col-md-4">Ashutosh</div>
                           <div className="col-md-2">SE</div>
                           <div className="col-md-3">28aug</div>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </div>
+                        </div >
+                      </Card.Body >
+                    </Card >
+                  </div >
                   <div className="row p-3">
                     <Card
                       style={{ width: "25rem" }}
@@ -251,12 +376,12 @@ export default function DashboardComponent() {
                       </Card.Body>
                     </Card>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
     </>
   );
 }

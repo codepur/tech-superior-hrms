@@ -18,7 +18,7 @@ export function login(payload) {
     const type = "AUTH";
     dispatch({ type: `${type}_REQUEST` });
     try {
-      API.apiPost("login",{payload:auth.encodeData(payload)})
+      API.apiPost("login", { payload: auth.encodeData(payload) })
         .then(({ data }) => {
           if (data && data.token) {
             auth.login(data.token);
