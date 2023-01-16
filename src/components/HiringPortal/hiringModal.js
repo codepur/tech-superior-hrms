@@ -74,7 +74,6 @@ const HiringModal = (props) => {
       <Modal.Body>
         <Form>
           <div className="container">
-            {/* <div className="title fw-bold">Enter Email</div>     */}
             <div className="row mb-3">
               <Form.Group className="col" controlId="formBasicEmail">
                 <Form.Label>

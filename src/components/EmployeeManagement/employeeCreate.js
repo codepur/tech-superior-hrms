@@ -207,17 +207,6 @@ function TicketManagement() {
   };
   return (
     <>
-      {/* <Modal
-    className="custom-modal"
-    show={openModal}
-    onHide={() => setOpenModal(false)}
-    backdrop="static"
-    keyboard={false}
-    centered
-  >
-    <TicketModal handleClose={handleClose} index={index} />
-  </Modal> */}
-
       <div className={` ${styles.OuterTicketDiv}`}>
         <Toaster />
         <div className={`row d-flex  ${styles.ContainerDiv}`}>

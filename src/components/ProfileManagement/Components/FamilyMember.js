@@ -10,6 +10,7 @@ import { setFamilyList } from "../../../stores/actions/mainPage";
 import styles from "../../../styles/ProfileManagement.module.scss";
 import { handleErrorMessage } from "../../../utils/commonFunctions";
 import Validation from "../../../utils/validations";
+import moment from "moment/moment";
 
 export default function FamilyMember() {
   const [formValues, setFormValues] = useState([
@@ -20,20 +21,21 @@ export default function FamilyMember() {
   const dispatch = useDispatch();
   // const { name, relationship, dob, dependant } = formValues;
   const familyList = useSelector((Gstate) => Gstate.user.familyList);
+  const { family_member } = familyList;
 
   useEffect(() => {
     dispatch(setFamilyList());
   }, []);
 
   useEffect(() => {
-    if (familyList?.length) {
-      let itemData = familyList?.map((item) => {
+    if (family_member?.length) {
+      let itemData = family_member?.map((item) => {
         item.save = true;
         return item;
       });
       setFormValues(itemData);
     }
-  }, [familyList, familyList?.length]);
+  }, [family_member, family_member?.length]);
 
   const handleChange = (i, e) => {
     setShowErrors(false);
@@ -58,9 +60,9 @@ export default function FamilyMember() {
 
   const removeFormFields = (i, item) => {
 
-    API.apiDeletePost("userFamilyListdelete", {payload:encodeData({ id: item._id })})
+    API.apiDeletePost("userFamilyListdelete", { payload: encodeData({ id: item._id }) })
       .then((response) => {
-        
+
         if (response.data && response.data.success === true) {
           let newFormValues = [...formValues];
           newFormValues.splice(i, 1);
@@ -118,8 +120,8 @@ export default function FamilyMember() {
       return;
     } else {
       setShowErrors(false);
-  
-      API.apiPost("userFamilyEmergencyUpdate", {payload:encodeData({ family_member: formValues })})
+
+      API.apiPost("userFamilyEmergencyUpdate", { payload: encodeData({ family_member: formValues }) })
         .then((response) => {
           if (response.data && response.data.success === true) {
             toast.success(response.data.message, {
@@ -206,7 +208,7 @@ export default function FamilyMember() {
             <Form.Control
               type="date"
               onChange={(e) => handleChange(index, e)}
-              value={item.dob}
+              value={item.dob ? moment(item?.dob).format("YYYY-MM-DD") : "-"}
               disabled={item.save == true}
               placeholder="Enter your Date of Birth"
               name="dob"
@@ -238,9 +240,9 @@ export default function FamilyMember() {
         </a> */}
         </Row>
       ))}
-      <div onClick={addFormFields} className="mt-2 mb-2">
-        <Image src="/images/add.png" alt="add" />
-        <a className="mt-5 ms-2 ">Add</a>
+      <div className="mt-2 mb-2">
+        <Image src="/images/add.png" alt="add" onClick={addFormFields} />
+        <a onClick={addFormFields} className="mt-5 ms-2 ">Add</a>
       </div>
 
       <Button

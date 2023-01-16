@@ -355,9 +355,7 @@ export default function BasicInfo(props) {
               onChange={handleChange}
               value={Rmonths}
               name="Rmonths"
-            // isInvalid={
-            //   showErrors && (!Rmonths || !Validation.minOf(Rmonths, 3))
-            // }
+             
             />
           </Form.Group>
         </Row>

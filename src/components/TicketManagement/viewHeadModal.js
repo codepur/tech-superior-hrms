@@ -16,8 +16,8 @@ const TicketModal = (props) => {
     status: props?.index?.status,
     priority: props?.index?.priority,
     assign_to:props?.index?.assign_to,
-    approval:"",
-    _id:props.index?._id,
+    approval:props?.index?.approval,
+    _id:props?.index?._id,
     
 };
 const dispatch=useDispatch();
@@ -25,12 +25,12 @@ const dispatch=useDispatch();
   const indexData = index;
 
   const [data, setData] = useState(initial);
-  const { status, priority ,assign_to,_id,approval} = props.index;
-  const userDetails = userList.filter((item)=>item.department===indexData.department._id);
+  const { status, priority ,assign_to,_id,approval} = props?.index;
+  const userDetails = userList.filter((item)=>item?.department===indexData?.department?._id);
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [e?.target?.name]: e?.target?.value,
     }));
   };
 
@@ -219,6 +219,7 @@ const dispatch=useDispatch();
                         aria-label="Default select example"
                         name="approval"
                         onChange={handleChange}
+                        value={data.approval}
                       >
                         <option hidden>Approval</option>
                         <option value="Approved">Approved</option>
