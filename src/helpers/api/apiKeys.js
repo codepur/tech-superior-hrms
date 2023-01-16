@@ -41,6 +41,7 @@ const apiKeys = {
   punchIn : "attendance/punchIn",
   punchOut : "attendance/punchOut",
   allUserList : "attendance/allUsersList",
+  singleApproval : "attendance/approval",
   bulkApproval : "attendance/bulkApproval",
 };
 
