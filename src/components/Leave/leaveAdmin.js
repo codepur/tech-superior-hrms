@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { Icon123, IconCircleDot } from "@tabler/icons";
 import { Table } from "reactstrap";
@@ -123,7 +122,6 @@ const AdminLeaveComponent = () => {
             >
                 <div className={` fw-bold fs-5 d-flex justify-content-center align-self-center mt-4 fs-3`}>Add Leave</div>
                 <Form className="p-4">
-                    {/* <fieldset disabled> */}
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="leaveSelect" className="fw-bold">Leave Type</Form.Label>
                         <Form.Select id="leaveSelect">
@@ -153,7 +151,6 @@ const AdminLeaveComponent = () => {
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>
                     <Button type="submit" className={`${styles.leaveSubmit}`}>Submit</Button>
-                    {/* </fieldset> */}
                 </Form>
             </Modal>
             <div className="container">
@@ -275,9 +272,7 @@ const AdminLeaveComponent = () => {
                                     </span>
                                 </th>
                                 <th itemScope='col'>
-                                    {/* <span className="alignTableHeading" onClick={() => handleSort('')}>
-                                        <span className="">Action</span>
-                                    </span> */}
+                                    
                                 </th>
                             </tr>
                         </thead>

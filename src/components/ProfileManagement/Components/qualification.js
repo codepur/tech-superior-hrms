@@ -17,9 +17,10 @@ export default function QualificationComponent() {
   const dispatch = useDispatch();
   const qualificationList = useSelector(
     (Gstate) => Gstate.user.qualificationList
-    );
-    const userData = useSelector((Gstate) => Gstate.user.userData);
-  const user_id=encodeData(userData._id);
+  );
+  console.log("qualificationList", qualificationList);
+  const userData = useSelector((Gstate) => Gstate.user.userData);
+  const user_id = encodeData(userData._id);
   useEffect(() => {
     dispatch(setQualificationList(user_id));
   }, []);
@@ -46,7 +47,7 @@ export default function QualificationComponent() {
     newFormValues.splice(i, 1);
     setData(newFormValues);
 
-    API.apiPost("deleteQualification",  {payload:encodeData(item)})
+    API.apiPost("deleteQualification", { payload: encodeData(item) })
       .then((response) => {
         if (response.data && response.data.success === true) {
           toast.success(response.data.message, {
@@ -90,6 +91,8 @@ export default function QualificationComponent() {
 
   const handleClick = (e, item) => {
     e.preventDefault();
+
+    //=============================for future use of validation=================================
     // setShowErrors(true);
     // let isValidForm = true;
     // data?.forEach((form) => {
@@ -152,7 +155,8 @@ export default function QualificationComponent() {
     //   return;
     // } else {
     // setShowErrors(false);
-    API.apiPost("updateQualification",  {payload:encodeData(item)})
+    //=============================for future use of validation=================================
+    API.apiPost("updateQualification", { payload: encodeData(item) })
       .then((response) => {
         if (response.data && response.data.success === true) {
           toast.success(response.data.message, {
@@ -193,9 +197,6 @@ export default function QualificationComponent() {
                     onChange={(e) => handleChange(i, e)}
                     name="qualification_type"
                     value={item.qualification_type}
-                    // isInvalid={
-                    //   showErrors && !Validation.empty(item.qualification_type)
-                    // }
                   >
                     <option hidden>Qualification Type</option>
                     <option value="Graduation">Graduation </option>
@@ -235,10 +236,6 @@ export default function QualificationComponent() {
                     name="course_type"
                     value={item.course_type}
                     onChange={(e) => handleChange(i, e)}
-                    // isInvalid={
-                    //   showErrors &&
-                    //    !Validation.empty(item.course_type)
-                    // }
                   >
                     <option hidden>Course Type</option>
                     <option value="Full Time">Full Time</option>
@@ -309,11 +306,7 @@ export default function QualificationComponent() {
                     value={item.college_name}
                     name="college_name"
                     placeholder="Enter College Name"
-                    //   isInvalid={showErrors && !Validation.maxOf(college_name, 50)}
                   />
-                  {/* <Form.Control.Feedback type="invalid">
-                   {!item.college_name ? "Please Enter Your College Name" : ""}
-                 </Form.Control.Feedback> */}
                 </Form.Group>
               </Row>
               <Row className="mt-3">
@@ -348,8 +341,59 @@ export default function QualificationComponent() {
           ) : (
             item.status == "Active" && (
               <>
-                <div className="row border mb-2" key={i}>
-                  <div className={`p-2`}>
+                <div className={`${styles.formCard} d-flex`} key={i}>
+                  <div className={`${styles.courseCard} col-md-4`}>
+                    <img
+                      src="/images/graduationImage.jpg"
+                      alt=""
+                      className={`${styles.imgCard}`}
+                    />
+                  </div>
+                  <div className={`${styles.courseInfoCard} col-md-7 `}>
+                    <div className="col-md-12 d-flex justify-content-center mt-3">
+                      <b>{item?.qualification_type}</b>
+                    </div>
+                    <div className={`${styles.courseTable} d-flex mx-5`}>
+                      <tbody>
+                        <tr className={`${styles.cardInput}`}>
+                          <th className={`${styles.cardPoint}`}>Course</th>
+                          <th className="px-4">|</th>
+                          <td className={`${styles.cardPoint}`}>{`${
+                            item?.course_name ? item?.course_name : "-"
+                          }`}</td>
+                        </tr>
+                        <tr className={`${styles.cardInput}`}>
+                          <th className={`${styles.cardPoint}`}>Course Type</th>
+                          <th className="px-4">|</th>
+                          <td className={`${styles.cardPoint}`}>{`${
+                            item?.course_type ? item?.course_type : "-"
+                          }`}</td>
+                        </tr>
+                        <tr className={`${styles.cardInput}`}>
+                          <th className={`${styles.cardPoint}`}>Stream</th>
+                          <th className="px-4">|</th>
+                          <td className={`${styles.cardPoint}`}>{`${
+                            item?.stream ? item?.stream : "-"
+                          }`}</td>
+                        </tr>
+                        <tr className={`${styles.cardInput}`}>
+                          <th className={`${styles.cardPoint}`}>College</th>
+                          <th className="px-4">|</th>
+                          <td className={`${styles.cardPoint}`}>{`${
+                            item?.college_name ? item?.college_name : "-"
+                          }`}</td>
+                        </tr>
+                        <tr className={`${styles.cardInput}`}>
+                          <th className={`${styles.cardPoint}`}>University</th>
+                          <th className="px-4">|</th>
+                          <td className={`${styles.cardPoint}`}>{`${
+                            item?.university_name ? item?.university_name : "-"
+                          }`}</td>
+                        </tr>
+                      </tbody>
+                    </div>
+                  </div>
+                  <div className={`p-2 col-md-1`}>
                     <div
                       className="float-end user-select-none"
                       onClick={() => removeFormFields(i, item)}
@@ -362,16 +406,6 @@ export default function QualificationComponent() {
                     >
                       <Image src="/images/edit.png" alt="add" width={20} />
                     </div>
-                    <h4 className=" mb-3 ms-4">{item.course_type}</h4>
-                  </div>
-                  <div className="col-md-3 mb-3 ">
-                    <Image src="/images/education.svg" width={130} />
-                  </div>
-
-                  <div className="col-md-3">
-                    <h4>{item.college_name}</h4>
-                    <label>{item.course_name}</label>
-                    <p>{item.stream}</p>
                   </div>
                 </div>
               </>

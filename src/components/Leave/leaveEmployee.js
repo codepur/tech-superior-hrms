@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { Icon123 } from "@tabler/icons";
 import { Table } from "reactstrap";
@@ -126,14 +125,12 @@ const EmployeeLeaveComponent = () => {
                 <Modal.Header closeButton className={`${styles.modalHeaderBorderNone}`}>
                     <Modal.Title className={` fw-bold mt-4 fs-3 `}>
                         <div className="d-flex justify-content-center align-self-center">
-                            {/* <div className={` fw-bold fs-5 d-flex justify-content-center align-self-center mt-4 fs-3`}> */}
                             Add Leave
                         </div>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form className="">
-                        {/* <fieldset disabled> */}
                         <Form.Group className="mb-3">
                             <Form.Label htmlFor="leaveSelect" className="fw-bold" >
                                 Leave Type
@@ -173,7 +170,6 @@ const EmployeeLeaveComponent = () => {
                         <Button type="submit" className={`${styles.leaveSubmit}`}  >
                             Submit
                         </Button>
-                        {/* </fieldset> */}
                     </Form>
                 </Modal.Body>
             </Modal>
@@ -313,7 +309,6 @@ const EmployeeLeaveComponent = () => {
                                                     className={`bg-white border-0 p-0`}
                                                 >
                                                     <Image src={'/images/three-dot-icon.svg'} alt="" className="cursor-pointer mb-1 sortImg" />
-                                                    {/* <Image src={'/images/more.png'} className="cursor-pointer mb-1 sortImg " alt="" /> */}
                                                 </Dropdown.Toggle>
 
                                                 <Dropdown.Menu className="textFont">

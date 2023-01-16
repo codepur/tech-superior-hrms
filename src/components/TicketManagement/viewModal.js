@@ -3,24 +3,29 @@ import styles from "../../styles/ticket.module.scss";
 import { useState } from "react";
 import API from "../../helpers/api";
 import { encodeData } from "../../helpers/auth";
+import { handleErrorMessage } from "../../utils/commonFunctions";
 
 const TicketModal = (props) => {
   const initial = {
-    status: props.index.status,
-
+    status: props?.index?.status,
+    priority: props?.index?.priority,
+    assign_to:props?.index?.assign_to,
+    approval:props?.index?.approval,
+    _id:props?.index?._id,
+     
   };
   const { index, userData, userList } = props;
   const indexData = index;
   const [data, setData] = useState(initial);
-  const { status } = props.index;
+  const {status, priority ,assign_to,_id,approval} = props?.index;
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [e?.target?.name]: e?.target?.value,
     }));
   };
-  const handleSubmit = () => {
-    indexData._id = props?.userData?._id;
+  const handleSubmit=()=>{
+    indexData._id = props.userData?._id;
     API.apiPost("ticketUpdate", { payload: encodeData(data) })
       .then((response) => {
         if (response.data && response.data.success === true) {
@@ -162,6 +167,7 @@ const TicketModal = (props) => {
                           onChange={handleChange}
                           name="status"
                           value={data.status}
+                          disabled
                         >
                           <option>Select Status</option>
                           <option value="Active">Active</option>
@@ -181,11 +187,12 @@ const TicketModal = (props) => {
                         aria-label="Default select example"
                         name="approval"
                         onChange={handleChange}
+                        value={data.approval}
                         disabled
                       >
                         <option hidden>Approval</option>
-                        <option value="Stationary">Accept</option>
-                        <option value="Health">Reject</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
                       </Form.Select>
                     </td>
                   </tr>
