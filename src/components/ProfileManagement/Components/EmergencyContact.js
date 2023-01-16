@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Button, Form, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +11,7 @@ import { setFamilyList } from "../../../stores/actions/mainPage";
 export default function EmergenctContact() {
   const [formValues, setFormValues] = useState([
     { name: "", relationship: "", phone: "" },
-  ]);  
+  ]);
   const familyList = useSelector((Gstate) => Gstate.user.familyList);
   const { emergency_contact } = familyList;
 
@@ -161,8 +160,8 @@ export default function EmergenctContact() {
             />
           </Form.Group>
         </Row>
-      ))
-      }
+      ))}
+
       <div className="mt-2 mb-2" onClick={addFormFields} >
         <Image src="/images/add.png" alt="add" />
         <a className="mt-5 ms-2 ">Add</a>
