@@ -1,15 +1,18 @@
-import { memo} from "react";
-import { Dropdown, Image} from "react-bootstrap";
+import { memo } from "react";
+import { Dropdown, Image } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../src/styles/header.module.scss";
 import { logout } from "../../helpers/auth";
-import { IconCaretDown} from "@tabler/icons";
+import { IconCaretDown } from "@tabler/icons";
 import { useEffect } from "react";
-import { getProfile,setUserlist } from "../../stores/actions/mainPage";
+import { getProfile, setUserlist } from "../../stores/actions/mainPage";
 
 function HeaderComponent({ isPublic, hasSideBar, mobileToggle }) {
   const [userData] = useSelector((Gstate) => [Gstate.user?.userData]);
+  const HOST = 'http://13.232.215.173:9003';
+  const imagePath = userData?.Image;
+  const altSrc = HOST + imagePath;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +25,7 @@ function HeaderComponent({ isPublic, hasSideBar, mobileToggle }) {
   const logoutUser = () => {
     logout();
   };
- 
+
   return (
     <>
       <Navbar bg="light" className={`row ${styles.mainHeader} m-0 p-0`}>
@@ -48,7 +51,12 @@ function HeaderComponent({ isPublic, hasSideBar, mobileToggle }) {
                 <div className={styles.profileContainer}>
 
                 </div>
-                <Image src="/images/photo_6325701050312536371_x.jpg" alt="Logo" className={styles.profileImg} />
+                <Image
+                  src={imagePath ? altSrc : "images/photo_6325701050312536371_x.jpg"}
+                  alt="Logo"
+                  className={styles.profileImg}
+
+                />
                 <span className="text-dark p-2 fw-bold">
                   {userData && `${userData?.first_name || ""} ${userData?.last_name || ""}`}
                 </span>

@@ -11,20 +11,17 @@
   justify-content: center;
 }
 .userProfile {
-  border-radius: 50%;
-  // width: 160px;
+  border-radius: 50%;  
   width: auto;
   height: 100%;
-  object-fit: contain;
-  // object-fit:cover;
+  object-fit: contain;  
   overflow: hidden;
 }
 .aspectRatio {
   aspect-ratio: 3/2;
   width: auto;
   height: 100%;
-  object-fit: contain;
-  // object-fit:cover;
+  object-fit: contain;  
   overflow: hidden;
 }
 
@@ -101,8 +98,8 @@
 .formCard
 {
     padding:0 !important;
-    margin: 1rem 2rem;
-    width: 61rem;
+    margin: 1rem;
+    width: 59rem;
     border-radius: 31px;
     box-shadow: -2px 7px 26px -15px grey;
 }

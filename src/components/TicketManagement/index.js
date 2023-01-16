@@ -18,8 +18,7 @@ import TicketHeadModal from "./viewHeadModal";
 import toast, { Toaster } from "react-hot-toast";
 import { Editor } from "@tinymce/tinymce-react";
 import { encodeData } from "../../helpers/auth";
-import { object } from "underscore";
-import { isEmpty } from "lodash";
+
 const initial = {
   subject: "",
   department: "",
@@ -396,8 +395,8 @@ function TicketManagement() {
             </button>
           </div>
 
-          <hr className={`${styles.hr}`}></hr>
-          <div className={``}>
+          {/* <hr className={`${styles.hr}`}></hr> */}
+          <div className={`mt-3`}>
             <Table className={`${styles.table} table table-hover textFont`}>
               <thead className={`${styles.tableHead} `}>
                 <tr className={`${styles.tableHead}`}>

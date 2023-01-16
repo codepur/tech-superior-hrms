@@ -18,7 +18,7 @@ export function login(payload) {
     const type = "AUTH";
     dispatch({ type: `${type}_REQUEST` });
     try {
-      API.apiPost("login",{payload:auth.encodeData(payload)})
+      API.apiPost("login", { payload: auth.encodeData(payload) })
         .then(({ data }) => {
           if (data && data.token) {
             auth.login(data.token);
@@ -107,7 +107,8 @@ export function setFamilyList() {
           if (response.data) {
             dispatch({
               type: `SET_FAMILY_List`,
-              payload: response.data.data[0].family_member,
+              payload: response.data.data[0],
+              //earlier==> payload: response.data.data[0].family_member,
             });
           }
         })
