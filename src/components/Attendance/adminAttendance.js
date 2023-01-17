@@ -115,7 +115,6 @@ const AdminAttendanceComp = () => {
       toast.error("Please Select A Row");
       return;
     }
-    console.log(data);
     API.apiPost("bulkApproval", { payload: encodeData(data) })
       .then((response) => {
         if (response.data && response.data.success === true) {
@@ -265,7 +264,6 @@ const AdminAttendanceComp = () => {
                         Please approve my attendance{" "}
                       </p>
                     </div>
-                    {/* {console.log(modalData)} */}
                     <SegmentedControl
                       className={`${styles.segment} `}
                       color={segmentColor[segmentValue]}

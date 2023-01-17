@@ -18,7 +18,6 @@ export default function QualificationComponent() {
   const qualificationList = useSelector(
     (Gstate) => Gstate.user.qualificationList
   );
-  console.log("qualificationList", qualificationList);
   const userData = useSelector((Gstate) => Gstate.user.userData);
   const user_id = encodeData(userData._id);
   useEffect(() => {
